@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(products => {
           allProducts = products;
 
-          renderProducts(products.slice(0, 4)); // показуємо перші 4
+          renderProducts(products.slice(0, 4)); 
 
           btnShowAll.addEventListener('click', () => {
-              container.innerHTML = ""; // очищаємо список
-              renderProducts(allProducts); // показуємо всі товари
-              btnShowAll.style.display = "none"; // приховуємо кнопку
+              container.innerHTML = ""; 
+              renderProducts(allProducts); 
+              btnShowAll.style.display = "none"; 
           });
       })
       .catch(error => console.error('Помилка завантаження файлу:', error));
@@ -25,27 +25,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.className = 'product-card';
 
-            li.innerHTML = `
-              <div class="product-img">
-                  <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
-              </div>
-                  
-              <div class="product-info">
-                  <h3 class="product-title">${item['Назва']}</h3>
-                  <p class="product-weight">${item['Вага/об\'єм (г/л)']}</p>
+        li.innerHTML = `
+             <a href="assets/pages/product.html?id=${item['ID']}" class="product-link">
+                <div class="product-img">
+                    <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
+                </div>
 
-                  <div class="product-cart">
-                      <div class="product-price">
-                          ${item['Ціна']}
-                          <div class="product-price-uah">грн</div>
-                      </div>
+                <div class="product-info">
+                    <h3 class="product-title">${item['Назва']}</h3>
+                    <p class="product-weight">${item["Вага/об'єм (г/л)"]}</p>
 
-                      <button class="add-to-cart" data-id="${item['ID'] || ''}">
-                          <img src="assets/img/+.svg" alt="add to cart">
-                      </button>
-                  </div>
-              </div>
-            `;
+                    <div class="product-cart">
+                        <div class="product-price">
+                            ${item['Ціна']}
+                            <div class="product-price-uah">грн</div>
+                        </div>
+
+                        <button class="add-to-cart" data-id="${item['ID']}">
+                            <img src="assets/img/+.svg" alt="add to cart">
+                        </button>
+                    </div>
+                </div>
+            </a>
+        `;
 
             container.appendChild(li);
         });

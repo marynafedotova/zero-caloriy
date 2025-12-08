@@ -7,6 +7,9 @@
  * @site https://jonsuh.com/hamburgers
  * @link https://github.com/jonsuh/hamburgers
  */
+ .top100{
+  margin-top: 100px;
+ }
  .topbottom100{
   padding: 100px 0px;
  }
@@ -46,6 +49,17 @@
     font-weight: 500;
     font-style: normal;
   }
+@font-face {
+    font-family: 'Montserrat Semi Bold';
+    src: local('../fonts/Montserrat Semi Bold'), local('Montserrat-Semi-Bold'),
+        url('../fonts/Montserrat-SemiBold.woff2') format('woff2'),
+        url('../fonts/Montserrat-SemiBold.woff') format('woff'),
+        url('../fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+
+
 .hamburger {
   padding: 15px 15px;
   display: inline-block;
@@ -666,4 +680,84 @@ justify-content: space-between;
 #footer-form input::placeholder {
     color: var(--pinkmiddle-color);
 
+}
+/* product page */
+.product-main{
+  display: flex;
+  justify-content: space-between;
+  gap: 42px;
+}
+.product-gallery{
+  width: 48%;
+}
+.product-gallery img{
+  border-radius: 58px;
+
+}
+.nav-product{
+  display: inline-flex;
+  padding:  24px 0px 42px;
+}
+.product-info{
+  width: 48%;
+}
+.product-main .product-info .product-title{
+  font-size: 40px;
+  font-family: 'Montserrat Bold';
+  padding-bottom: 24px;
+}
+.product-price{
+    font-size: 32px;
+  font-family: 'Montserrat Bold';
+  padding-bottom: 24px;
+}
+.uah-product-price{
+  font-size: 24px;
+  font-family: 'Montserrat Bold';
+  color: var(--grey-color);
+  padding-left: 8px;
+}
+.product-composition, .product-nutrition{
+  display: flex;
+  gap: 16;
+  margin-bottom: 29px;
+}
+.product-composition h4, .product-nutrition h4{
+  font-family: 'Montserrat Bold';
+  font-size: 20px;
+  color: var(--grey-color);
+  padding-right: 16px;
+}
+.product-nutrition, .product-size{
+  border: 1px solif #FFD4DA;
+}
+.product-ingredients, .nutrition-list{
+  font-size: 16px;
+  color: var(--grey-color);
+font-weight: 600;
+}
+.product-actions{
+display: flex;
+gap: 20px;
+justify-content: space-between;
+}
+.quantity{
+  background-color: #FAE4E3;
+  padding: 16px 20px;
+  border-radius: 20px;
+  width: 30%;
+  text-align: center;
+}
+.quantity span{
+  padding: 0px 16px;
+}
+.quantity button{
+  border: none;
+  background-color: #FAE4E3;
+}
+.product-actions .add-to-cart{
+  background-color: var(--pinkdark-color);
+  color: var(--white-color);
+  width: 60%;
+  border-radius: 20px;
 }
