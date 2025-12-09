@@ -143,8 +143,8 @@
 
           <div>
             <ul class="cart-account">
-              <li><a href="">
-                  <img src="assets/img/cart.svg" alt="">
+              <li><a href="assets/pages/cart.html">
+                  <img src="assets/img/cart.svg" alt="cart">
                 </a></li>
               <li><a href="">
                   <img src="assets/img/account.svg" alt="">
@@ -322,21 +322,21 @@
     </footer>
 
   </div>
-  <!-- Модальное окно -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal container">
-      <button class="modal-close" id="closeModal">×</button>
-      <h2 class="modal-title">Обговорення проекту</h2>
-      <form class="modal-form" id="projectForm">
-        <input type="text" id="userName" placeholder="Введіть ваше ім'я" required>
-        <input id="userEmail" name="email" type="text" placeholder="Ваш email" required>
-        <input type="tel" id="userPhone" placeholder="+38 (0__) ___-__-__">
-        <textarea id="projectDetails" name="details" placeholder="Опишіть ваш проект"></textarea>
-        <button type="submit" class="submit-btn">Надіслати</button>
-      </form>
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal-window">
+    <button id="closeModal" class="modal-close">×</button>
+
+    <h2>Товар додано у кошик</h2>
+
+    <div class="modal-actions">
+      <button id="continueShopping" class="btn-light">Продовжити покупки</button>
+      <button id="goToCart" class="btn-primary">Перейти в кошик</button>
     </div>
   </div>
+</div>
+
   <script src="assets/js/index.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 

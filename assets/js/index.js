@@ -2,19 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('news-product');
     const btnShowAll = document.getElementById('show-all-btn');
 
-    let allProducts = []; // сюди збережемо всі товари
+    let allProducts = [];
 
     fetch('assets/data/data.json')
       .then(response => response.json())
       .then(products => {
           allProducts = products;
 
-          renderProducts(products.slice(0, 4)); 
+          renderProducts(products.slice(0, 4));
 
           btnShowAll.addEventListener('click', () => {
-              container.innerHTML = ""; 
-              renderProducts(allProducts); 
-              btnShowAll.style.display = "none"; 
+              container.innerHTML = "";
+              renderProducts(allProducts);
+              btnShowAll.style.display = "none";
           });
       })
       .catch(error => console.error('Помилка завантаження файлу:', error));
@@ -25,43 +25,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.className = 'product-card';
 
-        li.innerHTML = `
-             <a href="assets/pages/product.html?id=${item['ID']}" class="product-link">
-                <div class="product-img">
-                    <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
-                </div>
-
-                <div class="product-info">
-                    <h3 class="product-title">${item['Назва']}</h3>
-                    <p class="product-weight">${item["Вага/об'єм (г/л)"]}</p>
-
-                    <div class="product-cart">
-                        <div class="product-price">
-                            ${item['Ціна']}
-                            <div class="product-price-uah">грн</div>
-                        </div>
-
-                        <button class="add-to-cart" data-id="${item['ID']}">
-                            <img src="assets/img/+.svg" alt="add to cart">
-                        </button>
+            li.innerHTML = `
+                <a href="assets/pages/product.html?id=${item['ID']}" class="product-link">
+                    <div class="product-img">
+                        <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
                     </div>
-                </div>
-            </a>
-        `;
+
+                    <div class="product-info">
+                        <h3 class="product-title">${item['Назва']}</h3>
+                        <p class="product-weight">${item["Вага/об'єм (г/л)"]}</p>
+
+                        <div class="product-cart">
+                            <div class="product-price">
+                                ${item['Ціна']}
+                                <div class="product-price-uah">грн</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <button class="add-to-cart" data-id="${item['ID']}">
+                    <img src="assets/img/+.svg" alt="add to cart">
+                </button>
+            `;
 
             container.appendChild(li);
-        });
-
-        // навішуємо обробники після рендера
-        document.querySelectorAll('.add-to-cart').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.getAttribute('data-id');
-                console.log("Додано в корзину товар ID:", id);
-            });
         });
     }
 });
 
+
+// ---------------------------
+// FAVORITES SECTION
+// ---------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
     const favContainer = document.getElementById('favlist-products');
@@ -83,52 +79,79 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
+
 function renderFavProducts(list) {
     const favContainer = document.getElementById('favlist-products');
 
     list.forEach(item => {
         const li = document.createElement('li');
         li.className = 'product-card';
-        
-        // Создаем ссылку на страницу товара
-        const productLink = `http://127.0.0.1:5500/assets/pages/product.html?id=${item['ID'] || ''}`;
-        
+
+        const productLink = `assets/pages/product.html?id=${item['ID']}`;
+
         li.innerHTML = `
-        <a href="${productLink}" class="product-link">
-            <div class="product-img">
-                <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
-            </div>
-
-            <div class="product-info">
-                <h3 class="product-title">${item['Назва']}</h3>
-                <p class="product-weight">${item["Вага"]}</p>
-
-                <div class="product-cart">
-                    <div class="product-price">
-                        ${item['Ціна']}
-                        <div class="product-price-uah">грн</div>
-                    </div>
-
-                    <button class="add-to-cart" data-id="${item['ID'] || ''}">
-                        <img src="assets/img/+.svg" alt="add to cart">
-                    </button>
+            <a href="${productLink}" class="product-link">
+                <div class="product-img">
+                    <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
                 </div>
-            </div>
-        </a>
+
+                <div class="product-info">
+                    <h3 class="product-title">${item['Назва']}</h3>
+                    <p class="product-weight">${item["Вага"]}</p>
+
+                    <div class="product-cart">
+                        <div class="product-price">
+                            ${item['Ціна']}
+                            <div class="product-price-uah">грн</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <button class="add-to-cart" data-id="${item['ID']}">
+                <img src="assets/img/+.svg" alt="add to cart">
+            </button>
         `;
 
         favContainer.appendChild(li);
     });
-
-    // Используем делегирование событий для обработки кликов на кнопки
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault(); // Предотвращаем переход по ссылке
-            e.stopPropagation(); // Останавливаем всплытие события
-            
-            const id = btn.getAttribute('data-id');
-            console.log("Додано в корзину товар ID:", id);
-            // Здесь можно добавить логику добавления в корзину
-        });
-    });
 }
+
+
+
+// ---------------------------
+// GLOBAL ADD-TO-CART HANDLER
+// ---------------------------
+
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.add-to-cart');
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const id = btn.dataset.id;
+    addToCart(id);
+});
+
+
+// ---------------------------
+// CART STORAGE LOGIC
+// ---------------------------
+
+// function addToCart(productId) {
+//     let cart = sessionStorage.getItem('cart');
+//     cart = cart ? JSON.parse(cart) : [];
+
+//     const existingItem = cart.find(item => item.id === productId);
+
+//     if (existingItem) {
+//         existingItem.qty += 1;
+//     } else {
+//         cart.push({ id: productId, qty: 1 });
+//     }
+
+//     sessionStorage.setItem('cart', JSON.stringify(cart));
+
+//     openModal();
+// }
