@@ -74,9 +74,9 @@
     <nav>
       <div>
         <ul class="mobile-menu">
-          <li><a href="../pages/contacts.html" target="_parent">Всі товари</a></li>
-          <li><a href="../pages/about.html" target="_parent">Про нас</a></li>
-          <li><a href="../pages/portfolio.html" target="_parent">Новинки</a></li>
+          <li><a href="../pages/catalog.html" target="_parent">Всі товари</a></li>
+          <li><a href="../pages/aboutus.html" target="_parent">Про нас</a></li>
+          <li><a href="/index.html#news-product" target="_parent">Новинки</a></li>
         </ul>
     </nav>
   </div>
@@ -127,9 +127,15 @@
           </div>
           <nav>
             <ul>
-              <li><a href="../pages/contacts.html" target="_parent">Всі товари</a></li>
-              <li><a href="../pages/about.html" target="_parent">Про нас</a></li>
-              <li><a href="../pages/portfolio.html" target="_parent">Новинки</a></li>
+              <li class="dropdown">
+                <a href="/assets/pages/catalog.html" target="_parent">Всі товари</a>
+              <ul  class="dropdown-menu">
+                <li><a href="#dessert">Десерти</a></li>
+                <li><a href="#drinks">Напої</a></li>
+              </ul>
+              </li>
+              <li><a href="../pages/aboutus.html" target="_parent">Про нас</a></li>
+              <li><a href="/index.html#news-product" target="_parent">Новинки</a></li>
             </ul>
           </nav>
           <div class="search">
@@ -141,7 +147,7 @@
 
           <div>
             <ul class="cart-account">
-              <li><a href="">
+                            <li><a href="../pages/cart.html">
                   <img src="../img/cart.svg" alt="">
                 </a></li>
               <li><a href="">
@@ -160,6 +166,25 @@
       </div>
     </header>
     <main>
+      <section id="catalog" class="top100">
+        <div class="container">
+         <ul class="nav-product">
+            <li><a href="/index.html">Головна</a><img src="../img/Frame.svg" alt=""></li>
+            <li><a href="./catalog.html">Всі товари</a><img src="../img/Frame.svg" alt=""></li>
+          </ul>
+            <section class="category-section">
+                <h2 class="section-title" id="dessert">Десерти</h2>
+                <div id="catalog-list-dessert" class="products-grid">
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2 class="section-title" id="drinks">Напої</h2>
+                <div id="catalog-list-drinks" class="products-grid">
+                </div>
+            </section>
+        </div>
+      </section>
 
     </main>
     <footer>
@@ -245,9 +270,9 @@
                 локації
               </div>
               <ul>
-                <li><a href="">ТРЦ SkyMall</a></li>
-                <li><a href="">ТРЦ Район</a></li>
-                <li><a href="">ТРЦ Retrowille</a></li>
+                        <li><a href="https://share.google/rKwVFbXCr3LqaSGFB">ТРЦ SkyMall</a></li>
+                <li><a href="https://share.google/U3HDfzslzV76qybd8">ТРЦ Район</a></li>
+                <li><a href="https://share.google/4ZWLEa5sGh0PQ4rQk">ТРЦ Retrowille</a></li>
               </ul>
             </div>
           </div>
@@ -292,6 +317,7 @@
     </footer>
 
   </div>
+  <script src="../js/catalog.js"></script>
 </body>
 
 </html>

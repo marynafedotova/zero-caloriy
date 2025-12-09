@@ -336,7 +336,7 @@ header .nav-container .container nav ul li a:hover::before {
   background-color: white;
 }
 header .nav-container .container nav ul li a:hover {
-  color: #24CCFA;
+  color: var(--pinkdark-color);
 }
 header .nav-container .social-link ul {
   display: flex;
@@ -485,6 +485,8 @@ main {
 }
 .product-card .product-img img{
   border-radius: 16px;
+  width: 299px;
+  aspect-ratio: 1;
 }
 .product-card .product-img{
   margin-bottom: 16px;
@@ -523,6 +525,7 @@ display: flex;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+width: 100%;
 }
 .add-to-cart{
   background-color: var(--pinklight-color);
@@ -686,20 +689,38 @@ justify-content: space-between;
   display: flex;
   justify-content: space-between;
   gap: 42px;
+  padding-bottom: 66px;
 }
 .product-gallery{
   width: 48%;
 }
 .product-gallery img{
   border-radius: 58px;
+  max-height: 609px;
+  max-width: 609px;
 
 }
 .nav-product{
   display: inline-flex;
   padding:  24px 0px 42px;
+  
 }
-.product-info{
-  width: 48%;
+.nav-product li{
+  color: var(--grey-color);
+  padding-right: 16px;
+}
+.nav-product a{
+  color: var(--grey-color);
+  font-weight: 400;
+  font-size: 16px;
+  padding-right: 4px;
+}
+.nav-product li img{
+  width: 18px;
+  height: 18px;  
+}
+.product-card.product-info{
+  width: 100%;
 }
 .product-main .product-info .product-title{
   font-size: 40px;
@@ -719,8 +740,12 @@ justify-content: space-between;
 }
 .product-composition, .product-nutrition{
   display: flex;
-  gap: 16;
+  gap: 16px;
+
   margin-bottom: 29px;
+}
+.product-nutrition{
+  padding-bottom: 84px;
 }
 .product-composition h4, .product-nutrition h4{
   font-family: 'Montserrat Bold';
@@ -729,7 +754,7 @@ justify-content: space-between;
   padding-right: 16px;
 }
 .product-nutrition, .product-size{
-  border: 1px solif #FFD4DA;
+  border-bottom: 1px solid #FFD4DA;
 }
 .product-ingredients, .nutrition-list{
   font-size: 16px;
@@ -740,24 +765,120 @@ font-weight: 600;
 display: flex;
 gap: 20px;
 justify-content: space-between;
+padding-top: 24px;
 }
 .quantity{
-  background-color: #FAE4E3;
+  background-color: var(--pinklight-color);
   padding: 16px 20px;
-  border-radius: 20px;
+  border-radius: 62px;
   width: 30%;
-  text-align: center;
 }
 .quantity span{
   padding: 0px 16px;
 }
 .quantity button{
   border: none;
-  background-color: #FAE4E3;
+  background-color: var(--pinklight-color);
 }
 .product-actions .add-to-cart{
   background-color: var(--pinkdark-color);
   color: var(--white-color);
   width: 60%;
-  border-radius: 20px;
+  border-radius: 62px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.product-size h4{
+  padding-bottom: 16px;
+  color: var(--grey-color);
+  font-size: 16px;
+}
+.product-size .size-options a{
+  padding: 12px 24px;
+  border-radius: 62px;
+  background-color: var(--pinklight-color);
+
+}
+.product-size .size-options{
+  padding-bottom: 26px;
+}
+.product-description h4{
+  border-bottom: 1px solid var(--pinklight-color);
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 400;
+}
+.product-desc{
+  padding-bottom: 100px;
+  color: var(--grey-color);
+  font-size: 20px;
+  font-weight: 500;
+}
+#catalog-list-dessert, #catalog-list-drinks{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#catalog-list-dessert .product-card{
+  width: 23%;
+}
+#catalog-list-drinks  .product-card{
+  width: 23%;
+}
+#catalog-list-drinks  .product-card .product-img {
+  width: 299px;
+  height: 299px;
+}
+.category-section .section-title{
+  color: var(--lightpink-color);
+  padding-bottom: 16px;
+}
+
+/* меню випадаюче  */
+
+/* Базові стилі для меню */
+nav ul {
+  position: relative;
+}
+
+nav > ul > li {
+  position: relative;
+}
+
+/* Приховати випадаюче меню за замовчуванням */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  min-width: 160px;
+  z-index: 1000;
+  padding: 10px 0;
+  border-radius: 4px;
+}
+
+/* Показувати меню при наведенні */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Стилі для пунктів випадаючого меню */
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f5f5;
 }
