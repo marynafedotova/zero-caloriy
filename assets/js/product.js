@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const addToCartBtn = document.querySelector('.add-to-cart');
 
             // Підставляємо
-            imgEl.src = "/" + product['Зображення'];
+            imgEl.src = product['Зображення'];
             titleEl.textContent = product['Назва'];
             priceEl.textContent = product['Ціна'] + ' грн';
             descEl.textContent = product['Опис'];
@@ -75,7 +75,7 @@ function renderFavProducts(list) {
         li.innerHTML = `
             <a href="${productLink}" class="product-link">
                 <div class="product-img">
-                    <img src="/${item['Зображення']}" alt="${item['Назва']}" class="product-image">
+                    <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
                 </div>
 
                 <div class="product-info">

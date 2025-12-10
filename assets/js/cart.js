@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         li.innerHTML = `
             <div class="cart-img">
-                <img src="/${product['Зображення']}" alt="${product['Назва']}">
+                <img src="${product['Зображення']}" alt="${product['Назва']}">
             </div>
 
             <div class="cart-info">
@@ -51,11 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <button class="qty-plus" data-id="${product.ID}"><img src="../img/plus.svg" alt=""></button>
                 </div>
                 </div>
-                
-
-                
-
-                
             </div>
         `;
 
