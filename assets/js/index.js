@@ -33,20 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <div class="product-info">
                         <h3 class="product-title">${item['Назва']}</h3>
-                        <p class="product-weight">${item["Вага/об'єм (г/л)"]}</p>
+                        <p class="product-weight">${item["Вага"]}</p>
 
                         <div class="product-cart">
                             <div class="product-price">
                                 ${item['Ціна']}
                                 <div class="product-price-uah">грн</div>
                             </div>
+                    <button class="add-to-cart" data-id="${item['ID']}">
+                    <img src="assets/img/+.svg" alt="add to cart">
+                </button>
+
                         </div>
                     </div>
                 </a>
 
-                <button class="add-to-cart" data-id="${item['ID']}">
-                    <img src="assets/img/+.svg" alt="add to cart">
-                </button>
             `;
 
             container.appendChild(li);
@@ -104,13 +105,14 @@ function renderFavProducts(list) {
                             ${item['Ціна']}
                             <div class="product-price-uah">грн</div>
                         </div>
+                <button class="add-to-cart" data-id="${item['ID']}">
+                <img src="assets/img/+.svg" alt="add to cart">
+            </button>
+
                     </div>
                 </div>
             </a>
 
-            <button class="add-to-cart" data-id="${item['ID']}">
-                <img src="assets/img/+.svg" alt="add to cart">
-            </button>
         `;
 
         favContainer.appendChild(li);

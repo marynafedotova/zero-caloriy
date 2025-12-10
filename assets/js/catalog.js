@@ -34,43 +34,42 @@ function renderProducts(list, containerId) {
     
     container.innerHTML = '';
     
-    list.forEach(item => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        
-        productCard.innerHTML = `
+list.forEach(item => {
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+
+    productCard.innerHTML = `
+        <a href="/assets/pages/product.html?id=${item['ID']}" class="product-link">
             <div class="product-img">
                 <img src="/${item['Зображення']}" alt="${item['Назва']}" class="product-image">
             </div>
-            
+
             <div class="product-info">
                 <h3 class="product-title">${item['Назва']}</h3>
                 <p class="product-weight">${item["Вага"]}</p>
-                
-                <div class="product-cart">
-                    <div class="product-price">
+            </div>
+        </a>
+      <div class="product-catalog-btn">
+       <div class="product-price">
                         ${item['Ціна']}
                         <div class="product-price-uah">грн</div>
                     </div>
-                    
-                    <button class="add-to-cart" data-id="${item['ID'] || ''}">
-                        <img src="../img/+.svg" alt="add to cart">
-                    </button>
-                </div>
-            </div>
-        `;
-        
-        container.appendChild(productCard);
-    });
+        <button class="add-to-cart" data-id="${item['ID']}">
+            <img src="/assets/img/+.svg" alt="add to cart">
+        </button>
+        </div>
+    `;
+
+    container.appendChild(productCard);
+});
     
-    // Обработчики для кнопок корзины
-    container.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            console.log("Добавлено в корзину товар ID:", id);
-            // Добавьте здесь логику добавления в корзину
-        });
+// Обработчики для кнопок корзины
+container.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const productId = this.getAttribute('data-id');
+        addToCart(productId);  // ← Добавление в корзину
     });
+});
 }
 document.addEventListener('DOMContentLoaded', function() {
   const hash = window.location.hash;

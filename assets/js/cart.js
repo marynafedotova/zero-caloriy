@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
                 <p class="cart-weight">${product["Вага"] || ""}</p>
                 <div class="cart-bottom">
-                  <div class="cart-price">
-                    ${product['Ціна']} грн
-                  </div>
+                    <div class="cart-price" data-price="${product['Ціна']}">
+                        ${product['Ціна'] * cartItem.qty} грн
+                    </div>
                   <div class="cart-controls">
                     <button class="qty-minus" data-id="${product.ID}"><img src="../img/minus.svg" alt=""></button>
                     <span class="qty-value">${cartItem.qty}</span>
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         cartContainer.appendChild(li);
     });
+updateCartTotal();
 
     attachCartHandlers();
 });
@@ -86,23 +87,32 @@ function attachCartHandlers() {
 function changeQty(id, delta) {
     let cart = getCart();
     const item = cart.find(i => i.id == id);
-
     if (!item) return;
 
     item.qty += delta;
 
     if (item.qty <= 0) {
         cart = cart.filter(i => i.id != id);
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        document.querySelector(`[data-id="${id}"]`).closest('.cart-item').remove();
+        updateCartTotal();
+        return;
     }
 
     sessionStorage.setItem('cart', JSON.stringify(cart));
-    location.reload(); // перерендер
+
+    // обновляем количество на странице
+    const cartItem = document.querySelector(`.qty-plus[data-id="${id}"]`).closest('.cart-item');
+    cartItem.querySelector('.qty-value').textContent = item.qty;
+
+    updateCartTotal();
 }
 function removeFromCart(id) {
-    let cart = getCart();
-    cart = cart.filter(item => item.id != id);
+    let cart = getCart().filter(item => item.id != id);
     sessionStorage.setItem('cart', JSON.stringify(cart));
-    location.reload();
+
+    document.querySelector(`[data-id="${id}"]`).closest('.cart-item').remove();
+    updateCartTotal();
 }
 
 
@@ -110,4 +120,22 @@ function removeFromCart(id) {
 function getCart() {
     let cart = sessionStorage.getItem('cart');
     return cart ? JSON.parse(cart) : [];
+}
+function updateCartTotal() {
+    let total = 0;
+
+    document.querySelectorAll('.cart-item').forEach(item => {
+        const priceEl = item.querySelector('.cart-price');
+        const qtyEl = item.querySelector('.qty-value');
+
+        const price = Number(priceEl.dataset.price); // цена за 1 шт
+        const qty = Number(qtyEl.textContent);       // количество
+
+        total += price * qty;
+
+        // обновляем цену за товар
+        priceEl.textContent = (price * qty) + ' грн';
+    });
+
+    document.querySelector('.sum').textContent = total + ' грн';
 }

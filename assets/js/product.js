@@ -8,21 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const product = products.find(p => p.ID === productId);
             if (!product) return;
 
-            // Елементи на сторінці
+            // Елементи
             const imgEl = document.querySelector('.product-image');
             const titleEl = document.querySelector('.product-title');
             const priceEl = document.querySelector('.product-price');
-            const descEl = document.querySelector('.product-desc');      // для опису
-            const ingredientsEl = document.querySelector('.product-ingredients'); // для складу
+            const descEl = document.querySelector('.product-desc');
+            const ingredientsEl = document.querySelector('.product-ingredients');
             const nutritionEl = document.querySelector('.nutrition-list');
+            const addToCartBtn = document.querySelector('.add-to-cart');
 
-            // Підставляємо дані
+            // Підставляємо
             imgEl.src = "/" + product['Зображення'];
-            imgEl.alt = product['Назва'];
             titleEl.textContent = product['Назва'];
             priceEl.textContent = product['Ціна'] + ' грн';
-            descEl.textContent = product['Опис']; // окремо опис
-            ingredientsEl.textContent = product['Склад']; // окремо склад
+            descEl.textContent = product['Опис'];
+            ingredientsEl.textContent = product['Склад'];
+
+            // додаємо ID у кнопку
+            addToCartBtn.dataset.id = product.ID;
 
             // КБЖУ
             nutritionEl.innerHTML = '';
@@ -32,8 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.textContent = `${key}: ${kbju[key]}`;
                 nutritionEl.appendChild(li);
             }
-        })
-        .catch(err => console.error(err));
+        });
+});
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-to-cart")) {
+        const id = e.target.dataset.id;
+        addToCart(id);
+    }
 });
 
 
@@ -82,8 +90,8 @@ function renderFavProducts(list) {
                     <div class="product-price-uah">грн</div>
                 </div>
 
-                <button class="add-to-cart" data-id="${item['ID'] || ''}">
-                    <img src="../img/+.svg" alt="add to cart">
+                <button class="add-to-cart" data-id="${item['ID']}">
+                    <img src="/assets/img/+.svg" alt="add to cart">
                 </button>
             </div>
         </div>
@@ -92,14 +100,16 @@ function renderFavProducts(list) {
         favContainer.appendChild(li);
     });
 
-    // обробники додавання до кошика
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = btn.getAttribute('data-id');
-            console.log("Додано в корзину товар ID:", id);
+    // фиксируем обработчики
+    favContainer.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation(); // если внутри ссылки
+            const productId = this.getAttribute('data-id');
+            addToCart(productId);
         });
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const hash = window.location.hash;
