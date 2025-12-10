@@ -39,7 +39,7 @@ list.forEach(item => {
     productCard.className = 'product-card';
 
     productCard.innerHTML = `
-        <a href="assets/pages/product.html?id=${item['ID']}" class="product-link">
+        <a href="../pages/product.html?id=${item['ID']}" class="product-link">
             <div class="product-img">
                 <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
             </div>
