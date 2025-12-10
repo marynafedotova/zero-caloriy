@@ -77,8 +77,9 @@ closeModal.addEventListener('click', hideModal);
 continueShopping.addEventListener('click', hideModal);
 
 goToCart.addEventListener('click', () => {
-window.location.href = 'assets/pages/cart.html';
+    window.location.href = '/zero-caloriy/assets/pages/cart.html';
 });
+
 
 modalOverlay.addEventListener('click', (e) => {
   if (e.target === modalOverlay) hideModal();
