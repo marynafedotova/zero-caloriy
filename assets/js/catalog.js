@@ -39,7 +39,7 @@ list.forEach(item => {
     productCard.className = 'product-card';
 
     productCard.innerHTML = `
-        <a href="/assets/pages/product.html?id=${item['ID']}" class="product-link">
+        <a href="assets/pages/product.html?id=${item['ID']}" class="product-link">
             <div class="product-img">
                 <img src="/${item['Зображення']}" alt="${item['Назва']}" class="product-image">
             </div>
@@ -55,7 +55,7 @@ list.forEach(item => {
                         <div class="product-price-uah">грн</div>
                     </div>
         <button class="add-to-cart" data-id="${item['ID']}">
-            <img src="/assets/img/+.svg" alt="add to cart">
+            <img src="../img/+.svg" alt="add to cart">
         </button>
         </div>
     `;
