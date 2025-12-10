@@ -396,7 +396,7 @@ main {
 .hamburger-wrap {
   display: none;
 }
-
+/* index */
 
 .hero{
   background-color:  var(--pinkdark-color);
@@ -431,6 +431,7 @@ z-index: 5;
   display: flex;
   gap: 14px;
 }
+/* new section */
 #news-product{
   display: flex;
   flex-direction: row;
@@ -441,6 +442,10 @@ z-index: 5;
 #news-product li{
   width: 23.8%;
   margin-bottom: 32px;
+  transition: all .8s ease;
+}
+#news-product li:hover{
+  scale: 1.1;
 }
 .product-card .product-img img{
   border-radius: 16px;
@@ -517,7 +522,7 @@ width: 100%;
 padding-bottom: 64px;
 }
 
-
+/* fav section */
  #favlist-products{
   display: flex;
   flex-direction: row;
@@ -528,8 +533,11 @@ padding-bottom: 64px;
   #favlist-products li{
   width: 23.8%;
   margin-bottom: 32px;
+  transition: all 0.7s ease;
  }
-
+#favlist-products li:hover{
+  scale: 1.1;
+}
  #favlist-show-all{
       display: block;
     margin: 20px auto 0 auto;

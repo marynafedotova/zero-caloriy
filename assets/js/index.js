@@ -4,20 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let allProducts = [];
 
-    fetch('assets/data/data.json')
-      .then(response => response.json())
-      .then(products => {
-          allProducts = products;
+fetch('assets/data/data.json')
+  .then(response => response.json())
+  .then(products => {
+      let desserts = products.filter(item => item["Категория"] === "Дессерт");
 
-          renderProducts(products.slice(0, 4));
+      desserts.sort((a, b) => b.ID - a.ID);
 
-          btnShowAll.addEventListener('click', () => {
-              container.innerHTML = "";
-              renderProducts(allProducts);
-              btnShowAll.style.display = "none";
-          });
-      })
-      .catch(error => console.error('Помилка завантаження файлу:', error));
+      allProducts = desserts;
+      renderProducts(desserts.slice(0, 4));
+
+      btnShowAll.addEventListener('click', () => {
+          container.innerHTML = "";
+          renderProducts(allProducts);
+          btnShowAll.style.display = "none";
+      });
+  })
+  .catch(error => console.error('Помилка завантаження файлу:', error));
 
 
     function renderProducts(list) {
