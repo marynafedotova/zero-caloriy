@@ -49,14 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const favContainer = document.getElementById('favlist-products');
     const favShowAllBtn = document.getElementById('favlist-show-all');
 
-    let favProducts = []; // збережемо всі товари
+    let favProducts = [];
 
     fetch('../data/data.json')
         .then(response => response.json())
         .then(products => {
             favProducts = products;
-
-            // показуємо перші 4
             renderFavProducts(products.slice(0, 4));
 
             favShowAllBtn.addEventListener('click', () => {
@@ -67,34 +65,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
-
 function renderFavProducts(list) {
     const favContainer = document.getElementById('favlist-products');
 
     list.forEach(item => {
         const li = document.createElement('li');
         li.className = 'product-card';
-
+        const productLink = `../pages/product.html?id=${item['ID']}`;
         li.innerHTML = `
-        <div class="product-img">
-            <img src="/${item['Зображення']}" alt="${item['Назва']}" class="product-image">
-        </div>
-
-        <div class="product-info">
-            <h3 class="product-title">${item['Назва']}</h3>
-            <p class="product-weight">${item["Вага"]}</p>
-
-            <div class="product-cart">
-                <div class="product-price">
-                    ${item['Ціна']}
-                    <div class="product-price-uah">грн</div>
+            <a href="${productLink}" class="product-link">
+                <div class="product-img">
+                    <img src="/${item['Зображення']}" alt="${item['Назва']}" class="product-image">
                 </div>
 
+                <div class="product-info">
+                    <h3 class="product-title">${item['Назва']}</h3>
+                    <p class="product-weight">${item["Вага"]}</p>
+
+
+            </a>
+                                <div class="product-cart">
+                        <div class="product-price">
+                            ${item['Ціна']}
+                            <div class="product-price-uah">грн</div>
+                        </div>
                 <button class="add-to-cart" data-id="${item['ID']}">
-                    <img src="/assets/img/+.svg" alt="add to cart">
-                </button>
-            </div>
-        </div>
+                <img src="../img/+.svg" alt="add to cart">
+            </button>
+
+                    </div>
+                </div>
+
         `;
 
         favContainer.appendChild(li);
