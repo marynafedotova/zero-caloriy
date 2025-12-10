@@ -583,7 +583,7 @@ footer .container{
 }
 .footer-link{
   border-radius: 20px;
-  padding: 52px 0px;
+  padding: 52px 0px 38px;
   display: flex;
   justify-content: space-between;
   /* gap: 40px; */
