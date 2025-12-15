@@ -1006,7 +1006,8 @@ nav > ul > li {
 .cart-block{
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  flex-wrap: wrap;
+    gap: 20px;
   justify-content: space-between;
   margin-bottom: 24px;
 }
@@ -1106,6 +1107,7 @@ justify-content: space-between;
 
 #orderForm input{
   width: 24%;
+  min-width: 305px;
   padding: 12px 8px;
   border: 1px solid var(--pinklight-color);
   border-radius: 8px;
@@ -1124,9 +1126,12 @@ justify-content: space-between;
   padding: 8px 16px;
   border-radius: 16px;
   width: 24%;
+  min-width: 305px;
+
 }
 #location-select{
   width: 24%;
+  min-width: 305px;
   border: 1px solid var(--pinklight-color);
   padding: 12px 8px;
   border-radius: 8px;
@@ -1144,7 +1149,19 @@ justify-content: space-between;
 .product-gallery{
   width: 100%;
 }
-
+}
+@media screen and (max-width: 850px) {
+.cart-block{
+  flex-direction: column;
+  width: 100%;
+}
+.cart-block .cart-lb, .cart-block .cart-rb{
+  width: 100%;
+}
+#orderForm{
+  justify-content: space-between;
+  gap: 8px;
+}
 }
 @media screen and (max-width: 730px) {
 .footer-title,
@@ -1172,6 +1189,14 @@ justify-content: space-between;
 
 .footer-title{
   font-size: 26px;
+}
+.cart-info{
+  flex-wrap: wrap;
+}
+.cart-bottom{
+    flex-wrap: wrap;
+gap:8px;
+
 }
 }
 @media screen and (max-width: 450px) {
