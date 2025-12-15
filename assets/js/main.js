@@ -1,3 +1,12 @@
+//hamburger-menu
+document.getElementById('hamb-btn').addEventListener('click', function () {
+  document.body.classList.toggle('open-mobile-menu')
+})
+
+document.getElementById('hamb-btn-mobile').addEventListener('click', function () {
+  document.body.classList.toggle('open-mobile-menu')
+})
+
 // Для мобільних пристроїв
 document.addEventListener('DOMContentLoaded', function() {
   const dropdowns = document.querySelectorAll('.dropdown');
