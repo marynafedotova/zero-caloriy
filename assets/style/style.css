@@ -337,7 +337,7 @@ main {
   position: fixed;
   left: 0;
   top: 0;
-  width: 3300px;
+  width: 300px;
   height: 100vh;
   background-color: #FFFFFF;
   z-index: 1001;
@@ -832,9 +832,11 @@ padding-top: 24px;
 }
 #catalog-list-dessert .product-card{
   width: 23.8%;
+  min-width: 290px;
 }
 #catalog-list-drinks  .product-card{
   width: 23.8%;
+  min-width: 290px;
 }
 #catalog-list-drinks  .product-card .product-img {
   width: 299px;
@@ -1172,7 +1174,7 @@ justify-content: space-between;
   font-size: 26px;
 }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 .nav-container .container .logo a svg{
   width: 100px;
   height: 50px;
