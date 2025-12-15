@@ -1208,3 +1208,8 @@ gap:8px;
         width: 150px;
     }
 }
+@media screen and (max-width: 378px) {
+#orderForm input, #location-select, #cart-btn{
+  min-width: 250px;
+}
+}
