@@ -1136,7 +1136,45 @@ justify-content: space-between;
   padding: 12px 8px;
   border-radius: 8px;
 }
+/* publick ofefer */
+.publick_offer{
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+.publick_offer h1{
+  color: var(--pinkdark-color);
+  text-align: center;
+  padding-bottom: 24px;
+}
+.publick_offer p{
+  padding-bottom: 16px;
+}
+.publick_offer h2{
+  padding-bottom: 16px;
+  color: var(--pinkmiddle-color);
+  text-align: center;
+}
+#privacy-policy{
+  padding-top: 120px;
+  padding-bottom: 100px;
+}
+#privacy-policy h1{
+  color: var(--pinkdark-color);
+  padding-bottom: 24px;
+  text-align: center;
+}
+#privacy-policy h3{
+  color: var(--pinkmiddle-color);
+  padding-bottom: 16px;
+  text-align: center;
+}
+#privacy-policy p{
+  padding-bottom: 16px;
+}
 
+.footer-menu-block ul li:hover a{
+  color: var(--white-color);
+}
 @media screen and (max-width: 1000px) {
 #footer-form-item form input {
   font-size: 14px;
