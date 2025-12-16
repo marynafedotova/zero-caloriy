@@ -1207,6 +1207,9 @@ gap:8px;
     .search form input[type="text"] {
         width: 150px;
     }
+    .title-section{
+      font-size: 34px;
+    }
 }
 @media screen and (max-width: 378px) {
 #orderForm input, #location-select, #cart-btn{
