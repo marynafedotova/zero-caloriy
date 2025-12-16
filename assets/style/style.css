@@ -1213,6 +1213,9 @@ gap:8px;
 }
 @media screen and (max-width: 378px) {
 #orderForm input, #location-select, #cart-btn{
-  min-width: 250px;
+  min-width: 350px;
+}
+.footer-block{
+  padding: 16px 24px;
 }
 }
