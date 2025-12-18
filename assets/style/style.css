@@ -7,12 +7,7 @@
  * @site https://jonsuh.com/hamburgers
  * @link https://github.com/jonsuh/hamburgers
  */
- .top100{
-  margin-top: 100px;
- }
- .topbottom100{
-  padding: 100px 0px;
- }
+
 :root {
   --pinkdark-color: #cf213a;
   --lightpink-color: #FF7E93;
@@ -22,6 +17,24 @@
   --grey-color:#ABA7A6;
   --pinkmiddle-color: #E68A96;
 }
+ .top100{
+  margin-top: 100px;
+ }
+ .topbottom100{
+  padding: 100px 0px;
+ }
+ .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 @font-face {
     font-family: 'Montserrat';
     src: local('../fonts/Montserrat Regular'), local('../fonts/Montserrat-Regular'),
