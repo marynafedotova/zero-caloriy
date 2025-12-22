@@ -902,7 +902,6 @@ padding-top: 24px;
 }
 /* меню випадаюче  */
 
-/* Базові стилі для меню */
 nav ul {
   position: relative;
 }
@@ -911,7 +910,6 @@ nav > ul > li {
   position: relative;
 }
 
-/* Приховати випадаюче меню за замовчуванням */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -923,14 +921,13 @@ nav > ul > li {
   z-index: 1000;
   padding: 10px 0;
   border-radius: 4px;
+  list-style-type: none;
 }
 
-/* Показувати меню при наведенні */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* Стилі для пунктів випадаючого меню */
 .dropdown-menu li {
   margin: 0;
 }
