@@ -1332,6 +1332,12 @@ justify-content: space-between;
 #orderForm{
   justify-content: space-between;
   gap: 8px;
+  
+}
+.logo-footer {
+    width: 100%;
+    justify-content: space-between;
+    gap: 24px;
 }
 /* #favlist-products li {
     width: 10.8%;
@@ -1362,7 +1368,7 @@ justify-content: space-between;
     width: 70%;
   }
   .footer-link {
-    justify-content: space-around;
+    justify-content: space-between;
 }
 }
 @media screen and (max-width: 550px) {
