@@ -1321,8 +1321,19 @@ justify-content: space-between;
 .product-gallery{
   width: 100%;
 }
+ .slider-track .product-card a .product-info .product-ingred, .slider-track .product-card a .product-info .product-kbju, .slider-track .product-card a .product-info .product-description {
+    color: var(--white-color);
+    font-size: 14px;
+    font-weight: 600;
 }
-@media screen and (max-width: 850px) {
+.slider-track .product-card a .product-info {
+    padding: 8px;
+}
+}
+@media screen and (max-width: 855px) {
+.slider-track .product-card a {
+  flex-wrap: wrap;
+}
 .cart-block{
   flex-direction: column;
   width: 100%;
