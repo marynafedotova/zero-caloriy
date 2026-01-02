@@ -507,8 +507,9 @@ main {
 }
 .product-card .product-img img{
   border-radius: 16px;
-  width: 310px;
-  aspect-ratio: 1;
+  max-width: 310px;
+  max-height: 280px;
+  object-fit: contain;
 }
 .product-card .product-img{
   margin-bottom: 16px;
@@ -586,7 +587,6 @@ width: 100%;
 /* Забезпечує клік по всій картці */
 .product-link {
     display: block;
-    height: 100%;
 }
 #favlist-products .product-cart .add-to-cart{
   background-color: var(--pinklight-color);
@@ -962,8 +962,9 @@ padding-top: 24px;
   min-width: 290px;
 }
 #catalog-list-drinks  .product-card .product-img {
-  width: 299px;
-  height: 299px;
+  max-width: 299px;
+  max-height: 299px;
+  object-fit: contain;
 }
 .category-section .section-title{
   color: var(--lightpink-color);
