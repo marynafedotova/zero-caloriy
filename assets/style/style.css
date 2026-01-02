@@ -1408,6 +1408,13 @@ width: 40%;
     width: 17%;
     min-width: 200px;
 }
+#catalog-list-dessert .product-card{
+      width: 17%;
+    min-width: 200px;
+}
+#catalog-list-drinks .product-card{
+      width: 17%;
+    min-width: 200px;}
 }
 @media screen and (max-width: 666px) {
   #catalog-list-dessert, #catalog-list-drinks{
