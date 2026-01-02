@@ -789,6 +789,9 @@ justify-content: space-between;
   width: 48%;
   max-width: 609px;
 }
+    .product-main .product-info {
+        width: 40%;
+    }
 .product-gallery img{
   border-radius: 58px;
   max-height: 609px;
@@ -1306,7 +1309,7 @@ justify-content: space-between;
   gap: 22px;
 }
 .product-main .product-info{
-width: 40%;
+width: 100%;
 }
 .product-gallery{
   width: 100%;
