@@ -405,7 +405,7 @@ main {
   display: none;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 1403px) {
   .hamburger-wrap {
     display: block;
   }
@@ -434,16 +434,75 @@ main {
   flex-direction: row;
   position: relative;
   padding-top: 80px;
-  height: 1200px;
+  
+}
+.hero .rb-hero-index{
+background-color: var(--pinkdark-color);
+position: absolute;
+top: 220px;
+width: 35%;
+right: 30px;
+}
+.hero .rb-hero-index img{
+  max-width: 500px;
+  max-height: 730px;
+}
+.rb-hero-index .zero_white{
+  display: none;
+}
+.hero-lb {
+    position: absolute;
+    top: 50%;
+    left: 70px;
+    display: flex;
+    gap: 5px;
+
 }
 
-.hero-rb{
-  margin-top: -80px;
-  width: 45%;
-  right: 0px;
-    position: absolute;
-  z-index: 5;
+/* базовый стиль букв */
+.hero-lb .letter {
+    display: inline-block;  
+  height: 90px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.5s forwards;
+    will-change: opacity, transform;
+     margin-right: 0px;
+     transition: all .8s ease;
 }
+.hero-lb .letter {
+  margin-left: -8px;
+}
+
+/* поочередная задержка для каждой буквы */
+.hero-lb .letter:nth-child(1) { animation-delay: 0s; }
+.hero-lb .letter:nth-child(2) { animation-delay: 0.1s; }
+.hero-lb .letter:nth-child(3) { animation-delay: 0.2s; }
+.hero-lb .letter:nth-child(4) { animation-delay: 0.3s; }
+.hero-lb .letter:nth-child(5) { animation-delay: 0.4s; }
+.hero-lb .letter:nth-child(6) { animation-delay: 0.5s; }
+.hero-lb .letter:nth-child(7) { animation-delay: 0.6s; }
+.hero-lb .letter:nth-child(8) { animation-delay: 0.7s; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+
+.letter.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+
+/* анимация появления снизу */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
 .hero-rb .stars{
   position: relative;
 }
@@ -1326,6 +1385,56 @@ justify-content: space-between;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
 }
+
+@media screen and (max-width: 1621px) {
+  .hero .rb-hero-index{
+position: absolute;
+top: 200px;
+
+}
+  .hero .rb-hero-index img{
+  max-width: 400px;
+  max-height: 630px;
+}
+}
+
+@media screen and (max-width: 1621px) {
+  .hero .rb-hero-index img{
+  max-width: 300px;
+  max-height: 530px;
+}
+}
+
+@media screen and (max-width: 1345px) {
+.hero-lb .letter {
+  height:75px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 180px;
+
+}
+}
+@media screen and (max-width: 1149px) {
+.hero-lb .letter {
+  height:70px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 160px;
+
+}
+}
+@media screen and (max-width: 1049px) {
+.hero-lb .letter {
+  height:60px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 150px;
+
+}
+}
 @media screen and (max-width: 1000px) {
 #footer-form-item form input {
   font-size: 14px;
@@ -1350,9 +1459,41 @@ width: 100%;
     padding: 8px;
 }
 }
+
+@media screen and (max-width: 903px) {
+.hero-lb .letter {
+  height:50px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 150px;
+
+}
+.hero-lb {
+   left: 50px;
+       top: 53%;
+}
+  .hero .rb-hero-index img{
+  max-width: 250px;
+  max-height: 430px;
+}
+}
 @media screen and (max-width: 855px) {
-.slider-track .product-card a {
-  flex-wrap: wrap;
+.hero-lb .letter {
+  height:48px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 140px;
+
+}
+.hero-lb {
+   left: 50px;
+       top: 53%;
+}
+  .hero .rb-hero-index img{
+  max-width: 230px;
+  max-height: 410px;
 }
 .cart-block{
   flex-direction: column;
@@ -1406,6 +1547,23 @@ width: 100%;
 }
 
 @media screen and (max-width: 730px) {
+  .hero-lb .letter {
+  height:40px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 140px;
+
+}
+.hero-lb {
+   left: 45px;
+  top: 53%;
+}
+  .hero .rb-hero-index img{
+  max-width: 200px;
+  max-height: 400px;
+}
+
 .footer-title,
 #footer-form-item{
   width: 90%;
@@ -1423,23 +1581,28 @@ width: 100%;
   .footer-link {
     justify-content: space-between;
 }
-#news-product li {
+/* #news-product li {
     width: 17%;
     min-width: 200px;
+} */
+#news-product .product-card {
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+    margin-right: 16px;
 }
-.product-card .product-img img {
-    border-radius: 16px;
-    width: 200px;
-    aspect-ratio: 1;
+#favlist-products .product-card {
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+    margin-right: 16px;
 }
 #favlist-products {
         display: flex;
         overflow-x: auto;
     }
-    #favlist-products li {
+    /* #favlist-products li {
     width: 17%;
     min-width: 200px;
-}
+} */
 #catalog-list-dessert .product-card{
       width: 17%;
     min-width: 200px;
@@ -1452,9 +1615,64 @@ width: 100%;
   #catalog-list-dessert, #catalog-list-drinks{
     justify-content: center;
   }
+  .hero-lb .letter {
+  height:37px;
+}
+  .hero .rb-hero-index{
+position: absolute;
+top: 150px;
+
+}
+.hero-lb {
+   left: 38px;
+    top: 55%;
+}
+  .hero .rb-hero-index img{
+  max-width: 180px;
+min-height: 230px;
+}
+.hero .rb-hero-index{
+position: absolute;
+top: 135px;
 }
 
+}
+@media screen and (max-width: 599px) {
+  .hero-lb .letter {
+  height:35px;
+}
+.hero .rb-hero-index{
+position: absolute;
+top: 120px;
+right: 10px;
+}
+.hero-lb {
+   left: 38px;
+    top: 55%;
+}
+  .hero .rb-hero-index img{
+  max-width: 150px;
+
+}
+
+
+}
 @media screen and (max-width: 550px) {
+  .hero .rb-hero-index{
+position: absolute;
+top: 100px;
+right: 10px;
+}
+  .hero .rb-hero-index img{
+  max-width: 130px;
+min-height: 230px;
+}
+  .hero-lb .letter {
+  height:25px;
+}
+.hero-lb{
+  left: 30px;
+}
 
 .footer-title{
   font-size: 26px;
@@ -1469,6 +1687,18 @@ gap:8px;
 }
 }
 @media screen and (max-width: 450px) {
+  .hero-lb {
+    position: absolute;
+    top: 60%;
+
+}
+  .hero .rb-hero-index{
+    top: 300px;
+    width: 100%;
+    right: 0;
+    text-align: center;
+    
+  }
 .nav-container .container .logo a svg{
   width: 100px;
   height: 50px;
@@ -1479,6 +1709,19 @@ gap:8px;
     .title-section{
       font-size: 34px;
     }
+}
+@media screen and (max-width: 410px) {
+  .hero .rb-hero-index{
+    top: 280px;
+    width: 100%;
+    right: 0;
+    text-align: center;
+    
+  }
+.hero .rb-hero-index img{
+  max-width: 200px;
+  max-height: 730px;
+}
 }
 @media screen and (max-width: 378px) {
 #orderForm input, #location-select, #cart-btn{

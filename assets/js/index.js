@@ -1,3 +1,51 @@
+const heroLb = document.querySelector('.hero-lb');
+const letters = document.querySelectorAll('.hero-lb .letter');
+
+// плавное появление исходного слова
+letters.forEach((letter, i) => {
+  setTimeout(() => {
+    letter.style.opacity = '1';
+    letter.style.transform = 'translateY(0) scale(1)';
+    letter.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1s ease';
+    letter.classList.add('pulse'); // добавляем пульсацию
+  }, i * 300);
+});
+
+const extraOs = 4;
+
+for (let i = 0; i < extraOs; i++) {
+  setTimeout(() => {
+    const oLetter = document.createElement('img');
+    oLetter.src = 'assets/img/о.png';
+    oLetter.classList.add('letter');
+
+    oLetter.style.opacity = '0';
+    oLetter.style.transform = 'translateY(30px) scale(0.8)';
+
+    const lastLetter = heroLb.lastElementChild;
+    heroLb.insertBefore(oLetter, lastLetter);
+
+    // плавное появление буквы 'о'
+    setTimeout(() => {
+      oLetter.style.opacity = '1';
+      oLetter.style.transform = 'translateY(0) scale(1)';
+      oLetter.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1s ease';
+      oLetter.classList.add('pulse'); // пульсация для новых букв
+    }, 50);
+
+    // смещаем последнюю букву 'т' постепенно
+    const shiftAmount = 35; 
+    const totalShift = (i + 1) * shiftAmount;
+    lastLetter.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+    lastLetter.style.transform = `translateX(${totalShift}px)`;
+    
+  }, (letters.length + i) * 400);
+}
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('news-product');
 
