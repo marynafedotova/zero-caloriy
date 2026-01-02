@@ -1960,7 +1960,7 @@ gap:8px;
 }
 @media screen and (max-width: 450px) {
   .hero{
-    margin-bottom: 30px;
+    margin-bottom: 250px;
   }
   .hero-lb{
   left: 25px;
