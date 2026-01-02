@@ -1,49 +1,83 @@
 const heroLb = document.querySelector('.hero-lb');
 const letters = document.querySelectorAll('.hero-lb .letter');
-
-// плавное появление исходного слова
-letters.forEach((letter, i) => {
-  setTimeout(() => {
-    letter.style.opacity = '1';
-    letter.style.transform = 'translateY(0) scale(1)';
-    letter.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1s ease';
-    letter.classList.add('pulse'); // добавляем пульсацию
-  }, i * 300);
-});
-
 const extraOs = 4;
+const shiftAmount = 35;
 
+// Создаем все дополнительные буквы "о" сразу
+const oLetters = [];
 for (let i = 0; i < extraOs; i++) {
-  setTimeout(() => {
-    const oLetter = document.createElement('img');
-    oLetter.src = 'assets/img/о.png';
-    oLetter.classList.add('letter');
-
-    oLetter.style.opacity = '0';
-    oLetter.style.transform = 'translateY(30px) scale(0.8)';
-
-    const lastLetter = heroLb.lastElementChild;
-    heroLb.insertBefore(oLetter, lastLetter);
-
-    // плавное появление буквы 'о'
-    setTimeout(() => {
-      oLetter.style.opacity = '1';
-      oLetter.style.transform = 'translateY(0) scale(1)';
-      oLetter.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1s ease';
-      oLetter.classList.add('pulse'); // пульсация для новых букв
-    }, 50);
-
-    // смещаем последнюю букву 'т' постепенно
-    const shiftAmount = 35; 
-    const totalShift = (i + 1) * shiftAmount;
-    lastLetter.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
-    lastLetter.style.transform = `translateX(${totalShift}px)`;
-    
-  }, (letters.length + i) * 400);
+  const oLetter = document.createElement('img');
+  oLetter.src = 'assets/img/о.png';
+  oLetter.classList.add('letter', 'extra-o');
+  
+  // Начальное состояние
+  Object.assign(oLetter.style, {
+    opacity: '0',
+    transform: 'translateY(40px) scale(0.7)',
+    transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    position: 'relative',
+    display: 'inline-block'
+  });
+  
+  // Вставляем перед буквой "т"
+  const lastLetter = heroLb.lastElementChild;
+  heroLb.insertBefore(oLetter, lastLetter);
+  oLetters.push(oLetter);
 }
 
+// Получаем все буквы
+const allLetters = document.querySelectorAll('.hero-lb .letter');
+const lastLetter = heroLb.lastElementChild; // буква "т"
 
+// Начальное состояние для всех букв (кроме "т")
+allLetters.forEach(letter => {
+  if (letter !== lastLetter) {
+    letter.style.opacity = '0';
+    letter.style.transform = 'translateY(40px) scale(0.7)';
+    letter.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  }
+});
 
+// Сразу сдвигаем "т" на финальную позицию
+lastLetter.style.transition = 'transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+lastLetter.style.transform = `translateX(${extraOs * shiftAmount}px)`;
+
+// Функция анимации с задержкой
+function animateLetters() {
+  const baseDelay = 200;
+  const staggerDelay = 150;
+  
+  // Анимация появления букв в слове "ульоооот"
+  allLetters.forEach((letter, index) => {
+    // Для буквы "т" отдельная логика
+    if (letter === lastLetter) {
+      setTimeout(() => {
+        letter.style.opacity = '1';
+        letter.classList.add('pulse');
+      }, (allLetters.length - 1) * baseDelay + 300);
+      return;
+    }
+    
+    // Анимация для всех остальных букв
+    setTimeout(() => {
+      letter.style.opacity = '1';
+      letter.style.transform = 'translateY(0) scale(1)';
+      letter.classList.add('pulse');
+      
+      // Небольшой "подскок" для акцента
+      setTimeout(() => {
+        letter.style.transform = 'translateY(-8px) scale(1.1)';
+        setTimeout(() => {
+          letter.style.transform = 'translateY(0) scale(1)';
+        }, 150);
+      }, 400);
+    }, index * baseDelay);
+  });
+}
+
+// Запускаем анимацию
+setTimeout(animateLetters, 300);
+;
 
 
 document.addEventListener('DOMContentLoaded', () => {
