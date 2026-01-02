@@ -1026,6 +1026,11 @@ footer .container{
 .text-footer{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 75px;
+}
+.text-footer .copy{
+  color:#E68A96;
+  margin: 16px 0px;
 }
 .payment-footer ul{
 display: flex;
@@ -1882,6 +1887,10 @@ min-height: 230px;
 position: absolute;
 top: 135px;
 }
+.text-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 }
 @media screen and (max-width: 599px) {
@@ -2018,7 +2027,13 @@ gap:8px;
     max-height: 240px;
     object-fit: contain;
 }
-    
+   .text-footer .copy{
+text-align: center;
+
+} 
+    .hero-lb .letter {
+        height: 25px;
+    }
 }
 @media screen and (max-width: 410px) {
   .hero .rb-hero-index{
