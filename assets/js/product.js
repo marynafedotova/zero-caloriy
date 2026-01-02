@@ -47,70 +47,57 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const favContainer = document.getElementById('favlist-products');
-    const favShowAllBtn = document.getElementById('favlist-show-all');
 
-    let favProducts = [];
+    if (!favContainer) {
+        console.error('favlist-products not found');
+        return;
+    }
 
+    // Завантажуємо всі товари
     fetch('../data/data.json')
-        .then(response => response.json())
-        .then(products => {
-            favProducts = products;
-            renderFavProducts(products.slice(0, 4));
+        .then(res => res.json())
+        .then(data => {
+            renderFavProducts(data); // відображаємо всі товари
+        })
+        .catch(err => console.error('JSON error:', err));
 
-            favShowAllBtn.addEventListener('click', () => {
-                favContainer.innerHTML = "";
-                renderFavProducts(favProducts);
-                favShowAllBtn.style.display = "none";
-            });
-        });
-});
+    function renderFavProducts(list) {
+        favContainer.innerHTML = '';
 
-function renderFavProducts(list) {
-    const favContainer = document.getElementById('favlist-products');
+        list.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'product-card';
 
-    list.forEach(item => {
-        const li = document.createElement('li');
-        li.className = 'product-card';
-        const productLink = `../pages/product.html?id=${item['ID']}`;
-        li.innerHTML = `
-            <a href="${productLink}" class="product-link">
-                <div class="product-img">
-                    <img src="/zero-caloriy/${item['Зображення']}" alt="${item['Назва']}" class="product-image">
-                </div>
+            const productLink = `../pages/product.html?id=${item.ID}`;
 
-                <div class="product-info">
-                    <h3 class="product-title">${item['Назва']}</h3>
-                    <p class="product-weight">${item["Вага"]}</p>
-
-
-            </a>
-                                <div class="product-cart">
-                        <div class="product-price">
-                            ${item['Ціна']}
-                            <div class="product-price-uah">грн</div>
-                        </div>
-                <button class="add-to-cart" data-id="${item['ID']}">
-                <img src="../img/+.svg" alt="add to cart">
-            </button>
-
+            li.innerHTML = `
+                <a href="${productLink}" class="product-link">
+                    <div class="product-img">
+                        <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
                     </div>
-                </div>
 
-        `;
+                    <div class="product-info">
+                        <h3 class="product-title">${item['Назва']}</h3>
+                        <p class="product-weight">${item['Вага']}</p>
 
-        favContainer.appendChild(li);
-    });
+                        <div class="product-cart">
+                            <div class="product-price">
+                                ${item['Ціна']}
+                                <span class="product-price-uah">грн</span>
+                            </div>
 
-    // фиксируем обработчики
-    favContainer.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation(); // если внутри ссылки
-            const productId = this.getAttribute('data-id');
-            addToCart(productId);
+                            <button class="add-to-cart" data-id="${item.ID}">
+                                <img src="../img/+.svg" alt="add to cart">
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            `;
+
+            favContainer.appendChild(li);
         });
-    });
-}
-
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   const hash = window.location.hash;
