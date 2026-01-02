@@ -477,18 +477,19 @@ main {
 /* new section */
 #news-product {
     display: flex;
-    flex-direction: row;
     gap: 16px;
-
     overflow-x: auto;
     overflow-y: hidden;
-
     padding: 12px;
     margin: 0;
     list-style: none;
-
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
 }
+#news-product .product-card {
+    scroll-snap-align: start; /* или center, в зависимости от дизайна */
+}
+
 #news-product .product-price{
   display: flex;
   flex-direction: row;
@@ -501,7 +502,22 @@ main {
     outline: none;
     border-radius: 4px;
 }
+#news-product  .product-card {
+    flex: 0 0 295px;       /* ширина картки */
+    scroll-snap-align: start;
+    margin-right: 16px;    /* додатково для gap fallback */
+}
 
+/* В останньому елементі маргін не потрібен */
+#news-product  .product-card:last-child {
+    margin-right: 0;
+}
+#news-product .product-card .product-img img {
+    border-radius: 16px;
+    max-width: 310px;
+    max-height: 280px;
+    object-fit: cover;
+}
 .mb150{
   margin-bottom: 150px;
 }
@@ -509,7 +525,7 @@ main {
   border-radius: 16px;
   max-width: 310px;
   max-height: 280px;
-  object-fit: contain;
+  object-fit: cover;
 }
 .product-card .product-img{
   margin-bottom: 16px;
@@ -1298,6 +1314,17 @@ justify-content: space-between;
 
 .footer-menu-block ul li:hover a{
   color: var(--white-color);
+}
+#news-product {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 12px;
+    margin: 0;
+    list-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
 }
 @media screen and (max-width: 1000px) {
 #footer-form-item form input {
