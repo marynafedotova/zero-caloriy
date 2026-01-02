@@ -951,6 +951,7 @@ padding-top: 24px;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: start;
+  margin-bottom: 86px;
 }
 #catalog-list-dessert .product-card{
   width: 23.8%;
