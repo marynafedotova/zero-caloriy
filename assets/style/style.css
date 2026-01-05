@@ -805,9 +805,9 @@ right: 16%;
 }
 .product-card .product-img img{
   border-radius: 16px;
-  max-width: 310px;
-  max-height: 280px;
-  object-fit: cover;
+  /* max-width: 310px;
+  max-height: 280px; */
+  object-fit: contain;
 }
 .product-card .product-img{
   margin-bottom: 16px;
