@@ -2090,14 +2090,14 @@ gap:8px;
     }
         #catalog-list-dessert .product-card {
         width: 10%;
-        min-width: 160px;
+                min-width: 175px;
     }
     #catalog-list-drinks .product-card {
         width: 10%;
-        min-width: 160px;
+                min-width: 175px;
     }
     #catalog-list-dessert, #catalog-list-drinks{
-      gap: 10px;
+      justify-content: space-around;
     }
     #catalog-list-drinks .product-card .product-img img {
     max-width: 160px;
