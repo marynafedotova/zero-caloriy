@@ -290,8 +290,13 @@
       <h2>{% ftlmsg  "add_cart_base" %}</h2>
 
       <div class="modal-actions">
-        <button id="continueShopping" class="btn-light">{% ftlmsg  "conti_shop_base" %}</button>
-        <button id="goToCart" class="btn-primary">{% ftlmsg  "gotocart_base" %}</button>
+        <a href="{% url 'goods:catalog' %}" class="btn-light">
+        {% ftlmsg "conti_shop_base" %}
+        </a>
+
+        <a href="{% url 'goods:cart' %}" class="btn-primary">
+        {% ftlmsg "gotocart_base" %}
+        </a>
       </div>
     </div>
   </div>
