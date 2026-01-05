@@ -1,0 +1,3 @@
+h1_index = Десерти зі зниженою калорійністю
+news_index = НАШІ НОВИНОЧКИ
+description_aboutus = 

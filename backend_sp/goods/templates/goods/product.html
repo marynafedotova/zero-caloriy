@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load ftl %}
+{% load static %}
+{% block title_meta %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+<title>{% ftlmsg "title_product" %}</title>
+<meta name="description" content="{% ftlmsg "description_product" %}">
+{% endblock title_meta %}
+{% block content %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+{% load mathfilters %}
+    <main>
+      <h1 class="sr-only">{% ftlmsg "hi_product" %}</h1>
+      <section id="product-page" class="top100">
+        <div class="container top100">
+          <ul class="nav-product">
+            <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img src="{% static './img/Frame.svg' %}" alt=""></li>
+            <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a><img src="{% static './img/Frame.svg' %}" alt=""></li>
+          </ul>
+          <div class="product-main">
+            <div class="product-gallery">
+              {% if prod.image_url %}
+              <img class="product-image" src="{{ prod.image_url }}" alt="{{ prod.name }}">
+              {% else %}
+                 <img src="{% static './img/images-not-found.jpg' %}" alt="{{ prod.name }}">
+              {% endif %}
+            
+            </div>
+
+            <div class="product-info">
+              <h1 class="product-title">{{product.name}}</h1>
+
+              <div class="product-price">
+                <div class="uah-product-price">{{product.price}}{% ftlmsg "currency_catalog" %}</div>
+              </div>
+              <!-- Склад продукту -->
+              <div class="product-composition">
+                <h4>{% ftlmsg "ingredients_product" %}</h4>
+                <p class="product-ingredients">{{product.description}}</p>
+              </div>
+
+              <div class="product-nutrition">
+                <h4>{% ftlmsg "additional_info_product" %}:</h4>
+                <ul class="nutrition-list">{{product.additional_info}}</ul>
+              </div>
+
+              <div class="product-size">
+                {% if variants|length > 1 %}
+                  {# Якщо варіантів більше одного, виводимо заголовок і кнопки #}
+                  <h4>{% ftlmsg "size_product" %}</h4>
+                  <div class="size-options">
+                  {% for variant in variants %}
+                  <a href="{{ variant.get_absolute_url }}" 
+                  class="size-btn" 
+                  style="{% if variant.id == product.id %} background-color: #ff69b4; color: white; {% endif %}">
+                  {{ variant.weight|mul:1000|floatformat:0 }}
+                  </a>
+                {% endfor %}
+              </div>
+                {% else %}
+                {# Якщо розмір лише один, виводимо просто текст із вагою #}
+                <div class="single-size">
+                <span>{% ftlmsg "vaga_cart" %} {{ product.weight|mul:1000|floatformat:0 }} г</span>
+              </div>
+              {% endif %}
+            </div>
+
+              <div class="product-actions">
+                <div class="quantity">
+                  <button class="minus"><img src="{% static './img/minus.svg' %}" alt=""></button>
+                  <span>1</span>
+                  <button class="plus"><img src="{% static './img/plus.svg' %}" alt=""></button>
+                </div>
+
+                <button class="add-to-cart">{% ftlmsg "add_to_cart" %}</button>
+              </div>
+            </div>
+
+          </div>
+          <!-- Опис продукту -->
+          <div class="product-description">
+            <h4>{% ftlmsg "about_product" %}</h4>
+            <p class="product-desc">{{product.about_product}}</p>
+          </div>
+        </div>
+      </section>
+     
+    {% endblock content %}

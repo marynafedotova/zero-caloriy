@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load ftl %}
+{% load static %}
+{% block title_meta %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+  <title>{% ftlmsg "title_cart" %}</title>
+<meta name="description" content="{% ftlmsg "description_cart" %}">
+{% endblock title_meta %}
+{% block content %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+{% load mathfilters %}
+    <main>
+      <section class="top100">
+        <div class="container top100 cart-container">
+          <h1>{% ftlmsg "you_cart_cart" %}</h1>
+          <div class="cart-block">
+            <div class="cart-lb">
+              <ul id="cart-list" class="cart-list"></ul>
+            </div>
+            <div class="cart-rb">
+              {% ftlmsg "order_cart" %}
+              <div class="sum"></div>
+            </div>
+          </div>
+          <div class="contacts-block">
+            <form id="orderForm">
+              <input type="text" id="surname" name="surname" placeholder="{% ftlmsg "placeholder_two_name_cart" %}">
+              <input type="text" id="name" name="name" placeholder="{% ftlmsg "placeholder_name_cart" %}">
+              <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX">
+              <input type="email" id="email" name="email" placeholder="example@mail.com">
+              <select id="location-select" name="location">
+                <option value=""> {% ftlmsg "location_cart" %} </option>
+                <option value="ТРЦ SkyMall">{% ftlmsg "skymall_cart" %}</option>
+                <option value="ТРЦ Retrowille">{% ftlmsg "retroville_cart" %}</option>
+              </select>
+              <button type="submit" id="cart-btn">{% ftlmsg "submit_cart" %}</button>
+            </form>
+          </div>
+        </div>
+      </section>
+{% endblock content %}   

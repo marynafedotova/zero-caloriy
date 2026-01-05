@@ -1,0 +1,2 @@
+Це збере .mo файли, які aiogram_i18n читає під час роботи.
+pybabel compile -d locales

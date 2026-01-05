@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load ftl %}
+{% block title_meta %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+  <title>{% ftlmsg "title_policy" %}</title>
+<meta name="description" content="{% ftlmsg "description_policy" %}">
+{% endblock title_meta %}
+{% block content %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+    <main>
+      <section id="privacy-policy">
+        <div class="container top100">
+          <h1>{% ftlmsg "hi_privacy_policy" %}</h1>
+
+          <p>{% ftlmsg "p_one_policy-html" %}</p>
+
+           <h3>
+            {% ftlmsg "h3_private_info" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_private_one" %}
+          </p>
+          <p>
+            {% ftlmsg "p_private_two" %}
+          </p>
+          <p>
+            {% ftlmsg "p_private_three-html" %}
+          </p>
+          <p>
+            {% ftlmsg "p_private_four" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_not_private_data" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_not_private_one" %}
+          </p>
+          <p>
+            {% ftlmsg "p_not_private_two" %}
+          </p>
+          <ul>
+            <li>
+              {% ftlmsg "li_not_private_one" %}
+            </li>
+            <li>
+              {% ftlmsg "li_not_private_two" %}
+            </li>
+            <li>
+              {% ftlmsg "li_not_private_three" %}
+            </li>
+            <li>
+              {% ftlmsg "li_not_private_four" %}
+            </li>
+            <li>
+              {% ftlmsg "li_not_private_five" %}
+            </li>
+          </ul>
+          <p>
+            {% ftlmsg "p_not_private_three" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_transfer_data" %}
+          </h3>
+          <ul>
+            <li>
+            {% ftlmsg "li_transfer_data_one-html" %}
+            </li>
+            <li>
+            {% ftlmsg "li_transfer_data_two" %}
+            </li>
+            <li>
+            {% ftlmsg "li_transfer_data_three" %}
+            </li>
+          </ul>
+
+          <h3>
+            {% ftlmsg "h3_third_party_services" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_third_party_services_one" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_data_protect" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_data_protect_one" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_acceptance_policy" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_acceptance_policy_one" %}
+          </p>
+          <p>
+            {% ftlmsg "p_acceptance_policy_two" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_disclaimer" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_disclaimer_one" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_change_privacy" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_change_privacy_one" %}
+          </p>
+
+          <h3>
+            {% ftlmsg "h3_public_offers" %}
+          </h3>
+          <p>
+            {% ftlmsg "p_public_offers_one" %}
+          </p>
+
+        </div>
+      </section>
+{% endblock content %}
+    

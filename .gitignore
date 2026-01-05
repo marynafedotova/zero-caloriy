@@ -1,0 +1,12 @@
+# Віртуальне оточення
+sp/
+.env
+zk/
+
+# Кеші Python
+pycache/
+*.pyc
+
+# IDE / редактори
+.vscode/
+.idea/

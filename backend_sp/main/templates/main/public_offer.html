@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load ftl %}
+{% load static %}
+{% block title_meta %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+  <title>{% ftlmsg "offer_title" %}</title>
+<meta name="description" content="{% ftlmsg "description_offer" %}">
+{% endblock title_meta %}
+{% block content %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+    <main>
+      <section class="publick_offer">
+        <div class="container top100">
+          <h1 class="top100">{% ftlmsg "public_offer_offer" %}</h1>
+
+          <p>
+            {% ftlmsg "p_one_offer" %} https://zerocaloriy.com.
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_offer" %}
+          </p>
+
+          <h2>{% ftlmsg "all_offer" %}</h2>
+
+          <p>
+            {% ftlmsg "p_one_one_offer" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_one_two_offer" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_one_tri_offer" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_one_four_offer" %}
+          </p>
+          <h2>{% ftlmsg "times_offer" %}</h2>
+
+          <p>
+            2.1. <strong>"{% ftlmsg "public_offer_offer" %}"</strong> - {% ftlmsg "p_two_one_offer" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_two_offer-html" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_tri_offer-html" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_four_offer-html" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_five_offer-html" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_six_offer-html" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_seven_offer-html" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_two_eight_offer-html" %}
+          </p>
+
+          <h2>
+            {% ftlmsg "h2_subject_agreement" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_three_one" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_three_two" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_three_three" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_three_four" %}
+          </p>
+
+          <h2>
+            {% ftlmsg "h2_sellers_rights" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_four_one" %}
+          </p>
+
+          <ul>
+            <li>
+              {% ftlmsg "li_four_one" %}
+            </li>
+            <li>
+              {% ftlmsg "li_four_two" %}
+            </li>
+            <li>
+              {% ftlmsg "li_four_three" %}
+            </li>
+            <li>
+              {% ftlmsg "li_four_four" %}
+            </li>
+            <li>
+              {% ftlmsg "li_four_five" %}
+            </li>
+            <li>
+              {% ftlmsg "li_four_six" %}
+            </li>
+          </ul>
+
+          <h2>
+            {% ftlmsg "h2_rights_obligations" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_five_one" %}
+          </p>
+
+          <ul>
+            <li>
+              {% ftlmsg "li_five_one" %}
+            </li>
+            <li>
+              {% ftlmsg "li_five_two" %}
+            </li>
+            <li>
+              {% ftlmsg "li_five_three" %}
+            </li>
+          </ul>
+
+          <h2>
+            {% ftlmsg "h2_order_process_offer" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_six_one" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_six_two" %}
+          </p>
+          <h2>
+            {% ftlmsg "h2_price_offer" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_seven_one" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_seven_two" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_seven_three" %}
+          </p>
+
+          <ol>
+            <li>
+              {% ftlmsg "li_seven_three_one" %}
+            </li>
+            <li>
+              {% ftlmsg "li_seven_three_two" %}
+            </li>
+            <li>
+              {% ftlmsg "li_seven_three_three" %}
+              <ul>
+                <li>Visa</li>
+                <li>Visa Electron</li>
+                <li>Mastercard</li>
+                <li>Mastercard Electronic</li>
+                <li>Maestro</li>
+              </ul>
+            </li>
+          </ol>
+
+          <p>
+            {% ftlmsg "p_detail_payments" %}
+          </p>
+
+          <h2>
+            {% ftlmsg "h2_delivery_terms" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_eight_one" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eight_two" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eight_three" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eight_four" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eight_five" %}
+          </p>
+          <h2>
+            {% ftlmsg "h2_terms_return" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_nine_one" %}
+          </p>
+
+          <h2>
+            {% ftlmsg "h2_response_parties" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_ten_one" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_ten_two" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_ten_three" %}
+          </p>
+          <h2>
+            {% ftlmsg "h2_force_majeure" %}
+          </h2>
+
+          <p>
+            {% ftlmsg "p_eleven_one" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eleven_two" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eleven_three" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eleven_four" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eleven_five" %}
+          </p>
+
+          <p>
+            {% ftlmsg "p_eleven_six" %}
+          </p>
+
+          <h2>
+            {% ftlmsg "h2_another_terms" %}
+          </h2>
+          <p>
+            {% ftlmsg "p_another_one" %}
+          </p>
+          <p>
+            {% ftlmsg "p_another_two_bf" %} <a href="https://zerocaloriy.com">https://zerocaloriy.com</a> {% ftlmsg "p_another_two_aft" %} <a href="https://zerocaloriy.com">https://zerocaloriy.com</a>.
+          <p>
+            {% ftlmsg "p_another_three" %}
+          <p>
+            {% ftlmsg "p_another_four" %}
+          </p>
+          <p>
+            {% ftlmsg "p_another_five" %}
+          </p>
+          <p>
+            {% ftlmsg "p_another_six" %}
+          </p>
+        </div>
+      </section>
+  {% endblock content %}
+    
