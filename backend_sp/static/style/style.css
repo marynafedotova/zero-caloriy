@@ -1224,6 +1224,11 @@ color: var(--grey-color);
 .product-nutrition{
   padding-bottom: 84px;
 }
+.nutrition-list li {
+  white-space: pre-line;
+  
+}
+
 .product-composition h4, .product-nutrition h4{
   font-family: 'Montserrat Bold';
   font-size: 20px;
@@ -1284,6 +1289,7 @@ padding-top: 24px;
   padding: 12px 24px;
   border-radius: 62px;
   background-color: var(--pinklight-color);
+  margin-right: 12px;
 
 }
 .product-size .size-options{
