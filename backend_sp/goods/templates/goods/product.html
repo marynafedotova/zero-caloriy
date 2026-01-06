@@ -30,7 +30,7 @@
         <div class="product-info">
           <h1 class="product-title">{{product.name}}</h1>
           <div class="product-price">
-            <div class="uah-product-price">{{product.price}} 
+            <div class="uah-product-price">{{product.price}}
             </div>
             <div class="currency">{% ftlmsg "currency_catalog" %}</div>
           </div>
@@ -84,25 +84,50 @@
         <h4>{% ftlmsg "about_product" %}</h4>
         <p class="product-desc">{{product.about_product}}</p>
       </div>
-            <div class="mb150">
-
-      <!-- Може сподобатися -->
-        <p>{% ftlmsg "likes_goods" %}</p>
-          {% for random in random_products %}
-            {% if random.image_url %}
-              <img src="{{ random.image_url }}" alt="{{ random.name }}">
-              {% else %}
-              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ random.name }}">
-              {% endif %}
-              <p>{{ random.name }}</p>
-              <p>{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-
-              <p>{{ random.price }} {% ftlmsg "currency_catalog" %}</p>
-              <a href="{% url 'goods:product' product_slug=random.slug %}">це кнопочка на товар</a>
-          {% endfor %}
-        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}</a>
+      <div class="mb150">
+  </section>
+  <!-- Може сподобатися -->
+  <section id="favlist">
+    <div class="container">
+      <h3 class="title-section">{% ftlmsg "likes_goods" %}</h3>
+<ul class="favlist-list" id="favlist-products">
+  {% for random in random_products %}
+  <li class="product-card">
+    <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
+      <div class="product-img">
+        {% if random.image_url %}
+          <img src="{{ random.image_url }}" alt="{{ random.name }}">
+        {% else %}
+          <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ random.name }}">
+        {% endif %}
       </div>
+
+      <div class="product-info">
+        <h3 class="product-title">{{ random.name }}</h3>
+        <p class="product-weight">
+          {{ random.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+        </p>
+
+        <div class="product-cart">
+          <div class="product-price">
+            {{ random.price }}
+            <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
+          </div>
+          <button class="add-to-cart">
+            <img src="{% static 'img/+.svg' %}" alt="add to cart">
+          </button>
+        </div>
+      </div>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}</a>
     </div>
   </section>
+
+
+
+
 
   {% endblock content %}

@@ -959,7 +959,9 @@ width: 100%;
   border-bottom:1px solid var(--pinklight-color);
 padding-bottom: 64px;
 }
-
+#favlist .container #show-all-btn{
+  margin-bottom: 80px;
+}
 /* fav section */
   #favlist-products li{
   width: 30%;

@@ -85,9 +85,9 @@ function hideModal() {
 closeModal.addEventListener('click', hideModal);
 continueShopping.addEventListener('click', hideModal);
 
-goToCart.addEventListener('click', () => {
-    window.location.href = '/zero-caloriy/assets/pages/cart.html';
-});
+// goToCart.addEventListener('click', () => {
+//     window.location.href = '/zero-caloriy/assets/pages/cart.html';
+// });
 
 
 modalOverlay.addEventListener('click', (e) => {
