@@ -292,7 +292,7 @@ header .nav-container .container nav ul li a::before {
   transition: background-color 0.3s ease;
 }
 header .nav-container .container nav ul li a:hover::before {
-  background-color: white;
+  background-color: var(--pinkdark-color);
 }
 header .nav-container .container nav ul li a:hover {
   color: var(--pinkdark-color);
