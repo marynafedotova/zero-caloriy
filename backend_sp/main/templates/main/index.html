@@ -125,8 +125,11 @@
         <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
       </div>
     </div>
-  </section>
-  <script>
+    </section>
+      <script>
     const oSrc = "{% static 'img/о.png' %}";
   </script>
+
+  
+  <script src="{% static './js/index.js' %}"></script>
   {% endblock content %}
