@@ -15,6 +15,7 @@
   --pinklight-color: #FFD4DA;
   --white-color: #FFF9F8;
   --grey-color:#ABA7A6;
+  --dark-grey: #666463;
   --pinkmiddle-color: #E68A96;
 }
  .top100{
@@ -757,12 +758,12 @@ right: 9%;
 .cart-account li{
   min-width: 24px;
   aspect-ratio: 1;
+    padding: 4px;
 }
 .cart-account li:hover{
-  scale: 1.1;
-  border: 1px solid var(--lightpink-color);
+  background-color: var(--grey-color);
   border-radius: 4px;
-  padding: 4px;
+
 }
 /* new section */
 #news-product {
@@ -890,7 +891,7 @@ width: 100%;
     gap: 16px;
     overflow-x: auto;
     overflow-y: hidden;
-     height: 516px;
+     height: 476px;
     padding: 12px;
     margin: 0;
     list-style: none;
@@ -971,12 +972,16 @@ margin-bottom: 0;
     flex-direction: column;
     height: 100%;
  }
-  #favlist-products .product-card .product-info {
-    flex-grow: 1;  
+#favlist-products .product-card .product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
  #favlist-products .product-card .product-price{
   margin-top: auto;
   padding-bottom: 0;
+  font-size: 24px;
  }
 
  #favlist-show-all{
@@ -1139,9 +1144,26 @@ justify-content: space-between;
   width: 48%;
   max-width: 609px;
 }
-    .product-main .product-info {
+.product-main .product-info {
         width: 40%;
     }
+    .product-main .product-info .product-price{
+      display: inline-flex;
+    }
+    .product-main .product-info .product-price .currency{
+      font-family: Montserrat;
+font-weight: 700;
+font-size: 24px;
+margin: auto;
+color: var(--grey-color);
+    }
+.product-main .product-info .product-price .uah-product-price{
+  color: var(--black);
+  font-size: 32px;
+  font-family: 'Montserrat Bold';
+  padding-right: 8px;
+
+}
 .product-gallery img{
   border-radius: 58px;
   max-height: 609px;
@@ -1180,17 +1202,24 @@ justify-content: space-between;
   font-family: 'Montserrat Bold';
   padding-bottom: 24px;
 }
-.uah-product-price{
-  font-size: 24px;
-  font-family: 'Montserrat Bold';
-  color: var(--grey-color);
-  padding-left: 8px;
-}
+
 .product-composition, .product-nutrition{
   display: flex;
   gap: 16px;
-
   margin-bottom: 29px;
+}
+.product-nutrition h4 {
+  max-width: 7ch;
+  white-space: normal;
+}
+.single-size {
+  margin-bottom: 26px;
+}
+.single-size span{
+  padding: 8px 16px;
+  background-color: var(--pinkdark-color);
+  border-radius: 16px;
+  color: var(--white-color);
 }
 .product-nutrition{
   padding-bottom: 84px;
@@ -1198,7 +1227,7 @@ justify-content: space-between;
 .product-composition h4, .product-nutrition h4{
   font-family: 'Montserrat Bold';
   font-size: 20px;
-  color: var(--grey-color);
+  color: var(--dark-grey);
   padding-right: 16px;
 }
 .product-nutrition, .product-size{

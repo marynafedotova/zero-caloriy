@@ -13,15 +13,24 @@
 <!-- NOTE: You selected a new image. Please upload it to your server and replace "YOUR_IMAGE_URL_HERE" with the actual URL. -->
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{% static './style/style.css' %}">
-  <link rel="mask-icon" href="{% static './images/safari-pinned-tab.svg' %}" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-<link rel="icon" type="image/png" href="{% static './img/favicon/favicon-96x96.png' %}" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="{% static './img/favicon/favicon.svg' %}" />
-<link rel="shortcut icon" href="{% static './img/favicon/favicon.ico' %}" />
-<link rel="apple-touch-icon" sizes="180x180" href="{% static './img/favicon/apple-touch-icon.png' %}" />
-<link rel="manifest" href="/site.webmanifest" />
-<!-- HTML Meta Tags -->
+  <link rel="mask-icon" href="{% static '.img/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="57x57" HREF="{% static '.img/apple-icon-57x57.png' %}">
+  <link rel="apple-touch-icon" sizes="60x60" HREF="{% static '.img/apple-icon-60x60.png' %}">
+  <link rel="apple-touch-icon" sizes="72x72" HREF="{% static '.img/apple-icon-72x72.png' %}">
+  <link rel="apple-touch-icon" sizes="76x76" HREF="{% static '.img/apple-icon-76x76.png' %}">
+  <link rel="apple-touch-icon" sizes="114x114" HREF="{% static '.img/apple-icon-114x114.png' %}">
+  <link rel="apple-touch-icon" sizes="120x120" HREF="{% static './img/apple-icon-120x120.png' %}">
+  <link rel="apple-touch-icon" sizes="144x144" HREF="{% static './img/apple-icon-144x144.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" HREF="{% static './img/apple-icon-152x152.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" HREF="{% static './img/apple-icon-180x180.png' %}">
+  <link rel="icon" type="image/png" sizes="192x192" HREF="{% static './img/android-icon-192x192.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" HREF="{% static './img/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="96x96" HREF="{% static './img/favicon-96x96.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" HREF="{% static './img/favicon-16x16.png' %}">
+  <link rel="manifest" HREF="{% static './img/manifest.json' %}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{% static '.img/ms-icon-144x144.png' %}">
+  <meta name="theme-color" content="#ffffff"><!-- HTML Meta Tags -->
   {% block title_meta %}
   {% endblock title_meta %}
 </head>
@@ -248,8 +257,8 @@
                 {% ftlmsg  "location_base" %}
               </div>
               <ul>
-                <li><a href="https://share.google/rKwVFbXCr3LqaSGFB">{% ftlmsg  "shp_c_base" %} SkyMall</a></li>
-                <li><a href="https://share.google/4ZWLEa5sGh0PQ4rQk">{% ftlmsg  "shp_c_base" %} Retroville</a></li>
+                <li><a href="https://maps.app.goo.gl/27rAoiakrX8WesmS8">{% ftlmsg  "shp_c_base" %} SkyMall</a></li>
+                <li><a href="https://maps.app.goo.gl/XjPfQtkzAGfLHFGY9">{% ftlmsg  "shp_c_base" %} Retroville</a></li>
               </ul>
             </div>
           </div>
@@ -267,16 +276,16 @@
 
       </div>
       <div class="container text-footer">
-        <div>
+        <div class="copy">
           &copy;
           <script>document.write(new Date().getFullYear())</script> ZeroKaloriy 2025, All Rights Reserved.
-        </div>
+        </div >
         <div class="payment-footer">
           <ul>
-            <li><img src="{% static './img/visa.svg' %}" alt=""></li>
-            <li><img src="{% static './img/mastercard.svg' %} " alt=""></li>
-            <li><img src="{% static './img/aplpay.svg' %}" alt=""></li>
-            <li><img src="{% static './img/googlepay.svg' %}" alt=""></li>
+            <li><img src="{% static './img/visa.svg' %}" alt="visa"></li>
+            <li><img src="{% static './img/mastercard.svg' %} " alt="mastercard"></li>
+            <li><img src="{% static './img/aplpay.svg' %}" alt="aplpay"></li>
+            <li><img src="{% static './img/googlepay.svg' %}" alt="googlepay"></li>
           </ul>
         </div>
       </div>
@@ -301,7 +310,7 @@
     </div>
   </div>
 
-  <script src="{% static './js/index.js' %}"></script>
+  <!-- <script src="{% static './js/index.js' %}"></script> -->
   <script src="{% static './js/main.js' %} "></script>
 
 </body>
