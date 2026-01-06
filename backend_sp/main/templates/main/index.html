@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load ftl %}
 {% load static %}
-{% load  menu_tags%}
+{% load menu_tags%}
 {% block title_meta %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
-<title>{% ftlmsg  "site_title_index" %}</title>
-<meta name="description" content="{% ftlmsg  "site_descrp_index" %}">
+<title>{% ftlmsg "site_title_index" %}</title>
+<meta name="description" content="{% ftlmsg  " site_descrp_index" %}">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://marynafedotova.github.io/zero-caloriy/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zero caloriy">
-<meta property="og:description" content="{% ftlmsg  "site_descrp_index" %}">
+<meta property="og:description" content="{% ftlmsg  " site_descrp_index" %}">
 <meta property="og:image" content="YOUR_IMAGE_URL_HERE">
 
 <!-- Twitter Meta Tags -->
@@ -19,73 +19,114 @@
 <meta property="twitter:domain" content="marynafedotova.github.io">
 <meta property="twitter:url" content="https://marynafedotova.github.io/zero-caloriy/">
 <meta name="twitter:title" content="Zero caloriy">
-<meta name="twitter:description" content="{% ftlmsg  "site_descrp_index" %}">
+<meta name="twitter:description" content="{% ftlmsg  'site_descrp_index' %}">
 <meta name="twitter:image" content="YOUR_IMAGE_URL_HERE">
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
 {% load mathfilters %}
-    <main>
-      <h1 class="sr-only">{% ftlmsg  "h1_index" %}</h1>
-      <section class="hero">
-        <img src="{% static './img/Без заголовка 55 1.png' %}" alt="">
-          <div class="hero-lb">
-            
-          </div>
-        <div class="hero-rb">
-          <div class="bank">
-          <img src="{% static './img/IMG_3038.PNG' %}" alt="">
-          </div>
-          <div class="stars">          
-            <div id="star1"><img src=" {% static './img/зірка сайт 2.svg' %}" alt="" ></div>
-          <div id="star2"><img src="{% static './img/зірочка3.svg' %}" alt="" ></div>
-          <div id="star3"><img src="{% static './img/зірочка1.svg' %}" alt=""></div>
-          <div id="star4"><img src="{% static './img/зірочка2.svg' %}" alt=""></div>
-</div>
+<main>
+  <h1 class="sr-only">{% ftlmsg "h1_index" %}</h1>
+  <section class="hero">
+    <img src="{% static './img/Без заголовка 55 1.png' %}" alt="hero">
+    <div class="hero-lb">
+      <img src="{% static './img/у.png' %}" class="letter">
+      <img src="{% static './img/л.png' %}" class="letter ml5">
+      <img src="{% static './img/ь.png' %}" class="letter">
+      <img src="{% static './img/о.png' %}" class="letter">
+      <img src="{% static './img/т.png' %}" class="letter">
+    </div>
+    <div class="rb-hero-index">
+      <img src="{% static './img/IMG_3038.PNG' %}" alt="десерт">
+      <div class="zero_white">
+        <img src="assets/img/zero_white.png" alt="logo">
+      </div>
+    </div>
+    <div class="stars">
+      <div id="star1"><img src="{% static './img/зірка сайт 2.svg' %}" alt="star"></div>
+      <div id="star2"><img src="{% static './img/зірочка1.svg' %}" alt="star"></div>
+      <div id="star3"><img src="{% static './img/зірочка1.svg' %}" alt="star"></div>
+      <div id="star4"><img src="{% static './img/зірочка3.svg' %}" alt="star"></div>
+      <div id="star5"><img src="{% static './img/зірка5.png' %}" alt="star"></div>
+    </div>
+  </section>
+  <section id="new-product-section">
+    <div class="container">
+      <h2 class="title-section">{% ftlmsg "news_index" %}</h2>
+      <ul class="news-product-item" id="news-product">
 
-          <!-- <img src="" alt=""> -->
+        {% for new in new_products %}
+        <li class="product-card">
+          <a href="{% url 'goods:product' product_slug=new.slug %}" class="product-link" style="border-radius: 16px; ">
+            <div class="product-img">
+              {% if new.image_url %}
+              <img src="{{ new.image_url }}" alt="{{ new.name }}">
+              {% else %}
+              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ new.name }}">
+              {% endif %}
+            </div>
 
-        </div>
-      </section>
-      <section id="new-product-section">
-        <div class="container">
-          <h2 class="title-section">{% ftlmsg  "news_index" %}</h2>
-          <ul class="news-product-item" id="news-product">
-            {% for new in new_products %}
-            <a href="{% url 'goods:product' product_slug=new.slug %}">
-                {% if new.image_url %}
-                <img src="{{ new.image_url }}" alt="{{ new.name }}">
-                {% else %}
-                 <img src="{% static './img/images-not-found.jpg' %}" alt="{{ new.name }}">
-                {% endif %}
-              </a>
-              <h5>{{ new.name }}</h5>
-                <p>{{new.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-                <p>{{ new.price }} {% ftlmsg "currency" %}</p>
-            {% endfor %}
-          </ul>
-            <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg  "all_goods_base" %}</a>
-        </div>
-      </section>
-        <section id="favlist">
-        <div class="container">
-          <h3 class="title-section">{% ftlmsg  "likes_base" %}</h3>
-          <ul class="favlist-list" id="favlist-products"></ul>
-                {% for random in random_products %}
-                  <a href="{% url 'goods:product' product_slug=random.slug %}">
-                {% if random.image_url %}
-                <img src="{{ random.image_url }}" alt="{{ random.name }}">
-                {% else %}
-                 <img src="{% static './img/images-not-found.jpg' %}" alt="{{ random.name }}">
-                {% endif %}
-                  </a>
-                <h5>{{ random.name }}</h5>
-                <p>{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-                <p>{{ random.price }} {% ftlmsg "currency" %}</p>
-                {% endfor %}
-          <div class="mb150">
-            <a href="{% url 'goods:catalog' %}" id="show-all-btn" > {% ftlmsg  "all_goods_base" %}</a>
-          </div>
-        </div>
-      </section>
-  {% endblock content %}      
+            <div class="product-info">
+              <h3 class="product-title">{{ new.name }}</h3>
+              <p class="product-weight">{{new.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+
+            </div>
+            <div class="df">
+              <div class="product-price">
+                {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
+              </div>
+              <button class="add-to-cart" data-id="${item.ID}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </button>
+            </div>
+
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
+
+
+    </div>
+  </section>
+  <section id="favlist">
+    <div class="container">
+      <h3 class="title-section">{% ftlmsg "likes_base" %}</h3>
+      <ul class="favlist-list" id="favlist-products">
+
+        {% for random in random_products %}
+        <li class="product-card">
+          <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
+            <div class="product-img">
+              {% if random.image_url %}
+              <img src="{{ random.image_url }}" alt="{{ random.name }}">
+              {% else %}
+              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ random.name }}">
+              {% endif %}
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">{{ random.name }}</h3>
+              <p class="product-weight">{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+              <div class="product-cart">
+                <div class="product-price">
+                  {{ random.price }}
+                  <span class="product-price-uah">{% ftlmsg "currency" %}</span>
+                </div>
+                <button class="add-to-cart" data-id="${item.ID}">
+                  <img src="{% static './img/+.svg' %}" alt="add to cart">
+                </button>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </li>
+      </ul>
+      <div class="mb150">
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    const oSrc = "{% static 'img/о.png' %}";
+  </script>
+  {% endblock content %}

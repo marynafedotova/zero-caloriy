@@ -1,55 +1,128 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const track = document.getElementById('news-product');
+const heroLb = document.querySelector('.hero-lb');
+const letters = document.querySelectorAll('.hero-lb .letter');
+const extraOs = 4;
+const shiftAmount = 35;
 
-    let products = [];
+const oLetter = document.createElement('img');
+oLetter.src = oSrc; 
 
-    fetch('assets/data/data.json')
-        .then(res => res.json())
-        .then(data => {
-            products = data
-                .filter(item => item['Категория'] === 'Дессерт')
-                .sort((a, b) => b.ID - a.ID);
+const oLetters = [];
+for (let i = 0; i < extraOs; i++) {
+  const oLetter = document.createElement('img');
+  oLetter.src = oSrc;
+  oLetter.classList.add('letter', 'extra-o');
+  
+  Object.assign(oLetter.style, {
+    opacity: '0',
+    transform: 'translateY(40px) scale(0.7)',
+    transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    position: 'relative',
+    display: 'inline-block'
+  });
+  
+  const lastLetter = heroLb.lastElementChild;
+  heroLb.insertBefore(oLetter, lastLetter);
+  oLetters.push(oLetter);
+}
 
-            renderProducts(products);
-        })
-        .catch(err => console.error('JSON error:', err));
+const allLetters = document.querySelectorAll('.hero-lb .letter');
+const lastLetter = heroLb.lastElementChild; // буква "т"
 
-    function renderProducts(list) {
-        track.innerHTML = '';
+allLetters.forEach(letter => {
+  if (letter !== lastLetter) {
+    letter.style.opacity = '0';
+    letter.style.transform = 'translateY(40px) scale(0.7)';
+    letter.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  }
+});
 
-        list.forEach(item => {
-            const kbju = item['КБЖУ'];
+lastLetter.style.transition = 'transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+lastLetter.style.transform = `translateX(${extraOs * shiftAmount}px)`;
 
-            const li = document.createElement('li');
-            li.className = 'product-card';
+function animateLetters() {
+  const baseDelay = 200;
+  const staggerDelay = 150;
+  
+  allLetters.forEach((letter, index) => {
+    if (letter === lastLetter) {
+      setTimeout(() => {
+        letter.style.opacity = '1';
+        letter.classList.add('pulse');
+      }, (allLetters.length - 1) * baseDelay + 300);
+      return;
+    }
+    
+    setTimeout(() => {
+      letter.style.opacity = '1';
+      letter.style.transform = 'translateY(0) scale(1)';
+      letter.classList.add('pulse');
+      
+      setTimeout(() => {
+        letter.style.transform = 'translateY(-8px) scale(1.1)';
+        setTimeout(() => {
+          letter.style.transform = 'translateY(0) scale(1)';
+        }, 150);
+      }, 400);
+    }, index * baseDelay);
+  });
+}
 
-            li.innerHTML = `
-                <a href="assets/pages/product.html?id=${item.ID}" class="product-link">
-                    <div class="product-img">
-                        <img src="${item['Зображення']}" alt="${item['Назва']}">
-                    </div>
+// Запускаем анимацию
+setTimeout(animateLetters, 300);
 
-                    <div class="product-info">
-                                    <div class="product-info">
-                                <h3 class="product-title">${item['Назва']}</h3>
-                                <p class="product-weight">${item["Вага"]}</p>
-                            </div>
-                            <div class="product-price">
-                                ${item['Ціна']} <span class="product-price-uah">грн</span>
 
-                             <button class="add-to-cart" data-id="${item.ID}">
-                                <img src="assets/img/+.svg" alt="add to cart">
-                            </button>    </div>
+// document.addEventListener('DOMContentLoaded', () => {
+//     const track = document.getElementById('news-product');
+
+//     let products = [];
+
+//     fetch('assets/data/data.json')
+//         .then(res => res.json())
+//         .then(data => {
+//             products = data
+//                 .filter(item => item['Категория'] === 'Дессерт')
+//                 .sort((a, b) => b.ID - a.ID);
+
+//             renderProducts(products);
+//         })
+//         .catch(err => console.error('JSON error:', err));
+
+//     function renderProducts(list) {
+//         track.innerHTML = '';
+
+//         list.forEach(item => {
+//             const kbju = item['КБЖУ'];
+
+//             const li = document.createElement('li');
+//             li.className = 'product-card';
+
+//             li.innerHTML = `
+//                 <a href="assets/pages/product.html?id=${item.ID}" class="product-link">
+//                     <div class="product-img">
+//                         <img src="${item['Зображення']}" alt="${item['Назва']}">
+//                     </div>
+
+//                     <div class="product-info">
+//                                     <div class="product-info">
+//                                 <h3 class="product-title">${item['Назва']}</h3>
+//                                 <p class="product-weight">${item["Вага"]}</p>
+//                             </div>
+//                             <div class="product-price">
+//                                 ${item['Ціна']} <span class="product-price-uah">грн</span>
+
+//                              <button class="add-to-cart" data-id="${item.ID}">
+//                                 <img src="assets/img/+.svg" alt="add to cart">
+//                             </button>    </div>
 
                        
-                    </div>
-                </a>
-            `;
+//                     </div>
+//                 </a>
+//             `;
 
-            track.appendChild(li);
-        });
-    }
-});
+//             track.appendChild(li);
+//         });
+//     }
+// });
 
 
 
@@ -57,59 +130,59 @@ document.addEventListener('DOMContentLoaded', () => {
 // FAVORITES SECTION
 // ---------------------------
 
-document.addEventListener('DOMContentLoaded', () => {
-    const favContainer = document.getElementById('favlist-products');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const favContainer = document.getElementById('favlist-products');
 
-    if (!favContainer) {
-        console.error('favlist-products not found');
-        return;
-    }
+//     if (!favContainer) {
+//         console.error('favlist-products not found');
+//         return;
+//     }
 
-    // Завантажуємо всі товари
-    fetch('assets/data/data.json')
-        .then(res => res.json())
-        .then(data => {
-            renderFavProducts(data); // відображаємо всі товари
-        })
-        .catch(err => console.error('JSON error:', err));
+//     // Завантажуємо всі товари
+//     fetch('assets/data/data.json')
+//         .then(res => res.json())
+//         .then(data => {
+//             renderFavProducts(data); // відображаємо всі товари
+//         })
+//         .catch(err => console.error('JSON error:', err));
 
-    function renderFavProducts(list) {
-        favContainer.innerHTML = '';
+//     function renderFavProducts(list) {
+//         favContainer.innerHTML = '';
 
-        list.forEach(item => {
-            const li = document.createElement('li');
-            li.className = 'product-card';
+//         list.forEach(item => {
+//             const li = document.createElement('li');
+//             li.className = 'product-card';
 
-            const productLink = `assets/pages/product.html?id=${item.ID}`;
+//             const productLink = `assets/pages/product.html?id=${item.ID}`;
 
-            li.innerHTML = `
-                <a href="${productLink}" class="product-link">
-                    <div class="product-img">
-                        <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
-                    </div>
+//             li.innerHTML = `
+//                 <a href="${productLink}" class="product-link">
+//                     <div class="product-img">
+//                         <img src="${item['Зображення']}" alt="${item['Назва']}" class="product-image">
+//                     </div>
 
-                    <div class="product-info">
-                        <h3 class="product-title">${item['Назва']}</h3>
-                        <p class="product-weight">${item['Вага']}</p>
+//                     <div class="product-info">
+//                         <h3 class="product-title">${item['Назва']}</h3>
+//                         <p class="product-weight">${item['Вага']}</p>
 
-                        <div class="product-cart">
-                            <div class="product-price">
-                                ${item['Ціна']}
-                                <span class="product-price-uah">грн</span>
-                            </div>
+//                         <div class="product-cart">
+//                             <div class="product-price">
+//                                 ${item['Ціна']}
+//                                 <span class="product-price-uah">грн</span>
+//                             </div>
 
-                            <button class="add-to-cart" data-id="${item.ID}">
-                                <img src="assets/img/+.svg" alt="add to cart">
-                            </button>
-                        </div>
-                    </div>
-                </a>
-            `;
+//                             <button class="add-to-cart" data-id="${item.ID}">
+//                                 <img src="assets/img/+.svg" alt="add to cart">
+//                             </button>
+//                         </div>
+//                     </div>
+//                 </a>
+//             `;
 
-            favContainer.appendChild(li);
-        });
-    }
-});
+//             favContainer.appendChild(li);
+//         });
+//     }
+// });
 
 
 
