@@ -167,9 +167,9 @@
 
           <div>
             <ul class="cart-account">
-              <li><a href="{% url 'goods:cart' %}">
+              {% comment %} <li><a href="{% url 'goods:cart' %}">
                   <img src="{% static './img/cart.svg' %}" alt="cart">
-                </a></li>
+                </a></li> {% endcomment %}
               <!-- <li><a href="">
                   <img src="assets/img/account.svg" alt="">
                 </a></li> -->
@@ -302,10 +302,9 @@
         <a href="{% url 'goods:catalog' %}" id="continueShopping" class="btn-light">
         {% ftlmsg "conti_shop_base" %}
         </a>
-
-        <a href="{% url 'goods:cart' %}" id="goToCart" class="btn-primary">
+        <a href="{% url 'goods:cart' %}" class="btn-primary">
         {% ftlmsg "gotocart_base" %}
-        </a>
+        </a> 
       </div>
     </div>
   </div>

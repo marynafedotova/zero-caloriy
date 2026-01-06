@@ -18,7 +18,6 @@ def index(request):
     new_products = Product.objects.all().order_by('-id')[:5]
     
     random_products = Product.objects.all().order_by('?')[:5]
-    
     context = {
         'new_products': new_products,
         'random_products': random_products,

@@ -21,10 +21,10 @@
       </ul>
       <div class="product-main">
         <div class="product-gallery">
-          {% if prod.image_url %}
-          <img class="product-image" src="{{ prod.image_url }}" alt="{{ prod.name }}">
+          {% if product.image_url %}
+          <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
           {% else %}
-          <img src="{% static './img/images-not-found.jpg' %}" alt="{{ prod.name }}">
+          <img src="{% static './img/images-not-found.jpg' %}" alt="{{ product.name }}">
           {% endif %}
         </div>
         <div class="product-info">
@@ -83,6 +83,24 @@
       <div class="product-description">
         <h4>{% ftlmsg "about_product" %}</h4>
         <p class="product-desc">{{product.about_product}}</p>
+      </div>
+            <div class="mb150">
+
+      <!-- Може сподобатися -->
+        <p>{% ftlmsg "likes_goods" %}</p>
+          {% for random in random_products %}
+            {% if random.image_url %}
+              <img src="{{ random.image_url }}" alt="{{ random.name }}">
+              {% else %}
+              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ random.name }}">
+              {% endif %}
+              <p>{{ random.name }}</p>
+              <p>{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+
+              <p>{{ random.price }} {% ftlmsg "currency_catalog" %}</p>
+              <a href="{% url 'goods:product' product_slug=random.slug %}">це кнопочка на товар</a>
+          {% endfor %}
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}</a>
       </div>
     </div>
   </section>

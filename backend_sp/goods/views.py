@@ -29,35 +29,47 @@ def catalog(request):
 #     }
 #     return render(request, "goods/group_products.html", context)
 
+
 def product(request, product_slug, group_slug=None):
+    # Отримуємо основний продукт один раз
     product = get_object_or_404(Product, slug=product_slug)
+    
+    #отримання модифікаторів (використовуємо prefetch_related)
+    group_modifiers = GroupModifier.objects.filter(product=product).prefetch_related(
+        'groupmodifierchild_set__modifier'
+    )
 
-    current_product = get_object_or_404(Product, slug=product_slug)
-    # Отримуємо групові модифікатори до цього продукту
-    group_midifiers = GroupModifier.objects.filter(product=product)
-
-    # Для кожного group_modifier можна отримати його дочірні модифікатори
     modifiers_data = []
-    for gm in group_midifiers:
-        child_mods = [child.modifier for child in gm.groupmodifierchild_set.all()]
-
+    for gm in group_modifiers:
         modifiers_data.append({
             "group_modifier": gm,
-            "child_modifier": child_mods
+            "child_modifiers": [child.modifier for child in gm.groupmodifierchild_set.all()],
         })
-    product_variants = Product.objects.filter(name_uk__icontains=current_product.name_uk.split(' ')[0]).select_related('size')
+
+    # Пошук варіантів (вага/розмір)
+    first_word = product.name_uk.split(' ')[0]
+    product_variants = Product.objects.filter(
+        name_uk__icontains=first_word,
+        size__isnull=False 
+    ).select_related('size').order_by('weight')
+
+    if not product_variants.exists():
+        product_variants = [product]
+
+    
+    random_products = Product.objects.exclude(id=product.id).order_by('?')[:5]
+
     context = {
         "product": product,
         "child_modifiers": modifiers_data,
         "variants": product_variants,
-
+        "random_products": random_products,
     }
     return render(request, "goods/product.html", context)
 
 
 def cart(request):
     return render(request, "goods/cart.html")
-
 
 
 # def product_detail(request, product_slug, group_slug=None):

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import catalog, product, cart
+from goods.views import catalog, product, cart
 
 app_name = 'goods'
 

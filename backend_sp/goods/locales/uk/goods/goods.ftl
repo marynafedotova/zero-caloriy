@@ -18,6 +18,8 @@ additional_info_product = КБЖУ (100г)
 size_product = Обери розмір
 add_to_cart = Додати в кошик
 about_product = Про продукт
+likes_goods = Вам також може сподобатися
+all_goods_product = Всі товари
 
 #cart.html
 title_cart = Кошик — оформлення замовлення Zero Caloriy
