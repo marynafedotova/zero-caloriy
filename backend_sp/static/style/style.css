@@ -776,12 +776,16 @@ right: 9%;
     list-style: none;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
+    height: 465px;
 }
 #news-product .product-card {
     scroll-snap-align: start;
         display: flex;
     flex-direction: column;
     height: 100%;  
+    flex: 0 0 295px;  
+    scroll-snap-align: start;
+    margin-right: 16px; 
 }
 
 #news-product .product-price{
@@ -806,16 +810,12 @@ right: 9%;
 }
 #news-product .add-to-cart {
     background-color: var(--pinklight-color);
-    padding: 1px 10px 2px 14px;
+    padding: 8px 15px;
     border: none;
     outline: none;
     border-radius: 4px;
 }
-#news-product  .product-card {
-    flex: 0 0 295px;  
-    scroll-snap-align: start;
-    margin-right: 16px; 
-}
+
 
 #news-product  .product-card:last-child {
     margin-right: 0;
@@ -825,6 +825,9 @@ right: 9%;
     max-width: 310px;
     max-height: 280px;
     object-fit: cover;
+}
+#news-product .product-card .product-info {
+    flex: 1; 
 }
 .mb150{
   margin-bottom: 150px;
@@ -885,37 +888,48 @@ width: 100%;
 #favlist-products {
     display: flex;
     gap: 16px;
-
     overflow-x: auto;
     overflow-y: hidden;
-
+     height: 516px;
     padding: 12px;
     margin: 0;
     list-style: none;
-
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
+    align-items: stretch; 
 }
 #favlist-products .product-card {
-    flex: 0 0 295px;       
+    flex: 0 0 295px;
+     margin-top: auto;        
     scroll-snap-align: start;
     margin-right: 16px; 
+    height: 100%;
 }
 
 #favlist-products .product-card:last-child {
     margin-right: 0;
 }
 
-.product-link {
-    display: block;
+#favlist-products .product-link {
+    display: flex;  
+    flex-direction: column;
+    height: 100%;  
+    text-decoration: none;
+    color: inherit;
 }
 #favlist-products .product-cart .add-to-cart{
   background-color: var(--pinklight-color);
- padding: 1px 10px 2px 14px;
+  padding: 8px 15px;
   border: none;
   outline: none;
   border-radius: 4px;
 }
+#favlist-products .product-img {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 16px;
+}
+
 #favlist-show-all:hover{
   background-color: var(--lightpink-color);
   color: var(--white-color);
@@ -949,10 +963,19 @@ padding-bottom: 64px;
   #favlist-products li{
   width: 30%;
   width: 295px;
-  margin-bottom: 32px;
+margin-bottom: 0;
   transition: all 0.7s ease;
  }
+ #favlist-products .product-card{
+      display: flex;
+    flex-direction: column;
+    height: 100%;
+ }
+  #favlist-products .product-card .product-info {
+    flex-grow: 1;  
+}
  #favlist-products .product-card .product-price{
+  margin-top: auto;
   padding-bottom: 0;
  }
 
@@ -1286,14 +1309,31 @@ padding-top: 24px;
 #catalog-list-dessert .product-card{
   width: 23.8%;
   min-width: 290px;
+   display: flex;
+  flex-direction: column;
+  height: 100%;  
 }
-#catalog-list-drinks  .product-card{
+.product-card .product-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#catalog-list-dessert .product-card .product-info {
+  flex-grow: 1;  
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .product-img {
+  flex-shrink: 0;  
+}
+#catalog-list-drinks .product-card{
   width: 23.8%;
   min-width: 290px;
 }
-#catalog-list-drinks  .product-card .product-img img{
-  max-width: 299px;
-  max-height: 299px;
+#catalog-list-dessert .product-card .product-img img{
+  width: 100%;
+  aspect-ratio: 1;
   object-fit: contain;
 }
 .category-section .section-title{
@@ -1324,16 +1364,17 @@ padding-top: 24px;
 }
 .product-catalog-btn .add-to-cart{
   background-color: var(--pinklight-color);
-  padding: 2px 16px;
   border: none;
   outline: none;
   border-radius: 4px;
+      padding: 1px 10px 2px 14px;
 }
 .product-catalog-btn .product-price{
     color: #000000;
     font-family: 'Montserrat Bold';
     font-size: 24px;
     display: flex;
+    padding-bottom: 0;
 }
 .product-catalog-btn .product-price-uah{
   color: var(--grey-color);

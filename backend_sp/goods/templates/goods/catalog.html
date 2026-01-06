@@ -5,45 +5,64 @@
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
 {% load mathfilters %}
 <title>{% ftlmsg "title_catalog" %}</title>
-<meta name="description" content="{% ftlmsg "description_catalog" %}">
+<meta name="description" content="{% ftlmsg " description_catalog" %}">
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-    <main>
-      <h1 class="sr-only">{% ftlmsg "hi_catalog" %}</h1>
-      <section id="catalog" class="top100">
-        <div class="container">
-          <ul class="nav-product">
-            <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img src="{% static './img/Frame.svg' %}" alt=""></li>
-            <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a><img src="{% static './img/Frame.svg' %}" alt=""></li>
-          </ul>
-          <section class="category-section">
-            <h2 class="section-title" id="dessert">{% ftlmsg "h2_desserts_catalog" %}</h2>
-            <div id="catalog-list-dessert" class="products-grid">
-              {% for product in products %}
-              <div class="products-item">
-              <a href="{% url 'goods:product' product_slug=product.slug %}">
+<main>
+  <h1 class="sr-only">{% ftlmsg "hi_catalog" %}</h1>
+  <section id="catalog" class="top100">
+    <div class="container">
+      <ul class="nav-product">
+        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
+            src="{% static './img/Frame.svg' %}" alt=""></li>
+        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a><img
+            src="{% static './img/Frame.svg' %}" alt=""></li>
+      </ul>
+      <div class="category-section">
+        <h2 class="section-title" id="dessert">{% ftlmsg "h2_desserts_catalog" %}</h2>
+        <div id="catalog-list-dessert" class="products-grid">
+          {% for product in products %}
+
+          <div class="product-card">
+            <a href="{% url 'goods:product' product_slug=product.slug %}" class="product-link">
+
+              <div class="product-img">
                 {% if product.image_url %}
                 <img src="{{ product.image_url }}" alt="{{ product.name }}">
                 {% else %}
-                 <img src="{% static './img/images-not-found.jpg' %}" alt="{{ product.name }}">
-                </a>
-                {% endif %}
-                <h5>{{ product.name }}</h5>
-                <p>{{product.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-                <p>{{ product.price }} {% ftlmsg "currency_catalog" %}</p>
-              </div>
-                {% empty %}
-                  <p>{% ftlmsg "not_prod_catalog" %}</p>
-                {% endfor %}
-            </div>
-          </section>
+                <img src="{% static './img/images-not-found.jpg' %}" alt="{{ product.name }}">
 
-          {% comment %} <section class="category-section">
-            <h2 class="section-title" id="drinks">Напої</h2>
-            <div id="catalog-list-drinks" class="products-grid">
+                {% endif %}
+              </div>
+              <div class="product-info">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-weight">{{product.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+              </div>
+
+            
+            <div class="product-catalog-btn">
+              <div class="product-price">
+                {{ product.price }}
+                <div class="product-price-uah"> {% ftlmsg "currency_catalog" %}</div>
+              </div>
+              <button class="add-to-cart" data-id="${item.ID}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </button>
             </div>
-          </section> {% endcomment %}
+            </a>
+          </div>
+          {% empty %}
+          <p>{% ftlmsg "not_prod_catalog" %}</p>
+          {% endfor %}
+
         </div>
-      </section>
-{% endblock content %}
+
+        {% comment %} <section class="category-section">
+          <h2 class="section-title" id="drinks">Напої</h2>
+          <div id="catalog-list-drinks" class="products-grid">
+          </div>
+        </section> {% endcomment %}
+      </div>
+  </section>
+  {% endblock content %}
