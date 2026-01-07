@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load ftl %}
+{% load static %}
+{% load carts_tag %}
+{% load mathfilters %}
+{% block title_meta %}
+  {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+  <title>{% ftlmsg "title_serch" %}</title>
+  <meta name="description" content="{% ftlmsg "title_serch" %}">
+{% endblock title_meta %}
+
+{% block content %}
+  {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+  {% user_carts request as carts %}
+<div class="container my-5">
+    <h1 class="mb-4">{% ftlmsg "search_result" query=query %}"</h1>
+
+    {% if goods %}
+        <div class="row">
+            {% for result in goods %}
+        <li class="product-card">
+          <a href="{% url 'goods:product' product_slug=result.slug %}" class="product-link">
+            <div class="product-img">
+              {% if result.image_url %}
+              <img src="{{ result.image_url }}" alt="{{ result.name }}">
+              {% else %}
+              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ result.name }}">
+              {% endif %}
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">{{ result.name }}</h3>
+              <p class="product-weight">{{result.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+              <div class="product-cart">
+                <div class="product-price">
+                  {{ result.price }}
+                  <span class="product-price-uah">{% ftlmsg "price-uah" %}</span>
+                </div>
+                <a class="" href="{% url "carts:cart_add" product_slug=result.slug %}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </a>
+                {% comment %} <button class="add-to-cart" data-id="${item.ID}">
+                  <img src="{% static './img/+.svg' %}" alt="add to cart">
+                </button> {% endcomment %}
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </li>
+      </ul>
+
+    {% else %}
+        <div class="alert alert-light border shadow-sm">
+            <h3 class="text-center">{% ftlmsg "very_shkoda" %}</h3>
+        </div>
+    {% endif %}
+</div>
+      <div class="mb150">
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
+      </div>
+{% endblock %}

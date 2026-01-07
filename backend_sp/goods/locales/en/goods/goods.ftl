@@ -38,3 +38,10 @@ total_prace_carts = Total amount:
 carts_empty_hi = Your cart is empty
 carts_empty = Your cart is empty. Choose a product
 btn_add_goods_cart = Go to product selection
+
+#serch 
+price-uah = UAN
+title_serch = Search Results
+search_result = Search results for: {$query}
+very_shkoda = Unfortunately, nothing was found for {$query}.
+all_goods_sr = All products

@@ -39,3 +39,9 @@ carts_empty_hi = Корзина пуста
 carts_empty = Ваша корзина пуста. Выберите товар
 btn_add_goods_cart = Перейти к выбору товаров
 
+#serch 
+price-uah = грн
+title_serch = Результат поиска
+search_result = Результаты поиска для: {$query}
+very_shkoda = К сожалению, по запросу {$query} ничего не найдено.
+all_goods_sr = Все товары

@@ -37,3 +37,10 @@ retroville_cart = ТРЦ Retrowille (просп. Європейського Со
 submit_cart = Оформити замовлення
 vaga_cart = Вага:
 total_prace_carts = Загальна сума:
+
+#serch 
+price-uah = грн
+title_serch = Результат пошуку
+search_result = Результати пошуку для: {$query}
+very_shkoda = На жаль, за запитом {$query} нічого не знайдено.
+all_goods_sr = Всі товари

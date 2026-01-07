@@ -27,7 +27,7 @@
 {% load mathfilters %}
 <main>
   <h1 class="sr-only">{% ftlmsg "h1_index" %}</h1>
-  <section class="hero">
+  <section  class="hero">
     <img src="{% static './img/Без заголовка 55 1.png' %}" alt="hero">
     <div class="hero-lb">
       <img src="{% static './img/у.png' %}" class="letter">
@@ -78,9 +78,6 @@
               <a class="" href="{% url "carts:cart_add" product_slug=new.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
-              {% comment %} <button class="add-to-cart" data-id="${item.ID}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
-              </button> {% endcomment %}
             </div>
 
           </a>

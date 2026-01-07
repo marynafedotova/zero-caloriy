@@ -13,23 +13,6 @@ def catalog(request):
     return render(request, "goods/catalog.html", context)
 
 
-# def products_by_group(request, slug):
-#     group = get_object_or_404(Group, slug=slug)
-
-#     # Основні продукти
-#     products = Product.objects.filter(group=group, is_included_in_menu=True, type=Product.DISH)
-
-#     # Якщо це група модифікаторів — показати модифікатори
-#     modifiers = Product.objects.filter(group=group, type=Product.MODIFIER)
-
-#     context = {
-#         "group": group,
-#         "products": products,
-#         "modifiers": modifiers,
-#     }
-#     return render(request, "goods/group_products.html", context)
-
-
 def product(request, product_slug, group_slug=None):
     # Отримуємо основний продукт один раз
     product = get_object_or_404(Product, slug=product_slug)
@@ -72,32 +55,27 @@ def cart(request):
     return render(request, "goods/cart.html")
 
 
-# def product_detail(request, product_slug, group_slug=None):
-#     product = get_object_or_404(Product, slug=product_slug)
-#     print(f"Debug: product_slug={product_slug}, group_slug={group_slug}") 
 
-#     modifiers_data = []
+def product_search(request):
+    query = request.GET.get('q', '').strip()
+    
+    if query:
+        products = Product.objects.filter(
+            Q(name_uk__icontains=query) | 
+            Q(name_en__icontains=query) |
+            Q(name_ru__icontains=query) |
+            Q(description_uk__icontains=query) | 
+            Q(description_en__icontains=query) |
+            Q(description_ru__icontains=query)     
+        ).distinct() 
+    else:
 
-#     # Якщо у продукту є група
-#     if product.group:
-#         # Беремо тільки групи, які є модифікаторами
-#         modifier_groups = Group.objects.filter(parent__isnull=True, is_included_in_menu=True, is_group_modifier=True).order_by('order')
-#         print(f"Debug: знайдено {modifier_groups.count()} modifier_groups")
+        products = Product.objects.none()
 
-#         for mg in modifier_groups:
-#             # Отримуємо продукти у цій групі
-#             child_products = Product.objects.filter(group=mg, is_included_in_menu=True)
-#             print(f"Debug: group={mg.name}, child_products={list(child_products)}")
-#             if child_products:
-#                 modifiers_data.append({
-#                     "modifier_group": mg,
-#                     "child_products": child_products
-#                 })
+    context = {
+        'goods': products, 
+        'query': query,
+    }
+    
 
-#     context = {
-#         "product": product,
-#         "modifiers_data": modifiers_data,
-#     }
-
-#     return render(request, "goods/product.html", context)
-
+    return render(request, 'goods/search_results.html', context)
