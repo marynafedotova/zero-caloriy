@@ -18,11 +18,14 @@ additional_info_product = КБЖУ (100 г)
 size_product = Выбери размер
 add_to_cart = Добавить в корзину
 about_product = О продукте
+likes_goods = Вам также может понравиться
+all_goods_product = Все товары
+
 
 #cart.html
 title_cart = Корзина — оформление заказа Zero Caloriy
 description_cart = Проверьте выбранные десерты Zero Caloriy и оформите заказ онлайн быстро и удобно. Доставка по г. Киев.
-you_cart_cart = Ваша корзина
+you_cart_cart = Корзина
 order_cart = Ваш заказ
 placeholder_two_name_cart = Введите вашу фамилию
 placeholder_name_cart = Введите ваше имя
@@ -31,3 +34,8 @@ skymall_cart = ТРЦ SkyMall (проспект Романа Шухевича, 2
 retroville_cart = ТРЦ Retroville (просп. Европейского Союза, 47)
 submit_cart = Оформить заказ
 vaga_cart = Вес:
+total_prace_carts = Общая сумма:
+carts_empty_hi = Корзина пуста
+carts_empty = Ваша корзина пуста. Выберите товар
+btn_add_goods_cart = Перейти к выбору товаров
+

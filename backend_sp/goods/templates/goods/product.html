@@ -4,11 +4,12 @@
 {% block title_meta %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
 <title>{% ftlmsg "title_product" %}</title>
-<meta name="description" content="{% ftlmsg " description_product" %}">
+<meta name="description" content="{% ftlmsg 'description_product' %}">
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
 {% load mathfilters %}
+{% load carts_tag %}
 <main>
   <h1 class="sr-only">{% ftlmsg "hi_product" %}</h1>
   <section id="product-page" class="top100">
@@ -66,15 +67,24 @@
             </div>
             {% endif %}
           </div>
+<div class="product-actions">
+  <div class="quantity">
+    <form action="{% url 'carts:cart_add' product.slug %}" method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="minus">-</button>
+      
+      <span>{% get_cart_quantity product request %}</span> 
+      
+      <button type="submit" name="action" value="plus">+</button>
+    </form>
+  </div>
+</div>
 
-          <div class="product-actions">
-            <div class="quantity">
-              <button class="minus"><img src="{% static './img/minus.svg' %}" alt=""></button>
-              <span>1</span>
-              <button class="plus"><img src="{% static './img/plus.svg' %}" alt=""></button>
             </div>
-
-            <button class="add-to-cart">{% ftlmsg "add_to_cart" %}</button>
+              {% comment %} <a class="add-to-cart" href="{% url "carts:cart_add" product_slug=product.slug %}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </a> {% endcomment %}
+            {% comment %} <button class="add-to-cart">{% ftlmsg "add_to_cart" %}</button> {% endcomment %}
           </div>
         </div>
 
@@ -113,9 +123,12 @@
             {{ random.price }}
             <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
           </div>
-          <button class="add-to-cart">
+                        <a class="add-to-cart" href="{% url "carts:cart_add" product_slug=random.slug %}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </a>
+          {% comment %} <button class="add-to-cart">
             <img src="{% static 'img/+.svg' %}" alt="add to cart">
-          </button>
+          </button> {% endcomment %}
         </div>
       </div>
     </a>

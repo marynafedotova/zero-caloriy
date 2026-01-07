@@ -14,16 +14,21 @@ public_offer_base = Договір публічної офферти
 delivery_base = доставка
 location_base = локації
 shp_c_base = ТРЦ
-time_work_base =часи роботи
+time_work_base = часи роботи
 add_cart_base = Товар додано у кошик
 conti_shop_base = Продовжити покупки
 gotocart_base = Перейти в кошик
 search_plch_base = Пошук...
-time_work_base = часи роботи
 
 #index.html
 h1_index = Десерти зі зниженою калорійністю
 news_index = НАШІ НОВИНОЧКИ
+currency = грн
+measure_unit = гр
+
+
+#carts
+
 
 #about us
 description_aboutus = Королівство, де десерти не потребують пробачення
@@ -57,8 +62,7 @@ description_aboutus = Королівство, де десерти не потр�
 
 aboutus_title = Про нас — Zero Caloriy, здорові десерти без цукру
 description_about = Дізнайтесь історію Zero Caloriy, наш підхід до здорового харчування та створення смачних низькокалорійних десертів без цукру. Працюємо у м. Київ.
-currency = грн
-measure_unit = гр
+
 
 #public_offer.html
 offer_title = Публічна оферта — умови продажу Zero Caloriy

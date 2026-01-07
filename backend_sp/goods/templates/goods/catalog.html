@@ -5,7 +5,7 @@
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
 {% load mathfilters %}
 <title>{% ftlmsg "title_catalog" %}</title>
-<meta name="description" content="{% ftlmsg " description_catalog" %}">
+<meta name="description" content="{% ftlmsg 'description_catalog' %}">
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
@@ -46,9 +46,12 @@
                 {{ product.price }}
                 <div class="product-price-uah"> {% ftlmsg "currency_catalog" %}</div>
               </div>
-              <button class="add-to-cart" data-id="${item.ID}">
+                <a class="add-to-cart" href="{% url "carts:cart_add" product_slug=product.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
-              </button>
+              </a>
+              {% comment %} <button class="add-to-cart" data-id="${item.ID}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </button> {% endcomment %}
             </div>
             </a>
           </div>

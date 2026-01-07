@@ -1,0 +1,64 @@
+{% load static %}
+{% load mathfilters %}
+{% load ftl %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+
+<div class="cart-rb">
+ <p>{% ftlmsg "order_cart" %}</p>
+</div>
+<h1>{% ftlmsg "you_cart_cart" %}</h1>
+{% for cart in carts %}
+<div class="cart-item">
+    <div class="cart-lb">
+        {% if cart.product.image_url %}
+            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
+        {% else %}
+            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
+        {% endif %}
+    </div>
+
+    <div class="product-info">
+        <h3 class="product-title">{{ cart.product.name }}</h3>
+        <p class="product-weight">
+            {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+        </p>
+         
+
+    <div class="sum">
+      <p>{{cart.product_prace}} {% ftlmsg "currency_catalog" %}</p>
+    </div>
+                <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
+            </div>
+            
+            <div>
+                <a href="{% url 'carts:cart_remove' cart.id %}">
+                    <img src="{% static 'delete.svg' %}" alt="delete">
+            </div>
+
+            <div class="quantity-control">
+                
+                <div>
+                    <span>Кількість: {{ cart.quantity }}</span>
+                    <form action="{% url 'carts:cart_change' cart.id %}" method="post">
+                        {% csrf_token %}
+    
+                        <button type="submit" name="action" value="minus">-</button>
+    
+                        <input type="number" name="quantity" value="{{ cart.quantity }}" readonly>
+    
+                        <button type="submit" name="action" value="plus">+</button>
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% empty %}
+    <div>
+        <p>{% ftlmsg "carts_empty" %}</p>
+    </div>
+{% endfor %}
+  <div>
+    <p>{% ftlmsg "total_prace_carts" %} {{carts.total_prace}}{% ftlmsg "currency_catalog" %}</p>
+  </div>

@@ -1,0 +1,18 @@
+{% load static %}
+{% load mathfilters %}
+{% load ftl %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+
+<div class="cart-rb">
+<h1>{% ftlmsg "you_cart_cart" %}</h1>
+</div>
+
+<div class="cart-empty">
+    <h2>{% ftlmsg "carts_empty_hi" %}</h2>
+
+        <P>{% ftlmsg "carts_empty" %}</P>
+
+    <a href="{% url 'goods:catalog' %}" class="btn">
+        {% ftlmsg "btn_add_goods_cart" %}
+    </a>
+</div>

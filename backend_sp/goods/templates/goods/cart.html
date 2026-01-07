@@ -1,41 +1,48 @@
 {% extends "base.html" %}
 {% load ftl %}
 {% load static %}
+{% load carts_tag %}
+
 {% block title_meta %}
-{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+  {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
   <title>{% ftlmsg "title_cart" %}</title>
-<meta name="description" content="{% ftlmsg "description_cart" %}">
+  <meta name="description" content="{% ftlmsg "description_cart" %}">
 {% endblock title_meta %}
+
 {% block content %}
-{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-{% load mathfilters %}
-    <main>
-      <section class="top100">
-        <div class="container top100 cart-container">
-          <h1>{% ftlmsg "you_cart_cart" %}</h1>
-          <div class="cart-block">
-            <div class="cart-lb">
-              <ul id="cart-list" class="cart-list"></ul>
-            </div>
-            <div class="cart-rb">
-              {% ftlmsg "order_cart" %}
-              <div class="sum"></div>
-            </div>
-          </div>
-          <div class="contacts-block">
-            <form id="orderForm">
-              <input type="text" id="surname" name="surname" placeholder="{% ftlmsg "placeholder_two_name_cart" %}">
-              <input type="text" id="name" name="name" placeholder="{% ftlmsg "placeholder_name_cart" %}">
-              <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX">
-              <input type="email" id="email" name="email" placeholder="example@mail.com">
-              <select id="location-select" name="location">
-                <option value=""> {% ftlmsg "location_cart" %} </option>
-                <option value="ТРЦ SkyMall">{% ftlmsg "skymall_cart" %}</option>
-                <option value="ТРЦ Retrowille">{% ftlmsg "retroville_cart" %}</option>
-              </select>
-              <button type="submit" id="cart-btn">{% ftlmsg "submit_cart" %}</button>
-            </form>
-          </div>
+  {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+  {% user_carts request as carts %}
+
+  <main>
+    <section class="top100">
+      <div class="container top100 cart-container">        
+        <div class="cart-block" id="cart-items-container">
+          {% comment %} {% include "carts/includes/included_cart.html" %} {% endcomment %}
+            {% if carts %}
+              {% include "carts/includes/included_cart.html" %}
+            {% else %}
+              {% include "carts/includes/empty_included_cart.html" %}
+            {% endif %}
+
         </div>
-      </section>
-{% endblock content %}   
+
+        {% if carts %}
+        <div class="contacts-block">
+          <form id="orderForm">
+            <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}">
+            <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}">
+            <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX">
+            <input type="email" id="email" name="email" placeholder="example@mail.com">
+            <select id="location-select" name="location">
+              <option value=""> {% ftlmsg "location_cart" %} </option>
+              <option value="ТРЦ SkyMall">{% ftlmsg "skymall_cart" %}</option>
+              <option value="ТРЦ Retrowille">{% ftlmsg "retroville_cart" %}</option>
+            </select>
+            <button type="submit" id="cart-btn">{% ftlmsg "submit_cart" %}</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+{% endblock content %}

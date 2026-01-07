@@ -26,6 +26,10 @@ news_index = OUR NEW ARRIVALS
 currency = UAH
 measure_unit = g
 
+#carts
+
+
+
 #about us
 description_aboutus = A Kingdom Where Desserts Need No Forgiveness
     Have you ever felt guilty about eating a slice of cake? We’re here to change that.

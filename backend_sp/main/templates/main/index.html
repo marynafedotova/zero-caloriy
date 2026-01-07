@@ -5,13 +5,13 @@
 {% block title_meta %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
 <title>{% ftlmsg "site_title_index" %}</title>
-<meta name="description" content="{% ftlmsg  " site_descrp_index" %}">
+<meta name="description" content="{% ftlmsg  'site_descrp_index' %}">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://marynafedotova.github.io/zero-caloriy/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zero caloriy">
-<meta property="og:description" content="{% ftlmsg  " site_descrp_index" %}">
+<meta property="og:description" content="{% ftlmsg  'site_descrp_index' %}">
 <meta property="og:image" content="YOUR_IMAGE_URL_HERE">
 
 <!-- Twitter Meta Tags -->
@@ -75,9 +75,12 @@
               <div class="product-price">
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
               </div>
-              <button class="add-to-cart" data-id="${item.ID}">
+              <a class="" href="{% url "carts:cart_add" product_slug=new.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
-              </button>
+              </a>
+              {% comment %} <button class="add-to-cart" data-id="${item.ID}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </button> {% endcomment %}
             </div>
 
           </a>
@@ -112,9 +115,12 @@
                   {{ random.price }}
                   <span class="product-price-uah">{% ftlmsg "currency" %}</span>
                 </div>
-                <button class="add-to-cart" data-id="${item.ID}">
+                <a class="" href="{% url "carts:cart_add" product_slug=random.slug %}">
+                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              </a>
+                {% comment %} <button class="add-to-cart" data-id="${item.ID}">
                   <img src="{% static './img/+.svg' %}" alt="add to cart">
-                </button>
+                </button> {% endcomment %}
               </div>
             </div>
           </a>
