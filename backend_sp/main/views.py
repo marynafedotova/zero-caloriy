@@ -32,3 +32,6 @@ def offer(request):
 
 def policy(request):
     return render(request, "main/privacy_policy.html")
+
+def delivery(request):
+    return render(request, "main/delivery.html")
