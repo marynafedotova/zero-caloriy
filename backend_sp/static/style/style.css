@@ -1836,7 +1836,97 @@ color: var(--white-color);
 .btn-ty-cataolog:hover{
 color: var(--black);
 }
+/* about us */
+.about-gallery__grid img{
+  width: 288px;
+  height: 308px;
+}
 
+.about-intro h1{
+  font-weight: 800;
+  font-size: 40px;
+  padding: 90px auto 24px;
+  text-align: center;
+}
+.about-intro__mission{
+  color: var(--dark-grey);
+  text-align: center;
+  padding-left: 35%;
+  padding-right: 35%;
+  padding-bottom: 100px;
+padding-top: 24px;
+}
+.about-story__grid{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 136px;
+}
+.about-story__images{
+  width: 55%;
+  position: relative;
+}
+.about-story__text{
+  width: 40%;
+  color: var(--grey-color);
+  font-size: 16px;
+}
+.ab-s1{
+  width: 307px;
+  height: 282px;
+  position: absolute;
+  top: -103px;
+  z-index: 100;
+}
+.ab-s2{
+margin-top: 80px;
+width: 293px;
+height: 282px;
+z-index: 2;
+position: absolute;
+}
+.ab-s3{
+  position: absolute;
+  z-index: 1;
+    right: 15px;
+    top: 0;
+}
+
+.about-gallery div{
+  color: var(--grey-color);
+  font-size: 16px;
+}
+
+.about-gallery{
+  display: flex;
+  padding-bottom: 150px;
+}
+.about-gallery-text{
+  width: 30%;
+}
+
+.about-gallery__grid{
+  position: relative;
+  width: 60%;
+}
+.about-gallery__grid-pic1{
+  position: absolute;
+  z-index: 3;
+}
+.about-gallery__grid-pic2{
+  position: absolute;
+  z-index: 4;
+  left: 200px;
+}.about-gallery__grid-pic3{
+  position: absolute;
+  z-index: 5;
+  right: 180px;
+}
+.about-gallery__grid-pic4{
+  position: absolute;
+  z-index: 6;
+  right: 0;
+}
 
 
 @media screen and (max-width: 1621px) {

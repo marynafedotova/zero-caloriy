@@ -3,85 +3,98 @@
 {% load static %}
 {% block title_meta %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
-  <!-- Сторінка "Про нас" -->
-  <title>{% ftlmsg "aboutus_title" %}</title>
-  <meta name="description"
-    content="{% ftlmsg "description_about" %}">
+<!-- Сторінка "Про нас" -->
+<title>{% ftlmsg "aboutus_title" %}</title>
+<meta name="description" content="{% ftlmsg " description_about" %}">
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
-    <main>
-      <section class="top100">
+<main>
+    <section class="top100">
         <div class="container top100">
-          <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
+            <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
           <h2>{% ftlmsg "description_aboutus" %}</h2> -->
-          <section class="breadcrumbs">
-    <div class="container">
-        <a href="#">Головна</a> → <span>Про нас</span>
-    </div>
-</section>
+            <section class="breadcrumbs">
+                <div class="container">
+                    <a href="#">Головна</a> → <span>Про нас</span>
+                </div>
+            </section>
 
-<!-- ABOUT INTRO -->
-<section class="about-intro">
-    <div class="container">
-        <h1>Про нас</h1>
-        <p class="about-intro__mission">
-            Наша місія — подарувати вам ваші улюблені десерти
-            зі зниженою кількістю калорій, без цукру,
-            але з вашим улюбленим смаком.
-        </p>
-    </div>
-</section>
+            <!-- ABOUT INTRO -->
+            <section class="about-intro">
+                <div class="container">
+                    <h1>Про нас</h1>
+                    <p class="about-intro__mission">
+                        Наша місія — подарувати вам ваші улюблені десерти
+                        зі зниженою кількістю калорій, без цукру,
+                        але з вашим улюбленим смаком.
+                    </p>
+                </div>
+            </section>
 
-<!-- STORY BLOCK -->
-<section class="about-story">
-    <div class="container about-story__grid">
+            <!-- STORY BLOCK -->
+            <section class="about-story">
+                <div class="container about-story__grid">
 
-        <!-- PHOTOS -->
-        <div class="about-story__images">
-            <img src="img/photo-1.jpg" alt="">
-            <img src="img/photo-2.jpg" alt="">
-            <img src="img/photo-3.jpg" alt="">
+                    <!-- PHOTOS -->
+                    <div class="about-story__images">
+                        <div class="ab-s1"><img src="{% static './img/about1.png' %}" alt="about us"></div>
+                        <div>
+<div class="ab-s2"><img src="{% static './img/about2.png' %}" alt="about us"></div>
+                        <div class="ab-s3"><img src="{% static './img/about3.png' %}" alt="about us"></div>
+                        </div>
+                    </div>
+
+                    <!-- TEXT -->
+                    <div class="about-story__text">
+                        <span>Жили-були два товстих мальчіка:</span>
+                        <br>
+                        <div>
+                            одного звали Святослав, а другого — Андрій.
+                            Один все життя жив на дієтах, а другий так сильно любив жизнь,
+                            шо став 150 кг.
+                        </div>
+                        <div>І подумали ці два мальчіка: «А давай зробим так, щоб люди,
+                            які товстенькі (ну, знаєте, єсть такі), могли не ходити з судочками
+                            на роботу і не давилися філе куріним і творогом 0%, а отак взяли
+                            і купили шось вкусне і не калорійне, зʼїли — і радость була шоб на
+                            сердці, а пузіко не росло».
+                        </div>
+                        <br>
+                        <div>І позвали вони з собою разних умних людей з харошими
+                            харакерами, які все вміють харашо і бистро робить, і створили
+                            вони компанію. «Зеро Калорій» назвали. І почали ці прекрасні
+                            люди робить всякі </div>
+                        <div>медовики, всякі тірамісу, панакоти та брауні, і не могли зупинитися.
+                            А люди їли, раділи і казали: «Як таке може будь, шо їм-їм, а прес
+                            кубиками покривається?»
+                        </div>
+                        
+                </div>
+            </section>
+
+            <!-- GALLERY -->
+            <section class="about-gallery">
+                <div class="about-gallery-text">
+                <div>І так все пішло: почали вони відкриватися в одному ТРЦ за другим, а потім — доставку. А як почали люди фоткать і в інстаграм виставлять — ой, шоб ви бачили цей ажіотаж, мама родная! </div>
+                <div>І заполонило це «Зеро Калорій» веееесь світ: від Троєщини до Лос-Анжелеса. І так все гарно пішло, шо бідний оземпік розорився.</div>
+                <br>
+                <div>Тож шо я хочу вам сказать, деточьки: треба мать мозги і работать, а по-другому — ніяк.</div>
+                <div>До встречі в «Зеро Калорій»! </div>
+                </div>
+
+                
+
+               <div class="container about-gallery__grid">
+                    <div class="about-gallery__grid-pic1"><img src="{% static './img/about4.png' %}"alt="about us"></div>
+                    <div class="about-gallery__grid-pic2"><img src="{% static './img/about5.png' %}" alt="about us"></div>
+                    <div class="about-gallery__grid-pic3"><img src="{% static './img/about6.png' %}" alt="about us"></div>
+                    <div class="about-gallery__grid-pic4"><img src="{% static './img/about7.png' %}" alt="about us"></div>
+                    
+                    
+                    
+                </div>
+            </section>
         </div>
-
-        <!-- TEXT -->
-        <div class="about-story__text">
-            <p>
-                Жили-були два товстих хлопця: одного звали В’ячеслав,
-                а другого — Андрій. Один все життя жив на дієтах,
-                а другий так сильно любив життя, що став 150 кг.
-            </p>
-
-            <p>
-                І подумали ці два хлопця: «А давай зробимо так,
-                щоб люди, які товстенькі (ну, знаєте, є такі),
-                могли не ходити з осудженими обличчями
-                на роботу і не давитися сирниками,
-                а їли смачне і некалорійне».
-            </p>
-
-            <p>
-                І так все пішло: почали вони відкриватися
-                в одному ТРЦ за другим, а потім — доставка.
-                А як люди почали викладати фотки в Instagram —
-                ой, що б ви бачили, цей ажіотаж, мама рідна!
-            </p>
-        </div>
-
-    </div>
-</section>
-
-<!-- GALLERY -->
-<section class="about-gallery">
-    <div class="container about-gallery__grid">
-        <img src="img/gallery-1.jpg" alt="">
-        <img src="img/gallery-2.jpg" alt="">
-        <img src="img/gallery-3.jpg" alt="">
-    </div>
-</section>
-        </div>
-      </section>
-{% endblock content %}
-
-
-   
+    </section>
+    {% endblock content %}
