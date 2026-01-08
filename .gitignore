@@ -10,3 +10,5 @@ pycache/
 # IDE / редактори
 .vscode/
 .idea/
+
+db.sqlite3
