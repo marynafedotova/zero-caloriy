@@ -71,6 +71,7 @@
               <p class="product-weight">{{new.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
 
             </div>
+            </a>
             <div class="df">
               <div class="product-price">
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
@@ -79,8 +80,6 @@
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
             </div>
-
-          </a>
         </li>
         {% endfor %}
       </ul>
@@ -107,6 +106,7 @@
             <div class="product-info">
               <h3 class="product-title">{{ random.name }}</h3>
               <p class="product-weight">{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+              </a>
               <div class="product-cart">
                 <div class="product-price">
                   {{ random.price }}
@@ -117,7 +117,7 @@
               </a>
               </div>
             </div>
-          </a>
+          
           {% endfor %}
         </li>
       </ul>

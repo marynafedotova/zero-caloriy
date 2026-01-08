@@ -40,7 +40,7 @@
                 <p class="product-weight">{{product.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
               </div>
 
-            
+            </a>
             <div class="product-catalog-btn">
               <div class="product-price">
                 {{ product.price }}
@@ -50,7 +50,7 @@
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
             </div>
-            </a>
+            
           </div>
           {% empty %}
           <p>{% ftlmsg "not_prod_catalog" %}</p>

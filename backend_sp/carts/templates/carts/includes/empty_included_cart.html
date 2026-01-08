@@ -2,10 +2,11 @@
 {% load mathfilters %}
 {% load ftl %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-
-<div class="cart-rb">
-<h1>{% ftlmsg "you_cart_cart" %}</h1>
-</div>
+  <div class="cart-rb">
+      <div>
+    <p>{% ftlmsg "total_prace_carts" %} {{carts.total_prace}}{% ftlmsg "currency_catalog" %}</p>
+  </div>
+ <p>{% ftlmsg "order_cart" %}</p>
 
 <div class="cart-empty">
     <h2>{% ftlmsg "carts_empty_hi" %}</h2>

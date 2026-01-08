@@ -31,11 +31,12 @@
               <h3 class="product-title">{{ result.name }}</h3>
               <p class="product-weight">{{result.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
               <div class="product-cart">
+                </a>
                 <div class="product-price">
                   {{ result.price }}
                   <span class="product-price-uah">{% ftlmsg "price-uah" %}</span>
                 </div>
-                <a class="" href="{% url "carts:cart_add" product_slug=result.slug %}">
+                <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=result.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
                 {% comment %} <button class="add-to-cart" data-id="${item.ID}">
@@ -43,7 +44,7 @@
                 </button> {% endcomment %}
               </div>
             </div>
-          </a>
+          
           {% endfor %}
         </li>
       </ul>

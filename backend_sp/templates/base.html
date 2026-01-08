@@ -155,29 +155,6 @@
           </nav>
 
               {% load i18n %}
-
-<div class="language-picker">
-    <form action="{% url 'set_language' %}" method="post">
-        {% csrf_token %}
-        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
-        
-        <div class="lang-buttons">
-          
-            {% if LANGUAGE_CODE != 'uk' %}
-                <button type="submit" name="language" value="uk">UA</button>
-            {% endif %}
-
-            {% if LANGUAGE_CODE != 'ru' %}
-                <button type="submit" name="language" value="ru">RU</button>
-            {% endif %}
-
-            {% if LANGUAGE_CODE != 'en' %}
-                <button type="submit" name="language" value="en">EN</button>
-            {% endif %}
-        </div>
-    </form>
-</div>
-
           <div class="search">
             <form action="{% url 'goods:search' %}" method="GET">
               <button type="submit" class="search-btn">
@@ -186,6 +163,29 @@
               <input type="search" name="q" placeholder="{% ftlmsg  "search_plch_base" %}" class="search-input" value="{{ query|default:'' }}">
             </form>
           </div>
+<div class="language-picker">
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+        
+        <div class="lang-buttons">
+          
+            {% if LANGUAGE_CODE != 'uk' %}
+                <button  type="submit" name="language" value="uk" class="btn-language">UA</button>
+            {% endif %}
+
+            {% if LANGUAGE_CODE != 'ru' %}
+                <button type="submit" name="language" value="ru" class="btn-language">RU</button>
+            {% endif %}
+
+            {% if LANGUAGE_CODE != 'en' %}
+                <button type="submit" name="language" value="en" class="btn-language">EN</button>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+
 
 
           <div>
@@ -316,21 +316,13 @@
 
   </div>
   <div id="modalOverlay" class="modal-overlay">
-    <div class="modal-window">
-      <button id="closeModal" class="modal-close">×</button>
-
-      <h2>{% ftlmsg  "add_cart_base" %}</h2>
-
-      <div class="modal-actions">
-        <a href="{% url 'goods:catalog' %}" id="continueShopping" class="btn-light">
-        {% ftlmsg "conti_shop_base" %}
-        </a>
-        <a href="{% url 'goods:cart' %}" class="btn-primary">
-        {% ftlmsg "gotocart_base" %}
-        </a> 
-      </div>
-    </div>
+  <div class="modal-window">
+    <p class="modal-message">
+      Товар додано у кошик!
+    </p>
   </div>
+</div>
+
 
   
   <script src="{% static './js/main.js' %} "></script>

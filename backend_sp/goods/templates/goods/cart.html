@@ -4,30 +4,41 @@
 {% load carts_tag %}
 
 {% block title_meta %}
-  {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-  <title>{% ftlmsg "title_cart" %}</title>
-  <meta name="description" content="{% ftlmsg "description_cart" %}">
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+<title>{% ftlmsg "title_cart" %}</title>
+<meta name="description" content="{% ftlmsg " description_cart" %}">
 {% endblock title_meta %}
 
 {% block content %}
-  {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-  {% user_carts request as carts %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+{% user_carts request as carts %}
 
-  <main>
-    <section class="top100">
-      <div class="container top100 cart-container">        
-        <div class="cart-block" id="cart-items-container">
-          {% comment %} {% include "carts/includes/included_cart.html" %} {% endcomment %}
+<main>
+  <section class="top100">
+    <div class="container top100 cart-container">
+      <h1>{% ftlmsg "you_cart_cart" %}</h1>
+      <div class="cart-block" id="cart-items-container">
+        <div class="cart-lb">
+          <div id="cart-list">
+            {% comment %} {% include "carts/includes/included_cart.html" %} {% endcomment %}
             {% if carts %}
-              {% include "carts/includes/included_cart.html" %}
+            {% include "carts/includes/included_cart.html" %}
             {% else %}
-              {% include "carts/includes/empty_included_cart.html" %}
+            {% include "carts/includes/empty_included_cart.html" %}
             {% endif %}
+          </div>
 
+        </div>
+        <div class="cart-rb">
+          <p class="order-title">{% ftlmsg "order_cart" %}</p>
+          <div>
+            <p>{% ftlmsg "total_prace_carts" %} {{carts.total_prace}}{% ftlmsg "currency_catalog" %}</p>
+          </div>
+          
         </div>
 
         {% if carts %}
-        <div class="contacts-block">
+        <div class="contacts-block ">
           <form id="orderForm">
             <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}">
             <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}">
@@ -43,6 +54,6 @@
         </div>
         {% endif %}
       </div>
-    </section>
-  </main>
+  </section>
+</main>
 {% endblock content %}

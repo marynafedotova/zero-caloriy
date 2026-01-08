@@ -13,8 +13,72 @@
     <main>
       <section class="top100">
         <div class="container top100">
-          <h1>{% ftlmsg "aboutus_title" %}</h1>
-          <h2>{% ftlmsg "description_aboutus" %}</h2>
+          <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
+          <h2>{% ftlmsg "description_aboutus" %}</h2> -->
+          <section class="breadcrumbs">
+    <div class="container">
+        <a href="#">Головна</a> → <span>Про нас</span>
+    </div>
+</section>
+
+<!-- ABOUT INTRO -->
+<section class="about-intro">
+    <div class="container">
+        <h1>Про нас</h1>
+        <p class="about-intro__mission">
+            Наша місія — подарувати вам ваші улюблені десерти
+            зі зниженою кількістю калорій, без цукру,
+            але з вашим улюбленим смаком.
+        </p>
+    </div>
+</section>
+
+<!-- STORY BLOCK -->
+<section class="about-story">
+    <div class="container about-story__grid">
+
+        <!-- PHOTOS -->
+        <div class="about-story__images">
+            <img src="img/photo-1.jpg" alt="">
+            <img src="img/photo-2.jpg" alt="">
+            <img src="img/photo-3.jpg" alt="">
+        </div>
+
+        <!-- TEXT -->
+        <div class="about-story__text">
+            <p>
+                Жили-були два товстих хлопця: одного звали В’ячеслав,
+                а другого — Андрій. Один все життя жив на дієтах,
+                а другий так сильно любив життя, що став 150 кг.
+            </p>
+
+            <p>
+                І подумали ці два хлопця: «А давай зробимо так,
+                щоб люди, які товстенькі (ну, знаєте, є такі),
+                могли не ходити з осудженими обличчями
+                на роботу і не давитися сирниками,
+                а їли смачне і некалорійне».
+            </p>
+
+            <p>
+                І так все пішло: почали вони відкриватися
+                в одному ТРЦ за другим, а потім — доставка.
+                А як люди почали викладати фотки в Instagram —
+                ой, що б ви бачили, цей ажіотаж, мама рідна!
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="about-gallery">
+    <div class="container about-gallery__grid">
+        <img src="img/gallery-1.jpg" alt="">
+        <img src="img/gallery-2.jpg" alt="">
+        <img src="img/gallery-3.jpg" alt="">
+    </div>
+</section>
         </div>
       </section>
 {% endblock content %}
