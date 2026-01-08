@@ -1,6 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+import requests
+from django.http import JsonResponse
 from .models import Product, Group, GroupModifier, GroupModifierChild
 from django.db.models import Q
+
+
+from carts.utils import get_user_carts
 
 
 def catalog(request):
@@ -79,3 +84,89 @@ def product_search(request):
     
 
     return render(request, 'goods/search_results.html', context)
+
+
+
+import requests
+from django.http import JsonResponse
+from carts.utils import get_user_carts
+from django.utils.translation import get_language
+
+def create_order_telegram(request):
+    if request.method == 'POST':
+  
+        name = request.POST.get('name', '').strip()
+        surname = request.POST.get('surname', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        email = request.POST.get('email', '').strip()
+        location_key = request.POST.get('location', '').strip()
+        
+
+        current_lang = get_language().upper()
+
+
+        carts = get_user_carts(request)
+        if not carts.exists():
+            return JsonResponse({'status': 'error', 'message': 'Кошик порожній'})
+
+
+        topics = {
+            "skymall": 2,      
+            "retroville": 4,   
+        }
+
+        location_names = {
+            "skymall": "ТРЦ SkyMall",
+            "retroville": "ТРЦ Retroville"
+        }
+
+        target_topic = topics.get(location_key)
+        display_location = location_names.get(location_key, "Не вказано")
+
+
+        items_text = ""
+        total_price = 0
+        for item in carts:
+            sum_item = item.product.price * item.quantity
+
+            items_text += f"• {item.product.name} — <b>{item.quantity} шт.</b> ({sum_item} грн)\n"
+            total_price += sum_item
+
+        message = (
+            f"🔔 <b>НОВЕ ЗАМОВЛЕННЯ З САЙТУ({current_lang})</b>\n\n"
+            f"👤 <b>Клієнт:</b> {name} {surname}\n"
+            f"📞 <b>Телефон:</b> {phone}\n"
+            f"📧 <b>Email:</b> {email}\n"
+            f"📦 <b>Товари:</b>\n{items_text}\n"    
+            f"💰 <b>РАЗОМ: {total_price} грн</b>"
+        )
+
+
+        TOKEN = "7957796004:AAEc8529j0JBejt8oR60v3CptvrDlO1CXtg"
+        CHAT_ID = "-1003599444381"
+
+        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+        payload = {
+            "chat_id": CHAT_ID,
+            "text": message,
+            "parse_mode": "HTML",
+            "message_thread_id": target_topic
+        }
+
+        try:
+            response = requests.post(url, data=payload)
+            if response.status_code == 200:
+ 
+                carts.delete()
+                return JsonResponse({'status': 'success'})
+            else:
+                return JsonResponse({
+                    'status': 'error', 
+                    'message': f'Telegram API error: {response.status_code}'
+                })
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+
+

@@ -38,22 +38,68 @@
         </div>
 
         {% if carts %}
-        <div class="contacts-block ">
-          <form id="orderForm">
-            <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}">
-            <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}">
-            <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX">
-            <input type="email" id="email" name="email" placeholder="example@mail.com">
-            <select id="location-select" name="location">
-              <option value=""> {% ftlmsg "location_cart" %} </option>
-              <option value="ТРЦ SkyMall">{% ftlmsg "skymall_cart" %}</option>
-              <option value="ТРЦ Retrowille">{% ftlmsg "retroville_cart" %}</option>
-            </select>
-            <button type="submit" id="cart-btn">{% ftlmsg "submit_cart" %}</button>
-          </form>
-        </div>
+        <div class="contacts-block">
+    <form id="orderForm" method="POST">
+        {% csrf_token %} <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}" required>
+        <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}" required>
+        
+        <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX" required>
+        
+        <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+        
+        <select id="location-select" name="location" required>
+            <option value=""> {% ftlmsg "location_cart" %} </option>
+            <option value="skymall">{% ftlmsg "skymall_cart" %}</option>
+            <option value="retroville">{% ftlmsg "retroville_cart" %}</option>
+        </select>
+
+        <button type="submit" id="cart-btn">{% ftlmsg "submit_cart" %}</button>
+    </form>
+</div>
         {% endif %}
       </div>
   </section>
 </main>
+
+
+
+<script>
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Зупиняємо стандартну відправку
+
+    const btn = document.getElementById('cart-btn');
+    btn.disabled = true; // Блокуємо кнопку, щоб не було дублів
+    btn.innerText = "Відправляємо...";
+
+    const formData = new FormData(this);
+    
+    // URL має збігатися з name у вашому urls.py
+    fetch("{% url 'goods:create-order' %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Можна замінити на гарне модальне вікно
+            alert('Дякуємо! Замовлення надіслано в Telegram.');
+            window.location.href = '{% url "main:index" %}'; // Повертаємо на головну
+        } else {
+            alert('Помилка: ' + data.message);
+            btn.disabled = false;
+            btn.innerText = "{% ftlmsg 'submit_cart' %}";
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Сталася помилка при відправці');
+        btn.disabled = false;
+    });
+});
+</script>
+
 {% endblock content %}
+
