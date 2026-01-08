@@ -1927,6 +1927,15 @@ position: absolute;
   z-index: 6;
   right: 0;
 }
+/* delivery */
+
+.delivery h1.delivery-title{
+  padding-bottom: 24px;
+  text-align: center;
+}
+
+
+
 
 
 @media screen and (max-width: 1621px) {

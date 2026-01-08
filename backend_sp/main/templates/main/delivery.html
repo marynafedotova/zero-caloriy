@@ -12,32 +12,31 @@
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
     <main>
       <section class="top100">
-<div class="container top100">
+<div class="container top100" class="delivery" style="padding-bottom: 100px;">
 
-    <h1>{% ftlmsg "delivery-kyiv-title" %}</h1>
+    <h1 class="delivery-title" style="padding-bottom: 24px;  text-align: center; font-weight: 800;">{% ftlmsg "delivery-kyiv-title" %}</h1>
 
-    <h3>{% ftlmsg "how-to-order-title" %}</h3>
-    <ul>
-        <li>{% ftlmsg "how-to-order-web" %}</li>
-        <li>{% ftlmsg "how-to-order-insta" %}</li>
-        <li>{% ftlmsg "how-to-order-phone" %}</li>
+    <h3  style="padding-bottom: 16px;">{% ftlmsg "how-to-order-title" %}</h3>
+    <ul style="border-bottom: 1px solid #FFD4DA; padding-bottom: 16px;">
+        <li style="padding-bottom: 8px;">{% ftlmsg "how-to-order-web" %}</li>
+        <li style="padding-bottom: 8px;">{% ftlmsg "how-to-order-insta" %}</li>
+        <li style="padding-bottom: 8px;">{% ftlmsg "how-to-order-phone" %}</li>
     </ul>
 
-    <hr>
+  
 
-    <p>{% ftlmsg "delivery-kyiv-subtitle" %}</p>
-    <ul>
+    <p style="padding-top: 24px;">{% ftlmsg "delivery-kyiv-subtitle" %}</p>
+    <ul style="border-bottom: 1px solid #FFD4DA; padding-bottom: 16px;">
         <li>{% ftlmsg "delivery-method-loko" %}</li>
         <li>{% ftlmsg "delivery-method-apps" %}</li>
         <li>{% ftlmsg "delivery-method-taxi" %}</li>
     </ul>
 
-    <hr>
 
-    <h3>{% ftlmsg "locations-title" %}</h3>
-    <p>{% ftlmsg "locations-subtitle" %}</p>
+    <h3 style="padding-bottom: 16px;">{% ftlmsg "locations-title" %}</h3>
+    <p  style="padding-bottom: 16px;">{% ftlmsg "locations-subtitle" %}</p>
 
-    <div class="location-item">
+    <div class="location-item"  style="padding-bottom: 16px;">
         <h4>{% ftlmsg "location-skymall-name" %}</h4>
         <p>
             {% ftlmsg "location-skymall-addr" %}<br>
@@ -46,7 +45,7 @@
         </p>
     </div>
 
-    <div class="location-item">
+    <div class="location-item" style="border-bottom: 1px solid #FFD4DA; padding-bottom: 16px;">
         <h4>{% ftlmsg "location-retro-name" %}</h4>
         <p>
             {% ftlmsg "location-retro-addr" %}<br>
@@ -54,8 +53,6 @@
             {% ftlmsg "location-retro-hours" %}
         </p>
     </div>
-
-    <hr>
 
     <h3>{% ftlmsg "payment-methods-title" %}</h3>
     <ul>
