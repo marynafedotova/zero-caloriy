@@ -46,12 +46,9 @@
                 {{ product.price }}
                 <div class="product-price-uah"> {% ftlmsg "currency_catalog" %}</div>
               </div>
-                <a class="add-to-cart" href="{% url "carts:cart_add" product_slug=product.slug %}">
+                <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
-              {% comment %} <button class="add-to-cart" data-id="${item.ID}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
-              </button> {% endcomment %}
             </div>
             </a>
           </div>

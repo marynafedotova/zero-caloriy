@@ -809,12 +809,20 @@ right: 9%;
   display: flex;
   justify-content: space-between;
 }
-#news-product .add-to-cart {
+ul#news-product li.product-card a.add-to-cart-btn  {
     background-color: var(--pinklight-color);
     padding: 8px 15px;
     border: none;
     outline: none;
     border-radius: 4px;
+}
+.add-to-cart-btn{
+    background-color: var(--pinklight-color);
+    padding: 8px 15px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+
 }
 
 
@@ -918,7 +926,7 @@ width: 100%;
     text-decoration: none;
     color: inherit;
 }
-#favlist-products .product-cart .add-to-cart{
+#favlist-products .product-cart .add-to-cart-btn{
   background-color: var(--pinklight-color);
   padding: 8px 15px;
   border: none;
@@ -929,8 +937,7 @@ width: 100%;
     width: 100%;
     aspect-ratio: 1;
     margin-bottom: 16px;
-}
-
+}add-to-cart-btn
 #favlist-show-all:hover{
   background-color: var(--lightpink-color);
   color: var(--white-color);
@@ -1267,17 +1274,25 @@ padding-top: 24px;
   border: none;
   background-color: var(--pinklight-color);
 }
-.product-actions .add-to-cart{
+.quantity form{
+  width: 100%;
+  display: inline-flex;
+align-items: center;
+    justify-content: space-evenly;
+}
+.product-actions .add-to-cart-btn{
   background-color: var(--pinkdark-color);
   color: var(--white-color);
   width: 60%;
   border-radius: 62px;
   font-size: 16px;
   font-weight: 500;
+  padding: 16px 0px;
   border: 1px solid var(--pinkdark-color);
   transition: all .5 ease;
+  text-align: center;
 }
-.product-actions .add-to-cart:hover{
+.product-actions .add-to-cart-btn:hover{
   background-color: var(--pinkmiddle-color);
 
 }
@@ -1377,14 +1392,14 @@ padding-top: 24px;
   color: var(--lightpink-color);
   padding-bottom: 16px;
 }
-#catalog-list-dessert .product-cart .add-to-cart{
+#catalog-list-dessert .product-cart .add-to-cart-btn{
   background-color: var(--pinklight-color);
   padding: 2px 16px;
   border: none;
   outline: none;
   border-radius: 4px;
 }
-#catalog-list-drinks .product-cart .add-to-cart{
+#catalog-list-drinks .product-cart .add-to-cart-btn{
   background-color: var(--pinklight-color);
   padding: 2px 16px;
   border: none;
@@ -1399,7 +1414,7 @@ padding-top: 24px;
     width: 100%;
   
 }
-.product-catalog-btn .add-to-cart{
+.product-catalog-btn .add-to-cart-btn{
   background-color: var(--pinklight-color);
   border: none;
   outline: none;

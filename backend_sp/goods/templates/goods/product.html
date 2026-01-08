@@ -71,30 +71,32 @@
   <div class="quantity">
     <form action="{% url 'carts:cart_add' product.slug %}" method="post">
       {% csrf_token %}
-      <button type="submit" name="action" value="minus">-</button>
+      <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
       
       <span>{% get_cart_quantity product request %}</span> 
       
-      <button type="submit" name="action" value="plus">+</button>
+      <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
     </form>
   </div>
+               <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
+                Додати в кошик
+              </a> 
 </div>
-
             </div>
-              {% comment %} <a class="add-to-cart" href="{% url "carts:cart_add" product_slug=product.slug %}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
-              </a> {% endcomment %}
             {% comment %} <button class="add-to-cart">{% ftlmsg "add_to_cart" %}</button> {% endcomment %}
           </div>
         </div>
 
       </div>
       <!-- Опис продукту -->
+       <div class="container">
       <div class="product-description">
         <h4>{% ftlmsg "about_product" %}</h4>
         <p class="product-desc">{{product.about_product}}</p>
       </div>
       <div class="mb150">
+       </div>
+
   </section>
   <!-- Може сподобатися -->
   <section id="favlist">
@@ -123,7 +125,7 @@
             {{ random.price }}
             <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
           </div>
-                        <a class="add-to-cart" href="{% url "carts:cart_add" product_slug=random.slug %}">
+                        <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
           {% comment %} <button class="add-to-cart">
