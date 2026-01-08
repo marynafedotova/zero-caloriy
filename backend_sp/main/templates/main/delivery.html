@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load ftl %}
+{% load static %}
+{% block title_meta %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+  <!-- Сторінка "Про нас" -->
+  <title>{% ftlmsg "delivery_title" %}</title>
+  <meta name="description"
+    content="{% ftlmsg "description_delivery" %}">
+{% endblock title_meta %}
+{% block content %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+    <main>
+      <section class="top100">
+<div class="container top100">
+
+    <h1>{% ftlmsg "delivery-kyiv-title" %}</h1>
+
+    <h3>{% ftlmsg "how-to-order-title" %}</h3>
+    <ul>
+        <li>{% ftlmsg "how-to-order-web" %}</li>
+        <li>{% ftlmsg "how-to-order-insta" %}</li>
+        <li>{% ftlmsg "how-to-order-phone" %}</li>
+    </ul>
+
+    <hr>
+
+    <p>{% ftlmsg "delivery-kyiv-subtitle" %}</p>
+    <ul>
+        <li>{% ftlmsg "delivery-method-loko" %}</li>
+        <li>{% ftlmsg "delivery-method-apps" %}</li>
+        <li>{% ftlmsg "delivery-method-taxi" %}</li>
+    </ul>
+
+    <hr>
+
+    <h3>{% ftlmsg "locations-title" %}</h3>
+    <p>{% ftlmsg "locations-subtitle" %}</p>
+
+    <div class="location-item">
+        <h4>{% ftlmsg "location-skymall-name" %}</h4>
+        <p>
+            {% ftlmsg "location-skymall-addr" %}<br>
+            {% ftlmsg "location-skymall-phone" %}<br>
+            {% ftlmsg "location-skymall-hours" %}
+        </p>
+    </div>
+
+    <div class="location-item">
+        <h4>{% ftlmsg "location-retro-name" %}</h4>
+        <p>
+            {% ftlmsg "location-retro-addr" %}<br>
+            {% ftlmsg "location-retro-phone" %}<br>
+            {% ftlmsg "location-retro-hours" %}
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>{% ftlmsg "payment-methods-title" %}</h3>
+    <ul>
+        <li>{% ftlmsg "payment-method-online" %}</li>
+        <li>{% ftlmsg "payment-method-offline" %}</li>
+    </ul>
+
+</div>
+      </section>
+{% endblock content %}
+
+
+
+

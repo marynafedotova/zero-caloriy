@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from main.views  import set_language, index, about_us, offer, policy
+from main.views  import set_language, index, about_us, offer, policy, delivery
 
 app_name = 'main'
 
@@ -11,7 +11,7 @@ urlpatterns = [
     path("about-us/", about_us, name="about"),
     path("public-offer/", offer, name="offer"),
     path("privacy-policy/", policy, name="policy"),
+    path("delivery/", delivery, name="delivery"),
     
-
 ]
 

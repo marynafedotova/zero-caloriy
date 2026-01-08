@@ -20,6 +20,45 @@ conti_shop_base = Продолжить покупки
 gotocart_base = Перейти в корзину
 search_plch_base = Поиск...
 
+#delivery
+delivery_title = Доставка и оплата
+description_delivery = Доставка по г. Киев
+
+delivery-title = 🍰 Оплата и доставка десертов «Зеро калорий»
+
+how-to-order-title = 🛒 Как сделать заказ?
+how-to-order-web = На сайте: через корзину (круглосуточно).
+how-to-order-insta = В Instagram: через Direct.
+how-to-order-phone = По телефону: обращайтесь напрямую к менеджерам наших локаций.
+
+locations-title = 📍 Локации и контакты (Самовывоз)
+locations-subtitle = Вы можете заказать доставку или забрать сладости самостоятельно по следующим адресам:
+
+location-skymall-name = ТРЦ SkyMall
+location-skymall-addr = Адрес: г. Киев, проспект Романа Шухевича, 2т
+location-skymall-phone = Телефон / Viber: +38 000 000 00 00
+location-skymall-hours = График работы: Пн–Вс: 10:00–21:00
+
+location-retro-name = ТРЦ Retroville
+location-retro-addr = Адрес: г. Киев, просп. Европейского Союза, 47
+location-retro-phone = Телефон / Telegram: +38 000 000 00 00
+location-retro-hours = График работы: Пн–Вс: 10:00–21:00
+
+delivery-kyiv-title = 🚚 Доставка по Киеву
+delivery-kyiv-subtitle = Мы предлагаем несколько вариантов быстрой доставки, чтобы вы могли насладиться десертами уже сегодня:
+
+delivery-method-loko = 🩷 LOKO! — мы уже есть в этом сервисе. Просто ищите «Зеро» в приложении.
+delivery-method-apps = 🏍 Bolt Food / Glovo — быстрая доставка по городу в формате «здесь и сейчас».
+delivery-method-taxi = 🚖 Такси — при заказе от 1000 грн отправляем на такси, а стоимость поездки делим пополам (50/50).
+
+payment-methods-title = 💳 Способы оплаты
+payment-method-online = На расчетный счет: удобно при онлайн-заказе.
+payment-method-offline = Наличными или картой: при самовывозе из наших точек в ТРЦ.
+
+delivery_base = Доставка и оплата
+
+
+
 #index.html
 h1_index = Десерты с пониженной калорийностью
 news_index = НАШИ НОВИНКИ

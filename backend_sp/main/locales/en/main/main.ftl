@@ -26,8 +26,43 @@ news_index = OUR NEW ARRIVALS
 currency = UAH
 measure_unit = g
 
-#carts
 
+#delivery
+delivery_title = Delivery & Payment
+description_delivery = Delivery in Kyiv
+
+delivery-title = 🍰 Payment and Delivery of "Zero Calories" Desserts
+
+how-to-order-title = 🛒 How to Place an Order?
+how-to-order-web = On the website: via the cart (available 24/7).
+how-to-order-insta = On Instagram: via Direct.
+how-to-order-phone = By phone: contact the managers of our locations directly.
+
+locations-title = 📍 Locations & Contacts (Pickup)
+locations-subtitle = You can order delivery or pick up the sweets yourself at the following addresses:
+
+location-skymall-name = SkyMall Shopping Center
+location-skymall-addr = Address: Kyiv, Roman Shukhevych Ave, 2t
+location-skymall-phone = Phone / Viber: +38 000 000 00 00
+location-skymall-hours = Working hours: Mon–Sun: 10:00–21:00
+
+location-retro-name = Retroville Shopping Center
+location-retro-addr = Address: Kyiv, European Union Ave, 47
+location-retro-phone = Phone / Telegram: +38 000 000 00 00
+location-retro-hours = Working hours: Mon–Sun: 10:00–21:00
+
+delivery-kyiv-title = 🚚 Kyiv Delivery
+delivery-kyiv-subtitle = We offer several fast delivery options so you can enjoy desserts today:
+
+delivery-method-loko = 🩷 LOKO! — we are already on this service. Just search for “Zero” in the app.
+delivery-method-apps = 🏍 Bolt Food / Glovo — fast city delivery “here and now”.
+delivery-method-taxi = 🚖 Taxi — for orders over 1000 UAH, we send by taxi and split the fare 50/50.
+
+payment-methods-title = 💳 Payment Methods
+payment-method-online = To a bank account: convenient for online orders.
+payment-method-offline = Cash or card: when picking up from our points in shopping centers.
+
+delivery_base = Delivery & Payment
 
 
 #about us
