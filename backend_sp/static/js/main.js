@@ -6,6 +6,13 @@ document.getElementById('hamb-btn').addEventListener('click', function () {
 document.getElementById('hamb-btn-mobile').addEventListener('click', function () {
   document.body.classList.toggle('open-mobile-menu')
 })
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.body.classList.remove('open-mobile-menu');
+    });
+  });
+});
 
 // Для мобільних пристроїв
 document.addEventListener('DOMContentLoaded', function() {
@@ -56,4 +63,42 @@ function showAddedMessage() {
     modalOverlay.classList.remove('active');
   }, 1500); // 1.5 секунды — оптимально
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const search = document.querySelector('.search');
+  const form = search.querySelector('form');
+  const button = search.querySelector('.search-btn');
+  const input = search.querySelector('input[type="search"]');
+
+  button.addEventListener('click', (e) => {
+    const isActive = search.classList.contains('active');
+    const hasValue = input.value.trim().length > 0;
+
+    if (!isActive) {
+      e.preventDefault();
+      search.classList.add('active');
+      input.focus();
+      return;
+    }
+
+    if (!hasValue) {
+      e.preventDefault();
+      input.focus();
+      return;
+    }
+
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }
+});
+
 

@@ -97,7 +97,7 @@
           <li><a href="{% url 'goods:catalog' %}" target="_parent">{% ftlmsg  "all_goods_base" %}</a></li>
           <li><a href="{% url 'main:about' %}" target="_parent">{% ftlmsg  "aboutus_base" %}</a></li>
           <li><a href="{% url 'main:delivery' %}" target="_parent">{% ftlmsg  "delivery_base" %}</a></li>
-          <li><a href="#news-product" target="_parent">{% ftlmsg  "news_base" %}</a></li>
+          <li><a href="{% url 'main:index' %}#new-product-section"  class="scroll-to-news" target="_parent">{% ftlmsg  "news_base" %}</a></li>
         </ul>
     </nav>
   </div>
@@ -151,7 +151,7 @@
               <li><a href="{% url 'goods:catalog' %}" target="_parent">{% ftlmsg  "all_goods_base" %}</a></li>
               <li><a href="{% url 'main:about' %}" target="_parent">{% ftlmsg  "aboutus_base" %}</a></li>
               <li><a href="{% url 'main:delivery' %}" target="_parent">{% ftlmsg  "delivery_base" %}</a></li>
-              <li><a href="{% url 'main:index' %}/#new-product-section" target="_parent">{% ftlmsg  "news_base" %}</a></li>
+              <li><a href="{% url 'main:index' %}#new-product-section"   target="_parent">{% ftlmsg  "news_base" %}</a></li>
             </ul>
 
           </nav>
@@ -303,7 +303,7 @@
       <div class="container text-footer">
         <div class="copy">
           &copy;
-          <script>document.write(new Date().getFullYear())</script> ZeroKaloriy 2025, All Rights Reserved.
+           ZeroKaloriy <script>document.write(new Date().getFullYear())</script>, All Rights Reserved.
         </div >
         <div class="payment-footer">
           <ul>

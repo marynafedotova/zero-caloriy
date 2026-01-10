@@ -13,10 +13,10 @@
   {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
   {% user_carts request as carts %}
 <div class="container my-5">
-    <h1 class="mb-4">{% ftlmsg "search_result" query=query %}"</h1>
+    <h1 class="mb-4">{% ftlmsg "search_result" query=query %}</h1>
 
     {% if goods %}
-       <ul class="favlist-list" id="favlist-products">
+       <ul class="favlist-list" id="favlist-products" style="height: 426px;">
             {% for result in goods %}
         <li class="product-card">
           <a href="{% url 'goods:product' product_slug=result.slug %}" class="product-link">
@@ -27,11 +27,12 @@
               <img src="{% static './img/images-not-found.jpg' %}" alt="{{ result.name }}">
               {% endif %}
             </div>
+            </a>
             <div class="product-info">
-              <h3 class="product-title">{{ result.name }}</h3>
+              <h3 class="product-title" style="padding-top: 0px;">{{ result.name }}</h3>
               <p class="product-weight">{{result.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
               <div class="product-cart">
-                </a>
+
                 <div class="product-price">
                   {{ result.price }}
                   <span class="product-price-uah">{% ftlmsg "price-uah" %}</span>

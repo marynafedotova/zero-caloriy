@@ -12,6 +12,7 @@
 {% load carts_tag %}
 <main>
   <h1 class="sr-only">{% ftlmsg "hi_product" %}</h1>
+  <div>
   <section id="product-page" class="top100">
     <div class="container top100">
       <ul class="nav-product">
@@ -94,8 +95,8 @@
         <h4>{% ftlmsg "about_product" %}</h4>
         <p class="product-desc">{{product.about_product}}</p>
       </div>
-      <div class="mb150">
-       </div>
+      <!-- <div class="mb150">
+       </div> -->
 
   </section>
   <!-- Може сподобатися -->
@@ -137,9 +138,11 @@
   </li>
   {% endfor %}
 </ul>
-      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}</a>
+      <!-- <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}</a> -->
     </div>
   </section>
+
+  </div>
 
 
 
