@@ -2486,7 +2486,10 @@ flex-direction: column-reverse;
     font-size: 9px;
     width: 100%;
 }
-
+.about-gallery__grid-pic1 img{
+  width: 130px;
+  height: 139px;
+}
 }
 @media screen and (max-width: 666px) {
 
