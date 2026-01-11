@@ -10,15 +10,16 @@
 {% block content %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
 <main>
+    
     <section class="top100">
         <div class="container top100">
             <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
           <h2>{% ftlmsg "description_aboutus" %}</h2> -->
-            <section class="breadcrumbs">
-                <div class="container">
-                    <a href="#">Головна</a> → <span>Про нас</span>
-                </div>
-            </section>
+                <ul class="nav-product">
+        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
+            src="{% static './img/Frame.svg' %}" alt=""></li>
+        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a></li>
+      </ul>
 
             <!-- ABOUT INTRO -->
             <section class="about-intro">

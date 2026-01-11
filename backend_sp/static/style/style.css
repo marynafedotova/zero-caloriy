@@ -427,22 +427,6 @@ main {
   display: none;
 }
 
-@media screen and (max-width: 1403px) {
-  .hamburger-wrap {
-    display: block;
-  }
-
-  header nav > ul:not(.mobile-menu) {
-    display: none;
-  }
-
-
-
-  .menu-panel {
-    width: 50%;
-  }
-
-}
 /* search page */
 .my-5{
 padding-top: 150px;
@@ -646,7 +630,7 @@ right: 9%;
   right: 32%;
   width: 80px;
   animation: spiral-drift 20s linear infinite,
-             glow-ultra-smooth 5s ease-in-out infinite alternate,
+             /* glow-ultra-smooth 5s ease-in-out infinite alternate, */
              scale-gentle 6s ease-in-out infinite alternate;
 }
 #star5 {
@@ -1984,8 +1968,31 @@ top: 200px;
   .hero .rb-hero-index img{
   max-width: 300px;
   max-height: 530px;
+
+}
+  header .nav-container .container nav ul li{
+    padding-right: 20px;
+  }
+.search {
+    width: 20%;
 }
 }
+/* @media screen and (max-width: 1403px) {
+  .hamburger-wrap {
+    display: block;
+  }
+
+  header nav > ul:not(.mobile-menu) {
+    display: none;
+  }
+
+
+
+  .menu-panel {
+    width: 50%;
+  }
+
+} */
 
 @media screen and (max-width: 1345px) {
 .hero-lb .letter {
@@ -2024,8 +2031,22 @@ position: absolute;
 top: 150px;
 
 }
+  header .nav-container .container nav ul li{
+    padding-right: 10px;
+  }
 }
 @media screen and (max-width: 1000px) {
+    .hamburger-wrap {
+    display: block;
+  }
+
+  header nav > ul:not(.mobile-menu) {
+    display: none;
+  }
+  .menu-panel {
+    width: 50%;
+  }
+
   #star3 {
     right: 6%;
 
@@ -2268,19 +2289,20 @@ top: 140px;
 #news-product .product-card {
     flex: 0 0 200px;
     scroll-snap-align: start;
-    margin-right: 16px;
             height: 310px;
+            margin-right: 0;
 }
 #favlist-products {
   padding: 0;
   height: 310px;
 }
 #favlist-products .product-card {
-    flex: 0 0 200px;           /* ширина 200px */
+    flex: 0 0 200px;        
     display: flex;
     flex-direction: column;
-    height: 100%;              /* растягування внутрішніх блоків на всю висоту */
+    height: 100%;             
     box-sizing: border-box;
+     margin-right: 0;
   }
 
   #favlist-products .product-card > .product-link,
@@ -2446,9 +2468,12 @@ margin: 0;
 }
 .about-intro h1{
   margin-bottom: 10px;
+  font-size: 16px;
 }
 .about-intro__mission{
-  padding: 0 5% 150px 5%;
+  padding: 0 5% 120px 5%;
+  font-size: 10px;
+  color: #666;
 }
 .breadcrumbs{
   padding-bottom: 24px;
@@ -2456,18 +2481,24 @@ margin: 0;
 .ab-s1 {
   width: auto;
   height: 150px;
+  left: -17px;
 }
 .ab-s2{
   width: auto;
 top: -70px;
 height: 150px;
+left: -23px;
 }
 .ab-s3{
   right: 0;
   width: 100%;
   top: -50px;
 }
-
+.about-gallery-text{
+  padding-bottom: 120px;
+  padding-right: 30px;
+  text-align: left;
+}
 .about-story__grid {
   flex-direction: column;
   padding-bottom: 16px;
@@ -2479,6 +2510,11 @@ height: 150px;
   padding-top: 190px;
   width: 100%;
   font-size: 9px;
+  margin-left: -17px;
+  padding-right: 15px;
+}
+.about-story__text>span{
+  padding-bottom: 16px;
 }
 .about-gallery{
 flex-direction: column-reverse;
@@ -2488,9 +2524,43 @@ flex-direction: column-reverse;
     font-size: 9px;
     width: 100%;
 }
+.about-gallery__grid{
+  width: 100%;
+}
 .about-gallery__grid-pic1 img{
-  width: 130px;
-  height: 139px;
+  width: 132px;
+  height: 140px;
+}
+.about-gallery__grid-pic2 img{
+  width: 131px;
+  height: 140px;
+}
+.about-gallery__grid-pic3 img{
+  width: 133px;
+  height: 143px;
+}
+.about-gallery__grid-pic4 img{
+  width: 179px;
+  height: 135px;
+}
+.about-gallery__grid .about-gallery__grid-pic1{
+  left: -40px;
+  top: 140px;
+}
+.about-gallery__grid .about-gallery__grid-pic2 {
+left: 60px;
+top: 145px;
+}
+.about-gallery__grid .about-gallery__grid-pic3{
+  right: -155px;
+    top: 140px;
+}
+.about-gallery__grid .about-gallery__grid-pic4{
+ right: -212px;
+ top: 145px;
+}
+.about-gallery {
+    padding-bottom: 80px;
 }
 .hero{
   display: none;
@@ -2499,6 +2569,16 @@ flex-direction: column-reverse;
   display: block;
   padding-top: 80px;
  margin-bottom: 47px;
+}
+
+.about-gallery__grid-pic1, .about-gallery__grid-pic2, .about-gallery__grid-pic3, .about-gallery__grid-pic4{
+top: 200px;
+}
+footer .container{
+  border: none;
+}
+.text-footer{
+  padding-bottom: 70px;
 }
 }
 @media screen and (max-width: 666px) {
