@@ -10,16 +10,16 @@
 {% block content %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
 <main>
-    
+
     <section class="top100">
         <div class="container top100">
             <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
           <h2>{% ftlmsg "description_aboutus" %}</h2> -->
-                <ul class="nav-product">
-        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
-        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_us" %}</a></li>
-      </ul>
+            <ul class="nav-product">
+                <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
+                        src="{% static './img/Frame.svg' %}" alt=""></li>
+                <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_us" %}</a></li>
+            </ul>
 
             <!-- ABOUT INTRO -->
             <section class="about-intro">
@@ -39,8 +39,10 @@
                     <div class="about-story__images">
                         <div class="ab-s1"><img src="{% static './img/about1.png' %}" alt="about us"></div>
                         <div>
-<div class="ab-s2"><img src="{% static './img/about2.png' %}" alt="about us"></div>
-                        <div class="ab-s3"><img src="{% static './img/about3.png' %}" alt="about us"></div>
+                            <div class="ab-s2"><img src="{% static './img/about2.png' %}" alt="about us"></div>
+                            <div class="ab-s3"><img src="{% static './img/about3.png' %}" alt="about us"></div>
+                            <div class="ab-s4"><img src="{% static './img/mesage-hart.png' %}" alt="about us"></div>
+                            <div class="ab-s5"><img src="{% static './img/star_aboutus.svg' %}" alt="about us"></div>
                         </div>
                     </div>
 
@@ -57,26 +59,34 @@
                         <div>{% ftlmsg "bla_bla_about" %} </div>
                         <div>{% ftlmsg "she_text_about" %}
                         </div>
-                        
-                </div>
+
+                    </div>
             </section>
 
             <!-- GALLERY -->
             <section class="about-gallery">
+
                 <div class="about-gallery-text">
-                <div>{% ftlmsg "oh_ishe_text_about" %} </div>
-                <div>{% ftlmsg "aaa_she_text_about" %}</div>
-                <br>
-                <div>{% ftlmsg 'ooo_boze_text_about' %}</div>
-                <div>{% ftlmsg "nareshnio_end_text_about" %} </div>
+                    <div>{% ftlmsg "oh_ishe_text_about" %} </div>
+                    <div>{% ftlmsg "aaa_she_text_about" %}</div>
+                    <br>
+                    <div>{% ftlmsg 'ooo_boze_text_about' %}</div>
+                    <div>{% ftlmsg "nareshnio_end_text_about" %} </div>
                 </div>
-               <div class="container about-gallery__grid">
-                    <div class="about-gallery__grid-pic1"><img src="{% static './img/about4.png' %}"alt="about us"></div>
-                    <div class="about-gallery__grid-pic2"><img src="{% static './img/about5.png' %}" alt="about us"></div>
-                    <div class="about-gallery__grid-pic3"><img src="{% static './img/about6.png' %}" alt="about us"></div>
-                    <div class="about-gallery__grid-pic4"><img src="{% static './img/about7.png' %}" alt="about us"></div>
+                <div class="about-gallery__grid">
+
+                    <div class="about-gallery__grid-pic1"><img src="{% static './img/about4.png' %}" alt="about us">
+                    </div>
+                    <div class="about-gallery__grid-pic2"><img src="{% static './img/about5.png' %}" alt="about us">
+                    </div>
+                    <div class="about-gallery__grid-pic3"><img src="{% static './img/about6.png' %}" alt="about us">
+                    </div>
+                    <div class="about-gallery__grid-pic4"><img src="{% static './img/about7.png' %}" alt="about us">
+                    </div>
 
                 </div>
+                                                        <div class="about-gallery__grid-pic5"><img src="{% static './img/duble_star.png' %}" alt="about us">
+                    </div>
             </section>
         </div>
     </section>
