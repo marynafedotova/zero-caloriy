@@ -39,7 +39,7 @@
 
         {% if carts %}
         <div class="contacts-block">
-    <form id="orderForm" method="POST">
+    <form id="orderForm" method="POST" onsubmit="sendOrder(event); return false;onsubmit="sendOrder(event); return false;">
         {% csrf_token %} <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}" required>
         <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}" required>
         
@@ -64,41 +64,57 @@
 
 
 <script>
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Зупиняємо стандартну відправку
+function sendOrder(event) {
+    // 1. Зупиняємо стандартну поведінку
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
 
+    console.log("--- Спроба відправки замовлення ---");
+
+    const form = document.getElementById('orderForm');
     const btn = document.getElementById('cart-btn');
-    btn.disabled = true; // Блокуємо кнопку, щоб не було дублів
+    
+    // Блокуємо кнопку
+    btn.disabled = true;
     btn.innerText = "Відправляємо...";
 
-    const formData = new FormData(this);
+    const formData = new FormData(form);
+
+    // 2. Виконуємо запит
     
-    // URL має збігатися з name у вашому urls.py
-    fetch("{% url 'goods:create-order' %}", {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': '{{ csrf_token }}'
-        }
+    fetch(window.location.pathname, { 
+    method: 'POST',
+    body: formData,
+    headers: {
+        'X-CSRFToken': csrftoken
+    }
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log("Статус відповіді сервера:", response.status);
+        return response.json();
+    })
     .then(data => {
         if (data.status === 'success') {
-            // Можна замінити на гарне модальне вікно
-            alert('Дякуємо! Замовлення надіслано в Telegram.');
-            window.location.href = '{% url "main:index" %}'; // Повертаємо на головну
+            alert('Замовлення успішно відправлено!');
+            window.location.href = '{% url "main:index" %}';
         } else {
+            console.error("Помилка від сервера:", data.message);
             alert('Помилка: ' + data.message);
             btn.disabled = false;
-            btn.innerText = "{% ftlmsg 'submit_cart' %}";
+            btn.innerText = "Спробувати ще раз";
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('Сталася помилка при відправці');
+        console.error("Критична помилка запиту:", error);
+        alert('Не вдалося з’єднатися з сервером. Перевірте консоль (F12).');
         btn.disabled = false;
+        btn.innerText = "Повторити";
     });
-});
+
+    return false; // Додатковий захист
+}
 </script>
 
 {% endblock content %}
