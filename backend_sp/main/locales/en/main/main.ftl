@@ -78,6 +78,8 @@ ooo_boze_text_about = So what I want to tell you, kids: you need to use your bra
 nareshnio_end_text_about = See you at “Zero Caloriy”!
 btn_index_us = Home
 btn_all_prod_us = All Products
+bla_bla_about = And they invited various smart people with great character, who could do everything well and fast, and together they created a company. They called it “Zero Caloriy”. And these wonderful people started making all kinds of things...
+
 
 #public_offer.html
 offer_title = Public Offer — Terms of Sale of Zero Caloriy

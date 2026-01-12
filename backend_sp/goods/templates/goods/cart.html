@@ -39,7 +39,7 @@
 
         {% if carts %}
         <div class="contacts-block">
-    <form id="orderForm" method="POST" onsubmit="sendOrder(event); return false;onsubmit="sendOrder(event); return false;">
+    <form id="orderForm" method="POST" onsubmit="sendOrder(event)"; return false;>
         {% csrf_token %} <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}" required>
         <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}" required>
         
@@ -64,41 +64,34 @@
 
 
 <script>
-function sendOrder(event) {
-    // 1. Зупиняємо стандартну поведінку
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    console.log("--- Спроба відправки замовлення ---");
-
-    const form = document.getElementById('orderForm');
+    const form = this; // посилання на форму
+    const url = form.getAttribute('data-url'); // беремо URL з атрибуту
+    const csrfToken = form.getAttribute('data-csrf'); // беремо токен
     const btn = document.getElementById('cart-btn');
-    
-    // Блокуємо кнопку
+
     btn.disabled = true;
     btn.innerText = "Відправляємо...";
 
     const formData = new FormData(form);
-
-    // 2. Виконуємо запит
     
-    fetch(window.location.pathname, { 
-    method: 'POST',
-    body: formData,
-    headers: {
-        'X-CSRFToken': csrftoken
-    }
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': csrfToken // тепер токен буде передано правильно
+        }
     })
     .then(response => {
-        console.log("Статус відповіді сервера:", response.status);
+        if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
     })
     .then(data => {
         if (data.status === 'success') {
-            alert('Замовлення успішно відправлено!');
-            window.location.href = '{% url "main:index" %}';
+            alert('Дякуємо! Замовлення надіслано.');
+            window.location.href = '/'; // або інший шлях
         } else {
             console.error("Помилка від сервера:", data.message);
             alert('Помилка: ' + data.message);
@@ -107,8 +100,8 @@ function sendOrder(event) {
         }
     })
     .catch(error => {
-        console.error("Критична помилка запиту:", error);
-        alert('Не вдалося з’єднатися з сервером. Перевірте консоль (F12).');
+        console.error('Error:', error);
+        alert('Сталася помилка на сервері');
         btn.disabled = false;
         btn.innerText = "Повторити";
     });

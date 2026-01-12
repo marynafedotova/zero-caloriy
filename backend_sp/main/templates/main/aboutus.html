@@ -5,23 +5,19 @@
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
 <!-- Сторінка "Про нас" -->
 <title>{% ftlmsg "aboutus_title" %}</title>
-<meta name="description" content="{% ftlmsg " description_about" %}">
+<meta name="description" content="{% ftlmsg "description_about" %}">
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
 <main>
 
-    <div class="top100">
-        <div class=" top100">
-            <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
-          <h2>{% ftlmsg "description_aboutus" %}</h2> -->
-          <div class="container">
-            <ul class="nav-product">
-                <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
-                        src="{% static './img/Frame.svg' %}" alt=""></li>
-                <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_us" %}</a></li>
-            </ul>
-          </div>
+    <section class="top100">
+        <div class="container top100">
+                <ul class="nav-product">
+        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
+            src="{% static './img/Frame.svg' %}" alt=""></li>
+        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_us" %}</a></li>
+      </ul>
 
             <!-- ABOUT INTRO -->
             <section class="about-intro">
