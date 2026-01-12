@@ -33,18 +33,8 @@ SECRET_KEY = 'django-insecure-e1j68#7oydbomm_u36bwj!ml4=my-hyxwm3+3*-!f59)bgh!xf
 DEBUG = True
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
+TRUSTED_ORIGINS=http://193.151.89.31,http://193.151.89.31:9000,http://zerocloriy.com1~TRUSTED_ORIGINS=http://193.151.89.31,http://193.151.89.31:9000,http://zerocaloriy.com
 
-
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
-
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
-SESSION_COOKIE_HTTPONLY = True
 
 # Application definition
 
