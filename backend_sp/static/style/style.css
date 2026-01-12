@@ -293,11 +293,9 @@ header .nav-container .container nav ul li a::before {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  /* border: 1px solid var(--lightpink-color); */
-  background-color: rgba(255, 255, 255, 0);
   z-index: 100;
   top: 50%;
-  left: -21px;
+  left: -11px;
   transform: translate(-50%, -50%);
   transition: background-color 0.3s ease;
 }
@@ -921,6 +919,10 @@ width: 100%;
     list-style: none;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
     align-items: stretch; 
 }
 #favlist-products .product-card {
