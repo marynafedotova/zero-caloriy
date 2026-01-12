@@ -16,19 +16,17 @@
             <!-- <h1>{% ftlmsg "aboutus_title" %}</h1>
           <h2>{% ftlmsg "description_aboutus" %}</h2> -->
                 <ul class="nav-product">
-        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
+        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
             src="{% static './img/Frame.svg' %}" alt=""></li>
-        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a></li>
+        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_us" %}</a></li>
       </ul>
 
             <!-- ABOUT INTRO -->
             <section class="about-intro">
                 <div class="container">
-                    <h1>Про нас</h1>
+                    <h1>{% ftlmsg "aboutus_title" %}</h1>
                     <p class="about-intro__mission">
-                        Наша місія — подарувати вам ваші улюблені десерти
-                        зі зниженою кількістю калорій, без цукру,
-                        але з вашим улюбленим смаком.
+                        {% ftlmsg "mission_aboutus" %}
                     </p>
                 </div>
             </section>
@@ -48,27 +46,16 @@
 
                     <!-- TEXT -->
                     <div class="about-story__text">
-                        <span>Жили-були два товстих мальчіка:</span>
+                        <span>{% ftlmsg "live_man_about" %}</span>
                         <br>
                         <div>
-                            одного звали Святослав, а другого — Андрій.
-                            Один все життя жив на дієтах, а другий так сильно любив жизнь,
-                            шо став 150 кг.
+                            {% ftlmsg "svyat_andrii_about" %}
                         </div>
-                        <div>І подумали ці два мальчіка: «А давай зробим так, щоб люди,
-                            які товстенькі (ну, знаєте, єсть такі), могли не ходити з судочками
-                            на роботу і не давилися філе куріним і творогом 0%, а отак взяли
-                            і купили шось вкусне і не калорійне, зʼїли — і радость була шоб на
-                            сердці, а пузіко не росло».
+                        <div>{% ftlmsg "pyziko_about" %}
                         </div>
                         <br>
-                        <div>І позвали вони з собою разних умних людей з харошими
-                            харакерами, які все вміють харашо і бистро робить, і створили
-                            вони компанію. «Зеро Калорій» назвали. І почали ці прекрасні
-                            люди робить всякі </div>
-                        <div>медовики, всякі тірамісу, панакоти та брауні, і не могли зупинитися.
-                            А люди їли, раділи і казали: «Як таке може будь, шо їм-їм, а прес
-                            кубиками покривається?»
+                        <div>{% ftlmsg "bla_bla_about" %} </div>
+                        <div>{% ftlmsg "she_text_about" %}
                         </div>
                         
                 </div>
@@ -77,11 +64,11 @@
             <!-- GALLERY -->
             <section class="about-gallery">
                 <div class="about-gallery-text">
-                <div>І так все пішло: почали вони відкриватися в одному ТРЦ за другим, а потім — доставку. А як почали люди фоткать і в інстаграм виставлять — ой, шоб ви бачили цей ажіотаж, мама родная! </div>
-                <div>І заполонило це «Зеро Калорій» веееесь світ: від Троєщини до Лос-Анжелеса. І так все гарно пішло, шо бідний оземпік розорився.</div>
+                <div>{% ftlmsg "oh_ishe_text_about" %} </div>
+                <div>{% ftlmsg "aaa_she_text_about" %}</div>
                 <br>
-                <div>Тож шо я хочу вам сказать, деточьки: треба мать мозги і работать, а по-другому — ніяк.</div>
-                <div>До встречі в «Зеро Калорій»! </div>
+                <div>{% ftlmsg 'ooo_boze_text_about' %}</div>
+                <div>{% ftlmsg "nareshnio_end_text_about" %} </div>
                 </div>
                <div class="container about-gallery__grid">
                     <div class="about-gallery__grid-pic1"><img src="{% static './img/about4.png' %}"alt="about us"></div>

@@ -40,9 +40,6 @@
                 <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=result.slug %}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
-                {% comment %} <button class="add-to-cart" data-id="${item.ID}">
-                  <img src="{% static './img/+.svg' %}" alt="add to cart">
-                </button> {% endcomment %}
               </div>
             </div>
           
@@ -52,11 +49,11 @@
 
     {% else %}
         <div class="alert alert-light border shadow-sm">
-            <h3 class="text-center">{% ftlmsg "very_shkoda" %}</h3>
+            <h3 class="text-center">{% ftlmsg "very_shkoda" query=query %}</h3>
         </div>
     {% endif %}
 </div>
       <div class="mb150">
-        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "btn_add_goods_cart" %}</a>
       </div>
 {% endblock %}

@@ -62,41 +62,22 @@ payment-methods-title = 💳 Payment Methods
 payment-method-online = To a bank account: convenient for online orders.
 payment-method-offline = Cash or card: when picking up from our points in shopping centers.
 
-delivery_base = Delivery & Payment
 
 
 #about us
-description_aboutus = A Kingdom Where Desserts Need No Forgiveness
-    Have you ever felt guilty about eating a slice of cake? We’re here to change that.
-
-    Our Mission
-    We are building a Kingdom of diet-friendly desserts where the word “diet” is no longer a synonym for “endurance.” We break the myth that healthy food must be bland and that pleasure inevitably leads to extra pounds.
-
-    How do we do it?
-    We combined two worlds that once stood in opposition:
-
-    Haute pastry craftsmanship: All our expertise is focused on creating textures and flavors that make your head spin.
-
-    Deep nutrition science: Every ingredient is carefully selected to have minimal impact on your body and overall health.
-
-    Our Manifesto: Everyone has the right to open the fridge after a stressful day, enjoy half a kilo of tiramisu, and go to bed peacefully — without planning a 6 a.m. workout to atone for “sweet sins.”
-
-    Why do we do this?
-    Most diet products today are about compromise. We chose to abandon compromises. Our desserts are made for those who:
-
-    Strive for a perfect shape but truly love sweets.
-
-    Live a fast-paced life and need delicious stress relief.
-
-    Value clean ingredients without unnecessary calories.
-
-    Our Ambition
-    We don’t just make sweets — we create a culture of healthy indulgence. We want your journey to a great body to be driven by pleasure, not restriction.
-
-    Welcome to the Kingdom where everything is allowed!
-
-aboutus_title = About Us — Zero Caloriy, Healthy Sugar-Free Desserts
-description_about = Discover the story of Zero Caloriy, our approach to healthy eating, and how we create delicious low-calorie, sugar-free desserts. Based in Kyiv.
+aboutus_title = About Us
+description_about = Discover the story of Zero Caloriy, our approach to healthy eating, and how we create delicious low-calorie sugar-free desserts. We operate in Kyiv.
+mission_aboutus = Our mission is to give you your favorite desserts with fewer calories — sugar-free, but full of the flavors you love.
+live_man_about = Once upon a time there were two chubby boys:
+svyat_andrii_about = one was named Sviatoslav, and the other — Andrii. One had been on diets all his life, and the other loved life so much that he reached 150 kg.
+pyziko_about = And these two boys thought: “Let’s make it so that people who are a bit chubby don’t have to carry lunch boxes to work and choke on chicken breast and 0% cottage cheese, but can just buy something tasty and low-calorie, eat it — and feel happy, while their belly doesn’t grow.”
+she_text_about = They baked honey cakes, tiramisus, panna cottas, and brownies — and couldn’t stop. And people ate, rejoiced, and said: “How is it possible? I eat and eat, and my abs keep getting more defined!”
+oh_ishe_text_about = And that’s how it all started: they began opening one mall after another, and then launched delivery. And when people started taking photos and posting them on Instagram — oh, you should have seen the hype!
+aaa_she_text_about = And so “Zero Caloriy” took over the whole world — from Troieshchyna to Los Angeles. It went so well that even poor Ozempic went bankrupt.
+ooo_boze_text_about = So what I want to tell you, kids: you need to use your brain and work hard — there’s no other way.
+nareshnio_end_text_about = See you at “Zero Caloriy”!
+btn_index_us = Home
+btn_all_prod_us = All Products
 
 #public_offer.html
 offer_title = Public Offer — Terms of Sale of Zero Caloriy

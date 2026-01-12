@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 import requests
 from django.http import JsonResponse
-from .models import Product, Group, GroupModifier, GroupModifierChild
+from django.db.models.functions import Lower
+from goods.models import Product, Group, GroupModifier, GroupModifierChild
 from django.db.models import Q
 
-
+from django.utils.translation import get_language
 from carts.utils import get_user_carts
 
 
@@ -65,32 +66,56 @@ def product_search(request):
     query = request.GET.get('q', '').strip()
     
     if query:
-        products = Product.objects.filter(
-            Q(name_uk__icontains=query) | 
-            Q(name_en__icontains=query) |
-            Q(name_ru__icontains=query) |
-            Q(description_uk__icontains=query) | 
-            Q(description_en__icontains=query) |
-            Q(description_ru__icontains=query)     
-        ).distinct() 
-    else:
+       
+        query_lower = query.lower()
+        words = query_lower.split()
+        
+        search_filter = Q()
 
+        for word in words:
+        
+            words_filter = (
+                Q(name_uk_lower__contains=word) | 
+                Q(name_en_lower__contains=word) |
+                Q(name_ru_lower__contains=word) |
+                Q(additional_info_uk_lower__contains=word) |
+                Q(additional_info_en_lower__contains=word) |
+                Q(additional_info_ru_lower__contains=word) |
+                Q(about_product_uk_lower__contains=word) |
+                Q(about_product_en_lower__contains=word) |
+                Q(about_product_ru_lower__contains=word) |
+                Q(description_uk_lower__contains=word) | 
+                Q(description_en_lower__contains=word) |
+                Q(description_ru_lower__contains=word)     
+            )
+            search_filter &= words_filter
+
+       
+        products = Product.objects.annotate(
+            name_uk_lower=Lower('name_uk'),
+            name_en_lower=Lower('name_en'),
+            name_ru_lower=Lower('name_ru'),
+            description_uk_lower=Lower('description_uk'),
+            description_en_lower=Lower('description_en'),
+            description_ru_lower=Lower('description_ru'),
+            additional_info_uk_lower=Lower('additional_info_uk'),
+            additional_info_en_lower=Lower('additional_info_en'),
+            additional_info_ru_lower=Lower('additional_info_ru'),
+            about_product_uk_lower=Lower('about_product_uk'),
+            about_product_en_lower=Lower('about_product_en'),
+            about_product_ru_lower=Lower('about_product_ru'),
+        ).filter(search_filter).distinct()
+    else:
         products = Product.objects.none()
 
     context = {
         'goods': products, 
         'query': query,
     }
-    
 
     return render(request, 'goods/search_results.html', context)
 
 
-
-import requests
-from django.http import JsonResponse
-from carts.utils import get_user_carts
-from django.utils.translation import get_language
 
 def create_order_telegram(request):
     if request.method == 'POST':
