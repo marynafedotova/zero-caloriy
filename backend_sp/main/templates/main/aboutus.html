@@ -31,10 +31,15 @@
 
             <!-- STORY BLOCK -->
             <section class="about-story">
-                <div class="container about-story__grid">
-
+                <div class="about-story__grid">
+<div class="about-img-hero">
+    <img src="{% static './img/about-us-hero-section.png' %}" alt="about us">
+</div>
+<div class="about-img-hero-m">
+    <img src="{% static './img/about_us_hero-m.png' %}" alt="about us">
+</div>
                     <!-- PHOTOS -->
-                    <div class="about-story__images">
+                    <!-- <div class="about-story__images">
                         <div class="ab-s1"><img src="{% static './img/about1.png' %}" alt="about us"></div>
                         <div>
                             <div class="ab-s2"><img src="{% static './img/about2.png' %}" alt="about us"></div>
@@ -42,7 +47,7 @@
                             <div class="ab-s4"><img src="{% static './img/mesage-hart.png' %}" alt="about us"></div>
                             <div class="ab-s5"><img src="{% static './img/star_aboutus.svg' %}" alt="about us"></div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- TEXT -->
                     <div class="about-story__text">
@@ -71,7 +76,10 @@
                     <div>{% ftlmsg 'ooo_boze_text_about' %}</div>
                     <div>{% ftlmsg "nareshnio_end_text_about" %} </div>
                 </div>
-                <div class="about-gallery__grid">
+                <div class="about-img-main">
+                    <img src="{% static './img/about_us_main.png' %}" alt="about us">
+                </div>
+                <!-- <div class="about-gallery__grid">
 
                     <div class="about-gallery__grid-pic1"><img src="{% static './img/about4.png' %}" alt="about us">
                     </div>
@@ -84,8 +92,12 @@
 
                 </div>
                                                         <div class="about-gallery__grid-pic5"><img src="{% static './img/duble_star.png' %}" alt="about us">
-                    </div>
+                    </div> -->
             </section>
+                            <div class="about-img-main-m">
+                    <img src="{% static './img/about-us-main-m.png' %}" alt="about us">
+                </div>
+
         </div>
     </div>
     {% endblock content %}

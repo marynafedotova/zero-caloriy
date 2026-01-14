@@ -258,7 +258,7 @@
               <ul>
                 <li><a href="{% url 'goods:catalog' %}">{% ftlmsg  "all_goods_base" %}</a></li>
                 <li><a href="{% url 'main:about' %}">{% ftlmsg  "aboutus_base" %}</a></li>
-                <li><a href="#new-product-section">{% ftlmsg  "news_base" %}</a></li>
+                <li><a href="{% url 'main:index' %}#new-product-section">{% ftlmsg  "news_base" %}</a></li>
                 <li><a href="{% url 'main:policy' %}">{% ftlmsg  "privacy_policy_base" %}</a></li>
                 <li><a href="{% url 'main:offer' %}">{% ftlmsg  "public_offer_base" %}</a></li>
               </ul>
