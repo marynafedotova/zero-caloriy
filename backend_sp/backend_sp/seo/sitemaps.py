@@ -10,9 +10,9 @@ class StaticSitemap(Sitemap):
 
     def items(self):
         return [
-            "goods:catalog",        
-            "goods:create-order",  
-            "goods:search",          # якщо потрібна у sitemap          
+            "goods:catalog",
+            "goods:create-order",
+            "goods:search",
             "goods:cart",
             "main:index",
             "main:about",
@@ -33,7 +33,6 @@ class ProductSitemap(Sitemap):
         return Product.objects.all()
 
     def location(self, obj):
-        # повертає правильний урл для кожного продукту
         return reverse("goods:product", kwargs={"product_slug": obj.slug})
 
 
