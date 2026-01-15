@@ -19,10 +19,18 @@ from django.urls import path, include
 
 from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from backend_sp.seo.sitemaps import SITEMAPS
 
 urlpatterns = [
     # мови, які не потребують префікса (наприклад, адмінка чи API)
-]
+ path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": SITEMAPS, "template_name": "sitemaps/sitemap.xml"},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
+    ]
 
 urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
