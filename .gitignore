@@ -4,8 +4,13 @@ sp/
 zk/
 
 # Кеші Python
-pycache/
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+venv/
 
 # IDE / редактори
 .vscode/
@@ -14,3 +19,9 @@ pycache/
 db.sqlite3
 
 settings.py
+Dockerfile
+docker-compose.yml
+data.json
+documentation.txt
+
+copy\

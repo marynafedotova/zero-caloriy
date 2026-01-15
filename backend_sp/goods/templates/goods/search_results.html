@@ -16,7 +16,7 @@
     <h1 class="mb-4">{% ftlmsg "search_result" query=query %}</h1>
 
     {% if goods %}
-       <ul class="favlist-list" id="favlist-products" style="height: 426px;">
+       <ul class="favlist-list" id="favlist-products" style="max-height: 426px;">
             {% for result in goods %}
         <li class="product-card">
           <a href="{% url 'goods:product' product_slug=result.slug %}" class="product-link">

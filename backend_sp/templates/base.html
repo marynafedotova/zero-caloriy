@@ -180,9 +180,9 @@
                 <button type="submit" name="language" value="ru" class="btn-language">RU</button>
             {% endif %}
 
-            {% if LANGUAGE_CODE != 'en' %}
+            {% comment %} {% if LANGUAGE_CODE != 'en' %}
                 <button type="submit" name="language" value="en" class="btn-language">EN</button>
-            {% endif %}
+            {% endif %} {% endcomment %}
         </div>
     </form>
 </div>
@@ -258,7 +258,7 @@
               <ul>
                 <li><a href="{% url 'goods:catalog' %}">{% ftlmsg  "all_goods_base" %}</a></li>
                 <li><a href="{% url 'main:about' %}">{% ftlmsg  "aboutus_base" %}</a></li>
-                <li><a href="#new-product-section">{% ftlmsg  "news_base" %}</a></li>
+                <li><a href="{% url 'main:index' %}#new-product-section">{% ftlmsg  "news_base" %}</a></li>
                 <li><a href="{% url 'main:policy' %}">{% ftlmsg  "privacy_policy_base" %}</a></li>
                 <li><a href="{% url 'main:offer' %}">{% ftlmsg  "public_offer_base" %}</a></li>
               </ul>
