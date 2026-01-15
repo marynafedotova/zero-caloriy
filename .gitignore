@@ -4,8 +4,13 @@ sp/
 zk/
 
 # Кеші Python
-pycache/
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+venv/
 
 # IDE / редактори
 .vscode/

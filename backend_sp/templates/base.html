@@ -180,9 +180,9 @@
                 <button type="submit" name="language" value="ru" class="btn-language">RU</button>
             {% endif %}
 
-            {% if LANGUAGE_CODE != 'en' %}
+            {% comment %} {% if LANGUAGE_CODE != 'en' %}
                 <button type="submit" name="language" value="en" class="btn-language">EN</button>
-            {% endif %}
+            {% endif %} {% endcomment %}
         </div>
     </form>
 </div>
