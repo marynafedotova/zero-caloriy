@@ -1,0 +1,3034 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-12-29T13:06:46.208Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "object_repr": "Три шоколади маленький",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-12-29T13:08:01.387Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "object_repr": "Наполеон баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-12-29T13:09:08.835Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "object_repr": "Тирамісу сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Description\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-12-29T13:10:16.448Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "62365f58-7aec-4834-919a-8110a541dd79",
+    "object_repr": "Тирамісу баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-12-29T13:11:22.516Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "object_repr": "Панакота ягідна",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-12-29T13:17:43.381Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "object_repr": "Панакота з маракуєю",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-12-29T13:20:08.744Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "object_repr": "Наполеон сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-12-29T13:22:21.001Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "object_repr": "Медовик сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-12-29T13:25:01.561Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "object_repr": "Медовик баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-12-29T13:26:17.050Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "object_repr": "Брауні з вишнею баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Description ru\", \"Description en\", \"Additional info\", \"Additional info ru\", \"Additional info en\", \"Measure unit ru\", \"Measure unit en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-12-29T13:28:37.980Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "object_repr": "Три шоколади маленький",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info ru\", \"Additional info en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-01-05T11:19:09.399Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "object_repr": "Три шоколади маленький",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-01-05T17:26:06.889Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "object_repr": "Три шоколада",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-01-05T17:26:33.382Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "object_repr": "Наполеон в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\", \"Additional info ru\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-01-05T17:26:39.787Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "object_repr": "Тирамису сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Description uk\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-01-05T17:26:53.625Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "62365f58-7aec-4834-919a-8110a541dd79",
+    "object_repr": "Тирамису в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-01-05T17:27:14.812Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "62365f58-7aec-4834-919a-8110a541dd79",
+    "object_repr": "Тирамису в баночке",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-01-05T17:27:21.999Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "object_repr": "Ягодная Панакота",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-01-05T17:27:28.038Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "object_repr": "Панакота с маракуйей",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-01-05T17:27:33.818Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "object_repr": "Панакота с маракуйей",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-01-05T17:27:41.161Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "object_repr": "Наполеон сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Description uk\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2026-01-05T17:27:50.567Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "object_repr": "Медовик сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2026-01-05T17:27:59.326Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "object_repr": "Медовик в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2026-01-05T17:28:05.066Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "object_repr": "Брауни с вишней в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2026-01-06T15:37:05.250Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "object_repr": "Панакота ягодная",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name ru\", \"Name en\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2026-01-06T15:55:06.735Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "62365f58-7aec-4834-919a-8110a541dd79",
+    "object_repr": "Тирамису в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\", \"Size\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2026-01-06T15:55:23.726Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "object_repr": "Медовик в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\", \"Size\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2026-01-06T15:55:30.311Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "object_repr": "Медовик сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\", \"Size\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2026-01-06T15:55:34.795Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "object_repr": "Наполеон сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description uk\", \"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2026-01-06T15:55:54.142Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "62365f58-7aec-4834-919a-8110a541dd79",
+    "object_repr": "Тирамису в баночке",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2026-01-06T15:55:59.622Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "object_repr": "Тирамису сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description uk\", \"Additional info uk\", \"Size\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2026-01-06T15:56:04.497Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "object_repr": "Наполеон в баночке",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2026-01-06T15:56:08.241Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "object_repr": "Три шоколада",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2026-01-07T13:29:59.985Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "2026-01-07 11:41:28.133929+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2026-01-07T13:30:03.805Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "2026-01-07 11:37:06.271440+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2026-01-07T21:14:07.408Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "7",
+    "object_repr": "2026-01-07 20:57:50.345289+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2026-01-07T21:14:07.408Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "8",
+    "object_repr": "2026-01-07 21:10:35.063177+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2026-01-07T21:14:07.408Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "9",
+    "object_repr": "2026-01-07 21:11:04.794664+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2026-01-07T21:14:07.408Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "10",
+    "object_repr": "2026-01-07 21:11:09.888006+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2026-01-07T21:14:07.408Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "11",
+    "object_repr": "2026-01-07 21:13:11.724113+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2026-01-07T21:14:07.408Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "12",
+    "object_repr": "2026-01-07 21:13:17.246779+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2026-01-07T21:14:24.082Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "13",
+    "object_repr": "2026-01-07 21:14:11.877704+00:00",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2026-01-10T15:01:18.677Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "object_repr": "Тирамісу сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2026-01-10T15:01:38.218Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "62365f58-7aec-4834-919a-8110a541dd79",
+    "object_repr": "Тирамісу баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2026-01-10T15:02:09.411Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "object_repr": "Наполеон баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2026-01-10T15:02:29.361Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "object_repr": "Наполеон сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2026-01-10T15:03:00.985Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "object_repr": "Медовик сфера",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2026-01-10T15:03:23.975Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "object_repr": "Медовик баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2026-01-10T15:03:59.409Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "object_repr": "Панакота з маракуєю",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\", \"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2026-01-10T15:04:26.594Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "object_repr": "Панакота ягідна",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2026-01-10T15:05:01.230Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "object_repr": "Брауні з вишнею баночка",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Additional info uk\", \"About product uk\", \"About product ru\", \"About product en\"]}}]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$fvg9jVS3NgeclD9FcOpdD4$sWd7pQsPoHhF+faVRaS9jX+9LTitjzqWRIoj0vWjgDM=",
+    "last_login": "2026-01-12T18:48:10.660Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-18T22:24:23.492Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0orhf273mhtbpsjshh78tn1dvouwb7ep",
+  "fields": {
+    "session_data": "e30:1vfMGt:N3AvjWKEJt5DSIiUfgKGaxKC-vZUuu52rNaEQ1Uluy4",
+    "expire_date": "2026-01-26T18:04:07.038Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0pk2oj5pwqfj285fdqu98dad27i0p6bm",
+  "fields": {
+    "session_data": "e30:1vfQpk:Gy6eC3JLLu-1fRSA0gJTe0yjqtIJgUW0jTv-GDOnGzc",
+    "expire_date": "2026-01-26T22:56:24.485Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0y8fn9sz0c2oc3av0cipeqkg9q0mzjk9",
+  "fields": {
+    "session_data": "e30:1vfRPg:xpqgjYTbPTZVXUXKhjQYAiaYi1T8-JYYNFO9zP00JTE",
+    "expire_date": "2026-01-26T23:33:32.563Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "22hkgwg9ysrigaanaiygjjtsp2ifhziz",
+  "fields": {
+    "session_data": "e30:1vfWpP:wq37l_GQadiiPk1drJcUzdJXgz1MuOW-tAgZ6StRxsc",
+    "expire_date": "2026-01-27T05:20:27.512Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2hslp53i9h5cx4qxkpnl1ham6wib48s5",
+  "fields": {
+    "session_data": "e30:1vfMHZ:ZWR-SgcdW6looSouJCiXwHk1sJDHTKYwlC28yqc9I6M",
+    "expire_date": "2026-01-26T18:04:49.230Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "31kagrp95rrgva2212d5es0j6mglez8g",
+  "fields": {
+    "session_data": "e30:1vgJE6:WVeyfEzk1xlE5ZYT_bQ7BC3ZBje6fDOCVO-BdFSQXWY",
+    "expire_date": "2026-01-29T09:01:10.707Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "36npnqwsejd0yevd0sbpqcz82unvee4w",
+  "fields": {
+    "session_data": "e30:1vgIHt:SbsC9VhJ9YDj8mxbmtsScQTWy8t0h6Z9zydeSPVY03w",
+    "expire_date": "2026-01-29T08:01:01.422Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3gbysr4xj373an3cse8cg73zc89aitbl",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP-FsyEsXWjx6L3f0OzykKqBpLQn478bkh70OjOZt1jo2PNytLgtaxBXAeLyy5j8M5YuwoPKvUpfy76tLHsiT9vkXEN83c72b5Cp5b51kwNmRuOMDQNiAsaEThOSYcAhsFI-atBAijj6pDCqEZ11niY7is8X0b83jQ:1vcUp0:XAHSqs-kMb14CWOQcWKiblEB6GZHY88Cxyyg2Cv9hlo",
+    "expire_date": "2026-01-18T20:35:30.115Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3hxrl5wq64rs977ijahlxarsu13jqbl1",
+  "fields": {
+    "session_data": "e30:1vfl4F:8iRPVSfp2iqvNDI0In-RTlynmu_1jUr2YCWfwkksBuo",
+    "expire_date": "2026-01-27T20:32:43.937Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5cnrf8klxo65fo5s55mv4fdblxe11jk0",
+  "fields": {
+    "session_data": "e30:1vgCO1:pqcPzgRcW6hWo6cB_tPYqFOEf0ChEsPBrIG6u1CX8mU",
+    "expire_date": "2026-01-29T01:42:57.705Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5ygk1e61hzjztk3fz3qlfnqdutumltam",
+  "fields": {
+    "session_data": "e30:1vfMaE:Ppu5W0_mZpsE4fwfE3F5awdc76tF029ja7Y0_CRWFKU",
+    "expire_date": "2026-01-26T18:24:06.202Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5zuvn680w8s5jdq9dte3i8n6eltgwns2",
+  "fields": {
+    "session_data": "e30:1vfX7i:e4MLq_-MjpjDxQ1HCf6mFPHwTd4rIS3HY_nPD5AzqRk",
+    "expire_date": "2026-01-27T05:39:22.288Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6lrct0emol65lbhpbq6f6amjabvfsue3",
+  "fields": {
+    "session_data": "e30:1vdlyL:T_S-2lOcEs3uApCPun61VhaHFJbQd62L06uUgVBqVyg",
+    "expire_date": "2026-01-22T09:06:25.470Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6nhwspa6vd5fhiqevzc18ukwnzjb5u2c",
+  "fields": {
+    "session_data": "e30:1vg1e8:wWJQq1uOyQOVp_-qit6tkPl2rWPvaY9gK-X7y2AqR-E",
+    "expire_date": "2026-01-28T14:14:52.453Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6sc801f8y72z7bpw7d5jxkpd8aefls66",
+  "fields": {
+    "session_data": "e30:1vfbqB:7gWljBUBMTwl-dO944QT08RXnFJfV5yIx-_SNbXdi28",
+    "expire_date": "2026-01-27T10:41:35.588Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "73whdpdph0t7uv1rordu23q78u4zewb4",
+  "fields": {
+    "session_data": "e30:1vfQre:cwH-cv8AaIA1YDmjFndefRaTE1Tn1-2jST1ffCO4vtE",
+    "expire_date": "2026-01-26T22:58:22.797Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7lirt88a5ftbgdxjc96f5qyrslzzt20t",
+  "fields": {
+    "session_data": "e30:1vfMJl:7KRKdAJGeXZp2eCc94iCGk7_qb2e-9zkGEYTNtd2UQY",
+    "expire_date": "2026-01-26T18:07:05.547Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7vusk21l1ioczmowk6ku71tgsb92i1bx",
+  "fields": {
+    "session_data": "e30:1vfW1h:r4VpZNm1kKQ-Ub4yv0Qj5cnHv2nRTZi8oBfsYCwUea0",
+    "expire_date": "2026-01-27T04:29:05.659Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7x8bkzleqcbuy08s7k7bcmt4yw9o3phn",
+  "fields": {
+    "session_data": "e30:1ve9if:qgnjxvcpGIaP018inulHmRWEqXpWDY-W0Ag5oOe9t6o",
+    "expire_date": "2026-01-23T10:27:49.169Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "82arsxkfg1o052jayovtkznj53ejch4j",
+  "fields": {
+    "session_data": "e30:1vgKdS:Udv9Gv6BWVEWtrxbYqS0IDznRtfXpMVFvHoZ7C1hAic",
+    "expire_date": "2026-01-29T10:31:26.548Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8gv3msqozge6j92hx9elwd8ahjf70wkb",
+  "fields": {
+    "session_data": "e30:1vfPTq:LMtuB7g72O_G1SuwdAZ_0zs6BDr2pFG5AQTtffoVcRQ",
+    "expire_date": "2026-01-26T21:29:42.033Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+  "fields": {
+    "session_data": "e30:1vgL0j:mfJ6awXQ8ptPXv4QMlka7tQH_aDbUkpJKxm0yf24Kh8",
+    "expire_date": "2026-01-29T10:55:29.740Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8qulvs7yyq7wk1na4h7als2btmm1hmr8",
+  "fields": {
+    "session_data": "e30:1vgBh5:xFvVWfsVFPN28URTmbPPG_w7sXXMVcj0OIDT66CULg4",
+    "expire_date": "2026-01-29T00:58:35.161Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9kyudvwh1bf53e7nr359ge0y6apb03y4",
+  "fields": {
+    "session_data": "e30:1vfVtP:zPS4XkaOxdJnTY_aCyYCigxYC0ifoNo3QAzdXjWV-qw",
+    "expire_date": "2026-01-27T04:20:31.948Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9lh4jbrrxfh1i7l1i644e57at7v3sfpo",
+  "fields": {
+    "session_data": "e30:1ve9H4:XZK8rZMpsZDklom6VeSi195pOEl3ulv8haGVoe2vDh4",
+    "expire_date": "2026-01-23T09:59:18.450Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9w3blat6sznzsq340ehbq89kqme90o41",
+  "fields": {
+    "session_data": "e30:1vfL5x:nlU0LW0lFBgu9gJMVPEL5jiHSsIceYAnxGz0imtuzYo",
+    "expire_date": "2026-01-26T16:48:45.335Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "abapjahjgjstgzck980t787hmjhqmg3a",
+  "fields": {
+    "session_data": "e30:1vfMKb:hwp0RdkIqg864AF3SfyTR2w5wAd44889pzG6boxR0s4",
+    "expire_date": "2026-01-26T18:07:57.235Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "adnray9nw12evga99hafioyf68zw0x12",
+  "fields": {
+    "session_data": "e30:1vgKwS:vgFib7_kuA_ODFQYNJpE6P1jEi1lk8RSpfA9_G_jaGc",
+    "expire_date": "2026-01-29T10:51:04.971Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "aesr09q526koadifowmg56eerftrudyc",
+  "fields": {
+    "session_data": "e30:1vgD8o:PuUDgPzdrdA1rofTR9SSPrMhvgWH5O98cW05uOgSuxU",
+    "expire_date": "2026-01-29T02:31:18.867Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ain0h0s9j4igb7w7a2gbutquy8s4yzrf",
+  "fields": {
+    "session_data": "e30:1vfM01:LX0wLm6qQf84xPiSfdCR00F8lCR0tddmI_XMHhMOdl8",
+    "expire_date": "2026-01-26T17:46:41.233Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "auxkssmckzkmv8f1dyoh9dd1y6r6bite",
+  "fields": {
+    "session_data": "e30:1vfK7F:Bl0W19ubEZgGaw9DacybzzoUthwQhRVVK__YA-x546Y",
+    "expire_date": "2026-01-26T15:46:01.208Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "blw9ef1b29325gfgpe58qiu8wnm6wbfq",
+  "fields": {
+    "session_data": "e30:1vfMJg:rrnLCtMZK2EKRyWJ7616t6qCgp5ZhjtNHHU_GT5PR5c",
+    "expire_date": "2026-01-26T18:07:00.656Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bvni5bp3hzwobohh1lpfarhz0lvoo3bl",
+  "fields": {
+    "session_data": "e30:1vfIlG:EBi59-ad2V-sze9CNQagpGZjgZ3KW1PWV88WqsHQlJA",
+    "expire_date": "2026-01-26T14:19:14.401Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "c8njv2qhgka9y03mu0zh0z0bbkv6inhp",
+  "fields": {
+    "session_data": "e30:1vfJoy:gXr9G9ddMlga41ZH87KuviavFCpu4ZwgTEC3jT9zaRw",
+    "expire_date": "2026-01-26T15:27:08.098Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ceqwmgnbjxlcn8hsjg74desbb43xjey7",
+  "fields": {
+    "session_data": "e30:1ve6eU:t-gOQ4HXhtEXjcKisMwIt1i4EfZDriRnVCwCf_w1o9I",
+    "expire_date": "2026-01-23T07:11:18.794Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d3q7xzflhouhn113e1qjiclc63as0pwj",
+  "fields": {
+    "session_data": "e30:1vfPdf:ygIVzkvIgLu_x3y8dy_D2vD27jcTuWx9CHaS0AOsL4U",
+    "expire_date": "2026-01-26T21:39:51.194Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dv93jvf7nqoyb5ybjzjuispw1mbwbm24",
+  "fields": {
+    "session_data": "e30:1veXmG:IZE4r9q5b_RNHhOVwDDfKbJHNf2wnySU4qHfKfunvw0",
+    "expire_date": "2026-01-24T12:09:08.145Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ee6li9zar11hlcv80mjwfod8gaig27tu",
+  "fields": {
+    "session_data": "e30:1vfMKg:bRkaiOW9BA4UwbjbRMlkK-oRhfOSFfUyAiSdZY7KnvY",
+    "expire_date": "2026-01-26T18:08:02.776Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "eh1p2n93l23bfzkilmw1qz7nwnnf0w2h",
+  "fields": {
+    "session_data": "e30:1vgJV6:hDsOVwiJ1HudIu0WGhqSWn_tyRDDlgMC9vdH5ikt9wE",
+    "expire_date": "2026-01-29T09:18:44.117Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fdjqvpkt0hhlw86hk071ox3ac6hhhek3",
+  "fields": {
+    "session_data": "e30:1vfMaE:Ppu5W0_mZpsE4fwfE3F5awdc76tF029ja7Y0_CRWFKU",
+    "expire_date": "2026-01-26T18:24:06.277Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fqhkcjg97es0ecr3oqwdpu2r0wqn0l16",
+  "fields": {
+    "session_data": "e30:1vfMGD:I7VQJITDSGory66SdCgEMrGbATPq6091iY7GZYWT9jU",
+    "expire_date": "2026-01-26T18:03:25.586Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "g90ctj4yjl9b5n9h5e0yj5hr687o8jg9",
+  "fields": {
+    "session_data": "e30:1vfc08:QVt8oUvAV1WQhfs5r-pCHvzpmmbsHBg6us5_haTQtJs",
+    "expire_date": "2026-01-27T10:51:52.359Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gb8y6ltvgv8g2rqx5zpupk7dgei9ps05",
+  "fields": {
+    "session_data": "e30:1vfMIu:FSQDf2BbDO91E0QF1VZ67zWQH5IJdF7Re2_y0GhAm8U",
+    "expire_date": "2026-01-26T18:06:12.386Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gdkcuak50am8dqkaylr1ooel9hai43af",
+  "fields": {
+    "session_data": "e30:1vfXS3:_d98fppXQueyn7ldWje_7uIYHg6IlSfjYakxob1feDs",
+    "expire_date": "2026-01-27T06:00:23.989Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h9l1h8m1zbdhuky55zk4ijhh7tejzbzn",
+  "fields": {
+    "session_data": "e30:1vfKaS:cMXIjVJZstQWW7YvFll8EM9rZDuJpBsohZCEi8XB16A",
+    "expire_date": "2026-01-26T16:16:12.895Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hcp8b6uzfpyotwc3obv11jggytsg0at9",
+  "fields": {
+    "session_data": "e30:1vgCuL:NMXDiP_YL6ltCNjDdLmu6ygowCbeLwdo0QNn5bmdTZk",
+    "expire_date": "2026-01-29T02:16:21.007Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hvlwl1nrbqoecwcd05iqvp45wveyclpd",
+  "fields": {
+    "session_data": "e30:1vfIlw:xHzNySktCjuVERc8YbUye38AJSBo7_tsPChS2rqji1k",
+    "expire_date": "2026-01-26T14:19:56.654Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i5xg72zn26yqcz95n085d5byoz1mudqr",
+  "fields": {
+    "session_data": "e30:1vfM9C:6sRYvSc6pP9yP5OyyAiMprJtOv47SV2tl4HyO2dPJEo",
+    "expire_date": "2026-01-26T17:56:10.773Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ids90mzhaub3oiahh68dv9yf1z2gd9vb",
+  "fields": {
+    "session_data": "e30:1vfJFg:1dA39VQhcbsGmtna4amdJVF6EuvVShhklGOVFLx4WBU",
+    "expire_date": "2026-01-26T14:50:40.028Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "io6frozh98hsonp490fkcpnw6tmvix0a",
+  "fields": {
+    "session_data": "e30:1vfMZE:8oBp-cBxE8abw5UE3hA22m_eQkuQ9RbRlUgcygUhIh0",
+    "expire_date": "2026-01-26T18:23:04.858Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "jilmd4dvjt3o4ex9vn01buwwiyl8id0k",
+  "fields": {
+    "session_data": "e30:1vfMKa:_u3qYob7PIS6UVlEOBnKfXzcp5t9LKr8yNC9nFhZAdA",
+    "expire_date": "2026-01-26T18:07:56.920Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "jl6pes2mas3flsdutrqu678c91k9a226",
+  "fields": {
+    "session_data": "e30:1vgAfk:-Qmk-haHyukfGpIEQvJeH1VkGnfMB-Mmg48Y-obPUIM",
+    "expire_date": "2026-01-28T23:53:08.193Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kix4tjp8e9wdxuctt5biup5usg1k8mgz",
+  "fields": {
+    "session_data": "e30:1vfMWb:XzDOx5SObOxuHgZs6lXoTa9-h-4fX062eURcpKjf2A4",
+    "expire_date": "2026-01-26T18:20:21.552Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kjdy6dyn3spb7as08abaurhhei0252fx",
+  "fields": {
+    "session_data": "e30:1vgDi0:5HuldU4T-YGMQYsmWuNSArNmO2RdLRiZXwLKaT9hghg",
+    "expire_date": "2026-01-29T03:07:40.060Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "krp6odsadyvku4131bh12havmticsivb",
+  "fields": {
+    "session_data": "e30:1vfLDV:CYun9C7WdjxaxzmqJkuqfLkE_9tzT8pyZPqTqa9Glo4",
+    "expire_date": "2026-01-26T16:56:33.007Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kttgc4g5qzrv8ylviwfuoce0wh5ih316",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP-FsyEsXWjx6L3f0OzykKqBpLQn478bkh70OjOZt1jo2PNytLgtaxBXAeLyy5j8M5YuwoPKvUpfy76tLHsiT9vkXEN83c72b5Cp5b51kwNmRuOMDQNiAsaEThOSYcAhsFI-atBAijj6pDCqEZ11niY7is8X0b83jQ:1vaByT:7bgCXjpAcn6ZYMQOIKMgt8sBRExQp53Xdfs10Z1g3yo",
+    "expire_date": "2026-01-12T12:03:45.756Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kwkrl7s1nrmr83iar3t7l3jgfdqr0ab2",
+  "fields": {
+    "session_data": "e30:1vfccv:9Nl_TyK9UHC83Eevr6Ekp-j8FANFykoiMGFTwzwXiDU",
+    "expire_date": "2026-01-27T11:31:57.861Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "l6j9ehhh0uj61sign8p61mjelfiogmfm",
+  "fields": {
+    "session_data": "e30:1vfMY8:P5dc0LSkkxsy4SvdH5NaMvpKeziO199cz4ufFRQLkrY",
+    "expire_date": "2026-01-26T18:21:56.300Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lpxb5tjxzvfu3mx1xxk97s3juc0x5gka",
+  "fields": {
+    "session_data": "e30:1vgJap:5nFanpvY8s2alNSeXTeqDaGVN-cbyqzoxDX-koRd2t4",
+    "expire_date": "2026-01-29T09:24:39.276Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "m6byl8ldqvg9162gkpvddpedebsujasn",
+  "fields": {
+    "session_data": "e30:1vfQPv:iRYRkpHiGMKZk1AMqH1ELVD-NuiBOrmMB5OEHDZuzGQ",
+    "expire_date": "2026-01-26T22:29:43.616Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mnbd62h5ncb2uaq0xgp2vnrpkx2tpffp",
+  "fields": {
+    "session_data": "e30:1vfRPb:KWwYc08HgYev8xXoUlC4MmtN04CoFxehaSPTO3pWRQE",
+    "expire_date": "2026-01-26T23:33:27.597Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n13w68c545fse3xwkhnoc9bulk69x105",
+  "fields": {
+    "session_data": "e30:1vgJJq:CT3W6VmYNuV9l4BByfgvh_fv8b1yTQqBAkw0jN_OK8o",
+    "expire_date": "2026-01-29T09:07:06.644Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nkzcgvskc17dshe81ja2m3glxytfegee",
+  "fields": {
+    "session_data": "e30:1vfIlF:R_jrYlIo8-MQ-5bPeyoAF0HQZDh86hvBvFoK7_aesVg",
+    "expire_date": "2026-01-26T14:19:13.457Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "oinx8dkvbt3lasc2ikazcwjym91mxxrz",
+  "fields": {
+    "session_data": "e30:1vgIxM:sP6D7JruCKFCpW1xe5hMgGlGPpck5iTKr5tvH0_ipGg",
+    "expire_date": "2026-01-29T08:43:52.135Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "osr6piltin7wk4ud7riys5okxr4mftzi",
+  "fields": {
+    "session_data": "e30:1vfR38:fPYwo0FBCFhNxaO7NUKMkNEHBx6bEl6MqM9-rHw2D7w",
+    "expire_date": "2026-01-26T23:10:14.296Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "owd3jq6jnv1eo2xgryauq6zuyvmxnc6a",
+  "fields": {
+    "session_data": "e30:1vgJgu:XJBQO1QYeVQtUMqnMYs68jzdplB0vWLPrS_OeXu9fzA",
+    "expire_date": "2026-01-29T09:30:56.144Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p424wnfmlw2z4wzn8t9att88v20awbaf",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP-FsyEsXWjx6L3f0OzykKqBpLQn478bkh70OjOZt1jo2PNytLgtaxBXAeLyy5j8M5YuwoPKvUpfy76tLHsiT9vkXEN83c72b5Cp5b51kwNmRuOMDQNiAsaEThOSYcAhsFI-atBAijj6pDCqEZ11niY7is8X0b83jQ:1vfMxW:GSr_Mz7_Sxrn_ASbTgDHhj9V79SCLNjfQPFiN6wKhf8",
+    "expire_date": "2026-01-26T18:48:10.664Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p8lnkckylicx3cyb9w3n2y46cym84798",
+  "fields": {
+    "session_data": "e30:1vgARR:ElOOdwKdBuv_NTAFIPItOMUir_XPZB9ZaQXNpEEB3o8",
+    "expire_date": "2026-01-28T23:38:21.211Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pa7y7hbn8g01egvwon8inpre1ol6ewkq",
+  "fields": {
+    "session_data": "e30:1vfLg6:0yKvlXqFJ3UQHmToOO0ygJ8xFTXrNX6gRXeeG0QXqfI",
+    "expire_date": "2026-01-26T17:26:06.607Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pgo9lkgxva1f7iyu3mfogffhz4dchu62",
+  "fields": {
+    "session_data": "e30:1vgKnA:Cx4lVb0GJkxIEiZFfpmWbiWFOEdHDMRUjnmKae-MiPc",
+    "expire_date": "2026-01-29T10:41:28.397Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qmajkwkhpm09g4xdcr9udxtinjpk45nd",
+  "fields": {
+    "session_data": "e30:1vgBab:5EGlFc8j18vSOPxnp8Y9rqmjhkdN3z-YkMwFHRWELTs",
+    "expire_date": "2026-01-29T00:51:53.968Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sg6apd1x3bwrd0j5jqz4w298bae0siwt",
+  "fields": {
+    "session_data": "e30:1vew3r:8VOxWZmTNqhZcH0I23ayTwsb_39A5OlR2XD4b37gRMI",
+    "expire_date": "2026-01-25T14:04:55.597Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tacrs76kqejw527i3rmo855rz30glzlt",
+  "fields": {
+    "session_data": "e30:1vfMFT:_SvMT8X8n7MLJAI4aYxr1x1adTJzlEMhK_5BtLMWRb0",
+    "expire_date": "2026-01-26T18:02:39.135Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tmyvzo648xltn2902cg4baa82xxnqbgi",
+  "fields": {
+    "session_data": "e30:1vfMXY:qK28Z_sJcaQl5Q750Ig5QfNbPuzgfOWg3FhTenmcVc0",
+    "expire_date": "2026-01-26T18:21:20.473Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u229tp4emh1ot7zj9m9a921aulofyf12",
+  "fields": {
+    "session_data": "e30:1vg7cX:irDsnkXotUujxfFf5PBA3hRtUiuddUGfAWEPiUXEXC8",
+    "expire_date": "2026-01-28T20:37:37.102Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "uojemu8k462ywoe3asrfjwmwwh4jptys",
+  "fields": {
+    "session_data": "e30:1vfWzr:9pqSb5JXQuZMO1KpiskRmnySamNOylYWogQeDrTWK2s",
+    "expire_date": "2026-01-27T05:31:15.593Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "usuil0kobqldqmsx1jqgyqmir64evcq2",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP-FsyEsXWjx6L3f0OzykKqBpLQn478bkh70OjOZt1jo2PNytLgtaxBXAeLyy5j8M5YuwoPKvUpfy76tLHsiT9vkXEN83c72b5Cp5b51kwNmRuOMDQNiAsaEThOSYcAhsFI-atBAijj6pDCqEZ11niY7is8X0b83jQ:1veaQS:Lto3McePYfDqEsXAutKmYI0tMYf-zKa-5Zy0geQUN5Y",
+    "expire_date": "2026-01-24T14:58:48.456Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vlpnc26qycb45ik91mav8i5p7umwo80j",
+  "fields": {
+    "session_data": "e30:1vfIoO:Tru7D_wSLuL05t6oAsUuk-k2Ls28LGYktseKJ73T0fY",
+    "expire_date": "2026-01-26T14:22:28.618Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w2zdy4ado7892ykrhmyh2wdv0osdrh8k",
+  "fields": {
+    "session_data": "e30:1vfcJM:seXWRDAQg2i5UDZ-0nCoImxexZQ1L__kYx2AM4Xsi8A",
+    "expire_date": "2026-01-27T11:11:44.218Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w81xl5zr7rd60fjeqt3d4ss7r41wel95",
+  "fields": {
+    "session_data": "e30:1vgJPW:z9cSUmQ_ofvh-aN-tQjqRVCT2nYXisaW9LFrd9mMBKo",
+    "expire_date": "2026-01-29T09:12:58.737Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xjy4rr7xrr5cmfyyypsp2xww25zdz01m",
+  "fields": {
+    "session_data": "e30:1vfMHv:tmiATmNksGQaSz8YFpY5yrzPQuUU_nHhym_qmOFvNes",
+    "expire_date": "2026-01-26T18:05:11.098Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xmzn49y0kyxhcez482087o2mz7yx81dn",
+  "fields": {
+    "session_data": "e30:1vfL5o:QGVuQ21dHbIIqbVXEh5S3mdD7rnXt5SIYVFgrbdTTkU",
+    "expire_date": "2026-01-26T16:48:36.263Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xrgaqotpfvd7hro9rwb3ao5adgvgzi9i",
+  "fields": {
+    "session_data": "e30:1vfXIc:pDWiII3IJgw6KfO0kD-xj1BKL5JQn9Nyyq8_sVZA-gg",
+    "expire_date": "2026-01-27T05:50:38.460Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "y6s3wgceq9fczp7q70ezkb48wk8jd4wy",
+  "fields": {
+    "session_data": "e30:1vfPw1:mUh5dLN1UFJOuE7OapzjZhJg0JY74GJI0sIZf6FCFWE",
+    "expire_date": "2026-01-26T21:58:49.809Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yhatei3du634zzhy2mf931i2zn7ne2no",
+  "fields": {
+    "session_data": "e30:1vfXw4:3zuohUHtaRmfG6I4AM0X2u2mKa1ZAKPHlxRbKo3Q_PE",
+    "expire_date": "2026-01-27T06:31:24.344Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ypm2wfyntgiqn4lav7l3ohy4ftqi47hw",
+  "fields": {
+    "session_data": "e30:1vfMJ7:j6DlDSNk1UIPUuDVkmkGDPzDgm2hgNjoVhrDC-po9C0",
+    "expire_date": "2026-01-26T18:06:25.321Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yyiixo58ey47fzuffx72qwwzuocs2xq5",
+  "fields": {
+    "session_data": "e30:1vecsY:14l6Dx8o0mDoytPaPQTMrdfS5lQvKaOW_8e8iZzHK0c",
+    "expire_date": "2026-01-24T17:35:58.465Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yyqwlejdind6180fc2f7d10kory9bdga",
+  "fields": {
+    "session_data": "e30:1vfMEo:UMvictlTikEQC8PQ14LY9XgaO28daMdp83TCjtuMAWU",
+    "expire_date": "2026-01-26T18:01:58.480Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "z14uii9mxlrjl390usp7r86mpm0m1i11",
+  "fields": {
+    "session_data": "e30:1vgBnN:HbH5YKtNQmR84gVMNPJQfEc_YYnf_bFLrSUBV3eLEsE",
+    "expire_date": "2026-01-29T01:05:05.467Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "z9ac1pxm44nufn44bbuljhu98fzpayqt",
+  "fields": {
+    "session_data": "e30:1vgHZL:IWuP3nKGwet-jiTj-sGGkaOuYHHveVtwhvA5JM_Q06w",
+    "expire_date": "2026-01-29T07:14:59.511Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zgehvgsj1xo6fq5sx340esy4560yy40s",
+  "fields": {
+    "session_data": "e30:1vfl5J:4f8XeyTZiT67yq65IRIG7UqXCjANax-t85sLC8xJyUw",
+    "expire_date": "2026-01-27T20:33:49.841Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zrkkyn4fu9jpj4aoealinmlhe24arc4g",
+  "fields": {
+    "session_data": "e30:1vfQqy:omXV9omFid0Gm1eu6hvaNIZnL3ajoaM1waPzF7WGmcY",
+    "expire_date": "2026-01-26T22:57:40.915Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zsx1cx9iwrqchecy1yl4qjnck0ehuwax",
+  "fields": {
+    "session_data": "e30:1vgL5f:zY3AHLAThGwljLYsB53kTIHHW0btuZkyeHbyjxDl1Ow",
+    "expire_date": "2026-01-29T11:00:35.080Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ztlk28wq39g2745zvqpihqgrrq0x18vb",
+  "fields": {
+    "session_data": "e30:1vfIld:md-8wNB436CYZKe7GZgizeY6aQ0t4UXMr8MRsixgH04",
+    "expire_date": "2026-01-26T14:19:37.138Z"
+  }
+},
+{
+  "model": "goods.group",
+  "pk": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+  "fields": {
+    "name": "Десерти",
+    "slug": "item-189863e2",
+    "parent": null,
+    "order": 0,
+    "is_included_in_menu": true,
+    "is_group_modifier": false,
+    "description": null,
+    "additional_info": null,
+    "code": "",
+    "image_links": [],
+    "tags": [],
+    "seo_title": null,
+    "seo_description": null,
+    "seo_text": null,
+    "seo_keywords": null
+  }
+},
+{
+  "model": "goods.productcategory",
+  "pk": "515543a7-6144-75e9-019a-efa5643ae4e5",
+  "fields": {
+    "name": "Пакування",
+    "slug": null
+  }
+},
+{
+  "model": "goods.productcategory",
+  "pk": "55d94a1e-71ea-5b3c-019a-1db89196cd88",
+  "fields": {
+    "name": "Сировина вітрина",
+    "slug": null
+  }
+},
+{
+  "model": "goods.productcategory",
+  "pk": "5e9218ff-0c76-5e32-019a-12b084571318",
+  "fields": {
+    "name": "Напої",
+    "slug": null
+  }
+},
+{
+  "model": "goods.productcategory",
+  "pk": "5e9218ff-0c76-5e32-019a-12b084571319",
+  "fields": {
+    "name": "Десерти",
+    "slug": null
+  }
+},
+{
+  "model": "goods.productsize",
+  "pk": "2d8738dc-375b-4b27-91e1-0347790885d2",
+  "fields": {
+    "name": "Баночка",
+    "is_default": false
+  }
+},
+{
+  "model": "goods.productsize",
+  "pk": "989ca551-7205-4a9e-99ec-1bb7da9ae068",
+  "fields": {
+    "name": "Сфера",
+    "is_default": false
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+  "fields": {
+    "code": "00094",
+    "name_uk": "Наполеон баночка",
+    "name_ru": "Наполеон в баночке",
+    "name_en": "Napoleon in a jar",
+    "slug": "napoleon-in-a-270",
+    "description_uk": "борошно, масло вершкове, яйця, молоко, стевія, крохмаль",
+    "description_ru": "мука, сливочное масло, яйца, молоко, стевия, крахмал",
+    "description_en": "flour, butter, eggs, milk, stevia, starc",
+    "additional_info_uk": "Калорії: 240\r\nБілки: 6,2 \r\nЖири: 15,2 \r\nВуглеводи: 24 \r\nХО: 2",
+    "additional_info_ru": "Калории: 240\r\nБелки: 6,2 г\r\nЖиры: 15,2 г\r\nУглеводы: 24 г\r\nХЕ\r\n: 2",
+    "additional_info_en": "Calories: 240\r\nProteins: 6.2 g\r\nFats: 15.2 g\r\nCarbohydrates: 24 g\r\nBU: 2",
+    "about_product_uk": "Низькокалорійний класичний десерт. Ніжні коржі та крем на знежирених продуктах дарують ту саму класику — але в легшому форматі. Ідеальний.",
+    "about_product_ru": "Низкокалорийный классический десерт. Нежные коржи и крем на обезжиренных продуктах дарят ту самую классику — но в более лёгком формате. Идеален.",
+    "about_product_en": "A low-calorie classic dessert. Delicate cake layers and cream made with low-fat ingredients deliver the same beloved classic — in a lighter format. Perfect.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.27,
+    "order": 1,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/953cf64c-7a2c-40aa-8c3b-386fbbffa5d4.png",
+    "price": "220.00",
+    "size": "2d8738dc-375b-4b27-91e1-0347790885d2",
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:02:09.409Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "15de4865-23b7-4894-b242-1ed04182a72b",
+  "fields": {
+    "code": "00099",
+    "name_uk": "Медовик сфера",
+    "name_ru": "Медовик сфера",
+    "name_en": "Honey Cake Sphere",
+    "slug": "honey-cake-416",
+    "description_uk": "масло вершкове, мед, яйця, сметана, борошно, стевія, сода, вершки",
+    "description_ru": "сливочное масло, мёд, яйца, сметана, мука, стевия, сода, сливки",
+    "description_en": "butter, honey, eggs, sour cream, flour, stevia, baking soda, cream",
+    "additional_info_uk": "Калорії: 227\r\nБілки: 6,6\r\nЖири: 17,7\r\nВуглеводи: 36\r\nХО: 3",
+    "additional_info_ru": "Калории: 227\r\nБелки: 6,6 г\r\nЖиры: 17,7 г\r\nУглеводы: 36 г\r\nХЕ: 3",
+    "additional_info_en": "Calories: 227\r\nProteins: 6.6 g\r\nFats: 17.7 g\r\nCarbohydrates: 36 g\r\nBU: 3",
+    "about_product_uk": "Солодкий смак без шкоди для фігури! Легкі коржі, ніжний крем роблять цей десерт ідеальним вибором для тих, хто цінує смак і здоров’я одночасно. Низька калорійність.",
+    "about_product_ru": "Сладкий вкус без вреда для фигуры! Лёгкие коржи и нежный крем делают этот десерт идеальным выбором для тех, кто ценит вкус и здоровье одновременно. Низкая калорийность.",
+    "about_product_en": "Sweet taste without harming your figure! Light cake layers and delicate cream make this dessert an ideal choice for those who value both flavor and health. Low in calories.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.416,
+    "order": 7,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/2159676d-5a1c-4ea0-b012-4e8929d0233a.png",
+    "price": "330.00",
+    "size": "989ca551-7205-4a9e-99ec-1bb7da9ae068",
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:03:00.984Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+  "fields": {
+    "code": "00098",
+    "name_uk": "Медовик баночка",
+    "name_ru": "Медовик в баночке",
+    "name_en": "Honey Cake in a Jar",
+    "slug": "honey-cake-in-a-230",
+    "description_uk": "масло вершкове, мед, яйця, сметана, борошно, стевія, сода, вершки",
+    "description_ru": "cливочное масло, мёд, яйца, сметана, мука, стевия, сода, сливки",
+    "description_en": "butter, honey, eggs, sour cream, flour, stevia, baking soda, cream",
+    "additional_info_uk": "Калорії: 227\r\nБілки: 6,6\r\nЖири: 17,7\r\nВуглеводи: 36\r\nХО: 3",
+    "additional_info_ru": "Калории: 227\r\nБелки: 6,6 г\r\nЖиры: 17,7 г\r\nУглеводы: 36 г\r\nХЕ: 3",
+    "additional_info_en": "Calories: 227\r\nProteins: 6.6 g\r\nFats: 17.7 g\r\nCarbohydrates: 36 g\r\nBU: 3",
+    "about_product_uk": "Солодкий смак без шкоди для фігури! Легкі коржі, ніжний крем роблять цей десерт ідеальним вибором для тих, хто цінує смак і здоров’я одночасно. Низька калорійність.",
+    "about_product_ru": "Сладкий вкус без вреда для фигуры! Лёгкие коржи и нежный крем делают этот десерт идеальным выбором для тех, кто ценит вкус и здоровье одновременно. Низкая калорийность.",
+    "about_product_en": "Sweet taste without harming your figure! Light cake layers and delicate cream make this dessert an ideal choice for those who value both flavor and health. Low in calories.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.23,
+    "order": 8,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/7efc3d63-8adf-4715-9fba-2515f165eea5.png",
+    "price": "180.00",
+    "size": "2d8738dc-375b-4b27-91e1-0347790885d2",
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:03:23.974Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+  "fields": {
+    "code": "00096",
+    "name_uk": "Наполеон сфера",
+    "name_ru": "Наполеон сфера",
+    "name_en": "Napoleon Sphere",
+    "slug": "napoleon-416",
+    "description_uk": "борошно, масло вершкове, яйця, молоко, стевія, крохмаль",
+    "description_ru": "мука, сливочное масло, яйца, молоко, стевия, крахмал",
+    "description_en": "flour, butter, eggs, milk, stevia, starch",
+    "additional_info_uk": "Калорії: 240\r\nБілки: 6,2\r\nЖири: 15,2\r\nВуглеводи: 24\r\nХО: 2",
+    "additional_info_ru": "Калории: 240\r\nБелки: 6,2 г\r\nЖиры: 15,2 г\r\nУглеводы: 24 г\r\nХЕ: 2",
+    "additional_info_en": "Calories: 240\r\nProteins: 6.2 g\r\nFats: 15.2 g\r\nCarbohydrates: 24 g\r\nBU: 2",
+    "about_product_uk": "Низькокалорійний класичний десерт. Ніжні коржі та крем на знежирених продуктах дарують ту саму класику — але в легшому форматі. Ідеальний.",
+    "about_product_ru": "Низкокалорийный классический десерт. Нежные коржи и крем на обезжиренных продуктах дарят ту самую классику — но в более лёгком формате. Идеален.",
+    "about_product_en": "A low-calorie classic dessert. Delicate cake layers and cream made with low-fat ingredients deliver the same beloved classic — in a lighter format. Perfect.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.416,
+    "order": 6,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/9fb3d4bb-606b-4baf-82a2-a15f8edf97a8.png",
+    "price": "330.00",
+    "size": "989ca551-7205-4a9e-99ec-1bb7da9ae068",
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:02:29.359Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "62365f58-7aec-4834-919a-8110a541dd79",
+  "fields": {
+    "code": "00104",
+    "name_uk": "Тирамісу баночка",
+    "name_ru": "Тирамису в баночке",
+    "name_en": "Tiramisu in a jar",
+    "slug": "tiramisu-in-a-201",
+    "description_uk": "печиво савоярді, сироп кавовий з амаретто та еритритолом, рікота, вершки, жовток",
+    "description_ru": "печенье савоярди, кофейный сироп с амаретто и эритритолом, рикотта, сливки, желток",
+    "description_en": "savoiardi cookies, coffee syrusp with amaretto and erythritol, ricotta, cream, egg yolk",
+    "additional_info_uk": "Калорії: 155\r\nБілки: 6\r\nЖири: 10\r\nВуглеводи: 8\r\nХО: 0,7",
+    "additional_info_ru": "Калории: 155\r\nБелки: 6 г\r\nЖиры: 10 г\r\nУглеводы: 8 г\r\nХЕ: 0,7",
+    "additional_info_en": "Calories: 155\r\nProteins: 6 g\r\nFats: 10 g\r\nCarbohydrates: 8 g\r\nBU: 0.7",
+    "about_product_uk": "Italian sugar-free tiramisu. Every bite is a perfect balance of delicate cream, rich coffee notes, and guilt-free pleasure. Low in calories. Does not affect blood sugar levels.",
+    "about_product_ru": "Итальянское тирамису без сахара. Каждый кусочек — это сочетание нежного крема, кофейных нот и удовольствия без чувства вины. Низкая калорийность. Не влияет на уровень сахара в крови.",
+    "about_product_en": "Italian sugar-free tiramisu. Every bite is a perfect balance of delicate cream, rich coffee notes, and guilt-free pleasure. Low in calories. Does not affect blood sugar levels.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.201,
+    "order": 3,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/f0b6a5e6-fcf8-453b-a534-4cbbd30b9334.png",
+    "price": "220.00",
+    "size": "2d8738dc-375b-4b27-91e1-0347790885d2",
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:01:38.217Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+  "fields": {
+    "code": "00113",
+    "name_uk": "Три шоколади маленький",
+    "name_ru": "Три шоколада",
+    "name_en": "Three Chocolates",
+    "slug": "three-150",
+    "description_uk": "шоколад білий, молочний та чорний (без цукру), молоко, яйця, стевія, вершки, грецький йогурт",
+    "description_ru": "белый, молочный и тёмный шоколад (без сахара), молоко, яйца, стевия, сливки, греческий йогурт",
+    "description_en": "white, milk, and dark chocolate (sugar-free), milk, eggs, stevia, cream, Greek yogurt",
+    "additional_info_uk": "Калорії: 236\r\nБілки: 7 \r\nЖири: 17 \r\nВуглеводи: 10 \r\nХО: 0,83",
+    "additional_info_ru": "Калории: 236\r\nБелки: 7 г\r\nЖиры: 17 г\r\nУглеводы: 10 г\r\nХЕ: 0,83",
+    "additional_info_en": "Calories: 236\r\nProteins: 7 g\r\nFats: 17 g\r\nCarbohydrates: 10 g\r\nBU: 0.83",
+    "about_product_uk": "Шоколадна насолода без цукру. Білий, молочний і чорний шоколад — глибокий смак у легкому форматі. Низька калорійність.",
+    "about_product_ru": "Шоколадное наслаждение без сахара. Белый, молочный и темный шоколад — глубокий вкус в лёгком формате. Низкая калорийность.",
+    "about_product_en": "Chocolate indulgence without sugar. White, milk, and dark chocolate — rich flavor in a light format. Low calorie.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.15,
+    "order": 0,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/0885e73c-7c45-4ae2-a2e0-63d4dae30f56.png",
+    "price": "180.00",
+    "size": null,
+    "created": "2026-01-05T20:04:06.792Z",
+    "updated": "2026-01-06T15:56:08.238Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "a3f63151-21af-449b-bbae-2451202ccba2",
+  "fields": {
+    "code": "00169",
+    "name_uk": "Брауні з вишнею баночка",
+    "name_ru": "Брауни с вишней в баночке",
+    "name_en": "Brownie with Cherry in a Jar",
+    "slug": "brownie-with-cherry-in-a-190",
+    "description_uk": "банан, яйця, борошно рисове, какао, чорний шоколад без цукру, стевія, вишня, амаретто",
+    "description_ru": "банан, яйца, рисовая мука, какао, тёмный шоколад без сахара, стевия, вишня, амаретто",
+    "description_en": "banana, eggs, rice flour, cocoa, sugar-free dark chocolate, stevia,",
+    "additional_info_uk": "Калорії: 135\r\nБілки: 9\r\nЖири: 1\r\nВуглеводи: 24\r\nХО: 2",
+    "additional_info_ru": "Калории: 135\r\nБелки: 9 г\r\nЖиры: 1 г\r\nУглеводы: 24 г\r\nХЕ: 2",
+    "additional_info_en": "Calories: 135\r\nProteins: 9 g\r\nFats: 1 g\r\nCarbohydrates: 24 g\r\nBU: 2",
+    "about_product_uk": "Низькокалорійний брауні без цукру. Чорний шоколад, какао та вишня — максимум смаку при мінімумі калорій. Низька калорійність.",
+    "about_product_ru": "Низкокалорийный брауни без сахара. Тёмный шоколад, какао и вишня — максимум вкуса при минимуме калорий. Низкая калорийность.",
+    "about_product_en": "Low-calorie sugar-free brownie. Dark chocolate, cocoa, and cherries — maximum flavor with minimal calories. Low in calories.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.19,
+    "order": 9,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/5d492f00-1f67-430a-bb6c-1ac032967f65.png",
+    "price": "210.00",
+    "size": null,
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:05:01.228Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+  "fields": {
+    "code": "00105",
+    "name_uk": "Тирамісу сфера",
+    "name_ru": "Тирамису сфера",
+    "name_en": "Tiramisu Sphere",
+    "slug": "tiramisu-338",
+    "description_uk": "печиво савоярді, сироп кавовий з амаретто та еритритолом, рікота, вершки, жовток",
+    "description_ru": "печенье савоярди, кофейный сироп с амаретто и эритритолом, рикотта, сливки, желток",
+    "description_en": "savoiardi cookies, coffee syrup with amaretto and erythritol, ricotta, cream, egg yolk",
+    "additional_info_uk": "Калорії: 155\r\nБілки: 6\r\nЖири: 10\r\nВуглеводи: 8\r\nХО: 0,7",
+    "additional_info_ru": "Калории: 155\r\nБелки: 6 г\r\nЖиры: 10 г\r\nУглеводы: 8 г\r\nХЕ: 0,7",
+    "additional_info_en": "Calories: 155\r\nProteins: 6 g\r\nFats: 10 g\r\nCarbohydrates: 8 g\r\nBU: 0.7",
+    "about_product_uk": "Італійське тірамісу без цукру. Кожен шматочок — це поєднання ніжного крему, кавових нот і задоволення без почуття провини. Низька калорійність. Не впливає на рівень цукру в крові.",
+    "about_product_ru": "Итальянское тирамису без сахара. Каждый кусочек — это сочетание нежного крема, кофейных нот и удовольствия без чувства вины. Низкая калорийность. Не влияет на уровень сахара в крови.",
+    "about_product_en": "Italian sugar-free tiramisu. Every bite is a perfect balance of delicate cream, rich coffee notes, and guilt-free pleasure. Low in calories. Does not affect blood sugar levels.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.338,
+    "order": 2,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/e54809fa-6741-494f-a9f3-9c44dc55ee7b.png",
+    "price": "330.00",
+    "size": "989ca551-7205-4a9e-99ec-1bb7da9ae068",
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:01:18.675Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+  "fields": {
+    "code": "00076",
+    "name_uk": "Панакота з маракуєю",
+    "name_ru": "Панакота с маракуйей",
+    "name_en": "Passion Fruit Panna Cotta",
+    "slug": "passion-fruit-panna-190",
+    "description_uk": "молоко, вершки, стевія, протеїн, ваніль, пюре маракуї з кісточкою",
+    "description_ru": "молоко, сливки, стевия, протеин, ваниль, пюре маракуйи с семечками",
+    "description_en": "milk, cream, stevia, protein, vanilla, passion fruit puree with seeds",
+    "additional_info_uk": "Калорії: 76\r\nБілки: 7\r\nЖири: 2,9\r\nВуглеводи: 7\r\nХО: 0,6",
+    "additional_info_ru": "Калории: 76\r\nБелки: 7 г\r\nЖиры: 2,9 г\r\nУглеводы: 7 г\r\nХЕ: 0,6",
+    "additional_info_en": "Calories: 76\r\nProteins: 7 g\r\nFats: 2.9 g\r\nCarbohydrates: 7 g\r\nBU: 0.6",
+    "about_product_uk": "Високобілкова панакота без цукру. Суперлегка текстура, знежирені вершки та натуральна маракуя. Ідеальний десерт після будь-якої страви. Низька калорійність.",
+    "about_product_ru": "Высокобелковая панакота без сахара. Суперлёгкая текстура, обезжиренные сливки и натуральная маракуйя. Идеальный десерт после любого блюда. Низкая калорийность.",
+    "about_product_en": "High-protein sugar-free panna cotta. An ultra-light texture, low-fat cream, and natural passion fruit. The perfect dessert after any meal. Low in calories.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.19,
+    "order": 5,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/88819f8a-d25c-4e35-b6fb-9709ef08f269.png",
+    "price": "140.00",
+    "size": null,
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:03:59.407Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "goods.product",
+  "pk": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+  "fields": {
+    "code": "00077",
+    "name_uk": "Панакота ягідна",
+    "name_ru": "Панакота ягодная",
+    "name_en": "Panna Cotta Berry",
+    "slug": "berry-panna-190",
+    "description_uk": "молоко, вершки, стевія, протеїн, ваніль, ягоди заморожені (вишня, смородина, полуниця)",
+    "description_ru": "молоко, сливки, стевия, протеин, ваниль, замороженные ягоды (вишня, смородина, клубника)",
+    "description_en": "milk, cream, stevia, protein, vanilla, frozen berries (cherry, currant, strawberry)",
+    "additional_info_uk": "Калорії: 78\r\nБілки: 7\r\nЖири: 2,9\r\nВуглеводи: 7\r\nХОі: 0,6",
+    "additional_info_ru": "Калории: 78\r\nБелки: 7 г\r\nЖиры: 2,9 г\r\nУглеводы: 7 г\r\nХЕ: 0,6",
+    "additional_info_en": "Calories: 78\r\nProteins: 7 g\r\nFats: 2.9 g\r\nCarbohydrates: 7 g\r\nBUi: 0.6",
+    "about_product_uk": "Високобілкова панакота без цукру. Суперлегка текстура, знежирені вершки та натуральні ягоди. Ідеальний десерт після будь-якої страви. Низька калорійність.",
+    "about_product_ru": "Высокобелковая панакота без сахара. Суперлёгкая текстура, обезжиренные сливки и натуральные ягоды. Идеальный десерт после любого блюда. Низкая калорийность.",
+    "about_product_en": "High-protein sugar-free panna cotta. An ultra-light texture, low-fat cream, and natural berries. The perfect dessert after any meal. Low in calories.",
+    "group": "99d3fcb8-b8f1-43c6-8521-77e85a477d00",
+    "product_category": "5e9218ff-0c76-5e32-019a-12b084571319",
+    "type": "Dish",
+    "measure_unit_uk": "порц",
+    "measure_unit_ru": "порц",
+    "measure_unit_en": "portion",
+    "weight": 0.19,
+    "order": 4,
+    "payment_subject": "ТОВАР",
+    "image_url": "https://storage.cdneu.syrve.com/nomenclature_images/7823221/ede7c858-12a2-445e-9e31-56f3f872cb32.png",
+    "price": "140.00",
+    "size": null,
+    "created": "2026-01-01T20:04:06.792Z",
+    "updated": "2026-01-10T15:04:26.593Z",
+    "is_included_in_menu": true
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 28,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "3gbysr4xj373an3cse8cg73zc89aitbl",
+    "create": "2026-01-07T22:00:01.530Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 29,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "3gbysr4xj373an3cse8cg73zc89aitbl",
+    "create": "2026-01-07T22:00:29.804Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 30,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "3gbysr4xj373an3cse8cg73zc89aitbl",
+    "create": "2026-01-07T22:42:50.615Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 42,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "6lrct0emol65lbhpbq6f6amjabvfsue3",
+    "create": "2026-01-08T10:41:52.964Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 43,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 3,
+    "session_key": "6lrct0emol65lbhpbq6f6amjabvfsue3",
+    "create": "2026-01-08T10:46:31.455Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 44,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "l8l4551ovgfsmmygsumyxmyc1yk80tmx",
+    "create": "2026-01-08T17:12:04.593Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 45,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 6,
+    "session_key": "zgqardcbms0icejlzqoyof5z2g3404ej",
+    "create": "2026-01-08T17:31:34.795Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 46,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "l8l4551ovgfsmmygsumyxmyc1yk80tmx",
+    "create": "2026-01-08T18:02:24.233Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 47,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "zgqardcbms0icejlzqoyof5z2g3404ej",
+    "create": "2026-01-08T20:57:01.113Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 48,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "ceqwmgnbjxlcn8hsjg74desbb43xjey7",
+    "create": "2026-01-09T07:11:18.788Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 49,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 7,
+    "session_key": "9lh4jbrrxfh1i7l1i644e57at7v3sfpo",
+    "create": "2026-01-09T09:59:18.443Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 50,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "7x8bkzleqcbuy08s7k7bcmt4yw9o3phn",
+    "create": "2026-01-09T10:27:49.163Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 51,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "7x8bkzleqcbuy08s7k7bcmt4yw9o3phn",
+    "create": "2026-01-09T11:23:35.684Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 52,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "7x8bkzleqcbuy08s7k7bcmt4yw9o3phn",
+    "create": "2026-01-09T11:23:39.436Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 53,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 5,
+    "session_key": "rxrmqazq401wdlpgf284sicmkoy4in1t",
+    "create": "2026-01-09T11:58:39.753Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 54,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 2,
+    "session_key": "rxrmqazq401wdlpgf284sicmkoy4in1t",
+    "create": "2026-01-09T11:58:56.728Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 55,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "rxrmqazq401wdlpgf284sicmkoy4in1t",
+    "create": "2026-01-09T11:59:00.176Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 56,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 2,
+    "session_key": "1st4p7swvmww2kpqqhspq2j90n92xkjh",
+    "create": "2026-01-10T11:27:51.376Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 57,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 2,
+    "session_key": "1st4p7swvmww2kpqqhspq2j90n92xkjh",
+    "create": "2026-01-10T11:28:09.688Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 58,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "1st4p7swvmww2kpqqhspq2j90n92xkjh",
+    "create": "2026-01-10T11:56:32.356Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 59,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "dv93jvf7nqoyb5ybjzjuispw1mbwbm24",
+    "create": "2026-01-10T12:09:16.007Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 60,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "dv93jvf7nqoyb5ybjzjuispw1mbwbm24",
+    "create": "2026-01-10T12:09:18.488Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 61,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "dv93jvf7nqoyb5ybjzjuispw1mbwbm24",
+    "create": "2026-01-10T12:15:29.934Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 62,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "usuil0kobqldqmsx1jqgyqmir64evcq2",
+    "create": "2026-01-10T15:27:59.981Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 63,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "usuil0kobqldqmsx1jqgyqmir64evcq2",
+    "create": "2026-01-10T15:28:02.453Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 64,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "dv93jvf7nqoyb5ybjzjuispw1mbwbm24",
+    "create": "2026-01-10T16:39:09.087Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 65,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "usuil0kobqldqmsx1jqgyqmir64evcq2",
+    "create": "2026-01-10T16:54:37.817Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 82,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "bvni5bp3hzwobohh1lpfarhz0lvoo3bl",
+    "create": "2026-01-12T14:19:35.132Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 83,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "bvni5bp3hzwobohh1lpfarhz0lvoo3bl",
+    "create": "2026-01-12T14:19:36.210Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 87,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "bvni5bp3hzwobohh1lpfarhz0lvoo3bl",
+    "create": "2026-01-12T14:19:38.870Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 95,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "bvni5bp3hzwobohh1lpfarhz0lvoo3bl",
+    "create": "2026-01-12T14:19:52.266Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 106,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "vlpnc26qycb45ik91mav8i5p7umwo80j",
+    "create": "2026-01-12T14:22:34.424Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 107,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "ids90mzhaub3oiahh68dv9yf1z2gd9vb",
+    "create": "2026-01-12T14:50:49.641Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 108,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "ids90mzhaub3oiahh68dv9yf1z2gd9vb",
+    "create": "2026-01-12T14:50:50.660Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 109,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "ids90mzhaub3oiahh68dv9yf1z2gd9vb",
+    "create": "2026-01-12T15:17:32.024Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 110,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "c8njv2qhgka9y03mu0zh0z0bbkv6inhp",
+    "create": "2026-01-12T15:27:08.091Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 111,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "auxkssmckzkmv8f1dyoh9dd1y6r6bite",
+    "create": "2026-01-12T15:46:01.202Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 112,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "h9l1h8m1zbdhuky55zk4ijhh7tejzbzn",
+    "create": "2026-01-12T16:16:12.889Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 113,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "9w3blat6sznzsq340ehbq89kqme90o41",
+    "create": "2026-01-12T16:48:50.334Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 114,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "pa7y7hbn8g01egvwon8inpre1ol6ewkq",
+    "create": "2026-01-12T17:26:06.600Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 115,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "ain0h0s9j4igb7w7a2gbutquy8s4yzrf",
+    "create": "2026-01-12T17:46:41.227Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 116,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "tacrs76kqejw527i3rmo855rz30glzlt",
+    "create": "2026-01-12T18:02:39.128Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 117,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "0orhf273mhtbpsjshh78tn1dvouwb7ep",
+    "create": "2026-01-12T18:04:07.030Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 118,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "2hslp53i9h5cx4qxkpnl1ham6wib48s5",
+    "create": "2026-01-12T18:04:49.225Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 119,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "xjy4rr7xrr5cmfyyypsp2xww25zdz01m",
+    "create": "2026-01-12T18:05:11.092Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 120,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "gb8y6ltvgv8g2rqx5zpupk7dgei9ps05",
+    "create": "2026-01-12T18:06:12.380Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 121,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "ypm2wfyntgiqn4lav7l3ohy4ftqi47hw",
+    "create": "2026-01-12T18:06:25.316Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 122,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "blw9ef1b29325gfgpe58qiu8wnm6wbfq",
+    "create": "2026-01-12T18:07:00.650Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 123,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "7lirt88a5ftbgdxjc96f5qyrslzzt20t",
+    "create": "2026-01-12T18:07:05.542Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 124,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "7lirt88a5ftbgdxjc96f5qyrslzzt20t",
+    "create": "2026-01-12T18:07:05.786Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 125,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "7lirt88a5ftbgdxjc96f5qyrslzzt20t",
+    "create": "2026-01-12T18:07:06.290Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 126,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "7lirt88a5ftbgdxjc96f5qyrslzzt20t",
+    "create": "2026-01-12T18:07:06.791Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 127,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "jilmd4dvjt3o4ex9vn01buwwiyl8id0k",
+    "create": "2026-01-12T18:07:56.913Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 128,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "abapjahjgjstgzck980t787hmjhqmg3a",
+    "create": "2026-01-12T18:07:57.230Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 129,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "abapjahjgjstgzck980t787hmjhqmg3a",
+    "create": "2026-01-12T18:07:57.473Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 130,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "abapjahjgjstgzck980t787hmjhqmg3a",
+    "create": "2026-01-12T18:07:57.977Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 131,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "abapjahjgjstgzck980t787hmjhqmg3a",
+    "create": "2026-01-12T18:07:58.479Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 132,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "ee6li9zar11hlcv80mjwfod8gaig27tu",
+    "create": "2026-01-12T18:08:02.771Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 133,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "tmyvzo648xltn2902cg4baa82xxnqbgi",
+    "create": "2026-01-12T18:21:20.468Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 134,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "l6j9ehhh0uj61sign8p61mjelfiogmfm",
+    "create": "2026-01-12T18:21:56.294Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 135,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "l6j9ehhh0uj61sign8p61mjelfiogmfm",
+    "create": "2026-01-12T18:21:56.791Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 136,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "io6frozh98hsonp490fkcpnw6tmvix0a",
+    "create": "2026-01-12T18:23:04.851Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 137,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "io6frozh98hsonp490fkcpnw6tmvix0a",
+    "create": "2026-01-12T18:23:05.054Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 138,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "io6frozh98hsonp490fkcpnw6tmvix0a",
+    "create": "2026-01-12T18:23:06.057Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 139,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "5ygk1e61hzjztk3fz3qlfnqdutumltam",
+    "create": "2026-01-12T18:24:06.197Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 140,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "fdjqvpkt0hhlw86hk071ox3ac6hhhek3",
+    "create": "2026-01-12T18:24:06.272Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 141,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "8gv3msqozge6j92hx9elwd8ahjf70wkb",
+    "create": "2026-01-12T21:29:42.027Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 142,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "d3q7xzflhouhn113e1qjiclc63as0pwj",
+    "create": "2026-01-12T21:39:51.189Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 143,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "y6s3wgceq9fczp7q70ezkb48wk8jd4wy",
+    "create": "2026-01-12T21:58:49.804Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 144,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "m6byl8ldqvg9162gkpvddpedebsujasn",
+    "create": "2026-01-12T22:29:43.610Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 145,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "0pk2oj5pwqfj285fdqu98dad27i0p6bm",
+    "create": "2026-01-12T22:56:24.480Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 146,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "zrkkyn4fu9jpj4aoealinmlhe24arc4g",
+    "create": "2026-01-12T22:57:40.909Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 147,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "73whdpdph0t7uv1rordu23q78u4zewb4",
+    "create": "2026-01-12T22:58:22.791Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 148,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "osr6piltin7wk4ud7riys5okxr4mftzi",
+    "create": "2026-01-12T23:10:14.290Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 149,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "mnbd62h5ncb2uaq0xgp2vnrpkx2tpffp",
+    "create": "2026-01-12T23:33:27.589Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 150,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "0y8fn9sz0c2oc3av0cipeqkg9q0mzjk9",
+    "create": "2026-01-12T23:33:32.557Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 151,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "7vusk21l1ioczmowk6ku71tgsb92i1bx",
+    "create": "2026-01-13T04:29:05.650Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 152,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "uojemu8k462ywoe3asrfjwmwwh4jptys",
+    "create": "2026-01-13T05:31:15.586Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 153,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "5zuvn680w8s5jdq9dte3i8n6eltgwns2",
+    "create": "2026-01-13T05:39:22.282Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 154,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "xrgaqotpfvd7hro9rwb3ao5adgvgzi9i",
+    "create": "2026-01-13T05:50:38.454Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 155,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "gdkcuak50am8dqkaylr1ooel9hai43af",
+    "create": "2026-01-13T06:00:23.983Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 156,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "yhatei3du634zzhy2mf931i2zn7ne2no",
+    "create": "2026-01-13T06:31:24.337Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 157,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "6sc801f8y72z7bpw7d5jxkpd8aefls66",
+    "create": "2026-01-13T10:41:35.582Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 158,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "g90ctj4yjl9b5n9h5e0yj5hr687o8jg9",
+    "create": "2026-01-13T10:51:52.353Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 159,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "w2zdy4ado7892ykrhmyh2wdv0osdrh8k",
+    "create": "2026-01-13T11:11:44.212Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 160,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "kwkrl7s1nrmr83iar3t7l3jgfdqr0ab2",
+    "create": "2026-01-13T11:31:57.854Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 161,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "3hxrl5wq64rs977ijahlxarsu13jqbl1",
+    "create": "2026-01-13T20:34:12.006Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 162,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "zgehvgsj1xo6fq5sx340esy4560yy40s",
+    "create": "2026-01-13T20:34:22.337Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 163,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "u229tp4emh1ot7zj9m9a921aulofyf12",
+    "create": "2026-01-14T20:37:44.988Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 164,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "p8lnkckylicx3cyb9w3n2y46cym84798",
+    "create": "2026-01-14T23:38:21.205Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 165,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "jl6pes2mas3flsdutrqu678c91k9a226",
+    "create": "2026-01-14T23:53:08.187Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 166,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "qmajkwkhpm09g4xdcr9udxtinjpk45nd",
+    "create": "2026-01-15T00:51:53.962Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 167,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "8qulvs7yyq7wk1na4h7als2btmm1hmr8",
+    "create": "2026-01-15T00:58:35.155Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 168,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "z14uii9mxlrjl390usp7r86mpm0m1i11",
+    "create": "2026-01-15T01:05:05.461Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 169,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "5cnrf8klxo65fo5s55mv4fdblxe11jk0",
+    "create": "2026-01-15T01:42:57.699Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 170,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "hcp8b6uzfpyotwc3obv11jggytsg0at9",
+    "create": "2026-01-15T02:16:21.002Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 171,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "aesr09q526koadifowmg56eerftrudyc",
+    "create": "2026-01-15T02:31:18.860Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 172,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "kjdy6dyn3spb7as08abaurhhei0252fx",
+    "create": "2026-01-15T03:07:40.054Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 173,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "z9ac1pxm44nufn44bbuljhu98fzpayqt",
+    "create": "2026-01-15T07:14:59.505Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 174,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 1,
+    "session_key": "31kagrp95rrgva2212d5es0j6mglez8g",
+    "create": "2026-01-15T09:01:10.701Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 175,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 1,
+    "session_key": "n13w68c545fse3xwkhnoc9bulk69x105",
+    "create": "2026-01-15T09:07:06.637Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 176,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 1,
+    "session_key": "w81xl5zr7rd60fjeqt3d4ss7r41wel95",
+    "create": "2026-01-15T09:12:58.731Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 177,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 1,
+    "session_key": "eh1p2n93l23bfzkilmw1qz7nwnnf0w2h",
+    "create": "2026-01-15T09:18:44.111Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 178,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 1,
+    "session_key": "lpxb5tjxzvfu3mx1xxk97s3juc0x5gka",
+    "create": "2026-01-15T09:24:39.268Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 179,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 1,
+    "session_key": "owd3jq6jnv1eo2xgryauq6zuyvmxnc6a",
+    "create": "2026-01-15T09:30:56.138Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 180,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "82arsxkfg1o052jayovtkznj53ejch4j",
+    "create": "2026-01-15T10:31:26.541Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 181,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "pgo9lkgxva1f7iyu3mfogffhz4dchu62",
+    "create": "2026-01-15T10:41:28.389Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 182,
+  "fields": {
+    "product": "40eac2be-5401-489d-8989-3a3ac7f3f328",
+    "quantity": 1,
+    "session_key": "adnray9nw12evga99hafioyf68zw0x12",
+    "create": "2026-01-15T10:51:04.965Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 183,
+  "fields": {
+    "product": "ef4f81ca-0334-4455-a340-4b19ed546ff4",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:32.642Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 184,
+  "fields": {
+    "product": "d89cf47d-0c02-446e-85ff-38b9d8411e29",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:36.198Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 185,
+  "fields": {
+    "product": "a9a95e88-caef-4e1a-a0f4-377c21027c10",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:37.600Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 186,
+  "fields": {
+    "product": "a3f63151-21af-449b-bbae-2451202ccba2",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:40.437Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 187,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:41.818Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 188,
+  "fields": {
+    "product": "4e6fd3dd-eeb5-4213-9522-866b429cde4f",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:44.645Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 189,
+  "fields": {
+    "product": "9525d87b-3b4a-4908-b2c2-62aa13c8699b",
+    "quantity": 2,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:55:46.023Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 190,
+  "fields": {
+    "product": "62365f58-7aec-4834-919a-8110a541dd79",
+    "quantity": 1,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:56:07.447Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 191,
+  "fields": {
+    "product": "0e7a37a1-dd8f-4d12-8cee-4d17631a14c6",
+    "quantity": 1,
+    "session_key": "8gvkq8ctkummlolbfkn6629htx27f6m1",
+    "create": "2026-01-15T10:56:10.355Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 192,
+  "fields": {
+    "product": "15de4865-23b7-4894-b242-1ed04182a72b",
+    "quantity": 1,
+    "session_key": "zsx1cx9iwrqchecy1yl4qjnck0ehuwax",
+    "create": "2026-01-15T11:00:35.072Z"
+  }
+}
+]

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 234 243" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-502.353,0)">
+        <g id="Монтажная-область2ллщ" serif:id="Монтажная область2ллщ" transform="matrix(0.121529,0,0,0.224084,243.7,0)">
+            <rect x="2128.33" y="0" width="1920" height="1080" style="fill:none;"/>
+            <g transform="matrix(28.4307,0,0,15.4189,-9093.32,-2550.47)">
+                <path d="M422.583,213.887C422.583,214.728 423.003,215.148 423.844,215.148L433.093,215.148C433.934,215.148 434.354,214.728 434.354,213.887L434.354,186.98C434.354,186.139 433.934,185.719 433.093,185.719L423.844,185.719C423.003,185.719 422.583,186.139 422.583,186.98L422.583,213.887Z" style="fill:rgb(255,126,147);fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

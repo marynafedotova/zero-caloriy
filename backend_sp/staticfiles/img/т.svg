@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 136 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-65.7706,0)">
+        <g id="Монтажная-область2ллщ" serif:id="Монтажная область2ллщ" transform="matrix(0.0706077,0,0,0.161244,-84.5061,0)">
+            <rect x="2128.33" y="0" width="1920" height="1080" style="fill:none;"/>
+            <g transform="matrix(48.9343,0,0,21.428,-24264.3,-5736.83)">
+                <g>
+                    <path d="M569.478,297.131C570.319,297.131 570.739,296.71 570.739,295.869L570.739,279.473C570.739,278.632 570.319,278.212 569.478,278.212L548.457,278.212C547.616,278.212 547.196,278.632 547.196,279.473L547.196,295.869C547.196,296.71 547.616,297.131 548.457,297.131L551.526,297.131C552.577,297.131 553.081,297.635 553.081,298.686L553.081,306.38C553.081,307.221 553.502,307.641 554.343,307.641L563.592,307.641C564.433,307.641 564.853,307.221 564.853,306.38L564.853,298.686C564.853,297.635 565.358,297.131 566.409,297.131L569.478,297.131Z" style="fill:rgb(255,126,147);fill-rule:nonzero;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
