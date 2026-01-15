@@ -20,7 +20,6 @@
       <div class="cart-block" id="cart-items-container">
         <div class="cart-lb">
           <div id="cart-list">
-            {% comment %} {% include "carts/includes/included_cart.html" %} {% endcomment %}
             {% if carts %}
             {% include "carts/includes/included_cart.html" %}
             {% else %}
@@ -39,8 +38,10 @@
 
         {% if carts %}
         <div class="contacts-block">
-    <form id="orderForm" method="POST" onsubmit="sendOrder(event)"; return false;>
-        {% csrf_token %} <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}" required>
+        <form id="orderForm" method="POST" data-url="{% url 'goods:create-order' %}" 
+          data-csrf="{{ csrf_token }}">
+        {% csrf_token %} 
+        <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}" required>
         <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}" required>
         
         <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX" required>
@@ -67,10 +68,16 @@
 document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const form = this; // посилання на форму
-    const url = form.getAttribute('data-url'); // беремо URL з атрибуту
-    const csrfToken = form.getAttribute('data-csrf'); // беремо токен
+    const form = this;
+    const url = form.getAttribute('data-url'); 
+    const csrfToken = form.getAttribute('data-csrf'); 
     const btn = document.getElementById('cart-btn');
+
+    // Перевірка чи URL не пустий
+    if (!url) {
+        console.error("URL не знайдено в атрибуті data-url");
+        return;
+    }
 
     btn.disabled = true;
     btn.innerText = "Відправляємо...";
@@ -81,19 +88,15 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
         method: 'POST',
         body: formData,
         headers: {
-            'X-CSRFToken': csrfToken // тепер токен буде передано правильно
+            'X-CSRFToken': csrfToken // Тепер дані беруться з атрибуту форми
         }
     })
-    .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
             alert('Дякуємо! Замовлення надіслано.');
-            window.location.href = '/'; // або інший шлях
+            window.location.href = '/'; 
         } else {
-            console.error("Помилка від сервера:", data.message);
             alert('Помилка: ' + data.message);
             btn.disabled = false;
             btn.innerText = "Спробувати ще раз";
@@ -101,13 +104,11 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Сталася помилка на сервері');
+        alert('Сталася помилка при відправці');
         btn.disabled = false;
         btn.innerText = "Повторити";
     });
-
-    return false; // Додатковий захист
-}
+});
 </script>
 
 {% endblock content %}

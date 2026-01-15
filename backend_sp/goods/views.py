@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, get_object_or_404
 import requests
 from django.http import JsonResponse
@@ -167,8 +168,8 @@ def create_order_telegram(request):
         )
 
 
-        TOKEN = "7957796004:AAEc8529j0JBejt8oR60v3CptvrDlO1CXtg"
-        CHAT_ID = "-1003599444381"
+        TOKEN = os.getenv('TOKEN')
+        CHAT_ID = os.getenv('CHAT_ID')
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {

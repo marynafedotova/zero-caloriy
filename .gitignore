@@ -19,3 +19,9 @@ venv/
 db.sqlite3
 
 settings.py
+Dockerfile
+docker-compose.yml
+data.json
+documentation.txt
+
+copy\
