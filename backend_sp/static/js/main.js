@@ -28,11 +28,28 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+document.querySelectorAll('.index-product-nutrition').forEach(element => {
+    const original = element.textContent
+        .replace(/\n/g, ' ')          
+        .replace(/\s+/g, ' ')         
+        .trim();                    
+    
+    // console.log('Очищенный текст:', original);
+    // console.log('Длина:', original.length);
+    
+    if (original.length > 33) {
+        element.textContent = original.substring(0, 29) + '...';
+        // console.log('Обрезано до:', element.textContent);
+    } else {
+        element.textContent = original;
+    }
+});
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const hash = window.location.hash;
   
   if (hash) {
-    // Використовуємо MutationObserver для відстеження змін DOM
     const observer = new MutationObserver(function(mutations) {
       const element = document.querySelector(hash);
       if (element) {
@@ -41,14 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Спостереження за змінами в DOM
     observer.observe(document.body, {
       childList: true,
       subtree: true
     });
-    
-    // Автоматично зупинити спостереження через 5 секунд
-    setTimeout(() => observer.disconnect(), 5000);
+        setTimeout(() => observer.disconnect(), 5000);
   }
 });
 
@@ -65,30 +79,75 @@ function showAddedMessage() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const search = document.querySelector('.search');
-  const form = search.querySelector('form');
-  const button = search.querySelector('.search-btn');
-  const input = search.querySelector('input[type="search"]');
-
-  button.addEventListener('click', (e) => {
-    const isActive = search.classList.contains('active');
-    const hasValue = input.value.trim().length > 0;
-
-    if (!isActive) {
-      e.preventDefault();
-      search.classList.add('active');
-      input.focus();
-      return;
+  const searchContainer = document.querySelector('.search');
+  const searchForm = searchContainer.querySelector('form');
+  const input = searchForm.querySelector('input[type="search"]');
+  const searchBtn = document.getElementById('btn-search-mobile');
+  
+  if (!searchBtn || !searchContainer) return;
+  
+  // Удаляем inline-стиль при загрузке
+  searchContainer.style.display = '';
+  
+  const isMobile = () => window.innerWidth <= 855;
+  
+  // Функция для обновления видимости
+  const updateVisibility = () => {
+    if (isMobile()) {
+      searchBtn.style.display = 'block';
+      if (searchContainer.classList.contains('active')) {
+        searchContainer.style.display = 'block';
+      } else {
+        searchContainer.style.display = 'none';
+      }
+    } else {
+      searchBtn.style.display = 'none';
+      searchContainer.style.display = 'block';
+      searchContainer.classList.remove('active');
     }
-
-    if (!hasValue) {
-      e.preventDefault();
+  };
+  
+  // Переключение формы
+  searchBtn.addEventListener('click', (e) => {
+    if (!isMobile()) return;
+    
+    e.preventDefault();
+    
+    if (!searchContainer.classList.contains('active')) {
+      // Показываем форму
+      searchContainer.classList.add('active');
+      searchContainer.style.display = 'block';
       input.focus();
-      return;
+    } else {
+      // Скрываем форму или отправляем
+      if (input.value.trim() === '') {
+        searchContainer.classList.remove('active');
+        searchContainer.style.display = 'none';
+      } else {
+        searchForm.submit();
+      }
     }
-
   });
+  
+  // Скрываем форму при клике вне ее
+  document.addEventListener('click', (e) => {
+    if (isMobile() && 
+        searchContainer.classList.contains('active') &&
+        !searchContainer.contains(e.target) && 
+        !searchBtn.contains(e.target)) {
+      searchContainer.classList.remove('active');
+      searchContainer.style.display = 'none';
+    }
+  });
+  
+  // Инициализация
+  updateVisibility();
+  
+  // При изменении размера окна
+  window.addEventListener('resize', updateVisibility);
 });
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.location.hash) {

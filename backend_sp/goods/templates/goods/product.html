@@ -56,7 +56,7 @@
             <div class="size-options">
               {% for variant in variants %}
               <a href="{{ variant.get_absolute_url }}" class="size-btn"
-                style="{% if variant.id == product.id %} background-color: #ff69b4; color: white; {% endif %}">
+                style="{% if variant.id == product.id %} background-color: #CF223A; color: white; {% endif %}">
                 {{ variant.weight|mul:1000|floatformat:0 }}
               </a>
               {% endfor %}
@@ -120,14 +120,14 @@
         <p class="product-weight">
           {{ random.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
         </p>
-
+<div class="index-product-nutrition">КБЖВ: {{random.additional_info}}</div> 
         <div class="product-cart">
           <div class="product-price">
             {{ random.price }}
             <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
           </div>
                         <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
           {% comment %} <button class="add-to-cart">
             <img src="{% static 'img/+.svg' %}" alt="add to cart">

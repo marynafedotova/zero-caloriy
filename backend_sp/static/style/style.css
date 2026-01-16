@@ -85,7 +85,7 @@
   }
 
 .hamburger {
-  padding: 8px 8px;
+padding-bottom: 4px;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, filter;
@@ -114,8 +114,8 @@
 }
 
 .hamburger-box {
-  width: 40px;
-  height: 24px;
+  width: 19px;
+  height: 16px;
   display: inline-block;
   position: relative;
 }
@@ -124,11 +124,33 @@
   display: block;
   top: 50%;
 }
-.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-  width: 40px;
-  height: 4px;
-  background-color: var(--pinkdark-color);
-  border-radius: 4px;
+
+.hamburger-inner {
+  width: 14px;
+  height: 2px;
+  background-color: var(--lightpink-color);
+  border-radius: 1px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.hamburger-inner::before {
+  width: 19px;
+  height: 2px;
+  background-color: var(--lightpink-color);
+  border-radius: 1px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.hamburger-inner::after {
+  width: 17px;
+  height: 2px;
+  background-color: var(--lightpink-color);
+  border-radius: 1px;
   position: absolute;
   transition-property: transform;
   transition-duration: 0.15s;
@@ -250,14 +272,14 @@ header {
   position: fixed;
   top: 0;
 background-color: var(--background-color);
-
+padding-top: 33px;
 }
 header .nav-container .container {
   display: flex;
   justify-content: space-between;
 align-items: center;
-  border-bottom: 1px solid var(--pinklight-color);
-
+  /* border-bottom: 1px solid var(--pinklight-color); */
+border-bottom: none;
 }
 header .nav-container .container .logo a {
   position: relative;
@@ -311,6 +333,14 @@ header .nav-container .social-link ul {
   justify-content: space-between;
   gap: 20px;
 }
+.logo-hamb{
+  display: inline-flex;
+  align-items: flex-end
+}
+.header-rb{
+  display: inline-flex;
+  gap: 12px;
+}
 .btn-language{
   background-color: var(--pinkdark-color);
   color: var(--white-color);
@@ -355,10 +385,19 @@ header .nav-container .social-link ul {
       width: 24px;
     height: 24px;
 }
+#btn-search-mobile{
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+}
 .search-input {
   opacity: 1;
   visibility: visible;
   transition: all 0.3s ease;
+}
+.language-actions{
+  display: none;
 }
 main {
   flex-grow: 1;
@@ -826,14 +865,14 @@ right: 9%;
   justify-content: space-between;
 }
 ul#news-product li.product-card a.add-to-cart-btn  {
-    background-color: var(--pinklight-color);
+    background-color: var(--lightpink-color);
     padding: 8px 15px;
     border: none;
     outline: none;
     border-radius: 4px;
 }
 .add-to-cart-btn{
-    background-color: var(--pinklight-color);
+    background-color: var(--lightpink-color);
     padding: 8px 15px;
     border: none;
     outline: none;
@@ -906,6 +945,11 @@ flex-direction: row;
 justify-content: space-between;
 width: 100%;
 }
+#news-product .product-link .index-product-nutrition{
+  color: #ABA7A6;
+  font-size: 11px;
+  font-family: 'Montserrat Bold';
+}
 
 /* #favlist-products  */
 #favlist-products {
@@ -944,8 +988,13 @@ width: 100%;
     text-decoration: none;
     color: inherit;
 }
+#favlist-products .product-link .index-product-nutrition{
+  color: #ABA7A6;
+  font-size: 11px;
+  font-family: 'Montserrat Bold';
+}
 #favlist-products .product-cart .add-to-cart-btn{
-  background-color: var(--pinklight-color);
+  background-color: var(--lightpink-color);
   padding: 8px 15px;
   border: none;
   outline: none;
@@ -955,7 +1004,7 @@ width: 100%;
     width: 100%;
     aspect-ratio: 1;
     margin-bottom: 16px;
-}add-to-cart-btn
+}
 #favlist-show-all:hover{
   background-color: var(--lightpink-color);
   color: var(--white-color);
@@ -1432,14 +1481,14 @@ align-items: center;
   padding-bottom: 16px;
 }
 #catalog-list-dessert .product-cart .add-to-cart-btn{
-  background-color: var(--pinklight-color);
+  background-color: var(--lightpink-color);
   padding: 2px 16px;
   border: none;
   outline: none;
   border-radius: 4px;
 }
 #catalog-list-drinks .product-cart .add-to-cart-btn{
-  background-color: var(--pinklight-color);
+  background-color: var(--lightpink-color);
   padding: 2px 16px;
   border: none;
   outline: none;
@@ -1473,6 +1522,13 @@ align-items: center;
     padding-left: 8px;
     margin-top: auto;
 }
+
+.product-link .product-info .index-product-nutrition{
+  color: #ABA7A6;
+  font-size: 11px;
+  font-family: 'Montserrat Bold';
+}
+
 /* меню випадаюче  */
 
 nav ul {
@@ -2177,39 +2233,55 @@ top: 150px;
 }
 }
 @media screen and (max-width: 855px) {
-  .search form input[type="search"] {
+  /* .search form{
     max-width: 0;
+    width: 0;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: max-width 0.3s ease, opacity 0.2s ease;
+  } */
+/* По умолчанию скрываем форму поиска на мобильных */
+  .search {
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--background-color);
+    padding: 15px;
+    z-index: 1000;
+    border-bottom-left-radius: 21px;
+    border-bottom-right-radius: 21px;
   }
-
-  .search.active form input[type="search"] {
-    max-width: 100%;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+  
+  /* Показываем когда есть класс .active */
+  .search.active {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
   }
-
-.search form button {
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  top: 7px;
-  right: 5px;
-  left: auto;
-  transition: right 0.3s ease, left 0.3s ease;
-}
-    .search.active form input[type="search"] {
-
-        padding-left: 26px;
-    }
-.search.active form button {
-  top: auto;
-  left: 0px;
-  right: auto;
-}
+  
+  /* Стили для формы внутри */
+  .search.active form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search.active input[type="search"] {
+    padding-left: 35px;
+    max-width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    flex: 1;
+    background-color: transparent;
+    border: none;
+  }
 
 .hero-lb .letter {
   height:48px;
@@ -2274,13 +2346,7 @@ top: 140px;
   width: 50px;
 }
 
-  .search form:focus-within .search-input {
-    width: 160px;
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    opacity: 1;
-    pointer-events: auto;
-  }
+
 
 }
 
@@ -2843,12 +2909,42 @@ gap:8px;
     
   }
 #catalog-list-dessert .product-card {
-        width: 10%;
-        min-width: 155px;
+        /* width: 10%; */
+        min-width: 330px;
+        width: 330px;
+        /* height: 455px; */
+        height: 100%;
+        margin-bottom: 0;
     }
+    #catalog-list-dessert .product-card .product-img img{
+      max-width: 330px;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    #catalog-list-dessert{
+      gap: 65px;
+    }
+        #catalog-list-dessert .product-card .product-info .product-title {
+        font-size: 24px;
+    }
+        #catalog-list-dessert .product-card .product-info .product-weight {
+        font-size: 15px;
+    }
+      #catalog-list-dessert   .product-link .product-info .index-product-nutrition {
+        color: #ABA7A6;
+        font-size: 15px;
+        font-family: 'Montserrat Bold';
+    }
+       #catalog-list-dessert .product-card  .product-catalog-btn .product-price {
+        font-size: 24px;
+        align-items: end;
+    }
+        #catalog-list-dessert .product-card .product-catalog-btn .product-price-uah{
+          font-size: 19px;
+        }
         #footer-form-item form input{
           width: 300px;
-
+         
         }
         #footer-form-btn {
           width: 300px;
@@ -2866,14 +2962,22 @@ gap:8px;
                 .nav-container .container .logo a svg{
                   margin-left: -20px;
                 }
-                .hamburger{
-                  padding: 3px;
-                }
+
                 #favlist{
-                  padding-bottom: 0px;
+                          padding-bottom: 50px;
+        height: 100%;
                 }
+                .product-main .product-info .product-price {
+                  padding-bottom: 13px;
+                }
+                    .product-main {
+        gap: 20px;
+    }
+    .product-main .product-info .product-title{
+      padding-bottom: 13px;
+    }
                     .nav-product{
-                      padding-top: 34px;
+                      padding-top: 14px;
                     }
         #star1 {
         top: 140%;
@@ -2975,7 +3079,7 @@ header .nav-container .container .logo a {
 }
  .about-gallery {
         display: flex;
-        flex-direction: column; /* текст сверху, картинка снизу */
+        flex-direction: column; 
         align-items: flex-start;
     }
 
@@ -2986,13 +3090,103 @@ header .nav-container .container .logo a {
         margin-bottom: 10px;
     }
     .title-section{
-      padding-left: 20%;
       padding-right: 20%;
+      padding-left: 0px;
+      padding-right: 40%;
+      text-align: left;
+      padding-bottom: 0px;
+      font-size: 24px;
+      font-style: bold;
     }
         .about-intro__mission {
         padding: 0 10% 120px 10%;
       }
+     .hero-mb .slider-hero{
+        background-color: var(--lightpink-color);
+      }
+          #news-product .product-card {
+        flex: 0 0 265px;
+        scroll-snap-align: start;
+        height: 379px;
+        margin-right: 0;
+    }
+      #news-product .product-card .product-img img {
+        width: 265;
+        height: 265px;
+        object-fit: contain;
+      }
+      #news-product .product-price-uah{
+        font-size: 15px;
+        font-style: bold;
+      }
+      .product-info .product-title {
+        padding-top: 16px;
+    }
+        .product-info .product-weight {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    ul#news-product li.product-card a.add-to-cart-btn{
+      width: 37px;
+      height: 36px;
+      padding: 9px 10px 10px 9px;
+    }
+        #news-product {
+          /* height: 379px; */
+          height: 100%;
+        }
+            #favlist-products .product-card.product-img img {
+        width: 265;
+        height: 265px;
+        object-fit: contain;
+      }
+          #favlist-products .product-card {
+        flex: 0 0 265px;
+        height: 396px;
+          }
+              #favlist-products{
+                height: 396px;
+              }
+              .text-footer{
+                padding-bottom: 24px;
+              }
+    .footer-block{
+      padding: 0;
+      border: none;
+      background-color: transparent;
+    }
+    header .nav-container .container{
+      width: 100%;
+      padding-right: 11px;
+      margin-left: 0px;
+      margin-right: 0px;
+    justify-content: space-between;
+    align-items: end;
+    }
+        .product-catalog-btn .add-to-cart-btn{
+          background-color: var(--lightpink-color);
+        }
+
+       #catalog-list-dessert .product-card .product-catalog-btn .add-to-cart-btn{
+        width: 45px;
+        height: 45px;
+       }
+        .product-link .product-info .index-product-nutrition{
+  color: #ABA7A6;
+  font-size: 11px;
+  font-family: 'Montserrat Bold';
 }
+#catalog {
+    margin-bottom: 0px;
+}
+.cart-account li{
+  padding: 0;
+}
+.cart-account a img{
+  width: 24px;
+  height: 24px;
+}
+    }
 @media screen and (max-width: 415px) {
       .ab-s1, .ab-s2{
         left:-10px;

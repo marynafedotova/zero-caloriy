@@ -38,6 +38,7 @@
               <div class="product-info">
                 <h3 class="product-title">{{ product.name }}</h3>
                 <p class="product-weight">{{product.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+              <div class="index-product-nutrition">КБЖВ: {{product.additional_info}}</div> 
               </div>
 
             </a>
@@ -47,7 +48,7 @@
                 <div class="product-price-uah"> {% ftlmsg "currency_catalog" %}</div>
               </div>
                 <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
             </div>
             

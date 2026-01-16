@@ -37,7 +37,10 @@
     </div>
   </section>
   <section id="hero-mb">
-<img src="{% static './img/hero-mb.png' %}" alt="">
+    <div class="slider-hero">
+<img src="{% static './img/hero-m.png' %}" alt="">
+    </div>
+
   </section>
   <section id="new-product-section">
     <div class="container">
@@ -58,6 +61,7 @@
             <div class="product-info">
               <h3 class="product-title">{{ new.name }}</h3>
               <p class="product-weight">{{new.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+             <div class="index-product-nutrition">КБЖВ: {{new.additional_info}}</div> 
 
             </div>
             </a>
@@ -66,7 +70,7 @@
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
               </div>
               <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=new.slug %}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
             </div>
         </li>
@@ -95,14 +99,16 @@
             <div class="product-info">
               <h3 class="product-title">{{ random.name }}</h3>
               <p class="product-weight">{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-              </a>
+             <div class="index-product-nutrition">КБЖВ: {{random.additional_info}}</div> 
+            
+            </a>
               <div class="product-cart">
                 <div class="product-price">
                   {{ random.price }}
                   <span class="product-price-uah">{% ftlmsg "currency" %}</span>
                 </div>
                 <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}" >
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
               </div>
             </div>
