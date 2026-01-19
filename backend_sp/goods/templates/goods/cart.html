@@ -68,8 +68,10 @@
 </main>
 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+
 document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -99,17 +101,33 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
-            alert('Дякуємо! Замовлення надіслано.');
-            window.location.href = '/'; 
+            Swal.fire({
+                icon: 'success',
+                title: 'Дякуємо!',
+                text: 'Замовлення надіслано.',
+                timer: 2500,
+                showConfirmButton: false
+            });
+           setTimeout(() => {
+                window.location.href = '/';
+            }, 2500);
         } else {
-            alert('Помилка: ' + data.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Помилка',
+                text: data.message || 'Сталася помилка при відправці'
+            });
+
             btn.disabled = false;
             btn.innerText = "Спробувати ще раз";
-        }
-    })
+        }    })
     .catch(error => {
         console.error('Error:', error);
-        alert('Сталася помилка при відправці');
+         Swal.fire({
+            icon: 'error',
+            title: 'Помилка',
+            text: 'Сталася помилка при відправці'
+        });
         btn.disabled = false;
         btn.innerText = "Повторити";
     });
