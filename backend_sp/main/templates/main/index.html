@@ -61,7 +61,7 @@
             <div class="product-info">
               <h3 class="product-title">{{ new.name }}</h3>
               <p class="product-weight">{{new.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-             <div class="index-product-nutrition">КБЖВ: {{new.additional_info}}</div> 
+             <div class="index-product-nutrition">{% ftlmsg "kbv" %} {{new.additional_info}}</div> 
 
             </div>
             </a>

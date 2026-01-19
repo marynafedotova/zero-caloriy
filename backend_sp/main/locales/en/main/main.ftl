@@ -18,13 +18,15 @@ time_work_base = Working hours
 add_cart_base = Product added to cart
 conti_shop_base = Continue shopping
 gotocart_base = Go to cart
-search_plch_base = Search...
+search_plch_base = Tiramisu, honey cake, panna cotta ...
+
 
 #index.html
 h1_index = Low-Calorie Desserts
 news_index = OUR NEW ARRIVALS
 currency = UAH
 measure_unit = g
+kbv = CPFC:
 
 
 #delivery

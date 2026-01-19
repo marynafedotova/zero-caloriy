@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     'goods',
     'main',
     'carts',
+    'users',
+    'orders',
+    
 ]
 
 MIDDLEWARE = [
@@ -90,8 +93,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend_sp.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+#Database
+#https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {

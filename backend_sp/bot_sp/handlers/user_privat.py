@@ -6,12 +6,14 @@ from aiogram.types import CallbackQuery, Message, ReplyKeyboardRemove, InputMedi
 from aiogram.filters import CommandStart, or_f
 from aiogram_i18n import I18nContext
 from aiogram.exceptions import TelegramBadRequest
-
+from asgiref.sync import sync_to_async
 
 from filters.chat_types import ChatTypesFilter
 
 from kbds.kb import get_main_menu_kb, LanguageCD, languege_kb, ProductCD, product_kb, get_delivery_kb
 from middlewares.database.request_db import get_product
+
+
 
 if TYPE_CHECKING:
     from stub.stub import I18nContext
@@ -32,36 +34,45 @@ async def start(message: types.Message, i18n: I18nContext):
     text = i18n.user.start_cmd()
     await message.answer(text, reply_markup=languege_kb(i18n))
 
+
 @user_router.callback_query(LanguageCD.filter())
-async def change_language(callback_query: types.CallbackQuery, callback_data:LanguageCD, i18n:I18nContext):
+async def change_language(callback_query: types.CallbackQuery, callback_data: LanguageCD, i18n: I18nContext):
+    await i18n.set_locale(callback_data.lang)
+
 
     await callback_query.answer()
-    await i18n.set_locale(callback_data.lang)
     
-    text = i18n.user.language_changed()
-    option_text = i18n.user.choose_option()
-
-    await callback_query.message.answer(text)
-    await callback_query.message.answer(option_text, reply_markup=get_main_menu_kb(i18n)
-
-)
+    await callback_query.message.edit_text(
+        text=i18n.user.language_changed()
+    )
+    
+    await callback_query.message.answer(
+        text=i18n.user.choose_option(), 
+        reply_markup=get_main_menu_kb(i18n)
+    )
 
 
 #Кнопка назад
 async def send_main_menu(message: types.Message, i18n: I18nContext):
-    """Функція для відправки головного меню з вашою Reply-клавіатурою"""
+    """Функція для відправки головного меню з Reply-клавіатурою"""
     await message.answer(i18n.user.choose_option(), reply_markup=get_main_menu_kb(i18n))
 
 
 #Визначення мови
 def get_lang(i18n: I18nContext) -> str:
+    if not i18n.set_locale:
+        return 'uk'
     return i18n.locale.split("-")[0]
 
 
-def get_i18n_field(obj, field: str, i18n) -> str:
+def get_i18n_field(obj, field: str, i18n:I18nContext) -> str:
     lang = get_lang(i18n)
-    val = getattr(obj, f"{field}_{lang}", None) or getattr(obj, field, None)
-    return str(val) if val else "-"
+    val = getattr(obj, f"{field}_{lang}", None) or getattr(obj, f"{field}_uk", None)
+
+    if val is None or val == "" or str(val).lower() == "none":
+        return "-"
+    return str(val)
+
 
 
 #Товари
@@ -78,15 +89,20 @@ def format_inline_nutrition(additional_info: str) -> str:
             parts.append(f"{key.strip()}: {value.strip()}")
     return " | ".join(parts) if parts else "-"
 
+
 def product_text(product, i18n) -> str:
+
     name = get_i18n_field(product, "name", i18n)
     description = get_i18n_field(product, "description", i18n)
     additional_info = get_i18n_field(product, "additional_info", i18n)
+    
+
     nutrition = format_inline_nutrition(additional_info)
     
     price = getattr(product, 'price', 0)
     weight = getattr(product, 'weight', 0)
     
+
     return (
         f"<b>{name}</b>\n\n"
         f"<b>{i18n.user.product_ingredients()}</b> {description}\n\n"
@@ -94,6 +110,7 @@ def product_text(product, i18n) -> str:
         f"{nutrition}\n\n"
         f"💵 {price:.0f} грн / {weight * 1000:.0f} {i18n.user.gram()}"
     )
+
 
 async def get_safe_media(image_url: str):
     """Визначає, що відправити: посилання чи локальний файл."""

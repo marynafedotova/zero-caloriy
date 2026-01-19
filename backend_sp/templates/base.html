@@ -136,8 +136,8 @@
                 <button type="submit" class="search-btn">
                   <img src="{% static './img/search-icon-lightpink.svg' %}" alt="Search">
                 </button>
-                <input type="search" name="q" placeholder="{% ftlmsg " search_plch_base" %}" class="search-input"
-                  value="{{ query|default:'' }}" placeholder="Тірамісу, медовик, панакота ...">
+                <input type="search" name="q" class="search-input"
+                  value="{{ query|default:'' }}" placeholder="{% ftlmsg "search_plch_base" %}">
               </form>
             </div>
 

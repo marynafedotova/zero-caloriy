@@ -18,7 +18,8 @@ time_work_base = Часы работы
 add_cart_base = Товар добавлен в корзину
 conti_shop_base = Продолжить покупки
 gotocart_base = Перейти в корзину
-search_plch_base = Поиск...
+search_plch_base = Тирамису, медовик, панна-котта ...
+
 
 #delivery
 delivery_title = Доставка и оплата
@@ -63,6 +64,7 @@ h1_index = Десерты с пониженной калорийностью
 news_index = НАШИ НОВИНКИ
 currency = грн
 measure_unit = гр
+kbv = КБЖУ:
 
 
 #carts

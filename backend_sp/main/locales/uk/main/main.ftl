@@ -18,13 +18,15 @@ time_work_base = часи роботи
 add_cart_base = Товар додано у кошик
 conti_shop_base = Продовжити покупки
 gotocart_base = Перейти в кошик
-search_plch_base = Пошук...
+search_plch_base = Тірамісу, медовик, панакота ...
+
 
 #index.html
 h1_index = Десерти зі зниженою калорійністю
 news_index = НАШІ НОВИНОЧКИ
 currency = грн
 measure_unit = гр
+kbv = КБЖВ:
 
 
 #delivery

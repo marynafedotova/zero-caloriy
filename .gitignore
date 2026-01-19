@@ -17,6 +17,10 @@ venv/
 .idea/
 
 db.sqlite3
+Dockerfile
+docker-compose.yml
+
+copy\
 
 settings.py
 Dockerfile
