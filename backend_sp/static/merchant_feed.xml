@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>Мій магазин</title>
+    <link>https://zerokaloriy.com/</link>
+    <description>Фід товарів для Google Merchant Center</description>
+    <item>
+      <g:id>9525d87b-3b4a-4908-b2c2-62aa13c8699b</g:id>
+      <g:title>Три шоколади маленький</g:title>
+      <g:description>шоколад білий, молочний та чорний (без цукру), молоко, яйця, стевія, вершки, грецький йогурт</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/three-150/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/0885e73c-7c45-4ae2-a2e0-63d4dae30f56.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>180.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>0e7a37a1-dd8f-4d12-8cee-4d17631a14c6</g:id>
+      <g:title>Наполеон баночка</g:title>
+      <g:description>борошно, масло вершкове, яйця, молоко, стевія, крохмаль</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/napoleon-in-a-270/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/953cf64c-7a2c-40aa-8c3b-386fbbffa5d4.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>220.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>a9a95e88-caef-4e1a-a0f4-377c21027c10</g:id>
+      <g:title>Тирамісу сфера</g:title>
+      <g:description>печиво савоярді, сироп кавовий з амаретто та еритритолом, рікота, вершки, жовток</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/tiramisu-338/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/e54809fa-6741-494f-a9f3-9c44dc55ee7b.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>330.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>62365f58-7aec-4834-919a-8110a541dd79</g:id>
+      <g:title>Тирамісу баночка</g:title>
+      <g:description>печиво савоярді, сироп кавовий з амаретто та еритритолом, рікота, вершки, жовток</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/tiramisu-in-a-201/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/f0b6a5e6-fcf8-453b-a534-4cbbd30b9334.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>220.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>ef4f81ca-0334-4455-a340-4b19ed546ff4</g:id>
+      <g:title>Панакота ягідна</g:title>
+      <g:description>молоко, вершки, стевія, протеїн, ваніль, ягоди заморожені (вишня, смородина, полуниця)</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/berry-panna-190/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/ede7c858-12a2-445e-9e31-56f3f872cb32.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>140.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>d89cf47d-0c02-446e-85ff-38b9d8411e29</g:id>
+      <g:title>Панакота з маракуєю</g:title>
+      <g:description>молоко, вершки, стевія, протеїн, ваніль, пюре маракуї з кісточкою</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/passion-fruit-panna-190/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/88819f8a-d25c-4e35-b6fb-9709ef08f269.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>140.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>4e6fd3dd-eeb5-4213-9522-866b429cde4f</g:id>
+      <g:title>Наполеон сфера</g:title>
+      <g:description>борошно, масло вершкове, яйця, молоко, стевія, крохмаль</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/napoleon-416/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/9fb3d4bb-606b-4baf-82a2-a15f8edf97a8.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>330.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>15de4865-23b7-4894-b242-1ed04182a72b</g:id>
+      <g:title>Медовик сфера</g:title>
+      <g:description>масло вершкове, мед, яйця, сметана, борошно, стевія, сода, вершки</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/honey-cake-416/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/2159676d-5a1c-4ea0-b012-4e8929d0233a.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>330.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>40eac2be-5401-489d-8989-3a3ac7f3f328</g:id>
+      <g:title>Медовик баночка</g:title>
+      <g:description>масло вершкове, мед, яйця, сметана, борошно, стевія, сода, вершки</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/honey-cake-in-a-230/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/7efc3d63-8adf-4715-9fba-2515f165eea5.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>180.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+    <item>
+      <g:id>a3f63151-21af-449b-bbae-2451202ccba2</g:id>
+      <g:title>Брауні з вишнею баночка</g:title>
+      <g:description>банан, яйця, борошно рисове, какао, чорний шоколад без цукру, стевія, вишня, амаретто</g:description>
+      <g:link>https://zerokaloriy.com/uk/goods/catalog/product/brownie-with-cherry-in-a-190/</g:link>
+      <g:image_link>https://storage.cdneu.syrve.com/nomenclature_images/7823221/5d492f00-1f67-430a-bb6c-1ac032967f65.png</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>210.00 UAH</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Десерти</g:product_type>
+      <g:google_product_category>Десерти</g:google_product_category>
+    </item>
+  </channel>
+</rss>
