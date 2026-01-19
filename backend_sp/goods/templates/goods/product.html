@@ -17,9 +17,8 @@
     <div class="container top100">
       <ul class="nav-product">
         <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
-        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
+            src="{% static './img/Frame.svg' %}" alt="link"></li>
+        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "btn_all_prod_catalog" %}</a></li>
       </ul>
       <div class="product-main">
         <div class="product-gallery">

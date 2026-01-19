@@ -3,7 +3,7 @@ from django.contrib import messages
 from goods.models import Product
 from carts.models import Cart
 from carts.utils import get_user_carts
-
+from django.http import JsonResponse
 
 # def cart_add(request, product_slug):
 #     product = get_object_or_404(Product, slug=product_slug)
@@ -88,3 +88,16 @@ def cart_remove(request, cart_id):
     referer = request.META.get('HTTP_REFERER')
     
     return redirect(referer if referer else '/')
+
+
+
+
+def cart_count(request):
+    if not request.session.session_key:
+        return JsonResponse({'count': 0})
+
+    count = Cart.objects.filter(
+        session_key=request.session.session_key
+    ).count()
+
+    return JsonResponse({'count': count})

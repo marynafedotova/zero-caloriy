@@ -22,6 +22,8 @@ from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from backend_sp.seo.sitemaps import SITEMAPS
 
+
+
 urlpatterns = [
     # мови, які не потребують префікса (наприклад, адмінка чи API)
  path(
@@ -38,5 +40,6 @@ urlpatterns += i18n_patterns(
     path('', include('main.urls')), 
     path('goods/', include('goods.urls')),
     path('carts/', include('carts.urls')),
+    path('cart/', include('carts.urls')),
 )
  

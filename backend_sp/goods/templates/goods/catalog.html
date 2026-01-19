@@ -15,9 +15,8 @@
     <div class="container">
       <ul class="nav-product">
         <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
-        <li><a href="{% url 'goods:catalog' %}">{% ftlmsg "btn_all_prod_catalog" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
+            src="{% static './img/Frame.svg' %}" alt="link"></li>
+        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "btn_all_prod_catalog" %}</a></li>
       </ul>
       <div class="category-section">
         <h2 class="section-title" id="dessert">{% ftlmsg "h2_desserts_catalog" %}</h2>

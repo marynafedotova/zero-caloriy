@@ -16,6 +16,11 @@
 <main>
   <section class="top100">
     <div class="container top100 cart-container">
+      <ul class="nav-product">
+        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
+            src="{% static './img/Frame.svg' %}" alt=""></li>
+        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "btn_all_prod_us" %}</a></li>
+      </ul>
       <h1>{% ftlmsg "you_cart_cart" %}</h1>
       <div class="cart-block" id="cart-items-container">
         <div class="cart-lb">

@@ -161,3 +161,89 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+
+  async function updateCartCounter() {
+    const counter = document.getElementById('cart-counter');
+    if (!counter) return;
+
+    try {
+      const response = await fetch('/cart/count/', {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+
+      if (!response.ok) return;
+
+      const data = await response.json();
+
+      counter.textContent = data.count;
+      counter.style.display = data.count > 0 ? 'flex' : 'none';
+
+    } catch (e) {
+      console.warn('Cart counter unavailable');
+    }
+  }
+
+  document.querySelectorAll('form.add-to-cart-form').forEach(form => {
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+
+        if (response.ok) {
+          await updateCartCounter();
+        }
+
+      } catch (e) {
+        console.warn('Add to cart failed');
+      }
+    });
+
+  });
+
+  updateCartCounter();
+
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const picker = document.querySelector('.language-picker');
+  const toggle = picker.querySelector('.icon-language');
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    picker.classList.toggle('active');
+  });
+
+  document.addEventListener('click', () => {
+    picker.classList.remove('active');
+  });
+
+  // Добавляем подсветку текущего языка через JS
+  const currentLang = "{{ LANGUAGE_CODE }}"; // Django подставляет текущий язык
+  picker.querySelectorAll('.lang-buttons button').forEach(btn => {
+    if (btn.value === currentLang) {
+      btn.classList.add('active');
+    }
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cartLink = document.querySelector('.cart-account a');
+  if (window.location.pathname.endsWith('/goods/cart/')) {
+    cartLink.classList.add('active');
+  }
+});
+
+
+
