@@ -4,7 +4,7 @@ site_descrp_index = Zero Caloriy — сучасні десерти зі зниж
 all_goods_base = Всі товари
 aboutus_base = Про нас
 news_base  = Новинки
-likes_base = ВАМ ТАКОЖ МОЖЕ СПОДОБАТИСЬ
+likes_base = ВАМ МОЖЕ СПОДОБАТИСЬ
 subscribers_base = ПІДПИШИСЬ, ЩОБ БУТИ В КУРСІ
 subs_btn_base = ПІДПИСАТИСЬ
 mail_plch_base = Введи свою адресу тут...
@@ -14,7 +14,7 @@ public_offer_base = Договір публічної офферти
 delivery_base = Доставка
 location_base = локації
 shp_c_base = ТРЦ
-time_work_base = часи роботи
+time_work_base = час роботи
 add_cart_base = Товар додано у кошик
 conti_shop_base = Продовжити покупки
 gotocart_base = Перейти в кошик
@@ -23,7 +23,7 @@ search_plch_base = Тірамісу, медовик, панакота ...
 
 #index.html
 h1_index = Десерти зі зниженою калорійністю
-news_index = НАШІ НОВИНОЧКИ
+news_index = НОВИНКИ
 currency = грн
 measure_unit = гр
 kbv = КБЖВ:

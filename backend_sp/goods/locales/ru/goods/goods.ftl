@@ -18,7 +18,7 @@ additional_info_product = КБЖУ (100 г)
 size_product = Выбери размер
 add_to_cart = Добавить в корзину
 about_product = О продукте
-likes_goods = Вам также может понравиться
+likes_goods = ВАМ МОЖЕТ ПОНРАВИТЬСЯ
 all_goods_product = Все товары
 
 

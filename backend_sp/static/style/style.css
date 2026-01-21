@@ -80,7 +80,16 @@
         url('../fonts/Montserrat-Montserrat-ExtraBold.woff2') format('woff2'),
         url('../fonts/Montserrat-Montserrat-ExtraBold.woff') format('woff'),
         url('../fonts/Montserrat-Montserrat-ExtraBold.ttf') format('truetype');
-    font-weight: 600;
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Montserrat Black';
+    src: local('../fonts/Montserrat-Black'), local('Montserrat-Black'),
+        url('../fonts/Montserrat-Black.woff2') format('woff2'),
+        url('../fonts/Montserrat-Black.woff') format('woff'),
+        url('../fonts/Montserrat-Black.ttf') format('truetype');
+    font-weight: 800;
     font-style: normal;
   }
 
@@ -609,7 +618,6 @@ padding-top: 150px;
 /* index */
 
 .hero{
-  background-color:  var(--pinkdark-color);
   margin-bottom: 62px;
   display: flex;
   flex-direction: row;
@@ -617,320 +625,30 @@ padding-top: 150px;
   padding-top: 80px;
   
 }
-.hero .rb-hero-index{
-position: absolute;
-top: 220px;
-width: 35%;
-right: 30px;
+.index-filter {
+  margin-bottom: 120px;
 }
-.hero .rb-hero-index img{
-  max-width: 500px;
-  max-height: 730px;
+.index-filter .index-cat-filter{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 21px;
 }
-.rb-hero-index .zero_white{
-  display: none;
+.index-filter .index-cat-filter li{
+  min-width: 245px;
+  min-height: 107px;
+  background-color: var(--lightpink-color);
+  border-radius: 29px;
 }
-.hero-lb {
-    position: absolute;
-    top: 50%;
-    left: 100px;
-    display: flex;
-    gap: 5px;
-
-}
-
-/* базовый стиль букв */
-.hero-lb .letter {
-    display: inline-block;  
-  height: 110px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.5s forwards;
-    will-change: opacity, transform;
-     margin-right: 0px;
-     transition: all .8s ease;
-}
-.hero-lb .letter {
-  margin-left: -5px;
-}
-.hero-lb .letter.ml5{
-  margin-left: -10px;
-}
-/* поочередная задержка для каждой буквы */
-.hero-lb .letter:nth-child(1) { animation-delay: 0s; }
-.hero-lb .letter:nth-child(2) { animation-delay: 0.1s; }
-.hero-lb .letter:nth-child(3) { animation-delay: 0.2s; }
-.hero-lb .letter:nth-child(4) { animation-delay: 0.3s; }
-.hero-lb .letter:nth-child(5) { animation-delay: 0.4s; }
-.hero-lb .letter:nth-child(6) { animation-delay: 0.5s; }
-.hero-lb .letter:nth-child(7) { animation-delay: 0.6s; }
-.hero-lb .letter:nth-child(8) { animation-delay: 0.7s; }
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.025); }
-}
-
-.letter.pulse {
-  animation: pulse 1.5s ease-in-out infinite;
-}
- /* stars */
-
-.hero-rb #star1{
-  position: absolute;
-  top: 540px;
-  z-index: 10;
-  right: 180px;
-  width: 150px;
-  aspect-ratio: 1;
-  top: 150px;
-}
-.hero-rb #star2, #star3, #star3, #star5{
-    z-index: 120;
-
-}
-.hero-rb .stars{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.index-filter .index-cat-filter li a{
+  display: flex;
+  justify-content: center;
+  color: #FFF;
   height: 100%;
-  pointer-events: none; 
-  z-index: 9999; 
-  overflow: hidden; 
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Montserrat Bold';
 }
-
-.stars div {
-  position: absolute;
-}
-
-.stars img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-#star1 {
-  top: 60%;
-  right: 30%;
-  width: 30%;
-  animation: orbit-large 25s linear infinite, 
-             pulse-breathe 4s ease-in-out infinite,
-             rotate-slow 40s linear infinite;
-}
-
-#star2 {
-  top: 30%;
-  right: 32%;
-  width: 200px;
-  animation: particle-explosion 2s ease-out forwards,
-             soft-float-pulse 6s ease-in-out 2s infinite;
-}
-
-@keyframes particle-explosion {
-  0% {
-    transform: 
-      scale(0.1) 
-      rotate(0deg);
-    opacity: 0;
-    filter: 
-      blur(20px)
-      brightness(5)
-      hue-rotate(0deg);
-  }
-  30% {
-    transform: 
-      scale(1.5) 
-      rotate(180deg);
-    opacity: 0.9;
-    filter: 
-      blur(10px)
-      brightness(3)
-      hue-rotate(180deg);
-  }
-  60% {
-    transform: 
-      scale(0.9) 
-      rotate(360deg);
-    opacity: 1;
-    filter: 
-      blur(5px)
-      brightness(1.5)
-      hue-rotate(360deg);
-  }
-  100% {
-    transform: 
-      scale(1) 
-      rotate(360deg);
-    opacity: 1;
-    filter: 
-      blur(0)
-      brightness(1)
-      hue-rotate(360deg);
-  }
-}
-
-@keyframes soft-float-pulse {
-  0%, 100% {
-    transform: 
-      scale(1) 
-      translateY(0) 
-      rotate(0deg);
-  }
-  33% {
-    transform: 
-      scale(1.03) 
-      translateY(-15px) 
-      rotate(2deg);
-  }
-  66% {
-    transform: 
-      scale(0.98) 
-      translateY(8px) 
-      rotate(-1deg);
-  }
-}
-
-#star3 {
-  bottom: 40%;
-right: 9%;
-  width: 5%; 
-  animation: figure-eight 30s ease-in-out infinite,
-             glow-gentle 5s ease-in-out infinite alternate,
-             scale-gentle 6s ease-in-out infinite alternate;
-}
-
-#star4 {
-  top: 42%;
-  right: 32%;
-  width: 80px;
-  animation: spiral-drift 20s linear infinite,
-             /* glow-ultra-smooth 5s ease-in-out infinite alternate, */
-             scale-gentle 6s ease-in-out infinite alternate;
-}
-#star5 {
-  bottom: 22%;
-  right: 33%;
-  width: 80px;
-  animation: spiral-drift 20s linear infinite,
-             /* glow-ultra-smooth 5s ease-in-out infinite alternate, */
-             scale-gentle 6s ease-in-out infinite alternate;
-}
-/* Новые ключевые кадры */
-@keyframes orbit-large {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10px, 10px) rotate(90deg); }
-  50% { transform: translate(20px, 40px) rotate(180deg); }
-  75% { transform: translate(-20px, 40px) rotate(270deg); }
-  100% { transform: translate(0, 0) rotate(360deg); }
-}
-
-
-
-@keyframes figure-eight {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(40px, 30px); }
-  50% { transform: translate(0, 60px); }
-  75% { transform: translate(-40px, 30px); }
-  100% { transform: translate(0, 0); }
-}
-
-@keyframes spiral-drift {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  25% { transform: translate(30px, 20px) rotate(90deg) scale(1.1); }
-  50% { transform: translate(10px, 40px) rotate(180deg) scale(1); }
-  75% { transform: translate(-20px, 25px) rotate(270deg) scale(0.9); }
-  100% { transform: translate(0, 0) rotate(360deg) scale(1); }
-}
-
-@keyframes pulse-breathe {
-  0%, 100% { opacity: 0.9; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-@keyframes twinkle-fast {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes glow-ultra-smooth {
-  0% {
-    filter: 
-      drop-shadow(0 0 4px rgba(255, 248, 192, 0.65))
-      drop-shadow(0 0 10px rgba(255, 238, 155, 0.45))
-      drop-shadow(0 0 18px rgba(255, 228, 118, 0.2));
-    opacity: 0.95;
-  }
-  
-  20% {
-    filter: 
-      drop-shadow(0 0 5px rgba(255, 252, 202, 0.75))
-      drop-shadow(0 0 13px rgba(255, 242, 165, 0.5))
-      drop-shadow(0 0 22px rgba(255, 232, 128, 0.25));
-    opacity: 1;
-  }
-  
-  40% {
-    filter: 
-      drop-shadow(0 0 6px rgba(255, 255, 212, 0.85))
-      drop-shadow(0 0 16px rgba(255, 245, 175, 0.55))
-      drop-shadow(0 0 26px rgba(255, 235, 138, 0.3));
-    opacity: 0.98;
-  }
-  
-  60% {
-    filter: 
-      drop-shadow(0 0 7px rgba(255, 250, 197, 0.8))
-      drop-shadow(0 0 14px rgba(255, 240, 160, 0.52))
-      drop-shadow(0 0 24px rgba(255, 230, 123, 0.28));
-    opacity: 0.96;
-  }
-  
-  80% {
-    filter: 
-      drop-shadow(0 0 5.5px rgba(255, 253, 207, 0.78))
-      drop-shadow(0 0 12px rgba(255, 243, 170, 0.48))
-      drop-shadow(0 0 20px rgba(255, 233, 133, 0.23));
-    opacity: 0.99;
-  }
-  
-  100% {
-    filter: 
-      drop-shadow(0 0 4px rgba(255, 248, 192, 0.65))
-      drop-shadow(0 0 10px rgba(255, 238, 155, 0.45))
-      drop-shadow(0 0 18px rgba(255, 228, 118, 0.2));
-    opacity: 0.95;
-  }
-}
-
-
-
-@keyframes sparkle-flash {
-  0%, 100% { opacity: 1; filter: brightness(1); }
-  50% { opacity: 0.8; filter: brightness(1.3); }
-}
-
-@keyframes bounce-soft {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-@keyframes float-delicate {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(10px, -10px); }
-}
-
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes scale-gentle {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.15); }
-}
-
-
 .cart-account{
   display: flex;
   gap: 14px;
@@ -1030,10 +748,11 @@ ul#news-product li.product-card a.add-to-cart-btn  {
   border-radius: 16px;
   /* max-width: 310px;
   max-height: 280px; */
-  object-fit: contain;
+  object-fit: cover;
 }
 .product-img img{
   border-radius: 16px;
+  height: 299px;
 }
 
 .product-info .product-title{
@@ -1142,31 +861,49 @@ width: 100%;
 
 #show-all-btn {
     display: block;
-    margin: 20px auto 0 auto;
-    border: 1px solid var(--pinklight-color);
-    border-radius: 16px;
-    padding: 16px 54px;
-    background-color: #fff;
     transition: all .5s ease;
-    max-width: 218px;
     text-align: center;
+    font-family: 'Montserrat Bold';
+    font-size: 22px;
+    padding-right: 16px;
 }
 #show-all-btn:hover{
-  background-color: var(--lightpink-color);
-  color: var(--white-color);
+text-decoration: underline;
 }
 #new-product-section{
   
   margin-bottom: 64px;
 }
 #new-product-section .container{
-  border-bottom:1px solid var(--pinklight-color);
+  /* border-bottom:1px solid var(--pinklight-color); */
 padding-bottom: 64px;
 }
-#favlist .container #show-all-btn{
-  margin-bottom: 80px;
+#new-product-section .container .new-header{
+  display: flex;
+  justify-content: space-between;
+}
+#new-product-section .container .new-header .title-section{
+  font-size: 40px;
+      font-family: 'Montserrat Black';
+      padding-bottom: 25px;
+}
+
+#show-all-btn-m{
+  display: none;
 }
 /* fav section */
+#favlist{
+  padding-bottom: 100px;
+}
+.favlist-hero{
+  display: flex;
+  justify-content: space-between;
+}
+.favlist-hero .title-section{
+  font-size: 40px;
+      font-family: 'Montserrat Black';
+      padding-bottom: 25px;
+}
   #favlist-products li{
   width: 30%;
   width: 295px;
@@ -1231,7 +968,7 @@ footer .container{
 }
 
 .footer-block{
-  margin-top: -200px;
+  margin-top: -100px;
   background-color: var(--pinkdark-color);
   padding: 36px 64px;
   border-radius: 20px;
@@ -1378,6 +1115,7 @@ justify-content: space-between;
     }
     .product-main .product-info .product-price{
       display: inline-flex;
+          align-items: flex-end;
     }
     .product-main .product-info .product-price .currency{
       font-family: Montserrat;
@@ -1385,6 +1123,7 @@ font-weight: 700;
 font-size: 24px;
 margin: auto;
 color: var(--grey-color);
+margin: 0;
     }
 .product-main .product-info .product-price .uah-product-price{
   color: var(--black);
@@ -1397,7 +1136,7 @@ color: var(--grey-color);
   border-radius: 58px;
   max-height: 609px;
   max-width: 609px;
-
+object-fit: cover;
 }
 .nav-product{
   display: inline-flex;
@@ -1467,10 +1206,12 @@ color: var(--grey-color);
 .product-nutrition, .product-size{
   border-bottom: 1px solid #FFD4DA;
 }
+
 .product-ingredients, .nutrition-list{
   font-size: 16px;
   color: var(--grey-color);
-font-weight: 600;
+font-family: 'Montserrat Semi Bold';
+  line-height: 22px;
 }
 .product-actions{
 display: flex;
@@ -1479,9 +1220,10 @@ justify-content: space-between;
 padding-top: 24px;
 }
 .quantity{
-  background-color: var(--pinklight-color);
+  background-color: var(--lightpink-color);
   padding: 16px 20px;
   border-radius: 62px;
+  min-width: 170px;
   width: 30%;
   display: flex;
   justify-content: space-between;
@@ -1489,11 +1231,17 @@ padding-top: 24px;
 .quantity span{
   padding: 0px 16px;
   color: var(--pinkmiddle-color);
+  font-size: 16px;color: #fff;
 }
-.quantity button{
+.quantity button {
   border: none;
-  background-color: var(--pinklight-color);
+  background-color: var(--lightpink-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
+
 .quantity form{
   width: 100%;
   display: inline-flex;
@@ -1501,7 +1249,7 @@ align-items: center;
     justify-content: space-evenly;
 }
 .product-actions .add-to-cart-btn{
-  background-color: var(--pinkdark-color);
+  background-color: var(--lightpink-color);
   color: var(--white-color);
   width: 60%;
   border-radius: 62px;
@@ -1511,9 +1259,10 @@ align-items: center;
   border: 1px solid var(--pinkdark-color);
   transition: all .5 ease;
   text-align: center;
+  min-width: 400px;
 }
 .product-actions .add-to-cart-btn:hover{
-  background-color: var(--pinkmiddle-color);
+  background-color: var(--pinkdark-color);
 
 }
 
@@ -1546,6 +1295,44 @@ align-items: center;
   font-weight: 500;
 }
 /* CATALOG */
+.icon {
+  fill: currentColor;
+}
+
+#catalog .nav-product{
+  padding-bottom: 68px;
+}
+.catalog-filter .catalog-cat-filter{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding-bottom: 44px;
+}
+.catalog-filter .catalog-cat-filter li{
+  border: 1px solid var(--lightpink-color);
+  border-radius: 16px;
+  width: 143px;
+  height: 43px;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.catalog-filter .catalog-cat-filter li a {
+  display: flex;
+  align-items: center;        /* вертикаль */
+  justify-content: center;    /* горизонталь */
+  gap: 8px;                   /* расстояние между иконой и текстом */
+  height: 100%;
+  color: var(--pinkdark-color);
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+}
+.catalog-filter .catalog-cat-filter li a svg {
+  display: block;
+}
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -1605,9 +1392,10 @@ align-items: center;
   min-width: 290px;
 }
 #catalog-list-dessert .product-card .product-img img{
-  max-width: 295px;
+  max-width: 299px;
   aspect-ratio: 1;
-  object-fit: contain;
+  object-fit: cover;
+  height: 299px;
 }
 .category-section .section-title{
   color: var(--lightpink-color);
@@ -2522,6 +2310,12 @@ top: 140px;
 }
 
 @media screen and (max-width: 730px) {
+  #show-all-btn{
+    display: none;
+  }
+#show-all-btn-m{
+  display: block;
+}
   .title-section {
     font-size: 20px;
     padding-bottom: 24px;
@@ -2554,6 +2348,7 @@ top: 140px;
     }
     #new-product-section .container{
       padding-bottom: 40px;
+  border-bottom:1px solid var(--pinklight-color);
     }
     #new-product-section {
     margin-bottom: 30px;

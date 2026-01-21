@@ -23,7 +23,7 @@ search_plch_base = Tiramisu, honey cake, panna cotta ...
 
 #index.html
 h1_index = Low-Calorie Desserts
-news_index = OUR NEW ARRIVALS
+news_index = NEW ARRIVALS
 currency = UAH
 measure_unit = g
 kbv = CPFC:

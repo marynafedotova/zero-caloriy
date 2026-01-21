@@ -1,74 +1,74 @@
-const heroLb = document.querySelector('.hero-lb');
-const letters = document.querySelectorAll('.hero-lb .letter');
-const extraOs = 4;
-const shiftAmount = 35;
+// const heroLb = document.querySelector('.hero-lb');
+// const letters = document.querySelectorAll('.hero-lb .letter');
+// const extraOs = 4;
+// const shiftAmount = 35;
 
-const oLetter = document.createElement('img');
-oLetter.src = oSrc; 
+// const oLetter = document.createElement('img');
+// oLetter.src = oSrc; 
 
-const oLetters = [];
-for (let i = 0; i < extraOs; i++) {
-  const oLetter = document.createElement('img');
-  oLetter.src = oSrc;
-  oLetter.classList.add('letter', 'extra-o');
+// const oLetters = [];
+// for (let i = 0; i < extraOs; i++) {
+//   const oLetter = document.createElement('img');
+//   oLetter.src = oSrc;
+//   oLetter.classList.add('letter', 'extra-o');
   
-  Object.assign(oLetter.style, {
-    opacity: '0',
-    transform: 'translateY(40px) scale(0.7)',
-    transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    position: 'relative',
-    display: 'inline-block'
-  });
+//   Object.assign(oLetter.style, {
+//     opacity: '0',
+//     transform: 'translateY(40px) scale(0.7)',
+//     transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+//     position: 'relative',
+//     display: 'inline-block'
+//   });
   
-  const lastLetter = heroLb.lastElementChild;
-  heroLb.insertBefore(oLetter, lastLetter);
-  oLetters.push(oLetter);
-}
+//   const lastLetter = heroLb.lastElementChild;
+//   heroLb.insertBefore(oLetter, lastLetter);
+//   oLetters.push(oLetter);
+// }
 
-const allLetters = document.querySelectorAll('.hero-lb .letter');
-const lastLetter = heroLb.lastElementChild; // буква "т"
+// const allLetters = document.querySelectorAll('.hero-lb .letter');
+// const lastLetter = heroLb.lastElementChild; // буква "т"
 
-allLetters.forEach(letter => {
-  if (letter !== lastLetter) {
-    letter.style.opacity = '0';
-    letter.style.transform = 'translateY(40px) scale(0.7)';
-    letter.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
-  }
-});
+// allLetters.forEach(letter => {
+//   if (letter !== lastLetter) {
+//     letter.style.opacity = '0';
+//     letter.style.transform = 'translateY(40px) scale(0.7)';
+//     letter.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+//   }
+// });
 
-lastLetter.style.transition = 'transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
-lastLetter.style.transform = `translateX(${extraOs * shiftAmount}px)`;
+// lastLetter.style.transition = 'transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+// lastLetter.style.transform = `translateX(${extraOs * shiftAmount}px)`;
 
-function animateLetters() {
-  const baseDelay = 200;
-  const staggerDelay = 150;
+// function animateLetters() {
+//   const baseDelay = 200;
+//   const staggerDelay = 150;
   
-  allLetters.forEach((letter, index) => {
-    if (letter === lastLetter) {
-      setTimeout(() => {
-        letter.style.opacity = '1';
-        letter.classList.add('pulse');
-      }, (allLetters.length - 1) * baseDelay + 300);
-      return;
-    }
+//   allLetters.forEach((letter, index) => {
+//     if (letter === lastLetter) {
+//       setTimeout(() => {
+//         letter.style.opacity = '1';
+//         letter.classList.add('pulse');
+//       }, (allLetters.length - 1) * baseDelay + 300);
+//       return;
+//     }
     
-    setTimeout(() => {
-      letter.style.opacity = '1';
-      letter.style.transform = 'translateY(0) scale(1)';
-      letter.classList.add('pulse');
+//     setTimeout(() => {
+//       letter.style.opacity = '1';
+//       letter.style.transform = 'translateY(0) scale(1)';
+//       letter.classList.add('pulse');
       
-      setTimeout(() => {
-        letter.style.transform = 'translateY(-8px) scale(1.1)';
-        setTimeout(() => {
-          letter.style.transform = 'translateY(0) scale(1)';
-        }, 150);
-      }, 400);
-    }, index * baseDelay);
-  });
-}
+//       setTimeout(() => {
+//         letter.style.transform = 'translateY(-8px) scale(1.1)';
+//         setTimeout(() => {
+//           letter.style.transform = 'translateY(0) scale(1)';
+//         }, 150);
+//       }, 400);
+//     }, index * baseDelay);
+//   });
+// }
 
-// Запускаем анимацию
-setTimeout(animateLetters, 300);
+// // Запускаем анимацию
+// setTimeout(animateLetters, 300);
 
 
 // document.addEventListener('DOMContentLoaded', () => {

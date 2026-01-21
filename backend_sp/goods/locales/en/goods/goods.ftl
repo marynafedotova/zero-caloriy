@@ -18,7 +18,7 @@ additional_info_product = Nutrition Facts (per 100 g)
 size_product = Choose a size
 add_to_cart = Add to cart
 about_product = About the product
-likes_goods = You may also like
+likes_goods = YOU MAY ALSO LIKE
 all_goods_product = All products
 
 

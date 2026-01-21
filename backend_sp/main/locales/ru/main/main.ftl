@@ -4,7 +4,7 @@ site_descrp_index = Zero Caloriy — современные десерты с п
 all_goods_base = Все товары
 aboutus_base = О нас
 news_base = Новинки
-likes_base = ВАМ ТАКЖЕ МОЖЕТ ПОНРАВИТЬСЯ
+likes_base = ВАМ МОЖЕТ ПОНРАВИТЬСЯ
 subscribers_base = ПОДПИШИСЬ ЧТОБЫ БЫТЬ В КУРСЕ
 subs_btn_base = ПОДПИСАТЬСЯ
 mail_plch_base = Введите свой адрес здесь...
@@ -61,7 +61,7 @@ payment-method-offline = Наличными или картой: при само
 
 #index.html
 h1_index = Десерты с пониженной калорийностью
-news_index = НАШИ НОВИНКИ
+news_index = НОВИНКИ
 currency = грн
 measure_unit = гр
 kbv = КБЖУ:

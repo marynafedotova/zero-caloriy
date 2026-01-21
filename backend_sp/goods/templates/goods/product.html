@@ -100,8 +100,17 @@
   </section>
   <!-- Може сподобатися -->
   <section id="favlist">
-    <div class="container">
-      <h3 class="title-section">{% ftlmsg "likes_goods" %}</h3>
+      
+      <div class="favlist-hero">
+<h3 class="title-section">{% ftlmsg "likes_goods" %}</h3>
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}
+          <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="3.33014" width="34" height="2" fill="black"/>
+<path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
+</svg>
+        </a>
+
+      </div>
 <ul class="favlist-list" id="favlist-products">
   {% for random in random_products %}
   <li class="product-card">
@@ -137,8 +146,8 @@
   </li>
   {% endfor %}
 </ul>
-      <!-- <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}</a> -->
-    </div>
+      <a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_product" %}</a>
+
   </section>
 
   </div>

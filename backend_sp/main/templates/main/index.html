@@ -14,39 +14,38 @@
 <main>
   <h1 class="sr-only">{% ftlmsg "h1_index" %}</h1>
   <section  class="hero">
-    <img src="{% static './img/Без заголовка 55 1.png' %}" alt="hero">
-    <div class="hero-lb">
-      <img src="{% static './img/у.png' %}" class="letter">
-      <img src="{% static './img/л.png' %}" class="letter ml5">
-      <img src="{% static './img/ь.png' %}" class="letter">
-      <img src="{% static './img/о.png' %}" class="letter">
-      <img src="{% static './img/т.png' %}" class="letter">
-    </div>
-    <div class="rb-hero-index">
-      <img src="{% static './img/IMG_3038.PNG' %}" alt="десерт">
-      <div class="zero_white">
-        <img src="{% static './img/zero_white.png' %}" alt="logo">
-      </div>
-    </div>
-    <div class="stars">
-      <div id="star1"><img src="{% static './img/зірка сайт 2.svg' %}" alt="star"></div>
-      <div id="star2"><img src="{% static './img/зірочка1.svg' %}" alt="star"></div>
-      <div id="star3"><img src="{% static './img/зірочка1.svg' %}" alt="star"></div>
-      <div id="star4"><img src="{% static './img/зірочка3.svg' %}" alt="star"></div>
-      <div id="star5"><img src="{% static './img/зірка5.png' %}" alt="star"></div>
-    </div>
+    <img src="{% static './img/hero-index.svg' %}" alt="hero">
+
   </section>
   <section id="hero-mb">
     <div class="slider-hero">
-<img src="{% static './img/hero-m.png' %}" alt="">
+    <img src="{% static './img/hero-m.png' %}" alt="">
     </div>
-
+  </section>
+  <section class="index-filter">
+<div class="container">
+  <ul class="index-cat-filter">
+    <li><a href="#">Без цукру</a></li>
+    <li><a href="#">Без глютену</a></li>
+    <li><a href="#">Без лактози</a></li>
+    <li><a href="#">Веганські</a></li>
+    <li><a href="#">Протеїнові</a></li>
+  </ul>
+</div>
   </section>
   <section id="new-product-section">
     <div class="container">
-      <h2 class="title-section">{% ftlmsg "news_index" %}</h2>
-      <ul class="news-product-item" id="news-product">
+      <div class="new-header">
+      <h2 class="title-section">{% ftlmsg "news_index" %}</h2> 
+      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %} <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="3.33014" width="34" height="2" fill="black"/>
+<path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
+</svg>
 
+</a>
+
+      </div>
+      <ul class="news-product-item" id="news-product">
         {% for new in new_products %}
         <li class="product-card">
           <a href="{% url 'goods:product' product_slug=new.slug %}" class="product-link" style="border-radius: 16px; ">
@@ -76,14 +75,25 @@
         </li>
         {% endfor %}
       </ul>
-      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
-
+<a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
+</a>
 
     </div>
   </section>
   <section id="favlist">
     <div class="container">
+      <div class="favlist-hero">
       <h3 class="title-section">{% ftlmsg "likes_base" %}</h3>
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}
+          <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="3.33014" width="34" height="2" fill="black"/>
+<path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
+</svg>
+        </a>
+
+      </div>
+
+
       <ul class="favlist-list" id="favlist-products">
 
         {% for random in random_products %}
@@ -116,9 +126,9 @@
           {% endfor %}
         </li>
       </ul>
-      <div class="mb150">
-        <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}</a>
-      </div>
+<a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
+</a>
+
     </div>
     </section>
       <script>
@@ -126,5 +136,5 @@
   </script>
 
   
-  <script src="{% static './js/index.js' %}"></script>
+
   {% endblock content %}
