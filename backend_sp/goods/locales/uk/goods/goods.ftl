@@ -14,7 +14,7 @@ title_product = Zero Caloriy – низькокалорійні десерти �
 description_product = Насолоджуйтесь смачними десертами без цукру та калорій, підсолодженими стевією та еритролом. Здорово та смачно! Доставка у м. Київ.
 hi_product = Zero Caloriy – здорові десерти без цукру та зниженою калорійністю
 ingredients_product = Склад:
-additional_info_product = КБЖВ (100г)
+additional_info_product = КБЖВ:
 size_product = Обери розмір
 add_to_cart = Додати в кошик
 about_product = Про продукт
@@ -27,7 +27,7 @@ btn_add_goods_cart = Перейти до вибору товарів
 #cart.html
 title_cart = Кошик — оформлення замовлення Zero Caloriy
 description_cart = Перевірте обрані десерти Zero Caloriy та оформіть замовлення онлайн швидко й зручно. Доставка у м. Київ.
-you_cart_cart = Кошик 
+you_cart_cart = Ваш кошик 
 order_cart = Ваше замовлення
 placeholder_two_name_cart = Введіть ваше прізвище
 placeholder_name_cart = Введіть ваше ім'я
@@ -36,7 +36,7 @@ skymall_cart = ТРЦ SkyMall (проспект Романа Шухевича, 2
 retroville_cart = ТРЦ Retrowille (просп. Європейського Союзу, 47)
 submit_cart = Оформити замовлення
 vaga_cart = Вага:
-total_prace_carts = Загальна сума:
+total_prace_carts = Разом:
 
 #serch 
 price-uah = грн

@@ -38,7 +38,7 @@ document.querySelectorAll('.index-product-nutrition').forEach(element => {
     // console.log('Длина:', original.length);
     
     if (original.length > 33) {
-        element.textContent = original.substring(0, 29) + '...';
+        element.textContent = original.substring(0, 45) + '...';
         // console.log('Обрезано до:', element.textContent);
     } else {
         element.textContent = original;
@@ -246,4 +246,52 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggles = document.querySelectorAll('.catalog-toggle');
 
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const item = toggle.closest('.catalog-item');
+        item.classList.toggle('is-open');
+      });
+    });
+  });
+
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.catalog-item.is-open').forEach(item => {
+    if (!item.contains(e.target)) {
+      item.classList.remove('is-open');
+    }
+  });
+});
+const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = dot.dataset.slide;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        });
+    });
+ const mobileSlider = document.querySelector('.slider-hero-m');
+    const slidesM = mobileSlider.querySelectorAll('.slide');
+    const dotsM = mobileSlider.querySelectorAll('.dot');
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = dot.dataset.slide;
+
+            slidesM.forEach(s => s.classList.remove('active'));
+            dotsM.forEach(d => d.classList.remove('active'));
+
+            slidesM[index].classList.add('active');
+            dotsM[index].classList.add('active');
+        });
+    });

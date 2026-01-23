@@ -14,13 +14,40 @@
 <main>
   <h1 class="sr-only">{% ftlmsg "h1_index" %}</h1>
   <section  class="hero">
-    <img src="{% static './img/hero-index.svg' %}" alt="hero">
+<div class="slider-hero">
+    <div class="slides">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide active">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide">
+    </div>
+
+    <div class="dots">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+        <span class="dot" data-slide="3"></span>
+    </div>
+</div>
 
   </section>
   <section id="hero-mb">
-    <div class="slider-hero">
-    <img src="{% static './img/hero-m.png' %}" alt="">
+ <div class="slider-hero-m">
+    <div class="slides">
+        <img src="{% static 'img/hero-m.png' %}" class="slide active">
+        <img src="{% static 'img/hero-m.png' %}" class="slide">
+        <img src="{% static 'img/hero-m.png' %}" class="slide">
+        <img src="{% static 'img/hero-m.png' %}" class="slide">
     </div>
+
+    <div class="dots">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+        <span class="dot" data-slide="3"></span>
+    </div>
+</div>
+
   </section>
   <section class="index-filter">
 <div class="container">
@@ -68,8 +95,11 @@
               <div class="product-price">
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
               </div>
-              <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=new.slug %}">
+              <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=new.slug %}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+              </a>
+              <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=new.slug %}">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
             </div>
         </li>
@@ -118,6 +148,9 @@
                   <span class="product-price-uah">{% ftlmsg "currency" %}</span>
                 </div>
                 <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}" >
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
+              </a>
+              <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}" >
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
               </div>

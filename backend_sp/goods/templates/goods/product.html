@@ -42,13 +42,14 @@
           </div>
 
           <div class="product-nutrition">
-            <h4>{% ftlmsg "additional_info_product" %}</h4>
+            <h4>{% ftlmsg "additional_info_product" %} <div class="kbju">на 100 г</div></h4>
             <ul class="nutrition-list">
               <li>{{product.additional_info}}</li>
             </ul>
           </div>
 
           <div class="product-size">
+            <div class="product-size-title">Обери розмір</div>
             {% if variants|length > 1 %}
             {# Якщо варіантів більше одного, виводимо заголовок і кнопки #}
             <h4>{% ftlmsg "size_product" %}</h4>
@@ -134,7 +135,10 @@
             {{ random.price }}
             <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
           </div>
-                        <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}">
+              <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
+              </a>
+           <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
           {% comment %} <button class="add-to-cart">

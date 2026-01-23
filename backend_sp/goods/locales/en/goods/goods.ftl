@@ -14,7 +14,7 @@ title_product = Zero Caloriy – Low-Calorie Sugar-Free Desserts
 description_product = Enjoy delicious sugar-free desserts with reduced calories, sweetened with stevia and erythritol. Healthy and tasty! Delivery in Kyiv.
 hi_product = Zero Caloriy – Healthy Sugar-Free Desserts with Reduced Calories
 ingredients_product = Ingredients:
-additional_info_product = Nutrition Facts (per 100 g)
+additional_info_product = Nutrition facts:
 size_product = Choose a size
 add_to_cart = Add to cart
 about_product = About the product
@@ -25,7 +25,7 @@ all_goods_product = All products
 #cart.html
 title_cart = Cart — Checkout Zero Caloriy
 description_cart = Review your selected Zero Caloriy desserts and complete your order online quickly and conveniently. Delivery in Kyiv.
-you_cart_cart = Сart
+you_cart_cart = Your shopping cart
 order_cart = Your order
 placeholder_two_name_cart = Enter your last name
 placeholder_name_cart = Enter your first name
