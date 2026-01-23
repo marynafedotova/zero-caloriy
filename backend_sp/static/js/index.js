@@ -222,3 +222,77 @@ document.addEventListener('click', (e) => {
 
 //     openModal();
 // }
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.catalog-item.is-open').forEach(item => {
+    if (!item.contains(e.target)) {
+      item.classList.remove('is-open');
+    }
+  });
+});
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+let currentIndex = 0;
+
+// переключение по точкам
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const index = +dot.dataset.slide;
+
+        currentIndex = index; // важно — чтобы автопрокрутка "знала" текущий слайд
+
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+    });
+});
+
+// автопрокрутка
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    slides[currentIndex].classList.add('active');
+    dots[currentIndex].classList.add('active');
+}, 3000);
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileSlider = document.querySelector('.slider-hero-m');
+
+    if (!mobileSlider) return;
+
+    const slidesM = mobileSlider.querySelectorAll('.slide');
+    const dotsM = mobileSlider.querySelectorAll('.dot');
+
+    dotsM.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = dot.dataset.slide;
+
+            slidesM.forEach(s => s.classList.remove('active'));
+            dotsM.forEach(d => d.classList.remove('active'));
+
+            slidesM[index].classList.add('active');
+            dotsM[index].classList.add('active');
+        });
+    });
+
+    // 🔥 вот сюда добавляем автопрокрутку
+    let currentIndex = 0;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % slidesM.length;
+
+        slidesM.forEach(s => s.classList.remove('active'));
+        dotsM.forEach(d => d.classList.remove('active'));
+
+        slidesM[currentIndex].classList.add('active');
+        dotsM[currentIndex].classList.add('active');
+    }, 3000);
+});
+

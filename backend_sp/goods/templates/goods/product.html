@@ -64,7 +64,7 @@
             {% else %}
             {# Якщо розмір лише один, виводимо просто текст із вагою #}
             <div class="single-size">
-              <span>{% ftlmsg "vaga_cart" %} {{ product.weight|mul:1000|floatformat:0 }} г</span>
+              <span> {{ product.weight|mul:1000|floatformat:0 }} г</span>
             </div>
             {% endif %}
           </div>
