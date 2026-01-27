@@ -95,9 +95,9 @@
               <div class="product-price">
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
               </div>
-              {% comment %} <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=new.slug %}">
+              <a class="add-to-cart-btn-m"  onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
-              </a> {% endcomment %}
+              </a>
               <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
@@ -147,21 +147,20 @@
                   {{ random.price }}
                   <span class="product-price-uah">{% ftlmsg "currency" %}</span>
                 </div>
-                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}>
+                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
-              {% comment %} <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}" >
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart"> {% endcomment %}
-              </a> {% endcomment %}
+             <a class="add-to-cart-btn-m"  href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}" >
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+              </a> 
               </div>
             </div>
           
           {% endfor %}
         </li>
       </ul>
-<a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
-</a>
-
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
+        </a>
     </div>
     </section>
       <script>
