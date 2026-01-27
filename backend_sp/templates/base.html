@@ -10,8 +10,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="all">
-  <meta name="revisit-after" content="1 day">
-  <!-- NOTE: You selected a new image. Please upload it to your server and replace "YOUR_IMAGE_URL_HERE" with the actual URL. -->
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{% static './style/style.css' %}">
   <link rel="mask-icon" href="{% static '.img/safari-pinned-tab.svg' %}" color="#5bbad5">
@@ -32,6 +30,19 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="{% static '.img/ms-icon-144x144.png' %}">
   <meta name="theme-color" content="#ffffff"><!-- HTML Meta Tags -->
+<link rel="canonical" href="{{ canonical_url }}">
+
+{% for code, url in alternate_urls.items %}
+  <link rel="alternate" hreflang="{{ code }}" href="{{ url }}">
+{% endfor %}
+
+<meta property="og:title" content="{% if current_lang == 'uk' %}Zero Caloriy — десерти з пониженою калорійністю{% else %}Zero Caloriy — десерты с пониженной калорийностью{% endif %}">
+<meta property="og:description" content="{% if current_lang == 'uk' %}Zero Caloriy — сучасні десерти з пониженою калорійністю. Класичні рецепти, адаптовані під сучасний підхід до харчування. Працюємо у м. Київ.{% else %}Zero Caloriy — современные десерты с пониженной калорийностью. Классические рецепты, адаптированные под современный подход к питанию. Работаем в г. Киев.{% endif %}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zerokaloriy.com/static/img/og-image.png">
+
+
   {% block title_meta %}
   {% endblock title_meta %}
 </head>

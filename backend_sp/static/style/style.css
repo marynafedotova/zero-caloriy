@@ -423,7 +423,6 @@ left: 0;
 font-weight: 400;
 font-size: 20px;
 line-height: 24px;
-
 }
 .catalog-filter-menu-mobile .catalog-cat-filter{
     display: flex;
@@ -581,7 +580,7 @@ flex: 0 0 29px;
   height: 48px;
   padding-bottom: 12px;
   padding-top: 12px;
-  padding-left: 52px;
+  padding-left: 56px;
   border-radius: 16px;
   outline: none;
   border: none;
@@ -595,8 +594,8 @@ flex: 0 0 29px;
   border-radius: 62px;
 }
 .search form button img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 .search form button {
     background-color: transparent;
@@ -604,8 +603,8 @@ flex: 0 0 29px;
   position: absolute;
   top: 14px;
   left: 18px;
-      width: 24px;
-    height: 24px;
+      width: 20px;
+    height: 20px;
 }
 #btn-search-mobile{
   padding: 0;
