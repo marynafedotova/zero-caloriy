@@ -17,7 +17,7 @@
   --grey-color:#ABA7A6;
   --dark-grey: #666463;
   --pinkmiddle-color: #E68A96;
-  --background-color: #FFF9F8;
+  --background-color: #FFF;
 
 
 }
@@ -250,7 +250,7 @@ img {
 }
 
 .container {
-  width: min(90%, 1500px);
+  width: min(90%, 1400px);
   margin: 0 auto;
 }
 .cart-icon {
@@ -374,16 +374,10 @@ border-bottom: none;
 }
 header .nav-container .container .logo a {
   position: relative;
-  margin-left: -20px;
+  width: 152px;
+  height: 54px;
 }
-header .nav-container .container .logo a img {
-  object-fit: contain;
-  border-radius: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
-  height: 44px;
-  width: 140px;
-}
+
 header .nav-container .container nav {
   vertical-align: middle;
   padding-top: 8px;
@@ -401,6 +395,25 @@ header .nav-container .container nav ul li a {
   transition: all 0.5s ease;
 
 }
+.catalog-filter-menu .catalog-cat-filter li a {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* відстань між іконкою та текстом */
+}
+
+.catalog-filter-menu .catalog-cat-filter li a .svg-wrapper {
+  width: 19px; /* фіксована ширина для всіх іконок */
+  height: auto; /* висота підлаштовується пропорційно */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog-filter-menu .catalog-cat-filter li a svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 header .nav-container .social-link ul {
   display: flex;
@@ -412,7 +425,7 @@ header .nav-container .social-link ul {
   opacity: 0;
   transition: max-height 0.3s ease, opacity 0.2s ease;
   position: absolute;
-    top: 100%;
+    top: 209%;
 left: 0;
   transform: translateY(10px);
   pointer-events: none;
@@ -429,30 +442,46 @@ line-height: 24px;
   flex-direction: column;
   padding-left: 14px;
 }
-.catalog-filter-menu-mobile .catalog-filter-menu .catalog-cat-filter li{
+.catalog-filter-menu-mobile .catalog-cat-filter li{
   margin-bottom: 17px !important;
 }
-.catalog-filter-menu-mobile .catalog-filter-menu .catalog-cat-filter li:last-child{
+.catalog-filter-menu-mobile .catalog-cat-filter li:last-child{
 margin-bottom: 0 !important;
 }
-.catalog-filter-menu-mobile .catalog-filter-menu .catalog-cat-filter li a{
+.catalog-filter-menu-mobile .catalog-cat-filter li a .svg-wrapper {
+  width: 20px; 
+  height: auto; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.catalog-filter-menu-mobile .catalog-cat-filter li a svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.catalog-filter-menu-mobile ul.catalog-cat-filter li a{
   display: flex;
 flex-direction: row;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 padding: 0px;
-gap: 4px;
+gap: 5px;
 font-family: 'Montserrat';
-font-weight: 400;
 font-size: 15px;
 line-height: 18px;
 color: rgba(0, 0, 0, 0.6);
-color: var(--grey-color);
     width: 100%;
     height: 100%;
 }
 .mobile-menu li{
   margin-bottom: 22px;
+}
+.mobile-menu li a{ 
+  font-family: 'Montserrat';
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.6);
 }
 .catalog-item.is-open .catalog-filter-menu {
   opacity: 1;
@@ -549,7 +578,8 @@ flex: 0 0 29px;
 
 .logo-hamb{
   display: inline-flex;
-  align-items: flex-end
+  align-items: flex-end;
+  gap: 9px;
 }
 .header-rb{
   display: inline-flex;
@@ -649,23 +679,26 @@ main {
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  border-radius: 21px;
 }
 .menu-panel .panel-top {
-  height: 100px;
+  /* height: 100px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 64px;
 }
 
 .menu-panel nav {
   overflow: hidden;
+  padding-left: 16px;
   /* height: calc(100vh - 100px); */
 }
 .menu-panel {
   display: flex;
-  flex-direction: column;  /* вертикальный стек */
-  height: 100vh;           /* заполняет всю высоту экрана */
-  padding: 20px;           /* по желанию */
+  flex-direction: column;
+  height: 100vh;
+  padding: 33px  11px 43px 14px;
   box-sizing: border-box;
 }
 
@@ -685,7 +718,7 @@ main {
   margin-top: auto;  /* толкает вниз */
   display: flex;
   gap: 11px;
-  padding-left: 0;  /* если нужно */
+  padding-left: 16px;
 }
 
 .mobile-menu {
@@ -2058,7 +2091,16 @@ display: inline-flex;
   background-color: transparent;
   border: none;
 }
-
+.cart-rb .cart-empty p{
+  margin-bottom: 16px;
+}
+.btn-cart-to-catalog{
+  background-color: var(--lightpink-color);
+ color:var(--background-color);
+ width: 100%;
+ padding: 4px 8px;
+ border-radius: 21px;
+}
 
 .contacts-block{
   display: flex;
@@ -2510,6 +2552,7 @@ top: 150px;
 @media screen and (max-width: 1000px) {
     .hamburger-wrap {
     display: block;
+    padding-bottom: 5px;
   }
 
   header nav > ul:not(.mobile-menu) {
@@ -2786,14 +2829,14 @@ top: 140px;
   width: 90%;
 }
 .nav-container .container .logo a svg{
-  width: 150px;
-  height: 80px;
+  width: 124px;
+  height: 44px;
 }
     header .nav-container .container {
-    justify-content: space-around;
+    justify-content: space-between;
   }
     .menu-panel {
-    width: 70%;
+    width: 84%;
   }
 
 /* #news-product li {
@@ -3297,15 +3340,25 @@ top: 135px;
     flex-direction: column;
     gap: 16px;
   }
-  
+  #cart-list .cart-rb{
+    padding: 14px;
+  }
   .cart-bottom .cart-controls{
     width: 105px;
     height: 31px;
     padding: 7.5px 13.5px;
   }
   .cart-block .cart-lb{
-    padding: 14px;
+    padding: 0px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
+  
+.cart-block .cart-rb{
+  padding: 20px;
+}
   #cart-list .cart-item {
     padding: 0px 0px 16px 0px;
   }
@@ -3456,9 +3509,6 @@ padding: 7px 13px;
               min-width: 350px;
               margin-bottom: 0;
             }
-                .nav-container .container .logo a svg{
-                  margin-left: -20px;
-                }
 
                 #favlist{
                    padding-bottom: 30px;
@@ -3669,15 +3719,7 @@ header .nav-container .container .logo a {
         header{
           padding-bottom: 0;
         }
-    header .nav-container .container{
-      width: 100%;
-      padding-right: 11px;
-      padding-bottom: 20px;
-      margin-left: 0px;
-      margin-right: 0px;
-    justify-content: space-between;
-    align-items: end;
-    }
+
         .product-catalog-btn .add-to-cart-btn{
           background-color: var(--lightpink-color);
         }
@@ -3704,7 +3746,7 @@ header .nav-container .container .logo a {
     .hamburger-wrap{
       padding-right: 8px;
     }
-    }
+} 
 @media screen and (max-width: 415px) {
       .ab-s1, .ab-s2{
         left:-10px;
