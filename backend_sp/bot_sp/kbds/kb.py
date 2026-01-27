@@ -91,12 +91,7 @@ def product_kb(
 
     kb.button(
         text=f"🛒 {i18n.get('button-cart')}",
-        callback_data=ProductCD(
-            action="cart",
-            index=index,
-            product_id=str(product_id)
-
-        )
+        callback_data=MenuCD(action="cart") 
     )
 
 
@@ -107,41 +102,36 @@ def product_kb(
 
 
 #Головне меню
-def get_main_menu_kb(i18n: I18nContext, with_back: bool=False) -> ReplyKeyboardBuilder:
 
-    """
-        Універсальна клавіатура головного меню
-    
-        Args:
-            i18n: Контекст перекладу
-            with_back: Додати кнопку 'Назад' (для вкладених меню)
-    """
-    builder = ReplyKeyboardBuilder()
+class MenuCD(CallbackData, prefix="menu"):
+    action: str
 
-    #основні кнопки
+def get_main_menu_kb(i18n: I18nContext, with_back: bool = False):
+    builder = InlineKeyboardBuilder()
+
+
     buttons = [
-        ("🛍️", "button-products", "menu:products"),
-        ("🛒", "button-cart", "menu:cart"),
-        ("👤", "button-profile", "menu:profile"),
-        ("🍰", "button-for_as", "menu:for_as"),  
-        ("🚚", "button-delivery", "menu:delivery"),
-        ("💵", "button-pay", "menu:pay"),
-        ("❓", "button-help", "menu:help"),
-        ("🌍", "button-change_language", "menu:change_lang"),
+        ("🛍️", "button-products", "products"),
+        ("🛒", "button-cart", "cart"),
+        ("👤", "button-profile", "profile"),
+        ("🍰", "button-for_as", "for_as"),
+        ("🚚", "button-delivery", "delivery"),
+        ("💵", "button-pay", "pay"),
+        ("❓", "button-help", "help"),
+        ("🌍", "button-change_language", "change_lang"),
     ]
 
-    for emoji, key, _ in buttons:
-        text = f"{emoji} {i18n.get(key)}"
-        builder.button(text=text)
+    for emoji, key, action in buttons:
+        builder.button(
+            text=f"{emoji} {i18n.get(key)}",
+            callback_data=MenuCD(action=action)
+        )
 
-    
     if with_back:
-        builder.button(text=f"↩️ {i18n.get('button-back')}")
+        builder.button(text=f"↩️ {i18n.get('button-back')}", callback_data="back_to_main")
 
-    builder.adjust(2, 2, 2, 2)  # Остання кнопка окремо
-
-    return builder.as_markup(one_time_keyboard=True, resize_keyboard=True)
-
+    builder.adjust(2) # Сітка по 2 кнопки в ряд
+    return builder.as_markup()
 
 #Текст 
 def get_button_texts(i18n: I18nContext) -> dict:
@@ -166,6 +156,7 @@ def get_delivery_kb(i18n: I18nContext):
     builder.button(
         text=i18n.user.text_dlvr_glovo(),
         url = "https://food.bolt.eu/uk-ua/158/p/179408-zero-kaloriy?utm_source=share_provider&utm_medium=product&utm_content=menu_header"
+        
     )
 
     #TODO інші посилання на агрегаторів
@@ -179,5 +170,72 @@ def get_delivery_kb(i18n: I18nContext):
     return builder.as_markup()
 
 
+#Кошик
+class CartCD(CallbackData, prefix="cart"):
+    action: str     
+    index: int
+    product_id: str
 
 
+def cart_item_kb(index: int, cart_item, total: int, i18n):
+    kb = InlineKeyboardBuilder()
+
+    prev_index = (index - 1) % total
+    next_index = (index + 1) % total
+ 
+    kb.button(text="➖", callback_data=CartCD(action="minus", index=index, product_id=str(cart_item.product.id)))
+    kb.button(text=f"{cart_item.quantity} шт.", callback_data="ignore")
+    kb.button(text="➕", callback_data=CartCD(action="plus", index=index, product_id=str(cart_item.product.id)))
+
+
+    kb.button(text="◀️", callback_data=CartCD(action="prev", index=prev_index, product_id=str(cart_item.product.id)))
+    kb.button(text=f"{index + 1} / {total}", callback_data="ignore")
+    kb.button(text="▶️", callback_data=CartCD(action="next", index=next_index, product_id=str(cart_item.product.id)))
+
+   
+    kb.button(text="🗑️ Видалити", callback_data=CartCD(action="delete", index=index, product_id=str(cart_item.product.id)))
+    kb.button(text="✅ Оформити", callback_data="checkout")
+    
+    kb.button(
+        text=f"🛍️ {i18n.get('button-products')}", callback_data=MenuCD(action="products"))
+    kb.button(text=f"↩️ {i18n.get('button-back')}", callback_data=CartCD(action="back", index=index, product_id=str(cart_item.product.id)))
+
+    kb.adjust(3, 3, 2, 2)
+    return kb.as_markup()
+
+
+
+class CheckoutCD(CallbackData, prefix="checkout"):
+    method: str  
+
+def get_checkout_method_kb(i18n: I18nContext):
+    builder = InlineKeyboardBuilder()
+
+    builder.button(
+        text=f"🚚 доставка таксі", 
+        callback_data=CheckoutCD(method="delivery")
+    )
+    builder.button(
+        text=f"🏪 самовиніс", 
+        callback_data=CheckoutCD(method="pickup")
+    )
+   
+    builder.button(
+        text=f"↩️ {i18n.get('button-back')}", 
+        callback_data=MenuCD(action="cart")
+    )
+
+    builder.adjust(2, 1)
+    return builder.as_markup()
+
+
+class PickupCD(CallbackData, prefix="pickup"):
+    location: str  
+
+def get_pickup_locations_kb(i18n: I18nContext):
+    builder = InlineKeyboardBuilder()
+    builder.button(text="ТРЦ SkyMall", callback_data=PickupCD(location="skymall"))
+    builder.button(text="ТРЦ Retroville", callback_data=PickupCD(location="retroville"))
+    builder.button(text=f"↩️ {i18n.get('button-back')}", callback_data="checkout")
+    builder.adjust(1)
+    return builder.as_markup()

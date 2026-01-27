@@ -76,12 +76,12 @@
                 {{ product.price }}
                 <div class="product-price-uah"> {% ftlmsg "currency_catalog" %}</div>
               </div>
-                <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
+                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ product.slug }}', this)" data-name="{{ product.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
-              <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=product.slug %}">
+              {% comment %} <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=product.slug %}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
-              </a>
+              </a> {% endcomment %}
             </div>
             
           </div>

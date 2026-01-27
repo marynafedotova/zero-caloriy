@@ -31,6 +31,6 @@ user-product_nutrition = Харчова цінність на 100гр:
 user-empty_text = 👇 Обери улюблений десерт
 button-add = Купити
 user-gram = гр
-user-added_to_cart = user-added_to_cart
+user-added_to_cart = Товар додано до кошика
 user-choice_dlvr = 👇 Обери сервіс для доставки
 user-text_dlvr_glovo = Замовити через Glovo

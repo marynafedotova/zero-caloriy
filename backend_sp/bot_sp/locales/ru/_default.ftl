@@ -32,6 +32,7 @@ user-product_nutrition = Пищевая ценность:
 user-empty_text = 👇 Выбери любимый десерт
 button-add = Купить
 user-gram = гр
-user-added_to_cart = user-added_to_cart
+user-added_to_cart = Товар добавлен в корзину
+
 user-choice_dlvr = 👇 Выбери сервис для доставкиuser
-text_dlvr_glovo = Заказать через Glovo
+user-text_dlvr_glovo = Заказать через Glovo

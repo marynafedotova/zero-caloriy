@@ -95,10 +95,10 @@
               <div class="product-price">
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
               </div>
-              <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=new.slug %}">
+              {% comment %} <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=new.slug %}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
-              </a>
-              <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=new.slug %}">
+              </a> {% endcomment %}
+              <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
             </div>
@@ -147,12 +147,12 @@
                   {{ random.price }}
                   <span class="product-price-uah">{% ftlmsg "currency" %}</span>
                 </div>
-                <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}" >
+                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}>
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
-              <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}" >
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
-              </a>
+              {% comment %} <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}" >
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart"> {% endcomment %}
+              </a> {% endcomment %}
               </div>
             </div>
           
@@ -166,6 +166,7 @@
     </section>
       <script>
     const oSrc = "{% static 'img/о.png' %}";
+    
   </script>
 
   

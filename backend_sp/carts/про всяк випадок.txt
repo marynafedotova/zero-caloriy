@@ -1,0 +1,110 @@
+ def cart_add(request, product_slug):
+#     product = get_object_or_404(Product, slug=product_slug)
+    
+
+#     if not request.session.session_key:
+#         request.session.create()
+    
+#     key = request.session.session_key
+#     action = request.POST.get('action', 'plus')
+
+
+#     cart, created = Cart.objects.get_or_create(
+#         session_key=key, 
+#         product=product,
+#         defaults={'quantity': 0} 
+#     )
+
+#     if action == 'plus':
+#         cart.quantity += 1
+#         cart.save()
+#     elif action == 'minus':
+#         if cart.quantity > 1:
+#             cart.quantity -= 1
+#             cart.save()
+#         else:
+#             cart.delete()
+
+#     referer = request.META.get('HTTP_REFERER')
+#     return redirect(referer if referer else '/')
+
+
+
+# def cart_add(request, product_slug):
+#     """Основна логіка додавання з перевіркою типу та стоп-листа"""
+#     product = get_object_or_404(Product, slug=product_slug)
+    
+#     # --- КРОК 1: ПЕРЕВІРКА СТОП-ЛИСТА (ЗАВЖДИ ПЕРША) ---
+#     selected_terminal = request.session.get('terminal_id')
+#     client = SyrveClient()
+#     stop_list_data = client.get_stop_lists()
+    
+#     stop_product_ids = set()
+
+#     if "terminalGroupStopLists" in stop_list_data:
+#         for org in stop_list_data["terminalGroupStopLists"]:
+#             for terminal in org.get("items", []):
+#                 terminal_id = terminal.get("terminalGroupId")
+                
+#                 # Якщо локація обрана — фільтруємо по ній, якщо ні — дивимось всі стопи
+#                 if selected_terminal and terminal_id != selected_terminal:
+#                     continue
+
+#                 for item in terminal.get("items", []):
+#                     p_id = item.get("productId")
+#                     if p_id:
+#                         stop_product_ids.add(p_id.lower())
+
+#     # Перевірка на входження
+#     is_stopped = any(str(product.id).lower() == str(sid).lower() for sid in stop_product_ids)
+
+#     if is_stopped:
+#         return JsonResponse({
+#             "status": "error", 
+#             "message": "Вибачте, цей товар закінчився"
+#         }, status=400)
+
+#     # --- КРОК 2: ПЕРЕВІРКА ТИПУ ЗАМОВЛЕННЯ ---
+#     order_type = request.session.get('order_type')
+#     if not order_type:
+#         restaurants_data = [
+#             {
+#                 'id': str(r.id),
+#                 'name': getattr(r, 'name_uk', 'Без назви'),
+#                 'address': getattr(r, 'address_uk', 'Без адреси')
+#             } for r in Restaurant.objects.all()
+#         ]
+#         return JsonResponse({
+#             "status": "select_type_required",
+#             "all_restaurants": restaurants_data, 
+#             "message": "Будь ласка, оберіть: Доставка чи Самовивіз"
+#         })
+
+#     # --- КРОК 3: ДОДАВАННЯ В КОШИК ---
+#     if not request.session.session_key:
+#         request.session.create()
+        
+#     key = request.session.session_key
+#     action = request.POST.get('action', 'plus')
+
+#     cart, created = Cart.objects.get_or_create(
+#         session_key=key, 
+#         product=product,
+#         defaults={'quantity': 0} 
+#     )
+
+#     if action == 'plus':
+#         cart.quantity += 1
+#         cart.save()
+#     elif action == 'minus':
+#         if cart.quantity > 1:
+#             cart.quantity -= 1
+#             cart.save()
+#         else:
+#             cart.delete()
+
+#     # Якщо це AJAX (з бота або JS) - повертаємо JSON, інакше редирект
+#     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+#         return JsonResponse({"status": "success"})
+    
+#     return redirect(request.META.get('HTTP_REFERER', '/'))

@@ -5,6 +5,7 @@ from django.utils.translation import get_language
 from django.urls import reverse
 
 
+
 class TranslatableModel(models.Model):
     class Meta:
         abstract = True
@@ -20,6 +21,46 @@ class TranslatableModel(models.Model):
     
     def get_absolute_url(self):
         return reverse('goods:product', kwargs={'product_slug': self.slug})
+    
+class Category(models.Model):
+    name_uk = models.CharField(max_length=100)
+    name_ru = models.CharField(max_length=100)
+    name_en = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+
+    class Meta:
+        db_table = 'category'
+
+    @property
+    def name(self):
+        lang = get_language()[:2]
+        return getattr(self, f"name_{lang}", self.name_uk)
+
+
+class Restaurant(models.Model):
+    id = models.UUIDField(primary_key=True) 
+    name_uk = models.CharField(max_length=255)
+    name_ru = models.CharField(max_length=255)
+    name_en = models.CharField(max_length=255)
+    address_uk = models.CharField(max_length=255)
+    address_ru = models.CharField(max_length=255)
+    address_en = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'restaurant'
+
+    @property
+    def about_product(self):
+        return self.get_i18n_field('name')
+    
+    @property
+    def about_product(self):
+        return self.get_i18n_field('address')
+    
+
+    
+
 
 # Папки (Groups)
 # -----------------------------
@@ -55,7 +96,6 @@ class Group(models.Model):
         return reverse('goods:products_by_group', kwargs={'slug': self.slug})
 
 
-
 # -----------------------------
 # Категорії страв
 # -----------------------------
@@ -70,6 +110,7 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.name
+
 
 # -----------------------------
 # Продукти / Страви / Модифікатори
@@ -112,6 +153,7 @@ class Product(TranslatableModel):
     measure_unit_uk = models.CharField(max_length=50, blank=True)
     measure_unit_ru = models.CharField(max_length=50, blank=True)
     measure_unit_en = models.CharField(max_length=50, blank=True)
+    categories = models.ManyToManyField(Category,related_name="products",blank=True)
     weight = models.FloatField(default=0.0)
     order = models.IntegerField(default=0, db_index=True)
     payment_subject = models.CharField(max_length=50, default="ТОВАР")
@@ -136,7 +178,7 @@ class Product(TranslatableModel):
         return self.get_i18n_field('description')
     
     @property
-    def additional_info(self): # ВИПРАВЛЕНО
+    def additional_info(self):
         return self.get_i18n_field('additional_info')
 
     @property
@@ -187,6 +229,10 @@ class GroupModifierChild(models.Model):
 
     def __str__(self):
         return f"{self.group_modifier} -> {self.modifier.name}"
+    
+
+
+
 
 
 

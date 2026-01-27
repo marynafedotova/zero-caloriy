@@ -34,7 +34,7 @@ class Address(models.Model):
     apartment_number = models.CharField(max_length=20, blank=True, null=True)
     entrance = models.CharField(max_length=20, blank=True, null=True)
     floor = models.CharField(max_length=10, blank=True, null=True)
-    is_default = models.BooleanField(default=False) # Щоб пропонувати останню використану
+    is_default = models.BooleanField(default=False) 
 
     def __str__(self):
         return f"{self.street}, {self.house_number}"

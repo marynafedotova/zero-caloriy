@@ -21,6 +21,7 @@ user-product_nutrition = Nutritional value:
 user-empty_text = 👇 Choose your favorite dessert
 button-add = Add to Cart
 user-gram = gr
-user-added_to_cart = user-added_to_cart
+user-added_to_cart = Product has been added to the cart
+
 user-choice_dlvr = 👇 Choose a delivery service
 user-text_dlvr_glovo = Order via Glovo

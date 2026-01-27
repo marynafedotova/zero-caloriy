@@ -79,9 +79,12 @@
       <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
     </form>
   </div>
-               <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
+               {% comment %} <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
                 Додати в кошик
-              </a> 
+              </a>  {% endcomment %}
+              <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ product.slug }}', this)" data-name="{{ product.name }}">
+                  Додати в кошик
+                </a>
 </div>
             </div>
             {% comment %} <button class="add-to-cart">{% ftlmsg "add_to_cart" %}</button> {% endcomment %}

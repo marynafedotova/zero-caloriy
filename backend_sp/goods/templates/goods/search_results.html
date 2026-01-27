@@ -37,7 +37,7 @@
                   {{ result.price }}
                   <span class="product-price-uah">{% ftlmsg "price-uah" %}</span>
                 </div>
-                <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=result.slug %}">
+                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}"">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
               </div>

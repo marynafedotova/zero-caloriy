@@ -231,7 +231,52 @@ class SyrveClient:
             counter += 1
 
         return slug
+    
 
+
+    def get_stop_lists(self):
+        token = self.get_token()
+        url = f"{self.base_url}/api/1/stop_lists"
+        payload = {"organizationIds": [self.org_id]}
+        headers = {"Authorization": f"Bearer {token}"}
+    
+        try:
+            response = requests.post(url, json=payload, headers=headers)
+            if response.status_code == 200:
+                return response.json()  # ПОВЕРТАЄМО ВЕСЬ JSON
+            else:
+                print(f"Syrve API error: {response.text}")
+                return {}
+        except Exception as e:
+            print(f"Request failed: {e}")
+            return {}
+        
+
+    def create_order(self, order_data):
+        """Відправка замовлення в Syrve"""
+        token = self.get_token()
+        url = f"{self.base_url}/api/1/deliveries/create"
+        headers = {"Authorization": f"Bearer {token}"}
+
+        try:
+            response = requests.post(url, json=order_data, headers=headers)
+            # Ми повертаємо JSON відповіді, щоб обробити результат у view
+            return response.json(), response.status_code
+        except Exception as e:
+            print(f"Критична помилка при відправці замовлення: {e}")
+            return {"errorDescription": str(e)}, 500
+        
+    def check_order_status(self, correlation_id):
+        """Перевірка, чи замовлення потрапило на касу"""
+        token = self.get_token()
+        url = f"{self.base_url}/api/1/deliveries/by_id"
+        payload = {
+            "organizationId": self.org_id,
+            "orderIds": [correlation_id]
+        }
+        headers = {"Authorization": f"Bearer {token}"}
+        response = requests.post(url, json=payload, headers=headers)
+        return response.json()
 
 
 def run():

@@ -51,29 +51,6 @@
     </a>
 </div>
         </div>
-
-        {% if carts %}
-        <div class="contacts-block">
-        <form id="orderForm" method="POST" data-url="{% url 'goods:create-order' %}" 
-          data-csrf="{{ csrf_token }}">
-        {% csrf_token %} 
-        <input type="text" id="surname" name="surname" placeholder="{% ftlmsg 'placeholder_two_name_cart' %}" required>
-        <input type="text" id="name" name="name" placeholder="{% ftlmsg 'placeholder_name_cart' %}" required>
-        
-        <input type="tel" id="phone" name="phone" placeholder="+380 (XX) XXX-XX-XX" required>
-        
-        <input type="email" id="email" name="email" placeholder="example@mail.com" required>
-        
-        <select id="location-select" name="location" required>
-            <option value=""> {% ftlmsg "location_cart" %} </option>
-            <option value="skymall">{% ftlmsg "skymall_cart" %}</option>
-            <option value="retroville">{% ftlmsg "retroville_cart" %}</option>
-        </select>
-
-        <button type="submit" id="cart-btn">{% ftlmsg "submit_cart" %}</button>
-    </form>
-</div>
-        {% endif %}
       </div>
   </section>
 </main>

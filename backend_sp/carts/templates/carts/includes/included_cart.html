@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 {% load mathfilters %}
 {% load ftl %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
@@ -45,7 +45,154 @@
 
 </div>
 </div>
-{% empty %}
-<p>{% ftlmsg "carts_empty" %}</p>
+{% endfor %} {% endcomment %}
+
+
+{% load static %}
+{% load mathfilters %}
+{% load ftl %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+
+{% for cart in carts %}
+<div class="cart-item">
+    <div class="cart-img">
+        {% if cart.product.image_url %}
+            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
+        {% else %}
+            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
+        {% endif %}
+    </div>
+    <div class="cart-info"> 
+        <div class="cart-top-info">
+            <h3 class="cart-title">{{ cart.product.name }}</h3>
+            <a href="{% url 'carts:cart_remove' cart.id %}" class="remove-from-cart">
+                <img src="{% static 'img/delete.svg' %}" alt="delete">
+            </a>
+        </div>
+
+        <p class="cart-weight">
+            {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+        </p>
+
+        <div class="cart-bottom">
+            <div class="cart-price">
+                {{ cart.product_prace }} <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
+            </div>
+            <div class="cart-controls">
+                <form action="{% url 'carts:cart_change' cart.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
+                    <input type="number" value="{{ cart.quantity }}" readonly class="quantity-input">
+                    <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
+
+<hr class="cart-divider" style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+<div class="contacts-block">
+    <div class="order-type-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h3 style="margin: 0;">
+            {% if request.session.order_type == 'PICKUP' %} 🛍️ Самовивіз {% else %} 🚚 Доставка {% endif %}
+        </h3>
+        <button type="button" onclick="$('#delivery-modal').fadeIn()" style="color: #ff4d8d; background: none; border: 1px solid #ff4d8d; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px;">
+            Змінити спосіб
+        </button>
+    </div>
+
+    <form id="orderForm" method="POST" data-url="{% url 'goods:create-order' %}" data-csrf="{{ csrf_token }}">
+        {% csrf_token %}
+        
+        <input type="text" name="name" placeholder="Ваше ім'я" required class="cart-input">
+        <input type="tel" name="phone" placeholder="+380" required class="cart-input">
+
+        {% if request.session.order_type == 'PICKUP' %}
+            <div class="field-group">
+                <label>ЛОКАЦІЯ</label>
+                <select name="location" required class="cart-input">
+                    {% for restaurant in all_restaurants %}
+                        <option value="{{ restaurant.id }}" {% if restaurant.id|stringformat:"s" == request.session.terminal_id|stringformat:"s" %}selected{% endif %}>
+                            {{ restaurant.name }} ({{ restaurant.address }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field-group">
+                <label>О котрій заберете?</label>
+                <input type="time" name="delivery_time" required class="cart-input">
+            </div>
+
+        {% else %}
+    <div class="delivery-address-block">
+        <label class="field-label">📍 Адреса доставки</label>
+        
+        <div class="field-group">
+            <input type="text" name="street" placeholder="Вулиця (напр. Мазепи)" required class="cart-input">
+        </div>
+
+        <div class="input-row" style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <input type="text" name="house_number" placeholder="Буд." required class="cart-input">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="apartment_number" placeholder="Кв./Офіс" class="cart-input">
+            </div>
+        </div>
+
+        <div class="input-row" style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <input type="text" name="entrance" placeholder="Під'їзд" class="cart-input">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="floor" placeholder="Поверх" class="cart-input">
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">🕒 Бажаний час доставки</label>
+            <input type="time" name="delivery_time" required class="cart-input">
+        </div>
+
+        <div class="field-group">
+            <textarea name="comment" placeholder="Коментар для кур'єра (код домофону тощо)" class="cart-input" style="height: 80px; resize: none;"></textarea>
+        </div>
+    </div>
+{% endif %}
+
+        <button type="submit" id="cart-btn" class="main-cart-submit">Підтвердити замовлення</button>
+    </form>
+</div>
+
+<style>
+    .cart-input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: block;
+    }
+    .field-group label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    .main-cart-submit {
+        width: 100%;
+        background: #ff4d8d;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+</style>
+
 
