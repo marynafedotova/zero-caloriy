@@ -95,7 +95,7 @@
               <div class="product-price">
                 {{ new.price }}<span class="product-price-uah">{% ftlmsg "currency" %}</span>
               </div>
-              <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
+              <a class="add-to-cart-btn-m"  onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
               <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
@@ -150,18 +150,23 @@
                 <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
+<<<<<<< HEAD
               <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart"> 
               </a>
+=======
+             <a class="add-to-cart-btn-m"  href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}" >
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+              </a> 
+>>>>>>> dff0342e485c38670666013a5b32c808e1611820
               </div>
             </div>
           
           {% endfor %}
         </li>
       </ul>
-<a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
-</a>
-
+        <a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
+        </a>
     </div>
     </section>
       <script>
