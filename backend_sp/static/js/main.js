@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!counter) return;
 
     try {
-      const response = await fetch('/cart/count/', {
+      const response = await fetch('/carts/count/', {
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
       });
 

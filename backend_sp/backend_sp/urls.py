@@ -40,6 +40,5 @@ urlpatterns += i18n_patterns(
     path('', include('main.urls')), 
     path('goods/', include('goods.urls')),
     path('carts/', include('carts.urls')),
-
 )
  

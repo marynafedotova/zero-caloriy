@@ -440,62 +440,96 @@
 {% comment %} модальне доставки {% endcomment %}
   </div>
 <div id="delivery-modal" class="modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+
     <div class="modal-content" style="background: white; margin: 10% auto; padding: 25px; width: 320px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); position: relative;">
-        
+
+       
+
         <h4 id="modal-title" style="margin-bottom: 10px;">Оберіть спосіб отримання</h4>
-        
+
+       
+
         <div id="pending-product-info" style="display:none; background: #fdf2f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 1px dashed #ff4d8d;">
 
+
+
             <strong id="pending-product-name" style="color: #ff4d8d;"></strong>
+
         </div>
-        
+
+       
+
         <p id="info-message" style="display:none; font-size: 13px; color: #666; margin-bottom: 15px;"></p>
-        
+
+       
+
         <div id="main-delivery-options" class="delivery-options-buttons" style="display: flex; flex-direction: column; gap: 12px;">
+
             <button onclick="selectDeliveryType('DELIVERY')" style="background: #ff4d8d; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+
                 🚚 Доставка Таксі
+
             </button>
+
             <button onclick="selectDeliveryType('PICKUP')" style="background: #4CAF50; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+
                 🛍️ Самовивіз
+
             </button>
+
         </div>
+
+
 
         <p id="error-message-text" style="display:none; color: #d9534f; font-size: 14px; margin-top: 15px; font-weight: bold;"></p>
 
+
+
         <div id="pickup-selection" style="display: none; margin-top: 20px; text-align: left;">
+
             <label style="font-size: 13px; font-weight: bold;">Оберіть точку видачі:</label>
+
             <select id="restaurant-select" style="width: 100%; padding: 12px; margin-top: 8px; border-radius: 8px; border: 1px solid #ccc;"></select>
+
             <button onclick="confirmPickup()" style="background: #333; color: white; border: none; padding: 12px; border-radius: 8px; margin-top: 12px; width: 100%; font-weight: bold; cursor: pointer;">
+
                 Підтвердити та додати
+
             </button>
+
         </div>
 
+
+
         <button id="close-modal-btn" onclick="$('#delivery-modal').fadeOut();" style="margin-top: 20px; background: none; border: none; color: #888; text-decoration: underline; font-size: 12px; cursor: pointer; width: 100%;">
+
             Скасувати
+
         </button>
+
     </div>
+
 </div>
 
+
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
+
 
 
 <script>
   window.CSRF_TOKEN = "{{ csrf_token }}";
   window.CART_URL_ADD = "{% url 'carts:cart_add' 'PRODUCT_SLUG' %}";
   window.CART_URL_SET_TYPE = "{% url 'carts:set_order_type' %}";
-</script>
 
-
-
-<script>
 /* ---------- КЕРУВАННЯ КОШИКОМ ---------- */
 
 window.addToCart = function (productSlug, element) {
     const url = window.CART_URL_ADD.replace('PRODUCT_SLUG', productSlug);
-    
-    // Отримуємо назву з атрибута data-name
     const productName = element ? $(element).attr('data-name') : (window.lastProductName || "Товар");
-    window.lastProductName = productName; // Запам'ятовуємо назву для повторного виклику
+    window.lastProductName = productName;
 
     $.ajax({
         url: url,
@@ -510,10 +544,12 @@ window.addToCart = function (productSlug, element) {
             else if (response.status === 'select_type_required') {
                 window.pendingProductSlug = productSlug;
                 
-                // Налаштування модалки для вибору локації
+                // Скидаємо вигляд модалки
+                $('#modal-title').text("Оберіть спосіб отримання");
                 $('#pending-product-name').text(productName);
                 $('#pending-product-info').show();
-                $('#modal-title').text("Додати у кошик");
+                $('#main-delivery-options').show();
+                $('#pickup-selection').hide();
                 $('#error-message-text').hide();
                 
                 const $select = $('#restaurant-select');
@@ -523,46 +559,38 @@ window.addToCart = function (productSlug, element) {
                         $select.append(`<option value="${res.id}">${res.name} (${res.address})</option>`);
                     });
                 }
-
-                $('.delivery-options-buttons').show();
-                $('#pickup-selection, #aggregator-links').hide();
-                $('#close-modal-btn').text("Скасувати та продовжити покупки");
                 $('#delivery-modal').fadeIn();
             }
         },
         error: function (xhr) {
             if (xhr.status === 400 && xhr.responseJSON) {
-                // ТОВАР У СТОПІ - показуємо помилку і НЕ перезавантажуємо
+                // ПЕРЕВІРКА СТОП-ЛИСТА
                 $('#modal-title').text("Тимчасово відсутній");
                 $('#pending-product-info').hide();
-                $('#info-message').hide();
                 $('#error-message-text').text(xhr.responseJSON.message).show();
-                
-                $('.delivery-options-buttons, #pickup-selection').hide();
-                $('#close-modal-btn').text("Зрозуміло, до інших покупок");
+                $('#main-delivery-options, #pickup-selection').hide();
+                $('#close-modal-btn').text("Зрозуміло");
                 $('#delivery-modal').fadeIn();
             }
         }
     });
 };
 
-/* ---------- ТИП ДОСТАВКИ ТА САМОВИВІЗ ---------- */
+/* ---------- ТИП ДОСТАВКИ ---------- */
 
 window.selectDeliveryType = function (type) {
     if (type === 'PICKUP') {
-        $('#error-message-text').slideUp();
-        $('#aggregator-links').slideUp();
+        $('#main-delivery-options').hide();
         $('#pickup-selection').slideDown();
     } else {
-        $('#pickup-selection').slideUp();
         sendTypeToBackend('DELIVERY');
     }
 };
 
 window.confirmPickup = function () {
     const terminalId = $('#restaurant-select').val();
-    if (!terminalId || terminalId === "") {
-        alert("Будь ласка, оберіть точку видачі зі списку");
+    if (!terminalId) {
+        alert("Оберіть точку видачі");
         return;
     }
     sendTypeToBackend('PICKUP', terminalId);
@@ -575,39 +603,43 @@ function sendTypeToBackend(type, terminalId = null) {
         headers: { 'X-CSRFToken': window.CSRF_TOKEN },
         data: {
             type: type,
-            terminal_id: terminalId
+            terminal_id: terminalId,
+            is_initial: 'true'
         },
         success: function (response) {
             if (response.status === 'success') {
-                // Якщо був "підвішений" товар - не закриваємо модалку просто так,
-                // а пробуємо додати його знову через addToCart
+                // ПІСЛЯ того як тип зберігся, додаємо товар
                 if (window.pendingProductSlug) {
-                    const slug = window.pendingProductSlug;
-                    window.pendingProductSlug = null; // Очищуємо чергу
-                    
-                    // Викликаємо addToCart. Якщо там стоп-лист, спрацює блок error всередині addToCart
-                    window.addToCart(slug, null); 
-                } else {
-                    window.location.reload();
+                    // Викликаємо додавання без перезавантаження!
+                    const finalUrl = window.CART_URL_ADD.replace('PRODUCT_SLUG', window.pendingProductSlug);
+                    $.ajax({
+                        url: finalUrl,
+                        type: 'POST',
+                        headers: { 'X-CSRFToken': window.CSRF_TOKEN },
+                        success: function() {
+                            $('#delivery-modal').fadeOut();
+                            alert("Товар додано як " + (type === 'PICKUP' ? "Самовивіз" : "Доставка"));
+                            
+                        }
+                    });
                 }
-            }
-        },
-        error: function (xhr) {
-            const data = xhr.responseJSON;
-            if (data && data.error_type === 'low_sum') {
-                $('#error-message-text').text(data.message).slideDown();
-                $('#aggregator-links').slideDown();
-                $('button[onclick*="DELIVERY"]').prop('disabled', true).css('opacity', '0.5');
-            } else {
-                alert(data ? data.message : "Помилка при збереженні типу доставки");
             }
         }
     });
 }
 
 $(document).ready(function() {
+    // 1. Перевіряємо, чи є товар для додавання після релоаду
+    const autoSlug = sessionStorage.getItem('autoAddSlug');
+    if (autoSlug) {
+        window.lastProductName = sessionStorage.getItem('autoAddName');
+        sessionStorage.removeItem('autoAddSlug');
+        sessionStorage.removeItem('autoAddName');
+        window.addToCart(autoSlug, null);
+    }
+
+    // 2. Виправлений ключ сесії для перевірки
     const currentOrderType = "{{ request.session.order_type|default:'' }}";
-    // Якщо в кошику і тип не обрано - показуємо модалку
     if ($('#orderForm').length > 0 && currentOrderType === "") {
         $('#delivery-modal').fadeIn();
     }

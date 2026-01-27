@@ -26,7 +26,7 @@ class Category(models.Model):
     name_uk = models.CharField(max_length=100)
     name_ru = models.CharField(max_length=100)
     name_en = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
 
     class Meta:
         db_table = 'category'

@@ -12,11 +12,14 @@ from carts.utils import get_user_carts
 from orders.models import Order, OrderItem
 from goods.services.syrve_client import SyrveClient
 from orders.services import build_syrve_payload
+from users.views import get_or_create_customer_with_address
 
 
-def catalog(request):
+def catalog(request, category_slug=None):
     products = Product.objects.filter(is_included_in_menu=True)
     groups = Group.objects.filter(is_included_in_menu=True, parent__isnull=True).order_by('order')
+    if category_slug:
+        products = products.filter(categories__slug=category_slug)
     context = {
         'products': products,
         'groups': groups,  # для меню
@@ -125,10 +128,10 @@ def product_search(request):
 @transaction.atomic
 def create_order_telegram(request):
     if request.method == 'POST':
-        # --- 1. ОДЕРЖАННЯ ДАНИХ З СЕСІЇ ТА ФОРМИ ---
-        order_type_key = request.session.get('order_type_key') # 'PICKUP' або 'DELIVERY'
-        order_type_id = request.session.get('order_type_id')   # UUID для Syrve
-        terminal_id = request.session.get('terminal_id')      # UUID терміналу
+        # --- 1. ОДЕРЖАННЯ ДАНИХ ---
+        order_type = request.session.get('order_type') # 'PICKUP' або 'DELIVERY'
+        order_type_id = request.session.get('order_type_id')
+        terminal_id = request.session.get('terminal_id')
         
         name = request.POST.get('name', '').strip()
         phone = request.POST.get('phone', '').strip()
@@ -139,41 +142,45 @@ def create_order_telegram(request):
         if not carts.exists():
             return JsonResponse({'status': 'error', 'message': 'Кошик порожній'})
 
-        # --- 2. СТВОРЕННЯ ЗАМОВЛЕННЯ В БД ---
-        # Зберігаємо всі дані, щоб білдер міг їх використати
+        # --- 2. СТВОРЕННЯ КОРИСТУВАЧА ТА АДРЕСИ ---
+        address_fields = {
+            'street': request.POST.get('street', ''),
+            'house_number': request.POST.get('house_number', ''),
+            'apartment_number': request.POST.get('apartment_number', ''),
+            'entrance': request.POST.get('entrance', ''),
+            'floor': request.POST.get('floor', ''),
+        }
+        
+        user_obj, address_obj = get_or_create_customer_with_address(
+            name, phone, order_type, address_fields
+        )
+
+        # --- 3. СТВОРЕННЯ ЗАМОВЛЕННЯ ---
         order = Order.objects.create(
-            user=request.user if request.user.is_authenticated else None,
+            user=user_obj,
             order_type_id=order_type_id,
             terminal_group_id=terminal_id,
+            address=address_obj,
             total_amount=carts.total_prace(),
-            first_name=name,
-            phone=phone,
             comment=f"{comment} | Час: {delivery_time}".strip(),
-            # Поля адреси (заповнюються лише для доставки)
-            street=request.POST.get('street', ''),
-            house_number=request.POST.get('house_number', ''),
-            apartment_number=request.POST.get('apartment_number', ''),
-            entrance=request.POST.get('entrance', ''),
-            floor=request.POST.get('floor', ''),
             status='NEW'
         )
 
-        # Створюємо товари в БД
+        # Створюємо товари
         for item in carts:
             OrderItem.objects.create(
                 order=order,
                 product=item.product,
                 quantity=item.quantity,
-                price=item.product.price
+                price=item.product.price # або item.product_prace
             )
 
-        # --- 3. ВІДПРАВКА В SYRVE ---
+        # --- 4. ВІДПРАВКА В SYRVE ---
         syrve_info = "Не відправлено"
         client = SyrveClient()
         try:
             payload = build_syrve_payload(order, carts)
             syrve_res, status_code = client.create_order(payload)
-            
             if status_code in [200, 201]:
                 order.syrve_id = syrve_res.get('correlationId')
                 order.status = 'SENT'
@@ -184,17 +191,15 @@ def create_order_telegram(request):
         except Exception as e:
             syrve_info = f"⚠️ ПОМИЛКА API: {str(e)}"
 
-        # --- 4. ФОРМУВАННЯ ПОВІДОМЛЕННЯ ДЛЯ TELEGRAM ---
+        # --- 5. ФОРМУВАННЯ ПОВІДОМЛЕННЯ ДЛЯ TELEGRAM ---
         items_text = "".join([f"• {item.product.name} — <b>{item.quantity} шт.</b>\n" for item in carts])
-        
         common_footer = (
             f"📦 <b>Товари:</b>\n{items_text}\n"
             f"💰 <b>РАЗОМ: {order.total_amount} грн</b>\n"
             f"💬 <b>Комент:</b> {comment}"
         )
 
-        if order_type_key == 'PICKUP':
-            # Логіка для Самовивозу
+        if order_type == 'PICKUP':
             location_name = "ТРЦ SkyMall" if str(terminal_id) == os.getenv("TERMINAL_SKY_MALL") else "ТРЦ Retroville"
             message = (
                 f"🔔 <b>НОВЕ ЗАМОВЛЕННЯ — САМОВИВІЗ ({syrve_info})</b>\n\n"
@@ -205,50 +210,42 @@ def create_order_telegram(request):
                 f"{common_footer}"
             )
         else:
-            # Логіка для Доставки
+            # Тут беремо дані з address_fields, бо в order.street цих полів немає
             message = (
                 f"🔔 <b>НОВЕ ЗАМОВЛЕННЯ — ДОСТАВКА ({syrve_info})</b>\n\n"
                 f"👤 <b>Клієнт:</b> {name}\n"
                 f"📞 <b>Телефон:</b> {phone}\n"
-                f"📍 <b>Адреса:</b> вул. {order.street}, буд. {order.house_number}\n"
-                f"🏢 <b>Деталі:</b> кв. {order.apartment_number}, під'їзд {order.entrance}, поверх {order.floor}\n"
+                f"📍 <b>Адреса:</b> вул. {address_fields['street']}, буд. {address_fields['house_number']}\n"
+                f"🏢 <b>Деталі:</b> кв. {address_fields['apartment_number']}, під'їзд {address_fields['entrance']}, поверх {address_fields['floor']}\n"
                 f"🕒 <b>Бажаний час:</b> {delivery_time}\n\n"
                 f"{common_footer}"
             )
 
-        # --- 5. ВІДПРАВКА В TELEGRAM ---
+        # --- 6. ВІДПРАВКА В TELEGRAM ТА ОЧИЩЕННЯ ---
         topics = {
             os.getenv("TERMINAL_SKY_MALL"): 2,
             os.getenv("TERMINAL_RETROVILLE"): 4,
         }
         target_topic = topics.get(str(terminal_id), 2)
 
-        TOKEN = os.getenv('TOKEN')
-        CHAT_ID = os.getenv('CHAT_ID')
-        tg_url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-        
         try:
-            tg_res = requests.post(tg_url, data={
-                "chat_id": CHAT_ID,
+            tg_res = requests.post(f"https://api.telegram.org/bot{os.getenv('TOKEN')}/sendMessage", data={
+                "chat_id": os.getenv('CHAT_ID'),
                 "text": message,
                 "parse_mode": "HTML",
                 "message_thread_id": target_topic
             })
             
             if tg_res.status_code == 200:
-                carts.delete() # Очищення кошика
-                # Очищення сесії
-                request.session.pop('order_type_key', None)
+                carts.delete() 
+                request.session.pop('order_type', None) 
                 request.session.pop('order_type_id', None)
                 request.session.pop('terminal_id', None)
                 return JsonResponse({'status': 'success'})
-            else:
-                return JsonResponse({'status': 'error', 'message': f'TG error: {tg_res.status_code}'})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': f'TG connection error: {str(e)}'})
+        except:
+            pass 
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
-
 
 
 

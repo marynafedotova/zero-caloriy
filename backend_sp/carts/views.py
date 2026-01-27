@@ -14,41 +14,40 @@ def set_order_type(request):
         order_type_key = request.POST.get('type')  
         terminal_id = request.POST.get('terminal_id')
 
-        
         MAPPING = {
             'DELIVERY': '49cf98d2-25ab-d404-a5a8-11eaffc7ce7f', 
             'PICKUP': '7bb5d30f-c8bc-d694-93a8-0d955e274921',   
         }
 
-        # Зберігаємо в сесію саме UUID для Syrve
         selected_syrve_id = MAPPING.get(order_type_key)
-        
         if not selected_syrve_id:
-            return JsonResponse({"status": "error", "message": "Невідомий тип замовлення"}, status=400)
+            return JsonResponse({"status": "error", "message": "Невідомий тип"}, status=400)
 
         user_carts = get_user_carts(request)
         total_price = user_carts.total_prace()
 
+        # Очищуємо старий термінал перед встановленням нового
+        if 'terminal_id' in request.session:
+            del request.session['terminal_id']
+
         if order_type_key == 'DELIVERY':
-            if total_price < 2000:
+            if total_price < 2000 and not request.POST.get('is_initial'): 
                 return JsonResponse({
                     "status": "error",
                     "error_type": "low_sum",
                     "message": f"Доставка таксі від 2000 грн. Зараз: {total_price} грн."
                 }, status=400)
             
-            # Логіка терміналів для доставки
             if total_price >= 4000:
                 request.session['terminal_id'] = "427d6dd2-1d65-275f-014c-ec534e53008e"
             else:
                 request.session['terminal_id'] = os.getenv("TERMINAL_GROUP_ID")
 
-        if order_type_key == 'PICKUP' and terminal_id:
+        elif order_type_key == 'PICKUP' and terminal_id:
             request.session['terminal_id'] = terminal_id
 
-        # Зберігаємо все в сесію
-        request.session['order_type_key'] = order_type_key # Для фронта ('DELIVERY')
-        request.session['order_type_id'] = selected_syrve_id # Для Syrve (UUID)
+        request.session['order_type'] = order_type_key
+        request.session['order_type_id'] = selected_syrve_id
         request.session.modified = True
         
         return JsonResponse({"status": "success"})

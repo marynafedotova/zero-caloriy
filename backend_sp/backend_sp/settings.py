@@ -88,6 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'core.context_processors.seo.seo_tags',
                 'goods.context_processors.all_restaurants_processor',
+                'goods.context_processors.categories_processor',
             ],
         },
     },
