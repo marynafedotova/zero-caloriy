@@ -52,11 +52,11 @@
   <section class="index-filter">
 <div class="container">
   <ul class="index-cat-filter">
-    <li><a href="#">Без цукру</a></li>
-    <li><a href="#">Без глютену</a></li>
-    <li><a href="#">Без лактози</a></li>
-    <li><a href="#">Веганські</a></li>
-    <li><a href="#">Протеїнові</a></li>
+    <li><a href="{% url 'goods:catalog' %}?category=no-added-sugar">Без цукру</a></li>
+    <li><a href="{% url 'goods:catalog' %}?category=gluten-free">Без глютену</a></li>
+    <li><a href="{% url 'goods:catalog' %}?category=lactose-free">Без лактози</a></li>
+    <li><a href="{% url 'goods:catalog' %}?category=vegan">Веганські</a></li>
+    <li><a href="{% url 'goods:catalog' %}?category=protein">Протеїнові</a></li>
   </ul>
 </div>
   </section>
@@ -150,15 +150,9 @@
                 <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
-<<<<<<< HEAD
-              <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}">
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart"> 
-              </a>
-=======
              <a class="add-to-cart-btn-m"  href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}" >
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a> 
->>>>>>> dff0342e485c38670666013a5b32c808e1611820
               </div>
             </div>
           

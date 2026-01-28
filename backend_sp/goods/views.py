@@ -1,5 +1,7 @@
 import os
 import requests
+import re
+
 from django.shortcuts import render, get_object_or_404
 from django.db import transaction
 from django.http import JsonResponse
@@ -15,14 +17,22 @@ from orders.services import build_syrve_payload
 from users.views import get_or_create_customer_with_address
 
 
-def catalog(request, category_slug=None):
+
+
+def catalog(request):
+
+    selected_categories = request.GET.getlist('category')
+    
     products = Product.objects.filter(is_included_in_menu=True)
     groups = Group.objects.filter(is_included_in_menu=True, parent__isnull=True).order_by('order')
-    if category_slug:
-        products = products.filter(categories__slug=category_slug)
+
+    if selected_categories:
+        products = products.filter(categories__slug__in=selected_categories).distinct()
+
     context = {
         'products': products,
-        'groups': groups,  # для меню
+        'groups': groups,
+        'selected_categories': selected_categories, 
     }
     return render(request, "goods/catalog.html", context)
 
@@ -63,6 +73,54 @@ def product(request, product_slug, group_slug=None):
         "random_products": random_products,
     }
     return render(request, "goods/product.html", context)
+
+
+# def product(request, product_slug, group_slug=None):
+
+#     product = get_object_or_404(Product, slug=product_slug)
+
+
+#     name_parts = product.name_uk.split(' ')
+    
+
+#     if len(name_parts) > 1:
+#         base_name = " ".join(name_parts[:-1])
+#     else:
+#         base_name = name_parts[0]
+
+
+#     product_variants = Product.objects.filter(
+#         name_uk__istartswith=base_name,
+#         size__isnull=False 
+#     ).select_related('size').order_by('weight')
+
+
+#     if not product_variants.exists():
+#         product_variants = [product]
+
+
+#     group_modifiers = GroupModifier.objects.filter(product=product).prefetch_related(
+#         'groupmodifierchild_set__modifier'
+#     )
+
+#     modifiers_data = []
+#     for gm in group_modifiers:
+#         modifiers_data.append({
+#             "group_modifier": gm,
+#             "child_modifiers": [child.modifier for child in gm.groupmodifierchild_set.all()],
+#         })
+
+
+#     random_products = Product.objects.exclude(id=product.id).order_by('?')[:5]
+
+#     context = {
+#         "product": product,
+#         "child_modifiers": modifiers_data,
+#         "variants": product_variants,
+#         "random_products": random_products,
+#     }
+    
+#     return render(request, "goods/product.html", context)
 
 
 def cart(request):
