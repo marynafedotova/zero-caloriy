@@ -395,10 +395,20 @@ header .nav-container .container nav ul li a {
   transition: all 0.5s ease;
 
 }
+a.cf-active {
+    background-color: #CF223A;
+    color: #ffffff !important;
+}
+
+a.cf-active svg {
+    color: #ffffff;
+}
+
 .catalog-filter-menu .catalog-cat-filter li a {
   display: flex;
   align-items: center;
-  gap: 6px; /* відстань між іконкою та текстом */
+  gap: 6px; 
+ 
 }
 
 .catalog-filter-menu .catalog-cat-filter li a .svg-wrapper {
@@ -1634,7 +1644,7 @@ align-items: center;
   padding-bottom: 44px;
 }
 .catalog-filter .catalog-cat-filter li{
-  border: 1px solid var(--lightpink-color);
+ 
   border-radius: 16px;
   width: 143px;
   height: 43px;
@@ -1644,11 +1654,14 @@ align-items: center;
 }
 .catalog-filter .catalog-cat-filter li a {
   display: flex;
-  align-items: center;        /* вертикаль */
-  justify-content: center;    /* горизонталь */
-  gap: 8px;                   /* расстояние между иконой и текстом */
+  align-items: center;        
+  justify-content: center;    
+  gap: 8px;       
   height: 100%;
+  width: 100%;
+  border-radius: 16px;
   color: var(--pinkdark-color);
+   border: 1px solid var(--lightpink-color);
   font-size: 16px;
 font-family: 'Montserrat Bold';
 }
