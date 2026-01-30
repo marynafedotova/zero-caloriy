@@ -892,6 +892,9 @@ padding-top: 150px;
   background-color: var(--lightpink-color);
   border-radius: 29px;
 }
+.index-filter .index-cat-filter li:hover{
+  background-color: var(--pinkdark-color);
+}
 .index-filter .index-cat-filter li a{
   display: flex;
   justify-content: center;
