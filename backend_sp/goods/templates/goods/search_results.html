@@ -18,7 +18,7 @@
     {% if goods %}
        <ul class="favlist-list" id="favlist-products" style="max-height: 426px;">
             {% for result in goods %}
-        <li class="product-card">
+        <li class="product-card" data-slug="{{ result.slug }}">
           <a href="{% url 'goods:product' product_slug=result.slug %}" class="product-link">
             <div class="product-img">
               {% if result.image_url %}
@@ -31,15 +31,24 @@
             <div class="product-info">
               <h3 class="product-title" style="padding-top: 0px;">{{ result.name }}</h3>
               <p class="product-weight">{{result.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
+              <div class="index-product-nutrition">КБЖВ: {{result.additional_info}}</div> 
+            
+
               <div class="product-cart">
 
                 <div class="product-price">
                   {{ result.price }}
                   <span class="product-price-uah">{% ftlmsg "price-uah" %}</span>
                 </div>
-                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}"">
+                 <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+              </a>
+                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}">
                 <img src="{% static './img/+.svg' %}" alt="add to cart">
               </a>
+                <div class="product-to-cart" hidden>
+                🗸
+              </div>
               </div>
             </div>
           

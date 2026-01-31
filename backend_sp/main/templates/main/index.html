@@ -74,7 +74,7 @@
       </div>
       <ul class="news-product-item" id="news-product">
         {% for new in new_products %}
-        <li class="product-card">
+        <li class="product-card" data-slug="{{ new.slug }}">
           <a href="{% url 'goods:product' product_slug=new.slug %}" class="product-link" style="border-radius: 16px; ">
             <div class="product-img">
               {% if new.image_url %}
@@ -101,6 +101,9 @@
               <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
               </a>
+                <div class="product-to-cart" hidden>
+                🗸
+              </div>
             </div>
         </li>
         {% endfor %}
@@ -116,19 +119,15 @@
       <h3 class="title-section">{% ftlmsg "likes_base" %}</h3>
         <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}
           <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect y="3.33014" width="34" height="2" fill="black"/>
-<path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
-</svg>
+          <rect y="3.33014" width="34" height="2" fill="black"/>
+          <path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
+          </svg>
         </a>
-
       </div>
-
-
       <ul class="favlist-list" id="favlist-products">
-
         {% for random in random_products %}
-        <li class="product-card">
-          <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
+        <li class="product-card" data-slug="{{ random.slug }}">
+          <a href=0 class="product-link">
             <div class="product-img">
               {% if random.image_url %}
               <img src="{{ random.image_url }}" alt="{{ random.name }}">

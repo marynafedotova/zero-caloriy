@@ -161,15 +161,19 @@ def cart_remove(request, cart_id):
 
 
 
-
 def cart_count(request):
     if not request.session.session_key:
-        return JsonResponse({'count': 0})
+        return JsonResponse({
+            'count': 0,
+            'items': []
+        })
 
-    count = Cart.objects.filter(
+    qs = Cart.objects.filter(
         session_key=request.session.session_key
-    ).count()
+    )
 
-    return JsonResponse({'count': count})
-
+    return JsonResponse({
+        'count': qs.count(),
+        'items': list(qs.values_list('product__slug', flat=True))
+    })
 
