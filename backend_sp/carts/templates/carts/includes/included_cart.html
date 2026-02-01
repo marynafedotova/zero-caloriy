@@ -107,7 +107,16 @@
         {% csrf_token %}
         
         <input type="text" name="name" placeholder="Ваше ім'я" required class="cart-input">
-        <input type="tel" name="phone" placeholder="+380" required class="cart-input">
+        <input
+    type="tel"
+    name="phone"
+    placeholder="+380"
+    inputmode="numeric"
+    autocomplete="tel"
+    required
+    class="cart-input"
+>
+
 
         {% if request.session.order_type == 'PICKUP' %}
             <div class="field-group">

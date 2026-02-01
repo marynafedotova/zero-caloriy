@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Скрываем форму при клике вне ее
   document.addEventListener('click', (e) => {
     if (isMobile() && 
         searchContainer.classList.contains('active') &&
@@ -196,12 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       searchContainer.style.display = 'none';
     }
   });
-  
-  // Инициализация
   updateVisibility();
-  
-  // При изменении размера окна
-  window.addEventListener('resize', updateVisibility);
+ window.addEventListener('resize', updateVisibility);
 });
 
 
@@ -285,8 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     picker.classList.remove('active');
   });
 
-  // Добавляем подсветку текущего языка через JS
-  const currentLang = "{{ LANGUAGE_CODE }}"; // Django подставляет текущий язык
+  const currentLang = "{{ LANGUAGE_CODE }}"; 
   picker.querySelectorAll('.lang-buttons button').forEach(btn => {
     if (btn.value === currentLang) {
       btn.classList.add('active');

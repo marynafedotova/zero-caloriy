@@ -59,6 +59,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const phoneInput = document.querySelector('input[name="phone"]');
+    if (!phoneInput) return;
+
+    phoneInput.addEventListener('input', (e) => {
+        let digits = e.target.value.replace(/\D/g, '');
+
+        if (!digits.startsWith('380')) {
+            digits = '380' + digits.replace(/^38|^3/, '');
+        }
+
+        digits = digits.substring(0, 12);
+
+        e.target.value = '+' + digits;
+    });
+});
+
 
 document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
