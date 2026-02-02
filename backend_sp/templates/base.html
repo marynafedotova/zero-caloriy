@@ -521,13 +521,24 @@
 
 
 <script>
-  window.CSRF_TOKEN = "{{ csrf_token }}";
-  window.CART_URL_ADD = "{% url 'carts:cart_add' 'PRODUCT_SLUG' %}";
-  window.CART_URL_SET_TYPE = "{% url 'carts:set_order_type' %}";
+window.CSRF_TOKEN = "{{ csrf_token }}";
+window.CART_URL_ADD = "{% url 'carts:cart_add' 'PRODUCT_SLUG' %}";
+window.CART_URL_SET_TYPE = "{% url 'carts:set_order_type' %}";
+
+/* ---------- ГЛОБАЛЬНІ ЗМІННІ ---------- */
+window.pendingProductSlug = null;   // Відкладений товар для додавання
+window.allRestaurants = [
+    {% for restaurant in all_restaurants %}
+        {
+            id: "{{ restaurant.id }}",
+            name: "{{ restaurant.name }}",
+            address: "{{ restaurant.address }}"
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+];
 
 /* ---------- КЕРУВАННЯ КОШИКОМ ---------- */
-
-window.addToCart = function (productSlug, element) {
+window.addToCart = function(productSlug, element) {
     const url = window.CART_URL_ADD.replace('PRODUCT_SLUG', productSlug);
     const productName = element ? $(element).attr('data-name') : (window.lastProductName || "Товар");
     window.lastProductName = productName;
@@ -538,23 +549,22 @@ window.addToCart = function (productSlug, element) {
         dataType: 'json',
         headers: { 'X-CSRFToken': window.CSRF_TOKEN },
         data: { action: 'plus' },
-        success: function (response) {
+        success: function(response) {
             if (response.status === 'success') {
-                // ЗМІНА: Перезавантажуємо сторінку, щоб відобразити товар у кошику
                 window.location.reload();
-            } 
-            else if (response.status === 'select_type_required') {
+            } else if (response.status === 'select_type_required') {
+                // Зберігаємо товар для додавання після вибору типу
                 window.pendingProductSlug = productSlug;
-                
-                // Скидаємо вигляд модалки
+
+                // Підготовка модалки
                 $('#modal-title').text("Оберіть спосіб отримання");
                 $('#pending-product-name').text(productName);
                 $('#pending-product-info').show();
                 $('#main-delivery-options').show();
                 $('#pickup-selection').hide();
                 $('#error-message-text').hide();
-                $('#close-modal-btn').text("Скасувати"); // Повертаємо текст кнопки
-                
+                $('#close-modal-btn').text("Скасувати");
+
                 const $select = $('#restaurant-select');
                 $select.empty().append('<option value="">-- Оберіть адресу --</option>');
                 if (response.all_restaurants) {
@@ -562,11 +572,11 @@ window.addToCart = function (productSlug, element) {
                         $select.append(`<option value="${res.id}">${res.name} (${res.address})</option>`);
                     });
                 }
+
                 $('#delivery-modal').fadeIn();
             }
         },
-        error: function (xhr) {
-            // ЗМІНА: Обробка стоп-листів (коли товар закінчився)
+        error: function(xhr) {
             if (xhr.status === 400 && xhr.responseJSON) {
                 $('#modal-title').text("Тимчасово відсутній");
                 $('#pending-product-info').hide();
@@ -579,28 +589,82 @@ window.addToCart = function (productSlug, element) {
     });
 };
 
-/* ---------- ТИП ДОСТАВКИ ---------- */
-
-window.selectDeliveryType = function (type) {
+/* ---------- ВИБІР СПОСОБУ ДОСТАВКИ ---------- */
+window.selectDeliveryType = function(type) {
     if (type === 'PICKUP') {
-        $('#main-delivery-options').hide();
+        if ($('#pickup-selection').length === 0) {
+            $('#orderForm').prepend(`
+                <div id="pickup-selection">
+                    <div class="field-group">
+                        <label>ЛОКАЦІЯ</label>
+                        <select id="restaurant-select" name="location" required class="cart-input"></select>
+                    </div>
+                    <div class="field-group">
+                        <label>О котрій заберете?</label>
+                        <input type="time" name="delivery_time" required class="cart-input">
+                    </div>
+                </div>
+            `);
+        }
+
+        const $select = $('#restaurant-select');
+        if ($select.children().length <= 1 && window.allRestaurants) {
+            $select.empty().append('<option value="">-- Оберіть адресу --</option>');
+            window.allRestaurants.forEach(function(res) {
+                $select.append(`<option value="${res.id}">${res.name} (${res.address})</option>`);
+            });
+        }
+
+        $('#delivery-fields').hide();
         $('#pickup-selection').slideDown();
+
+        sendTypeToBackend('PICKUP', null, function() {
+            if (window.pendingProductSlug) {
+                const slug = window.pendingProductSlug;
+                window.pendingProductSlug = null;
+                window.addToCart(slug, null);
+            } else {
+                window.location.reload();
+            }
+        });
     } else {
-        sendTypeToBackend('DELIVERY');
+        $('#pickup-selection').hide();
+        $('#delivery-fields').slideDown();
+
+        sendTypeToBackend('DELIVERY', null, function() {
+            if (window.pendingProductSlug) {
+                const slug = window.pendingProductSlug;
+                window.pendingProductSlug = null;
+                window.addToCart(slug, null);
+            } else {
+                window.location.reload();
+            }
+        });
     }
 };
 
-window.confirmPickup = function () {
+/* ---------- ПІДТВЕРДЖЕННЯ PICKUP ---------- */
+window.confirmPickup = function() {
     const terminalId = $('#restaurant-select').val();
     if (!terminalId) {
         alert("Оберіть точку видачі");
         return;
     }
-    sendTypeToBackend('PICKUP', terminalId);
+
+    sendTypeToBackend('PICKUP', terminalId, function() {
+        $('#delivery-modal').fadeOut();
+        if (window.pendingProductSlug) {
+            const slug = window.pendingProductSlug;
+            window.pendingProductSlug = null;
+            window.addToCart(slug, null);
+        } else {
+            window.location.reload();
+        }
+    });
 };
 
-function sendTypeToBackend(type, terminalId = null) {
-    // ЗМІНА: Очищуємо помилки перед новим запитом
+/* ---------- ВІДПРАВКА НА БЕКЕНД ---------- */
+function sendTypeToBackend(type, terminalId = null, callback = null) {
     $('#error-message-text').hide();
 
     $.ajax({
@@ -612,52 +676,43 @@ function sendTypeToBackend(type, terminalId = null) {
             terminal_id: terminalId,
             is_initial: 'true'
         },
-        success: function (response) {
-            if (response.status === 'success') {
-                // ПІСЛЯ того як тип зберігся, додаємо товар
-                if (window.pendingProductSlug) {
-                    const finalUrl = window.CART_URL_ADD.replace('PRODUCT_SLUG', window.pendingProductSlug);
-                    $.ajax({
-                        url: finalUrl,
-                        type: 'POST',
-                        headers: { 'X-CSRFToken': window.CSRF_TOKEN },
-                        success: function() {
-                            // ЗМІНА: Замість alert робимо релоад для оновлення кошика
-                            $('#delivery-modal').fadeOut();
-                            window.location.reload();
-                        },
-                        error: function(xhr) {
-                           // Якщо раптом товар у стопі саме для цього терміналу
-                           const msg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Помилка додавання";
-                           $('#error-message-text').text(msg).show();
-                        }
-                    });
-                }
-            }
+        success: function(response) {
+            if (response.status === 'success' && callback) callback();
         },
         error: function(xhr) {
-            // ЗМІНА: Тепер тут не буде помилки 2000 грн, але можуть бути технічні помилки
             const msg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Помилка сервера";
             $('#error-message-text').text(msg).show();
         }
     });
 }
 
+/* ---------- АВТОДОДАВАННЯ ПЕРШОГО ТОВАРУ ---------- */
 $(document).ready(function() {
     const autoSlug = sessionStorage.getItem('autoAddSlug');
     if (autoSlug) {
         window.lastProductName = sessionStorage.getItem('autoAddName');
+        window.pendingProductSlug = autoSlug; // відкладене додавання
         sessionStorage.removeItem('autoAddSlug');
         sessionStorage.removeItem('autoAddName');
-        window.addToCart(autoSlug, null);
+
+        const currentOrderType = "{{ request.session.order_type|default:'' }}";
+        if (currentOrderType !== "") {
+            // Якщо тип доставки вже обраний, додаємо одразу
+            window.addToCart(autoSlug, null);
+        } else {
+            // Інакше відкриваємо модалку для вибору типу доставки
+            $('#delivery-modal').fadeIn();
+        }
     }
 
+    // Якщо order_type пустий, відкриваємо модалку
     const currentOrderType = "{{ request.session.order_type|default:'' }}";
     if ($('#orderForm').length > 0 && currentOrderType === "") {
         $('#delivery-modal').fadeIn();
     }
 });
 </script>
+
   <script src="{% static './js/main.js' %} "></script>
 
 </body>
