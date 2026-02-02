@@ -56,7 +56,7 @@
         <div id="catalog-list-dessert" class="products-grid">
           {% for product in products %}
 
-          <div class="product-card">
+          <div class="product-card" data-slug="{{ product.slug }}">
             <a href="{% url 'goods:product' product_slug=product.slug %}" class="product-link">
 
               <div class="product-img">
@@ -85,6 +85,9 @@
               <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ product.slug }}', this)" data-name="{{ product.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
+                <div class="product-to-cart" hidden>
+                🗸
+              </div>
             </div>
             
           </div>

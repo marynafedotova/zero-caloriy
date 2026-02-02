@@ -28,6 +28,63 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const titles = document.querySelectorAll('.product-title');
+
+  titles.forEach(title => {
+    const text = title.textContent.trim();
+
+    const match = text.match(/(\s[MXL])$/);
+    if (match) {
+      const size = match[1]; 
+      const name = text.slice(0, -size.length); 
+
+      title.innerHTML = `${name} <span class="product-size-item">${size.trim()}</span>`;
+    }
+  });
+});
+
+
+function markCartItems(cartItems) {
+    if (!Array.isArray(cartItems)) return;
+
+    cartItems.forEach(slug => {
+        // Находим все карточки товара с этим slug на странице
+        const cards = document.querySelectorAll(`.product-card[data-slug="${slug}"]`);
+        cards.forEach(card => {
+            // 1. Скрываем кнопки "Добавить в корзину"
+            card.querySelectorAll('.add-to-cart-btn, .add-to-cart-btn-m')
+                .forEach(btn => {
+                    btn.style.display = 'none';
+                    btn.onclick = null;
+                });
+
+            // 2. Показываем галочку
+            const check = card.querySelector('.product-to-cart');
+            if (check) {
+                check.hidden = false;
+                check.style.display = 'flex';
+            }
+
+            // 3. Класс для отметки "в корзине"
+            card.classList.add('in-cart');
+        });
+    });
+}
+
+// ====== При загрузке страницы получаем товары из корзины и помечаем ======
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('/carts/count/')  // <-- лучше сделать относительный URL без "/ru/", чтобы работало на любых языках
+        .then(res => res.json())
+        .then(data => {
+            if (data.items && data.items.length) {
+                markCartItems(data.items);
+            }
+        })
+        .catch(err => console.error('Ошибка при получении товаров корзины:', err));
+});
+
+
 document.querySelectorAll('.index-product-nutrition').forEach(element => {
     const original = element.textContent
         .replace(/\n/g, ' ')          
@@ -129,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Скрываем форму при клике вне ее
   document.addEventListener('click', (e) => {
     if (isMobile() && 
         searchContainer.classList.contains('active') &&
@@ -139,12 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       searchContainer.style.display = 'none';
     }
   });
-  
-  // Инициализация
   updateVisibility();
-  
-  // При изменении размера окна
-  window.addEventListener('resize', updateVisibility);
+ window.addEventListener('resize', updateVisibility);
 });
 
 
@@ -228,8 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     picker.classList.remove('active');
   });
 
-  // Добавляем подсветку текущего языка через JS
-  const currentLang = "{{ LANGUAGE_CODE }}"; // Django подставляет текущий язык
+  const currentLang = "{{ LANGUAGE_CODE }}"; 
   picker.querySelectorAll('.lang-buttons button').forEach(btn => {
     if (btn.value === currentLang) {
       btn.classList.add('active');

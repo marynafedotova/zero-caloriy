@@ -33,25 +33,6 @@
           </div>
 
         </div>
-        <div class="cart-rb">
-          <p class="order-title">{% ftlmsg "order_cart" %}</p>
-              <div class="order-sum-stroke">
-        {% ftlmsg "total_prace_carts" %} 
-        <div class="order-sum-item">
-        <div  class="order-sum">{{carts.total_prace}}</div>
-        <div class="order-sum-currency">{% ftlmsg "currency_catalog" %}</div>
-        </div>
-    </div>
-<div>
-    <a href="#" class="pay-btn">Перейти до оплати 
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.2959 4.45407L21.0459 11.2041C21.1508 11.3086 21.234 11.4328 21.2908 11.5695C21.3476 11.7063 21.3768 11.8529 21.3768 12.0009C21.3768 12.149 21.3476 12.2956 21.2908 12.4324C21.234 12.5691 21.1508 12.6933 21.0459 12.7978L14.2959 19.5478C14.0846 19.7592 13.7979 19.8779 13.4991 19.8779C13.2002 19.8779 12.9135 19.7592 12.7022 19.5478C12.4908 19.3365 12.3721 19.0498 12.3721 18.7509C12.3721 18.4521 12.4908 18.1654 12.7022 17.9541L17.5313 13.125L3.75 13.125C3.45163 13.125 3.16548 13.0065 2.9545 12.7955C2.74353 12.5845 2.625 12.2984 2.625 12C2.625 11.7016 2.74353 11.4155 2.95451 11.2045C3.16548 10.9935 3.45163 10.875 3.75 10.875L17.5313 10.875L12.7013 6.04594C12.4899 5.8346 12.3712 5.54795 12.3712 5.24907C12.3712 4.95018 12.4899 4.66354 12.7013 4.45219C12.9126 4.24085 13.1992 4.12211 13.4981 4.12211C13.797 4.12211 14.0837 4.24085 14.295 4.45219L14.2959 4.45407Z" fill="white"/>
-</svg>
-
-    </a>
-</div>
-        </div>
-      </div>
   </section>
 </main>
 
@@ -59,6 +40,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const phoneInput = document.querySelector('input[name="phone"]');
+    if (!phoneInput) return;
+
+    phoneInput.addEventListener('input', (e) => {
+        let digits = e.target.value.replace(/\D/g, '');
+
+        if (!digits.startsWith('380')) {
+            digits = '380' + digits.replace(/^38|^3/, '');
+        }
+
+        digits = digits.substring(0, 12);
+
+        e.target.value = '+' + digits;
+    });
+});
+
 
 document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();

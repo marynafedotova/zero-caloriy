@@ -117,7 +117,7 @@
       </div>
 <ul class="favlist-list" id="favlist-products">
   {% for random in random_products %}
-  <li class="product-card">
+  <li class="product-card" data-slug="{{ random.slug }}">
     <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
       <div class="product-img">
         {% if random.image_url %}
@@ -144,6 +144,9 @@
            <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
+              <div class="product-to-cart" hidden>
+                🗸
+              </div>
           {% comment %} <button class="add-to-cart">
             <img src="{% static 'img/+.svg' %}" alt="add to cart">
           </button> {% endcomment %}

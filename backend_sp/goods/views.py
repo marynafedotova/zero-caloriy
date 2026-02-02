@@ -190,7 +190,7 @@ def create_order_telegram(request):
         order_type = request.session.get('order_type') # 'PICKUP' або 'DELIVERY'
         order_type_id = request.session.get('order_type_id')
         terminal_id = request.session.get('terminal_id')
-        
+     
         name = request.POST.get('name', '').strip()
         phone = request.POST.get('phone', '').strip()
         comment = request.POST.get('comment', '').strip()

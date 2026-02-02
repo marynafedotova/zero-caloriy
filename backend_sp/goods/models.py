@@ -22,7 +22,7 @@ class TranslatableModel(models.Model):
     def get_absolute_url(self):
         return reverse('goods:product', kwargs={'product_slug': self.slug})
     
-class Category(models.Model):
+class Category(TranslatableModel):
     name_uk = models.CharField(max_length=100)
     name_ru = models.CharField(max_length=100)
     name_en = models.CharField(max_length=100)
@@ -35,11 +35,10 @@ class Category(models.Model):
 
     @property
     def name(self):
-        lang = get_language()[:2]
-        return getattr(self, f"name_{lang}", self.name_uk)
+        return self.get_i18n_field('name')
 
 
-class Restaurant(models.Model):
+class Restaurant(TranslatableModel):
     id = models.UUIDField(primary_key=True) 
     name_uk = models.CharField(max_length=255)
     name_ru = models.CharField(max_length=255)
@@ -53,11 +52,13 @@ class Restaurant(models.Model):
         db_table = 'restaurant'
 
     @property
-    def display_name(self):
+    def name(self):
         return self.get_i18n_field('name')
     
+
+    
     @property
-    def display_address(self):
+    def address(self):
         return self.get_i18n_field('address')
     
 

@@ -35,15 +35,21 @@ def set_order_type(request):
             # динамічно оновлюватися в кошику пізніше.
             user_carts = get_user_carts(request)
             total_price = user_carts.total_prace()
-            
-            delivery_cost = 0 if total_price >= 4000 else 200
-            
+
+            if total_price >= 4000:
+                delivery_cost = 0
+            elif 2000 <= total_price < 4000:
+                delivery_cost = 200
+            else:
+                delivery_cost = 0
+
             # ID терміналу для доставки таксі
             delivery_res_id = "427d6dd2-1d65-275f-014c-ec534e53008e"
             request.session['terminal_id'] = delivery_res_id
             request.session['delivery_cost'] = delivery_cost
 
         elif order_type_key == 'PICKUP':
+            print(f"Отримано terminal_id: {terminal_id}")
             if not terminal_id:
                 return JsonResponse({"status": "error", "message": "Оберіть ресторан для самовивозу"}, status=400)
             
@@ -123,8 +129,7 @@ def cart_add(request, product_slug):
     cart.quantity += 1
     cart.save()
     
-    # РЕФАКТОРИНГ: Після додавання товару оновлюємо delivery_cost в сесії, 
-    # бо загальна сума змінилася і доставка може стати безкоштовною
+
     user_carts = get_user_carts(request)
     if order_type == 'DELIVERY':
         request.session['delivery_cost'] = 0 if user_carts.total_prace() >= 4000 else 200
@@ -155,7 +160,15 @@ def cart_change(request, cart_id):
         # РЕФАКТОРИНГ: Перерахунок вартості доставки при зміні кількості
         if request.session.get('order_type') == 'DELIVERY':
             user_carts = get_user_carts(request)
-            request.session['delivery_cost'] = 0 if user_carts.total_prace() >= 4000 else 200
+            total = user_carts.total_prace()
+
+            if total >= 4000:
+                request.session['delivery_cost'] = 0
+            elif 2000 <= total < 4000:
+                request.session['delivery_cost'] = 200
+            else:
+                request.session['delivery_cost'] = 0
+
             request.session.modified = True
             
         messages.success(request, f"Кількість товару {cart.product.name} змінено.")
@@ -331,15 +344,19 @@ def cart_remove(request, cart_id):
 
 
 
-
 def cart_count(request):
     if not request.session.session_key:
-        return JsonResponse({'count': 0})
+        return JsonResponse({
+            'count': 0,
+            'items': []
+        })
 
-    count = Cart.objects.filter(
+    qs = Cart.objects.filter(
         session_key=request.session.session_key
-    ).count()
+    )
 
-    return JsonResponse({'count': count})
-
+    return JsonResponse({
+        'count': qs.count(),
+        'items': list(qs.values_list('product__slug', flat=True))
+    })
 

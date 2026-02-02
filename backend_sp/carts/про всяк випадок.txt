@@ -108,3 +108,274 @@
 #         return JsonResponse({"status": "success"})
     
 #     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+
+шаблон інклюдед карт
+{% comment %} {% load static %}
+{% load mathfilters %}
+{% load ftl %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+
+{% for cart in carts %}
+<div class="cart-item">
+
+    <div class="cart-img">
+        {% if cart.product.image_url %}
+            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
+        {% else %}
+            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
+        {% endif %}
+    </div>
+<div class="cart-info"> 
+    <div class="cart-top-info">
+        <h3 class="cart-title">{{ cart.product.name }}</h3>
+
+        <a href="{% url 'carts:cart_remove' cart.id %}" class="remove-from-cart">
+            <img src="{% static 'img/delete.svg' %}" alt="delete">
+        </a>
+    </div>
+
+    <p class="cart-weight">
+        {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+    </p>
+
+    <div class="cart-bottom">
+        <div class="cart-price">
+            {{ cart.product_prace }} <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
+        </div>
+            <div class="cart-controls">
+        <!-- <span>Кількість: {{ cart.quantity }}</span> -->
+
+        <form action="{% url 'carts:cart_change' cart.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
+            <input type="number" value="{{ cart.quantity }}" readonly class="quantity-input">
+            <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
+        </form>
+    </div>
+
+    </div>
+
+</div>
+</div>
+{% endfor %} {% endcomment %}
+
+
+{% comment %} {% load static %}
+{% load mathfilters %}
+{% load ftl %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+
+{% for cart in carts %}
+<div class="cart-item">
+    <div class="cart-img">
+        {% if cart.product.image_url %}
+            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
+        {% else %}
+            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
+        {% endif %}
+    </div>
+    <div class="cart-info"> 
+        <div class="cart-top-info">
+            <h3 class="cart-title">{{ cart.product.name }}</h3>
+            <a href="{% url 'carts:cart_remove' cart.id %}" class="remove-from-cart">
+                <img src="{% static 'img/delete.svg' %}" alt="delete">
+            </a>
+        </div>
+
+        <p class="cart-weight">
+            {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+        </p>
+
+        <div class="cart-bottom">
+            <div class="cart-price">
+                {{ cart.product_prace }} <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
+            </div>
+            <div class="cart-controls">
+                <form action="{% url 'carts:cart_change' cart.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
+                    <input type="number" value="{{ cart.quantity }}" readonly class="quantity-input">
+                    <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<hr class="cart-divider" style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+<div class="contacts-block">
+    <div class="order-type-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h3 style="margin: 0;">
+            {% if request.session.order_type == 'PICKUP' %} 🛍️ Самовивіз {% else %} 🚚 Доставка {% endif %}
+        </h3>
+        <button type="button" onclick="$('#delivery-modal').fadeIn()" style="color: #ff4d8d; background: none; border: 1px solid #ff4d8d; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px;">
+            Змінити спосіб
+        </button>
+    </div>
+
+    <form id="orderForm" method="POST" data-url="{% url 'goods:create-order' %}" data-csrf="{{ csrf_token }}">
+        {% csrf_token %}
+        
+        <input type="text" name="name" placeholder="Ваше ім'я" required class="cart-input">
+        <input
+    type="tel"
+    name="phone"
+    placeholder="+380"
+    inputmode="numeric"
+    autocomplete="tel"
+    required
+    class="cart-input"
+>
+
+
+        {% if request.session.order_type == 'PICKUP' %}
+            <div class="field-group">
+                <label>ЛОКАЦІЯ</label>
+                <select name="location" required class="cart-input">
+                    {% for restaurant in all_restaurants %}
+                        <option value="{{ restaurant.id }}" 
+                            {% if restaurant.id|stringformat:"s" == request.session.terminal_id|stringformat:"s" %}selected{% endif %}>
+                            {{ restaurant.id }} {{ restaurant.name }} ({{ restaurant.address }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field-group">
+                <label>О котрій заберете?</label>
+                <input type="time" name="delivery_time" required class="cart-input">
+            </div>
+
+        {% else %}
+    <div class="delivery-address-block">
+        <label class="field-label">📍 Адреса доставки</label>
+        
+        <div class="field-group">
+            <input type="text" name="street" placeholder="Вулиця (напр. Мазепи)" required class="cart-input">
+        </div>
+
+        <div class="input-row" style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <input type="text" name="house_number" placeholder="Буд." required class="cart-input">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="apartment_number" placeholder="Кв./Офіс" class="cart-input">
+            </div>
+        </div>
+
+        <div class="input-row" style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <input type="text" name="entrance" placeholder="Під'їзд" class="cart-input">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="floor" placeholder="Поверх" class="cart-input">
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">🕒 Бажаний час доставки</label>
+            <input type="time" name="delivery_time" required class="cart-input">
+        </div>
+
+        <div class="field-group">
+            <textarea name="comment" placeholder="Коментар для кур'єра (код домофону тощо)" class="cart-input" style="height: 80px; resize: none;"></textarea>
+        </div>
+    </div>
+{% endif %}
+
+    <div class="cart-totals-summary" style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px;">
+</div>
+        <div class="cart-rb">
+          <p class="order-title">{% ftlmsg "order_cart" %}</p>
+              <div class="order-sum-stroke">
+        {% ftlmsg "total_prace_carts" %} 
+        <div class="order-sum-item">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span>Товари:</span>
+            {% if request.session.order_type == 'DELIVERY' %}
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; color: #ff4d8d;">
+        <span>Доставка таксі:</span>
+        <span style="font-weight: bold;">
+            {% if delivery_cost > 0 %}
+                {{ delivery_cost }} {% ftlmsg "currency_catalog" %}
+            {% else %}
+                Безкоштовно
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+        <span style="font-weight: bold;">{{ cart_total_price }} {% ftlmsg "currency_catalog" %}</span>
+    </div>
+        <div  class="order-sum">{{ full_total_sum}}</div>
+        <div class="order-sum-currency">{% ftlmsg "currency_catalog" %}</div>
+        </div>
+    </div>
+        </div>
+      </div>
+
+
+      <div class="cart-totals-summary" style="border: 2px solid {% if cart_total_price < 2000 %}#ffebee{% else %}#e8f5e9{% endif %}; padding: 15px; border-radius: 12px;">
+    
+    {% if request.session.order_type == 'DELIVERY' %}
+        {% if cart_total_price < 2000 %}
+            <div class="delivery-warning" style="color: #d32f2f; margin-bottom: 10px; font-size: 14px;">
+                <strong>Доставка недоступна:</strong> Мінімальна сума для доставки — 2000 грн. 
+                <br>Вам не вистачає ще <b>{{ 2000|sub:cart_total_price }} грн</b>.
+            </div>
+            <a href="{% url 'goods:catalog' %}" style="display: block; text-align: center; color: #ff4d8d; text-decoration: underline; margin-bottom: 10px;">
+                Повернутися до меню за добавкою 🍕
+            </a>
+        {% elif cart_total_price < 4000 %}
+            <div class="delivery-info" style="color: #388e3c; margin-bottom: 10px; font-size: 14px;">
+                ✅ Мінімальну суму для доставки набрано! 
+                <br>Додайте ще на <b>{{ 4000|sub:cart_total_price }} грн</b> для <span style="text-transform: uppercase; font-weight: bold;">безкоштовної</span> доставки.
+            </div>
+        {% endif %}
+    {% endif %}
+
+    </div>
+
+<button type="submit" id="cart-btn" class="main-cart-submit">Перейти до оплати
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.2959 4.45407L21.0459 11.2041C21.1508 11.3086 21.234 11.4328 21.2908 11.5695C21.3476 11.7063 21.3768 11.8529 21.3768 12.0009C21.3768 12.149 21.3476 12.2956 21.2908 12.4324C21.234 12.5691 21.1508 12.6933 21.0459 12.7978L14.2959 19.5478C14.0846 19.7592 13.7979 19.8779 13.4991 19.8779C13.2002 19.8779 12.9135 19.7592 12.7022 19.5478C12.4908 19.3365 12.3721 19.0498 12.3721 18.7509C12.3721 18.4521 12.4908 18.1654 12.7022 17.9541L17.5313 13.125L3.75 13.125C3.45163 13.125 3.16548 13.0065 2.9545 12.7955C2.74353 12.5845 2.625 12.2984 2.625 12C2.625 11.7016 2.74353 11.4155 2.95451 11.2045C3.16548 10.9935 3.45163 10.875 3.75 10.875L17.5313 10.875L12.7013 6.04594C12.4899 5.8346 12.3712 5.54795 12.3712 5.24907C12.3712 4.95018 12.4899 4.66354 12.7013 4.45219C12.9126 4.24085 13.1992 4.12211 13.4981 4.12211C13.797 4.12211 14.0837 4.24085 14.295 4.45219L14.2959 4.45407Z" fill="white"/>
+</svg>
+</button>
+    </form>
+</div>
+
+
+
+<style>
+    .cart-input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: block;
+    }
+    .field-group label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    .main-cart-submit {
+        width: 100%;
+        background: #ff4d8d;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+</style> {% endcomment %}
+
+

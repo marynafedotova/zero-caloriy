@@ -1,52 +1,3 @@
-{% comment %} {% load static %}
-{% load mathfilters %}
-{% load ftl %}
-{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-
-{% for cart in carts %}
-<div class="cart-item">
-
-    <div class="cart-img">
-        {% if cart.product.image_url %}
-            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
-        {% else %}
-            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
-        {% endif %}
-    </div>
-<div class="cart-info"> 
-    <div class="cart-top-info">
-        <h3 class="cart-title">{{ cart.product.name }}</h3>
-
-        <a href="{% url 'carts:cart_remove' cart.id %}" class="remove-from-cart">
-            <img src="{% static 'img/delete.svg' %}" alt="delete">
-        </a>
-    </div>
-
-    <p class="cart-weight">
-        {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
-    </p>
-
-    <div class="cart-bottom">
-        <div class="cart-price">
-            {{ cart.product_prace }} <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
-        </div>
-            <div class="cart-controls">
-        <!-- <span>Кількість: {{ cart.quantity }}</span> -->
-
-        <form action="{% url 'carts:cart_change' cart.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
-            <input type="number" value="{{ cart.quantity }}" readonly class="quantity-input">
-            <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
-        </form>
-    </div>
-
-    </div>
-
-</div>
-</div>
-{% endfor %} {% endcomment %}
-
 
 {% load static %}
 {% load mathfilters %}
@@ -69,11 +20,9 @@
                 <img src="{% static 'img/delete.svg' %}" alt="delete">
             </a>
         </div>
-
         <p class="cart-weight">
             {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
         </p>
-
         <div class="cart-bottom">
             <div class="cart-price">
                 {{ cart.product_prace }} <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
@@ -91,14 +40,14 @@
 </div>
 {% endfor %}
 
-<hr class="cart-divider" style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+<hr class="cart-divider">
 
 <div class="contacts-block">
-    <div class="order-type-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-        <h3 style="margin: 0;">
+    <div class="order-type-header">
+        <h3>
             {% if request.session.order_type == 'PICKUP' %} 🛍️ Самовивіз {% else %} 🚚 Доставка {% endif %}
         </h3>
-        <button type="button" onclick="$('#delivery-modal').fadeIn()" style="color: #ff4d8d; background: none; border: 1px solid #ff4d8d; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px;">
+        <button type="button" class="change-type-btn" onclick="$('#delivery-modal').fadeIn()">
             Змінити спосіб
         </button>
     </div>
@@ -107,7 +56,7 @@
         {% csrf_token %}
         
         <input type="text" name="name" placeholder="Ваше ім'я" required class="cart-input">
-        <input type="tel" name="phone" placeholder="+380" required class="cart-input">
+        <input type="tel" name="phone" placeholder="+380" inputmode="numeric" required class="cart-input">
 
         {% if request.session.order_type == 'PICKUP' %}
             <div class="field-group">
@@ -124,100 +73,105 @@
                 <label>О котрій заберете?</label>
                 <input type="time" name="delivery_time" required class="cart-input">
             </div>
-
         {% else %}
-    <div class="delivery-address-block">
-        <label class="field-label">📍 Адреса доставки</label>
+            <div class="delivery-address-block">
+                <label class="field-label">📍 Адреса доставки</label>
+                <input type="text" name="street" placeholder="Вулиця" required class="cart-input">
+                <div class="input-row">
+                    <input type="text" name="house_number" placeholder="Буд." required class="cart-input">
+                    <input type="text" name="apartment_number" placeholder="Кв./Офіс" class="cart-input">
+                </div>
+                <div class="input-row">
+                    <input type="text" name="entrance" placeholder="Під'їзд" class="cart-input">
+                    <input type="text" name="floor" placeholder="Поверх" class="cart-input">
+                </div>
+                <div class="field-group">
+                    <label class="field-label">🕒 Бажаний час доставки</label>
+                    <input type="time" name="delivery_time" required class="cart-input">
+                </div>
+                <textarea name="comment" placeholder="Коментар для кур'єра" class="cart-input comment-area"></textarea>
+            </div>
+        {% endif %}
+
+        <div class="cart-summary-card {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}status-error{% endif %}">
+            <p class="order-title">{% ftlmsg "order_cart" %}</p>
+            
+            <div class="summary-line">
+                <span>Товари:</span>
+                <span class="price-val">{{ cart_total_price }} {% ftlmsg "currency_catalog" %}</span>
+            </div>
+
+            {% if request.session.order_type == 'DELIVERY' %}
+    <div class="cart-summary-card">
         
-        <div class="field-group">
-            <input type="text" name="street" placeholder="Вулиця (напр. Мазепи)" required class="cart-input">
-        </div>
-
-        <div class="input-row" style="display: flex; gap: 10px;">
-            <div style="flex: 1;">
-                <input type="text" name="house_number" placeholder="Буд." required class="cart-input">
+        {% if cart_total_price < 1600 %}
+            <div class="ux-notice aggregator">
+                <p>📍 Ваше замовлення менше 2000 грн.</p>
+                <p>Ми з радістю привеземо його вам через сервіси доставки:</p>
+                <div class="aggregator-links">
+                    <a href="https://glovoapp.com/..." class="btn-glovo">Glovo</a>
+                    <a href="https://boltfood.com/..." class="btn-bolt">Bolt Food</a>
+                    <a href="https://link.loko.delivery/49bc224fbf0d" class="btn-bolt">Loko</a>
+                </div>
             </div>
-            <div style="flex: 1;">
-                <input type="text" name="apartment_number" placeholder="Кв./Офіс" class="cart-input">
-            </div>
-        </div>
 
-        <div class="input-row" style="display: flex; gap: 10px;">
-            <div style="flex: 1;">
-                <input type="text" name="entrance" placeholder="Під'їзд" class="cart-input">
+        {% elif cart_total_price < 2000 %}
+            <div class="ux-notice upsell">
+                <p>🌟 Вам залишилося всього <b>{{ 2000|sub:cart_total_price }} грн</b> до мінімального замовлення!</p>
+                <p>Додайте десерт або напій, щоб оформити доставку кур'єром.</p>
+                <a href="{% url 'goods:catalog' %}" class="btn-back">Перейти до меню</a>
             </div>
-            <div style="flex: 1;">
-                <input type="text" name="floor" placeholder="Поверх" class="cart-input">
+
+        {% elif cart_total_price < 4000 %}
+            <div class="ux-notice info">
+                ✅ Мінімальну суму набрано! Доставка: 200 грн.
+                <br>Додайте ще на <b>{{ 4000|sub:cart_total_price }} грн</b> і ми пришлемо таксі <b>безкоштовно</b>!
             </div>
-        </div>
+        {% endif %}
 
-        <div class="field-group">
-            <label class="field-label">🕒 Бажаний час доставки</label>
-            <input type="time" name="delivery_time" required class="cart-input">
-        </div>
-
-        <div class="field-group">
-            <textarea name="comment" placeholder="Коментар для кур'єра (код домофону тощо)" class="cart-input" style="height: 80px; resize: none;"></textarea>
-        </div>
     </div>
 {% endif %}
 
-    <div class="cart-totals-summary" style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-        <span>Товари:</span>
-        <span style="font-weight: bold;">{{ cart_total_price }} {% ftlmsg "currency_catalog" %}</span>
-    </div>
+            <div class="summary-total">
+                <span>{% ftlmsg "total_prace_carts" %}</span>
+                <span class="total-val">{{ full_total_sum }} {% ftlmsg "currency_catalog" %}</span>
+            </div>
+        </div>
 
-    {% if request.session.order_type == 'DELIVERY' %}
-    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; color: #ff4d8d;">
-        <span>Доставка таксі:</span>
-        <span style="font-weight: bold;">
-            {% if delivery_cost > 0 %}
-                {{ delivery_cost }} {% ftlmsg "currency_catalog" %}
+        <button type="submit" id="cart-btn" class="main-cart-submit" 
+            {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}disabled{% endif %}>
+            {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}
+                Мінімальна сума замовлення 2000
             {% else %}
-                Безкоштовно
+                Перейти до оплати
             {% endif %}
-        </span>
-    </div>
-    {% endif %}
-
-    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 1.2em;">
-        <span style="font-weight: 800;">РАЗОМ:</span>
-        <span style="font-weight: 800; color: #000;">{{ full_total_sum }} {% ftlmsg "currency_catalog" %}</span>
-    </div>
-</div>
-
-<button type="submit" id="cart-btn" class="main-cart-submit">Підтвердити замовлення</button>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14.2959 4.45407L21.0459 11.2041L14.2959 19.5478" stroke="white" stroke-width="2"/></svg>
+        </button>
     </form>
 </div>
 
 <style>
-    .cart-input {
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        display: block;
-    }
-    .field-group label {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: #555;
-    }
-    .main-cart-submit {
-        width: 100%;
-        background: #ff4d8d;
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 10px;
-        font-weight: bold;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-    }
+    .cart-divider { margin: 30px 0; border: 0; border-top: 1px solid #eee; }
+    .order-type-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .change-type-btn { color: #ff4d8d; background: none; border: 1px solid #ff4d8d; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+    
+    .cart-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; display: block; }
+    .input-row { display: flex; gap: 10px; }
+    .input-row .cart-input { flex: 1; }
+    .comment-area { height: 80px; resize: none; }
+
+    /* Стилізація картки підсумку */
+    .cart-summary-card { margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 12px; border: 1px solid #eee; }
+    .cart-summary-card.status-error { border: 1px solid #ff4d8d; background: #fff5f8; }
+    
+    .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; }
+    .delivery-line { color: #ff4d8d; }
+    .summary-total { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-weight: bold; font-size: 18px; }
+    
+    .ux-notice { font-size: 13px; margin: 10px 0; padding: 8px; border-radius: 6px; }
+    .ux-notice.error { color: #d32f2f; background: #ffebee; }
+    .ux-notice.info { color: #2e7d32; background: #e8f5e9; }
+
+    .main-cart-submit { width: 100%; background: #ff4d8d; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; }
+    .main-cart-submit:disabled { background: #ccc; cursor: not-allowed; }
 </style>
-
-

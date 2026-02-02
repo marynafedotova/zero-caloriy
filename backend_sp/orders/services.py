@@ -1,3 +1,4 @@
+import os
 import uuid
 from django.conf import settings
 
@@ -11,19 +12,17 @@ def build_syrve_payload(order, cart_items):
             "type": "Product",
             "productId": str(item.product.id),
             "amount": float(item.quantity),
-            "modifiers": [] # Якщо додасте модифікатори в Cart, сюди піде масив
+            "modifiers": [] 
         })
 
-    # Створюємо унікальний ID для замовлення (щоб уникнути дублів)
-    # Якщо замовлення не пройде, можна буде відправити з цим же ID повторно
     external_id = uuid.uuid4() 
 
     payload = {
-        "organizationId": settings.ORG_ID,
+        "organizationId": os.getenv("ORG_ID"),
         "terminalGroupId": str(order.terminal_group_id),
         "order": {
             "id": str(external_id),
-            "externalNumber": f"WEB-{order.id}", # Номер замовлення для касирів
+            "externalNumber": f"WEB-{order.id}",
             "items": items,
             "phone": str(order.user.phone),
             "orderTypeId": str(order.order_type_id),
@@ -34,19 +33,19 @@ def build_syrve_payload(order, cart_items):
             "createOrderSettings": {
                 "servicePrint": True,
                 "transportToFrontTimeout": 0,
-                "checkStopList": True # Краще увімкнути, щоб iiko перевірила стопи ще раз
+                "checkStopList": True 
             },
             "payments": [
                 {
-                    "paymentTypeKind": "CASH", # Або CARD
+                    "paymentTypeKind": "CASH",
                     "sum": float(order.total_amount),
-                    "paymentTypeId": "09322f46-578a-d210-add7-eec222a08871" # Твій ID готівки
+                    "paymentTypeId": "09322f46-578a-d210-add7-eec222a08871" 
                 }
             ]
         }
     }
 
-    # Логіка адреси (для PICKUP deliveryPoint не потрібен)
+
     if order.address:
         payload["order"]["deliveryPoint"] = {
             "address": {

@@ -12,13 +12,22 @@ def all_restaurants_processor(request):
     
 
     delivery_cost = request.session.get('delivery_cost', 0)
+
+
+    terminal_id = request.session.get('terminal_id')
+    selected_restaurant = None
+    
+    if terminal_id:
+        selected_restaurant = Restaurant.objects.filter(id=terminal_id).first()
     
     return {
-        'all_restaurants': Restaurant.objects.filter(is_active=True),
+        'all_restaurants': Restaurant.objects.all(),
+        'selected_restaurant': selected_restaurant,
         'cart_total_price': cart_total,
         'delivery_cost': delivery_cost,
         'full_total_sum': cart_total + delivery_cost, 
     }
+
 
 
 def categories_processor(request):
