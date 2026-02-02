@@ -19,7 +19,7 @@ def build_syrve_payload(order, cart_items):
     external_id = uuid.uuid4() 
 
     payload = {
-        "organizationId": settings.SYRVE_ORG_ID,
+        "organizationId": settings.ORG_ID,
         "terminalGroupId": str(order.terminal_group_id),
         "order": {
             "id": str(external_id),

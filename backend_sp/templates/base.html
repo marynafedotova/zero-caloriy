@@ -540,6 +540,7 @@ window.addToCart = function (productSlug, element) {
         data: { action: 'plus' },
         success: function (response) {
             if (response.status === 'success') {
+                // ЗМІНА: Перезавантажуємо сторінку, щоб відобразити товар у кошику
                 window.location.reload();
             } 
             else if (response.status === 'select_type_required') {
@@ -552,6 +553,7 @@ window.addToCart = function (productSlug, element) {
                 $('#main-delivery-options').show();
                 $('#pickup-selection').hide();
                 $('#error-message-text').hide();
+                $('#close-modal-btn').text("Скасувати"); // Повертаємо текст кнопки
                 
                 const $select = $('#restaurant-select');
                 $select.empty().append('<option value="">-- Оберіть адресу --</option>');
@@ -564,8 +566,8 @@ window.addToCart = function (productSlug, element) {
             }
         },
         error: function (xhr) {
+            // ЗМІНА: Обробка стоп-листів (коли товар закінчився)
             if (xhr.status === 400 && xhr.responseJSON) {
-                // ПЕРЕВІРКА СТОП-ЛИСТА
                 $('#modal-title').text("Тимчасово відсутній");
                 $('#pending-product-info').hide();
                 $('#error-message-text').text(xhr.responseJSON.message).show();
@@ -598,6 +600,9 @@ window.confirmPickup = function () {
 };
 
 function sendTypeToBackend(type, terminalId = null) {
+    // ЗМІНА: Очищуємо помилки перед новим запитом
+    $('#error-message-text').hide();
+
     $.ajax({
         url: window.CART_URL_SET_TYPE,
         type: 'POST',
@@ -611,26 +616,34 @@ function sendTypeToBackend(type, terminalId = null) {
             if (response.status === 'success') {
                 // ПІСЛЯ того як тип зберігся, додаємо товар
                 if (window.pendingProductSlug) {
-                    // Викликаємо додавання без перезавантаження!
                     const finalUrl = window.CART_URL_ADD.replace('PRODUCT_SLUG', window.pendingProductSlug);
                     $.ajax({
                         url: finalUrl,
                         type: 'POST',
                         headers: { 'X-CSRFToken': window.CSRF_TOKEN },
                         success: function() {
+                            // ЗМІНА: Замість alert робимо релоад для оновлення кошика
                             $('#delivery-modal').fadeOut();
-                            alert("Товар додано як " + (type === 'PICKUP' ? "Самовивіз" : "Доставка"));
-                            
+                            window.location.reload();
+                        },
+                        error: function(xhr) {
+                           // Якщо раптом товар у стопі саме для цього терміналу
+                           const msg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Помилка додавання";
+                           $('#error-message-text').text(msg).show();
                         }
                     });
                 }
             }
+        },
+        error: function(xhr) {
+            // ЗМІНА: Тепер тут не буде помилки 2000 грн, але можуть бути технічні помилки
+            const msg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Помилка сервера";
+            $('#error-message-text').text(msg).show();
         }
     });
 }
 
 $(document).ready(function() {
-    // 1. Перевіряємо, чи є товар для додавання після релоаду
     const autoSlug = sessionStorage.getItem('autoAddSlug');
     if (autoSlug) {
         window.lastProductName = sessionStorage.getItem('autoAddName');
@@ -639,7 +652,6 @@ $(document).ready(function() {
         window.addToCart(autoSlug, null);
     }
 
-    // 2. Виправлений ключ сесії для перевірки
     const currentOrderType = "{{ request.session.order_type|default:'' }}";
     if ($('#orderForm').length > 0 && currentOrderType === "") {
         $('#delivery-modal').fadeIn();

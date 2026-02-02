@@ -53,11 +53,11 @@ class Restaurant(models.Model):
         db_table = 'restaurant'
 
     @property
-    def about_product(self):
+    def display_name(self):
         return self.get_i18n_field('name')
     
     @property
-    def about_product(self):
+    def display_address(self):
         return self.get_i18n_field('address')
     
 

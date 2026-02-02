@@ -162,7 +162,32 @@
     </div>
 {% endif %}
 
-        <button type="submit" id="cart-btn" class="main-cart-submit">Підтвердити замовлення</button>
+    <div class="cart-totals-summary" style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span>Товари:</span>
+        <span style="font-weight: bold;">{{ cart_total_price }} {% ftlmsg "currency_catalog" %}</span>
+    </div>
+
+    {% if request.session.order_type == 'DELIVERY' %}
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; color: #ff4d8d;">
+        <span>Доставка таксі:</span>
+        <span style="font-weight: bold;">
+            {% if delivery_cost > 0 %}
+                {{ delivery_cost }} {% ftlmsg "currency_catalog" %}
+            {% else %}
+                Безкоштовно
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+
+    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 1.2em;">
+        <span style="font-weight: 800;">РАЗОМ:</span>
+        <span style="font-weight: 800; color: #000;">{{ full_total_sum }} {% ftlmsg "currency_catalog" %}</span>
+    </div>
+</div>
+
+<button type="submit" id="cart-btn" class="main-cart-submit">Підтвердити замовлення</button>
     </form>
 </div>
 
