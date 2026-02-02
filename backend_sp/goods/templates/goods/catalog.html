@@ -6,6 +6,59 @@
 {% load mathfilters %}
 <title>{% ftlmsg "title_catalog" %}</title>
 <meta name="description" content="{% ftlmsg 'description_catalog' %}">
+{% now "Y-m-d" as today %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {% for product in products %}
+    {
+      "@type": "Product",
+      "name": "{{ product.name|escapejs }}",
+      "description": "{{ product.description|striptags|escapejs }}",
+      "image": [
+        "{% if product.image_url %}https://zerokaloriy.com{{ product.image_url }}{% else %}{% static 'img/images-not-found.jpg' %}{% endif %}"
+      ],
+      "sku": "{{ product.code|default:'' }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "Зеро калорій"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{% url 'goods:product' product_slug=product.slug %}",
+        "priceCurrency": "{% ftlmsg 'currency_catalog' %}",
+        "price": "{{ product.price }}",
+        "priceValidUntil": "{{ today }}",
+        "availability": "https://schema.org/{% if product.is_included_in_menu %}InStock{% else %}OutOfStock{% endif %}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "Зеро калорій"
+        }
+      },
+      "additionalProperty": [
+        {% if product.weight %}
+        {
+          "@type": "PropertyValue",
+          "name": "Вага",
+          "value": "{{ product.weight|mul:1000|floatformat:0 }} г"
+        }{% if product.additional_info %},{% endif %}
+        {% endif %}
+        {% if product.additional_info %}
+        {
+          "@type": "PropertyValue",
+          "name": "КБЖУ на 100 г",
+          "value": "{{ product.additional_info|striptags|cut:'\r'|escapejs }}"
+        }
+        {% endif %}
+      ]
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
 {% endblock title_meta %}
 {% block content %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}

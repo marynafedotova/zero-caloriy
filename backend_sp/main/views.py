@@ -18,9 +18,11 @@ def index(request):
     new_products = Product.objects.all().order_by('-id')[:5]
     
     random_products = Product.objects.all().order_by('?')[:5]
+    all_products = list(new_products) + [p for p in random_products if p not in new_products]
     context = {
         'new_products': new_products,
         'random_products': random_products,
+        'all_products': all_products,
     }
     return render(request, "main/index.html", context)
 

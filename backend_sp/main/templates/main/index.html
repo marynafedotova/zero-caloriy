@@ -4,8 +4,73 @@
 {% load menu_tags%}
 {% block title_meta %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+{% load mathfilters %}
+
 <title>{% ftlmsg "site_title_index" %}</title>
 <meta name="description" content="{% ftlmsg  'site_descrp_index' %}">
+{% now "Y-m-d" as today %}
+{% now "Y-m-d" as today %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {% for product in all_products %}
+    {
+      "@type": "Product",
+      "name": "{{ product.name|escapejs }}",
+      "description": "{{ product.description|striptags|escapejs }}",
+      "image": [
+        {% if product.image_url %}
+          {% if product.image_url|slice:":4" == "http" %}
+            "{{ product.image_url }}"
+          {% else %}
+            "https://zerokaloriy.com{{ product.image_url }}"
+          {% endif %}
+        {% else %}
+          "{% static 'img/images-not-found.jpg' %}"
+        {% endif %}
+      ],
+      "sku": "{{ product.code|default:'' }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "Зеро калорій"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{% url 'goods:product' product_slug=product.slug %}",
+        "priceCurrency": "UAH",
+        "price": "{{ product.price|floatformat:2 }}",
+        "priceValidUntil": "{{ today }}",
+        "availability": "https://schema.org/{% if product.is_included_in_menu %}InStock{% else %}OutOfStock{% endif %}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "Зеро калорій"
+        }
+      },
+      "additionalProperty": [
+        {% if product.weight %}
+        {
+          "@type": "PropertyValue",
+          "name": "Вага",
+          "value": "{{ product.weight|mul:1000|floatformat:0 }} г"
+        }{% if product.additional_info %},{% endif %}
+        {% endif %}
+        {% if product.additional_info %}
+        {
+          "@type": "PropertyValue",
+          "name": "КБЖУ на 100 г",
+          "value": "{{ product.additional_info|striptags|cut:'\r'|escapejs }}"
+        }
+        {% endif %}
+      ]
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+
 
 {% endblock title_meta %}
 {% block content %}
