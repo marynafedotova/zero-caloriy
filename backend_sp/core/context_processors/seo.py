@@ -10,6 +10,7 @@ def seo_tags(request):
     base_domains = {
         'uk': 'https://zerokaloriy.com/uk',
         'ru': 'https://zerokaloriy.com/ru',
+        'en': 'https://zerokaloriy.com/en',
     }
 
     canonical_url = f"{base_domains[current_lang]}{path[len(f'/{current_lang}'):]}"  # убираем язык из path, если нужно

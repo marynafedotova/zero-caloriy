@@ -379,3 +379,118 @@
 </style> {% endcomment %}
 
 
+function updateCartTotals(data) {
+    // 1. Оновлюємо список товарів кошика
+    if (data.cart_html) {
+        const cartList = document.querySelector('.cart-item-list');
+        if (cartList) {
+            cartList.innerHTML = data.cart_html;
+        }
+    }
+
+
+    // 3. Оновлюємо загальну суму замовлення
+    if (data.full_total_sum !== undefined) {
+        // Підсумок "Сума замовлення"
+        document.querySelectorAll('.total-val').forEach(el => {
+            el.innerText = data.full_total_sum + " грн";
+        });
+        // Сума поруч з "Сума без доставки"
+        document.querySelectorAll('.price-val').forEach(el => {
+            el.innerText = data.cart_total_price + " грн";
+        });
+    }
+
+    // 4. Оновлюємо лічильник у шапці
+    const badge = document.getElementById('cart-counter');
+    if (badge) {
+        badge.innerText = data.cart_count;
+        badge.style.display = data.cart_count > 0 ? 'flex' : 'none';
+    }
+}
+
+function updateCartTotals(data) {
+    // 1. Оновлюємо ВЕСЬ контент кошика (товари + підсумки + кнопку замовлення)
+    if (data.cart_html) {
+        const cartList = document.getElementById('cart-items-list');
+        if (cartList) {
+            cartList.innerHTML = data.cart_html;
+            log('[Cart] HTML updated from server');
+        }
+    }
+
+    // 2. Оновлюємо лічильник у шапці (бо він поза межами id="cart-list")
+    if (typeof window.updateGlobalCartCounter === 'function') {
+        window.updateGlobalCartCounter(data.cart_count);
+    } else {
+        const badge = document.getElementById('cart-counter');
+        if (badge) {
+            badge.innerText = data.cart_count;
+            badge.style.display = data.cart_count > 0 ? 'flex' : 'none';
+        }
+    }
+
+    // 3. Якщо якісь суми знаходяться ВІДОКРЕМЛЕНО від cart-list, 
+    // тоді оновлюємо їх вручну (як ти і робила):
+    if (data.full_total_sum !== undefined) {
+        document.querySelectorAll('.total-val').forEach(el => {
+            el.innerText = data.full_total_sum + " грн";
+        });
+    }
+} 
+
+//function updateCartTotals(data) {
+//     // 1. Оновлюємо кількість у полі вводу та суму конкретного товару
+//     if (data.item_id) {
+//         const qtyInput = document.getElementById(`qty-${data.item_id}`);
+//         if (qtyInput) qtyInput.value = data.quantity;
+
+//         const itemTotal = document.getElementById(`item-total-${data.item_id}`);
+//         if (itemTotal) itemTotal.innerText = data.item_total;
+//     }
+
+//     if (data.cart_html) {
+//         const cartList = document.getElementById('cart-list');
+//         if (cartList) {
+//             cartList.innerHTML = data.cart_html;
+//         }
+//     }
+
+//     // 2. Оновлюємо загальну суму товарів (Subtotal)
+//     document.querySelectorAll('.price-val').forEach(el => {
+//         el.innerText = data.cart_total_price + " грн";
+//     });
+
+//     // 3. Оновлюємо фінальну суму з доставкою
+//     document.querySelectorAll('.total-val').forEach(el => {
+//         el.innerText = data.full_total_sum + " грн";
+//     });
+
+//     // 4. ОНОВЛЕННЯ ЛІЧИЛЬНИКА В ШАПЦІ (BASE.HTML)
+//     // Викликаємо функцію, яку ви додали в base.html
+//     if (typeof window.updateGlobalCartCounter === 'function') {
+//         window.updateGlobalCartCounter(data.cart_count);
+        
+//     } else {
+//         // Запасний варіант, якщо глобальна функція чомусь не доступна
+//         const badge = document.getElementById('cart-counter');
+//         if (badge) {
+//             badge.innerText = data.cart_count;
+//             badge.style.display = data.cart_count > 0 ? 'flex' : 'none';
+//         }
+//     }
+
+//     // 5. Логіка блокування кнопки "Замовити"
+//     const submitBtn = document.querySelector('.main-cart-submit');
+//     if (submitBtn) {
+//         if (data.order_type === 'DELIVERY' && data.cart_total_price < 2000) {
+//             submitBtn.disabled = true;
+//             submitBtn.style.opacity = "0.5";
+//             submitBtn.innerText = "Мінімальна сума 2000 грн";
+//         } else {
+//             submitBtn.disabled = false;
+//             submitBtn.style.opacity = "1";
+//             submitBtn.innerText = "Оформити замовлення";
+//         }
+//     }
+// }

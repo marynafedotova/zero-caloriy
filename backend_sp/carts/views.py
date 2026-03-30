@@ -1,72 +1,119 @@
 import os
+from django.db.models import Sum
 from django.core.cache import cache
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.conf import settings
+from django.http import JsonResponse, Http404
+from django.views.decorators.http import require_POST
+from django.template.loader import render_to_string
 from goods.models import Product, Restaurant
 from carts.models import Cart
-from carts.utils import get_user_carts
 from goods.services.syrve_client import SyrveClient
-
+from goods.views import check_cart_for_stop_list
+from carts.utils import get_user_carts, calculate_delivery_cost
 
 
 def set_order_type(request):
-    if request.method == 'POST':
-        order_type_key = request.POST.get('type')  
-        terminal_id = request.POST.get('terminal_id')
+    if request.method != 'POST':
+        return JsonResponse({"status": "error"}, status=405)
 
-        MAPPING = {
-            'DELIVERY': '49cf98d2-25ab-d404-a5a8-11eaffc7ce7f', 
-            'PICKUP': '7bb5d30f-c8bc-d694-93a8-0d955e274921',   
-        }
+    order_type_key = request.POST.get('type')
+    terminal_id = request.POST.get('terminal_id')
 
-        selected_syrve_id = MAPPING.get(order_type_key)
-        if not selected_syrve_id:
-            return JsonResponse({"status": "error", "message": "Невідомий тип"}, status=400)
+    ORDER_TYPE_MAPPING = {
+        'DELIVERY': '49cf98d2-25ab-d404-a5a8-11eaffc7ce7f',
+        'PICKUP':   '7bb5d30f-c8bc-d694-93a8-0d955e274921',
+    }
 
-        # РЕФАКТОРИНГ: Видалено перевірку total_price < 2000. 
-        # Тепер ця функція лише встановлює технічні параметри сесії.
-        
-        request.session.pop('terminal_id', None)
-        request.session.pop('delivery_cost', 0)
+    order_type_id = ORDER_TYPE_MAPPING.get(order_type_key)
+    if not order_type_id:
+        return JsonResponse({"status": "error", "message": "Невідомий тип"}, status=400)
 
-        if order_type_key == 'DELIVERY':
-            # РЕФАКТОРИНГ: Розрахунок вартості залишаємо, але він буде 
-            # динамічно оновлюватися в кошику пізніше.
-            user_carts = get_user_carts(request)
-            total_price = user_carts.total_prace()
+    
 
-            if total_price >= 4000:
-                delivery_cost = 0
-            elif 2000 <= total_price < 4000:
-                delivery_cost = 200
-            else:
-                delivery_cost = 0
+    # очищаємо попередній стан
+    request.session.pop('terminal_id', None)
+    request.session.pop('delivery_cost', None)
 
-            # ID терміналу для доставки таксі
-            delivery_res_id = "427d6dd2-1d65-275f-014c-ec534e53008e"
-            request.session['terminal_id'] = delivery_res_id
-            request.session['delivery_cost'] = delivery_cost
+    # DELIVERY — ЖОРСТКО ФІКСОВАНИЙ ТЕРМІНАЛ
+    if order_type_key == 'DELIVERY':
+        user_carts = get_user_carts(request)
+        total = user_carts.total_prace()
 
-        elif order_type_key == 'PICKUP':
-            print(f"Отримано terminal_id: {terminal_id}")
-            if not terminal_id:
-                return JsonResponse({"status": "error", "message": "Оберіть ресторан для самовивозу"}, status=400)
-            
-            request.session['terminal_id'] = terminal_id
-            request.session['delivery_cost'] = 0
+        delivery_cost = calculate_delivery_cost(total)
+       
+        delivery_cost = 0 if delivery_cost is None else delivery_cost
 
-        request.session['order_type'] = order_type_key
-        request.session['order_type_id'] = selected_syrve_id
-        request.session.modified = True
-        
+        request.session['terminal_id'] = settings.DELIVERY_TERMINAL_ID
+        request.session['delivery_cost'] = delivery_cost
+
+    # PICKUP — ТЕРМІНАЛ ОБОВʼЯЗКОВИЙ З ФРОНТА
+    elif order_type_key == 'PICKUP':
+        if not terminal_id:
+            return JsonResponse(
+                {"status": "error", "message": "Оберіть точку самовивозу"},
+                status=400
+            )
+
+        request.session['terminal_id'] = terminal_id
+        request.session['delivery_cost'] = 0
+
+    request.session['order_type'] = order_type_key
+    request.session['order_type_id'] = order_type_id
+    request.session.modified = True
+
+
+    # --- ДОДАНА ПЕРЕВІРКА СТОП-ЛИСТА (ТІЛЬКИ ТУТ) ---
+    terminal_id = request.session.get('terminal_id')
+    carts = get_user_carts(request)
+    
+    stop_violations = check_cart_for_stop_list(carts, terminal_id)
+    if stop_violations:
+        items_str = ", ".join(stop_violations)
         return JsonResponse({
-            "status": "success", 
-            "delivery_cost": request.session.get('delivery_cost')
+            'status': 'error', 
+            'message': f'На жаль, ці товари щойно закінчилися: {items_str}. Будь ласка, видаліть їх з кошика.'
         })
+
+    return JsonResponse({
+        "status": "success",
+        "terminal_id": request.session['terminal_id'],
+        "delivery_cost": request.session.get('delivery_cost', 0)
+    })
+
+
+def get_user_cart_or_404(request, cart_id):
+    """
+    Повертає cart item тільки з поточної сесії.
+    Якщо item не належить цій сесії — 404.
+    """
+    return get_object_or_404(get_user_carts(request), id=cart_id)
+
+
+def render_cart_html(request):
+    carts = get_user_carts(request)
+    totals = get_cart_totals(request)
+
+    context = {
+        "carts": carts,
+        **totals,
+    }
+
+    template = "carts/includes/cart_items.html" if carts.exists() else "carts/includes/empty_included_cart.html"
+    return render_to_string(template, context, request=request)
+
 
 def cart_add(request, product_slug):
     product = get_object_or_404(Product, slug=product_slug)
+
+    try:
+        qty_to_add = int(request.POST.get('quantity', 1))
+    except (ValueError, TypeError):
+        qty_to_add = 1
+
+
     selected_terminal = request.session.get('terminal_id')
     order_type = request.session.get('order_type')
 
@@ -126,237 +173,101 @@ def cart_add(request, product_slug):
         product=product,
         defaults={'quantity': 0} 
     )
-    cart.quantity += 1
+    cart.quantity += qty_to_add
     cart.save()
     
 
     user_carts = get_user_carts(request)
+    aggr = user_carts.aggregate(total=Sum('quantity'))
+    total_q = aggr['total'] or 0
+
     if order_type == 'DELIVERY':
-        request.session['delivery_cost'] = 0 if user_carts.total_prace() >= 4000 else 200
+        delivery_cost = calculate_delivery_cost(user_carts.total_prace())
+        request.session['delivery_cost'] = 0 if delivery_cost is None else delivery_cost
         request.session.modified = True
 
-    return JsonResponse({"status": "success"})
+    return JsonResponse({
+        "status": "success",
+        "cart_count": total_q,
+        'cart_html': render_cart_html(request),
+    })
 
+
+
+def get_cart_totals(request):
+    """Допоміжна функція для отримання всіх сум кошика"""
+    user_carts = get_user_carts(request)
+    cart_total = user_carts.total_prace()
+    
+    delivery_cost = 0
+    order_type = request.session.get('order_type')
+    
+    if order_type == 'DELIVERY':
+        calc_delivery = calculate_delivery_cost(cart_total)
+        delivery_cost = 0 if calc_delivery is None else calc_delivery
+            
+        request.session['delivery_cost'] = delivery_cost
+        request.session.modified = True
+
+    return {
+        'cart_total_price': cart_total,
+        'delivery_cost': delivery_cost,
+        'full_total_sum': cart_total + delivery_cost,
+        'cart_count': user_carts.aggregate(total=Sum('quantity'))['total'] or 0,
+        'can_checkout': (order_type != 'DELIVERY') or (cart_total >= 2000),
+        'delivery_min_missing': max(0, 2000 - cart_total) if order_type == 'DELIVERY' else 0,
+    }
+
+@require_POST
 def cart_change(request, cart_id):
-    cart = get_object_or_404(Cart, id=cart_id)
+    cart = get_user_cart_or_404(request, cart_id)
+    action = request.POST.get('action')
     
-    if request.method == 'POST':
-        action = request.POST.get('action') 
-        quantity = request.POST.get('quantity') 
-
-        if action == 'plus':
-            cart.quantity += 1
-        elif action == 'minus':
-            if cart.quantity > 1:
-                cart.quantity -= 1
-            else:
-                cart.delete()
-                return redirect(request.META.get('HTTP_REFERER', '/'))
-        elif quantity and quantity.isdigit():
-            cart.quantity = int(quantity)
-        
+    if action == 'plus':
+        cart.quantity += 1
         cart.save()
+    elif action == 'minus':
+        if cart.quantity > 1:
+            cart.quantity -= 1
+            cart.save()
+        else:
+            cart.delete()
+            return JsonResponse({'status': 'deleted', 'cart_id': cart_id, **get_cart_totals(request)})
 
-        # РЕФАКТОРИНГ: Перерахунок вартості доставки при зміні кількості
-        if request.session.get('order_type') == 'DELIVERY':
-            user_carts = get_user_carts(request)
-            total = user_carts.total_prace()
+    return JsonResponse({
+        'status': 'success',
+        'cart_id': cart.id,
+        'quantity': cart.quantity,
+        'item_total': cart.product_prace(),
+        'cart_html': render_cart_html(request),
+        **get_cart_totals(request)
+    })
 
-            if total >= 4000:
-                request.session['delivery_cost'] = 0
-            elif 2000 <= total < 4000:
-                request.session['delivery_cost'] = 200
-            else:
-                request.session['delivery_cost'] = 0
-
-            request.session.modified = True
-            
-        messages.success(request, f"Кількість товару {cart.product.name} змінено.")
-    
-    referer = request.META.get('HTTP_REFERER')
-    return redirect(referer if referer else '/')
-
-# def set_order_type(request):
-#     if request.method == 'POST':
-#         order_type_key = request.POST.get('type')  
-#         terminal_id = request.POST.get('terminal_id')
-
-#         MAPPING = {
-#             'DELIVERY': '49cf98d2-25ab-d404-a5a8-11eaffc7ce7f', 
-#             'PICKUP': '7bb5d30f-c8bc-d694-93a8-0d955e274921',   
-#         }
-
-#         selected_syrve_id = MAPPING.get(order_type_key)
-#         if not selected_syrve_id:
-#             return JsonResponse({"status": "error", "message": "Невідомий тип"}, status=400)
-
-#         user_carts = get_user_carts(request)
-#         total_price = user_carts.total_prace()
-
-#         # Очищуємо старі дані перед встановленням нових
-#         request.session.pop('terminal_id', None)
-#         request.session.pop('delivery_cost', 0)
-
-#         if order_type_key == 'DELIVERY':
-#             # 1. Перевірка мінімальної суми
-#             if total_price < 2000:
-#                 return JsonResponse({
-#                     "status": "error",
-#                     "error_type": "low_sum",
-#                     "message": f"Доставка можлива лише від 2000 грн. Зараз: {total_price} грн."
-#                 }, status=400)
-            
-#             # 2. Розрахунок вартості доставки
-#             if total_price >= 4000:
-#                 delivery_cost = 0
-#             else:
-#                 delivery_cost = 200
-            
-#             # 3. Призначаємо конкретний термінал для доставки
-#             # Ми беремо його прямо з бази ресторанів
-#             delivery_res_id = "427d6dd2-1d65-275f-014c-ec534e53008e"
-#             request.session['terminal_id'] = delivery_res_id
-#             request.session['delivery_cost'] = delivery_cost
-
-#         elif order_type_key == 'PICKUP':
-#             if not terminal_id:
-#                 return JsonResponse({"status": "error", "message": "Оберіть ресторан для самовивозу"}, status=400)
-            
-#             request.session['terminal_id'] = terminal_id
-#             request.session['delivery_cost'] = 0
-
-#         # Зберігаємо загальні параметри
-#         request.session['order_type'] = order_type_key
-#         request.session['order_type_id'] = selected_syrve_id
-#         request.session.modified = True
-        
-#         return JsonResponse({
-#             "status": "success", 
-#             "delivery_cost": request.session.get('delivery_cost')
-#         })
-    
-
-    
-
-# def cart_add(request, product_slug):
-#     product = get_object_or_404(Product, slug=product_slug)
-#     selected_terminal = request.session.get('terminal_id')
-#     order_type = request.session.get('order_type')
-
-#     # ШАГ 1: Перевірка наявності типу замовлення
-#     if not order_type or (order_type == 'PICKUP' and not selected_terminal):
-#         restaurants = Restaurant.objects.all()
-#         restaurants_data = [
-#             {
-#                 'id': str(r.id),
-#                 'name': str(r.name_uk or r.name),
-#                 'address': str(r.address_uk or r.address)
-#             } for r in restaurants
-#         ]
-#         return JsonResponse({"status": "select_type_required", "all_restaurants": restaurants_data})
-
-
-#     # ШАГ 2: Пошук стоп-листа
-#     # Усередині вашого views.py -> cart_add
-#     stop_product_ids = set()
-#     if selected_terminal:
-#         client = SyrveClient()
-#         raw_data = client.get_stop_lists()  # Тепер тут повний словник
-        
-#         # Починаємо занурення згідно з вашим JSON
-#         stop_lists = raw_data.get("terminalGroupStopLists", [])
-        
-#         for org in stop_lists:
-#             # В кожній організації є items (це список терміналів)
-#             terminals = org.get("items", [])
-#             for tg in terminals:
-#                 t_id = str(tg.get("terminalGroupId", "")).lower()
-                
-#                 # Порівнюємо термінал з обраним у сесії
-#                 if t_id == str(selected_terminal).lower():
-#                     # Ми знайшли потрібний ресторан, беремо його товари
-#                     items = tg.get("items", [])
-#                     for item in items:
-#                         p_id = item.get("productId")
-#                         if p_id:
-#                             stop_product_ids.add(str(p_id).lower())
-
-#     print(f"DEBUG: Кількість стопів для терміналу {selected_terminal}: {len(stop_product_ids)}")
-            
-
-
-#     # ПЕРЕВІРКА
-#     product_uuid = str(product.id).lower()
-#     if product_uuid in stop_product_ids:
-#         print(f"БЛОКУЄМО ТОВАР: {product.name}")
-#         return JsonResponse({
-#             "status": "error", 
-#             "message": f"Вибачте, '{product.name}' закінчився за цією адресою."
-#         }, status=400)
-
-#     # ШАГ 3: Додавання в кошик (якщо не в стопі)
-#     if not request.session.session_key:
-#         request.session.create()
-    
-#     cart, _ = Cart.objects.get_or_create(
-#         session_key=request.session.session_key, 
-#         product=product,
-#         defaults={'quantity': 0} 
-#     )
-#     cart.quantity += 1
-#     cart.save()
-#     return JsonResponse({"status": "success"})
-
-
-# def cart_change(request, cart_id):
-#     cart = get_object_or_404(Cart, id=cart_id)
-    
-#     if request.method == 'POST':
-#         action = request.POST.get('action') 
-#         quantity = request.POST.get('quantity') 
-
-#         if action == 'plus':
-#             cart.quantity += 1
-#         elif action == 'minus':
-#             if cart.quantity > 1:
-#                 cart.quantity -= 1
-#             else:
-#                 cart.delete()
-#                 return redirect(request.META.get('HTTP_REFERER', '/'))
-#         elif quantity and quantity.isdigit():
-#             cart.quantity = int(quantity)
-        
-#         cart.save()
-#         messages.success(request, f"Кількість товару {cart.product.name} змінено.")
-    
-#     referer = request.META.get('HTTP_REFERER')
-#     return redirect(referer if referer else '/')
-
-
+@require_POST
 def cart_remove(request, cart_id):
-
-    cart = Cart.objects.get(id=cart_id)
+    cart = get_user_cart_or_404(request, cart_id)
     cart.delete()
-
-    referer = request.META.get('HTTP_REFERER')
     
-    return redirect(referer if referer else '/')
+
+    totals = get_cart_totals(request)
+    
+    return JsonResponse({
+        'status': 'success',
+        'item_id': cart_id, 
+        'cart_html': render_cart_html(request),
+        **totals
+    })
 
 
 
 def cart_count(request):
-    if not request.session.session_key:
-        return JsonResponse({
-            'count': 0,
-            'items': []
-        })
-
-    qs = Cart.objects.filter(
-        session_key=request.session.session_key
-    )
+    qs = get_user_carts(request)
+    
+    total_quantity = qs.aggregate(total=Sum('quantity'))['total'] or 0
 
     return JsonResponse({
-        'count': qs.count(),
+        'count': total_quantity, 
         'items': list(qs.values_list('product__slug', flat=True))
+        
     })
 

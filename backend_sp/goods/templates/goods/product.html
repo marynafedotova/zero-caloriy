@@ -65,157 +65,253 @@
 <main>
   <h1 class="sr-only">{% ftlmsg "hi_product" %}</h1>
   <div>
-  <section id="product-page" class="top100">
-    <div class="container top100">
-      <ul class="nav-product">
-        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt="link"></li>
-        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "btn_all_prod_catalog" %}</a></li>
-      </ul>
-      <div class="product-main">
-        <div class="product-gallery">
-          {% if product.image_url %}
-          <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
-          {% else %}
-          <img src="{% static './img/images-not-found.jpg' %}" alt="{{ product.name }}">
-          {% endif %}
-        </div>
-        <div class="product-info">
-          <h1 class="product-title">{{product.name}}</h1>
-          <div class="product-price">
-            <div class="uah-product-price">{{product.price}}
+    <section id="product-page" class="top100 container">
+      <div class="product-container">
+        <ul class="nav-product">
+          <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_catalog" %}</a><img
+              src="{% static './img/Frame.svg' %}" alt="link"></li>
+          <li><a href="{% url 'goods:catalog' %}" class="menu-link">{{ product.name }}</a></li>
+        </ul>
+        <div class="product-main">
+          <div class="product-hero-block">
+            <div class="product-gallery">
+              {% if product.image_url %}
+              <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+              {% else %}
+              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ product.name }}">
+              {% endif %}
             </div>
-            <div class="currency">{% ftlmsg "currency_catalog" %}</div>
-          </div>
-          <!-- Склад продукту -->
-          <div class="product-composition">
-            <h4>{% ftlmsg "ingredients_product" %}</h4>
-            <p class="product-ingredients">{{product.description}}</p>
-          </div>
+            <div class="product-info">
+              <h1 class="product-title">{{product.name}}</h1>
+              <div class="product-price">
+                <div class="uah-product-price">{{product.price}}
+                </div>
+                <div class="currency">{% ftlmsg "currency_catalog" %}</div>
+              </div>
+              <!-- Склад продукту -->
+              <div class="product-composition">
+                <h4>{% ftlmsg "ingredients_product" %}</h4>
+                <p class="product-ingredients">{{product.description}}</p>
+              </div>
 
-          <div class="product-nutrition">
-            <h4>{% ftlmsg "additional_info_product" %} <div class="kbju">на 100 г</div></h4>
-            <ul class="nutrition-list">
-              <li>{{product.additional_info}}</li>
-            </ul>
-          </div>
+              <div class="product-nutrition">
+                <h4>{% ftlmsg "additional_info_product" %} <div class="kbju">{% ftlmsg "catalog_na" %}</div>
+                </h4>
+                <ul class="nutrition-list">
+                  <li>{{product.additional_info}}</li>
+                </ul>
+              </div>
 
-          <div class="product-size">
-            <div class="product-size-title">Обери розмір</div>
-            {% if variants|length > 1 %}
-            {# Якщо варіантів більше одного, виводимо заголовок і кнопки #}
-            <h4>{% ftlmsg "size_product" %}</h4>
-            <div class="size-options">
-              {% for variant in variants %}
-              <a href="{{ variant.get_absolute_url }}" class="size-btn"
-                style="{% if variant.id == product.id %} background-color: #CF223A; color: white; {% endif %}">
-                {{ variant.weight|mul:1000|floatformat:0 }}
-              </a>
-              {% endfor %}
-            </div>
-            {% else %}
-            {# Якщо розмір лише один, виводимо просто текст із вагою #}
-            <div class="single-size">
-              <span> {{ product.weight|mul:1000|floatformat:0 }} г</span>
-            </div>
-            {% endif %}
-          </div>
+              <div class="product-size">
+                <div class="product-size-title"></div>
+                {% if variants|length > 1 %}
+                {# Якщо варіантів більше одного, виводимо заголовок і кнопки #}
+                <h4>{% ftlmsg "size_product" %}</h4>
+                <div class="size-options">
+                  {% for variant in variants %}
+                  <a href="{{ variant.get_absolute_url }}" class="size-btn"
+                    style="{% if variant.id == product.id %} background-color: #CF223A; color: white; {% endif %}">
+                    {{ variant.weight|mul:1000|floatformat:0 }}
+                  </a>
+                  {% endfor %}
+                </div>
+                {% else %}
+                {# Якщо розмір лише один, виводимо просто текст із вагою #}
+                <div class="single-size">
+                  <span> {{ product.weight|mul:1000|floatformat:0 }} г</span>
+                </div>
+                {% endif %}
+              </div>
 
-<div class="product-actions">
-  <div class="quantity">
-    <form action="{% url 'carts:cart_add' product.slug %}" method="post">
-      {% csrf_token %}
-      <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
-      
-      <span>{% get_cart_quantity product request %}</span> 
-      
-      <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
-    </form>
-  </div>
-               {% comment %} <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=product.slug %}">
-                Додати в кошик
-              </a>  {% endcomment %}
-              <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ product.slug }}', this)" data-name="{{ product.name }}">
-                  Додати в кошик
+              <div class="product-actions">
+                <div class="quantity">
+                  <button type="button" onclick="changeProductQty(-1)">
+                    <img src="{% static './img/minus.svg' %}" alt="minus">
+                  </button>
+
+                  <input type="number" id="product-qty-input" value="1" min="1" readonly
+                    style="width: 30px; text-align: center; border: none; font-weight: bold; background: transparent; color: #fff;">
+
+                  <button type="button" onclick="changeProductQty(1)">
+                    <img src="{% static './img/+.svg' %}" alt="plus">
+                  </button>
+                </div>
+                <a class="add-to-cart-btn-product" href="javascript:void(0);"
+                  onclick="handleProductPageAdd('{{ product.slug }}', this)">
+                  {% ftlmsg "catalog_add_cart" %}
                 </a>
-</div>
+                {% comment %} <a class="add-to-cart-btn-product" href="javascript:void(0);"
+                  onclick="window.addToCart('{{ product.slug }}', this, document.getElementById('product-qty-input').value)"
+                  data-name="{{ product.name }}">
+                  {% ftlmsg "catalog_add_cart" %}
+                </a> {% endcomment %}
+              </div>
+
+              <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
             </div>
-            {% comment %} <button class="add-to-cart">{% ftlmsg "add_to_cart" %}</button> {% endcomment %}
           </div>
         </div>
+        <!-- Опис продукту -->
+        <div class="product-description">
+          <h4>{% ftlmsg "about_product" %}</h4>
+          <p class="product-desc">{{product.about_product}}</p>
+        </div>
+    </section>
+    <section id="favlist" class="favlist-product container">
 
-      </div>
-      <!-- Опис продукту -->
-       <div class="container">
-      <div class="product-description">
-        <h4>{% ftlmsg "about_product" %}</h4>
-        <p class="product-desc">{{product.about_product}}</p>
-      </div>
-      <!-- <div class="mb150">
-       </div> -->
-
-  </section>
-  <section id="favlist">
-      
       <div class="favlist-hero">
-<h3 class="title-section">{% ftlmsg "likes_goods" %}</h3>
+        <h3 class="title-section">{% ftlmsg "likes_goods" %}</h3>
         <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_product" %}
-          <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect y="3.33014" width="34" height="2" fill="black"/>
-<path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
-</svg>
+          <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="margin-right: 10px;margin-left: 9px;">
+            <rect y="3.33014" width="34" height="2" fill="black" />
+            <path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black" />
+          </svg>
         </a>
 
       </div>
-<ul class="favlist-list" id="favlist-products">
-  {% for random in random_products %}
-  <li class="product-card" data-slug="{{ random.slug }}">
-    <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
-      <div class="product-img">
-        {% if random.image_url %}
-          <img src="{{ random.image_url }}" alt="{{ random.name }}">
-        {% else %}
-          <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ random.name }}">
-        {% endif %}
-      </div>
+      <ul class="favlist-list" id="favlist-products">
+        {% for random in random_products %}
+        <li class="product-card" data-slug="{{ random.slug }}">
+          <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
+            <div class="product-img">
+              {% if random.image_url %}
+              <img src="{{ random.image_url }}" alt="{{ random.name }}">
+              {% else %}
+              <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ random.name }}">
+              {% endif %}
+            </div>
 
-      <div class="product-info">
-        <h3 class="product-title">{{ random.name }}</h3>
-        <p class="product-weight">
-          {{ random.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
-        </p>
-<div class="index-product-nutrition">КБЖВ: {{random.additional_info}}</div> 
-        <div class="product-cart">
-          <div class="product-price">
-            {{ random.price }}
-            <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
-          </div>
-              <a class="add-to-cart-btn" href="{% url "carts:cart_add" product_slug=random.slug %}">
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
-              </a>
-           <a class="add-to-cart-btn-m" href="{% url "carts:cart_add" product_slug=random.slug %}">
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
-              </a>
-              <div class="product-to-cart" hidden>
-                🗸
+            <div class="product-info">
+              <h3 class="product-title">{{ random.name }}</h3>
+              <p class="product-weight">
+                {{ random.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+              </p>
+              <div class="index-product-nutrition">{% ftlmsg "additional_info_product" %} {{random.additional_info}}
               </div>
-          {% comment %} <button class="add-to-cart">
-            <img src="{% static 'img/+.svg' %}" alt="add to cart">
-          </button> {% endcomment %}
-        </div>
-      </div>
-    </a>
-  </li>
-  {% endfor %}
-</ul>
+              <div class="product-cart">
+                <div class="product-price">
+                  {{ random.price }}
+                  <span class="product-price-uah">{% ftlmsg "currency_catalog" %}</span>
+                </div>
+                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)"
+                  data-name="{{ random.name }}">
+                  <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">{% ftlmsg "catalog_add_cart" %}
+                </a>
+                <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)"
+                  data-name="{{ random.name }}">
+                  <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+                </a>
+                <div class="product-to-cart" hidden>
+                  🗸
+                </div>
+                {% comment %} <button class="add-to-cart">
+                  <img src="{% static 'img/+.svg' %}" alt="add to cart">
+                </button> {% endcomment %}
+              </div>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
       <a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_product" %}</a>
 
-  </section>
+    </section>
 
   </div>
 
+  <script>
+    // Локальний калькулятор (не шле запити на сервер)
+    function changeProductQty(delta) {
+      const input = document.getElementById('product-qty-input');
+      let currentValue = parseInt(input.value) || 1;
+      currentValue += delta;
+      if (currentValue < 1) currentValue = 1;
+      input.value = currentValue;
+    }
 
+    // Функція для кнопки "Додати в кошик"
+    function handleProductPageAdd(slug, element) {
+      const input = document.getElementById('product-qty-input'); // <-- Отримуємо сам елемент інпуту
+      const qty = input.value;
 
+      if (typeof window.addToCart === 'function') {
+        // Викликаємо глобальну функцію
+        window.addToCart(slug, element);
+
+        // --- ТУТ ДОДАЄМО СКИНУТТЯ КІЛЬКОСТІ ---
+        setTimeout(() => {
+          input.value = 1; // <-- Повертаємо одиницю після успішного натискання
+        }, 100);
+        // -------------------------------------
+
+        // Візуальний ефект успіху на кнопці
+        const originalText = element.innerText;
+        element.innerText = "Додано ✓";
+        element.classList.add('added-success');
+
+        setTimeout(() => {
+          element.innerText = originalText;
+          element.classList.remove('added-success');
+        }, 2000);
+      }
+    }
+
+  </script>
+
+  {% comment %}
+  <script>
+    // Локальна зміна цифри (без запитів до БД)
+    function changeProductQty(delta) {
+      const input = document.getElementById('product-qty-input');
+      let currentValue = parseInt(input.value) || 1;
+      currentValue += delta;
+      if (currentValue < 1) currentValue = 1;
+      input.value = currentValue;
+    }
+
+    // Надсилання всього об'єму в кошик
+    function addToCartAjax() {
+      const btn = document.getElementById('add-to-cart-btn');
+      const url = btn.getAttribute('data-url');
+      const qty = document.getElementById('product-qty-input').value;
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+      const formData = new FormData();
+      formData.append('quantity', qty);
+
+      fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': csrfToken, // Передаємо токен у заголовку, це стандарт
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            // ОНОВЛЕННЯ ЛІЧИЛЬНИКА У ШАПЦІ (БАДЖ)
+            const badge = document.getElementById('cart-count');
+            if (badge) {
+              badge.innerText = data.cart_count;
+              badge.classList.remove('hidden'); // Якщо він був прихований
+            }
+
+            // Замість alert краще зробити легке повідомлення або анімацію
+            alert('Товар додано!');
+          } else if (data.status === 'select_type_required') {
+            // Якщо Syrve вимагає обрати адресу/термінал перед додаванням
+            $('#delivery-modal').fadeIn();
+          } else {
+            alert(data.message || 'Помилка');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+  </script> {% endcomment %}
 
 
   {% endblock content %}

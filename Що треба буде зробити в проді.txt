@@ -1,0 +1,2 @@
+замінити MONO_KEY в енв на Зерошний
+виконати в повершел curl.exe -X GET https://api.monobank.ua/api/merchant/pubkey -H "X-Token: ВАШ_ТОКЕН_Зеро" для отримання ключа

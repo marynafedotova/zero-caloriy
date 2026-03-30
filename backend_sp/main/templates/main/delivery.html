@@ -3,7 +3,6 @@
 {% load static %}
 {% block title_meta %}
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
-  <!-- Сторінка "Про нас" -->
   <title>{% ftlmsg "delivery_title" %}</title>
   <meta name="description"
     content="{% ftlmsg "description_delivery" %}">
@@ -12,9 +11,107 @@
 {% ftlconf bundle="main.ftl_bundles.main_bundle" %}
     <main>
       <section class="top100">
-<div class="container top100" class="delivery" style="padding-bottom: 100px;">
+                        
+<div class="container  delivery" style="padding-bottom: 100px;">
+    <ul class="nav-product">
+        <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
+            src="{% static './img/Frame.svg' %}" alt="link"></li>
+        <li><a href="{% url 'blog:blog' %}" class="menu-link">{% ftlmsg "delivery" %}</a></li>
+      </ul>
+      <h1 class="delivery-title">{% ftlmsg "delivery_title" %}</h1>
+ <div class="delivery-subtitle">{% ftlmsg "how-to-order-title" %}</div>
+ <ul class="delivery-variant">
+    <li> <div class="list-marker">
+        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="3.5" cy="3.5" r="3.5" fill="#FF7E93"/>
+</svg>
+    </div>{% ftlmsg "how-to-order-web" %}</li>
+    <li><div class="list-marker">
+        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="3.5" cy="3.5" r="3.5" fill="#FF7E93"/>
+</svg>
+    </div> <a href="https://www.instagram.com/3ero_kaloriy/">{% ftlmsg "how-to-order-insta" %}</a></li>
+    <li><div class="list-marker">
+        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="3.5" cy="3.5" r="3.5" fill="#FF7E93"/>
+</svg>
+    </div>{% ftlmsg "how-to-order-phone" %}</li>
+ </ul>
+ <div class="point-delivery">
+    {% ftlmsg "variantu" %}
+ </div>
+<div class="loko">
+  <a href="#" onclick="openStore('loko'); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
+    <span class="bold-title" style="padding-right: 3px;">LOKO!</span>
+  </a> {% ftlmsg "loko" %}
+</div>
 
-    <h1 class="delivery-title" style="padding-bottom: 24px;  text-align: center; font-weight: 800;">{% ftlmsg "delivery-kyiv-title" %}</h1>
+<div class="bolt-glovo">
+  <a href="#" onclick="openStore('bolt'); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
+    <span class="bold-title" style="padding-right: 5px;">Bolt </span>
+  </a> / 
+  <a href="#" onclick="openStore('glovo'); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
+    <span class="bold-title" style="padding-left: 5px;"> Glovo</span>
+  </a> {% ftlmsg "bolt_glovo" %}
+</div>
+
+<div class="pikup-title">{% ftlmsg "locations-title" %}</div>
+<div class="pikup">{% ftlmsg "locations-subtitle" %}</div>
+<ul class="delivery-list">
+
+     <li>
+        <div class="del-img">
+<svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="46" cy="46" r="42" fill="#FF7E93" stroke="white" stroke-width="8"/>
+<path d="M50.5125 68.3812C48.142 71.9842 42.858 71.9842 40.4875 68.3812L30.3995 53.0478C27.7747 49.0581 30.6363 43.75 35.4119 43.75H55.5881C60.3637 43.75 63.2253 49.0581 60.6005 53.0478L50.5125 68.3812Z" fill="white"/>
+<circle cx="45.5" cy="40.5" r="19.5" transform="rotate(180 45.5 40.5)" fill="white"/>
+<circle cx="45.5" cy="39.5" r="7.5" fill="#FF7E93"/>
+</svg>
+        </div>
+        <div class="del-title"> <a href="https://maps.app.goo.gl/27rAoiakrX8WesmS8">{% ftlmsg "location-skymall-name" %}</a></div>
+        <div class="del-ad-title">{% ftlmsg "address" %}        <div class="adress">{% ftlmsg "location-skymall-addr" %}</div></div>
+
+        <div class="tel-item">{% ftlmsg "location-phone" %}</div>
+        <div class="tel"><a href="tel:+380637125208">+380 63 712 52 08</a></div>
+        <div class="wt-title">{% ftlmsg "grafik" %}</div>
+        <div class="wt">{% ftlmsg "location-skymall-hours" %}</div>
+    </li>
+        <li>
+        <div class="del-img">
+<svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="46" cy="46" r="42" fill="#FF7E93" stroke="white" stroke-width="8"/>
+<path d="M50.5125 68.3812C48.142 71.9842 42.858 71.9842 40.4875 68.3812L30.3995 53.0478C27.7747 49.0581 30.6363 43.75 35.4119 43.75H55.5881C60.3637 43.75 63.2253 49.0581 60.6005 53.0478L50.5125 68.3812Z" fill="white"/>
+<circle cx="45.5" cy="40.5" r="19.5" transform="rotate(180 45.5 40.5)" fill="white"/>
+<circle cx="45.5" cy="39.5" r="7.5" fill="#FF7E93"/>
+</svg>
+        </div>
+        <div class="del-title"><a href="https://maps.app.goo.gl/XjPfQtkzAGfLHFGY9">{% ftlmsg "location-retro-name" %}</a></div>
+        <div class="del-ad-title">{% ftlmsg "address" %}         <div class="adress">{% ftlmsg "location-retro-addr" %}</div></div>
+
+        <div class="tel-item">{% ftlmsg "location-phone" %}</div>
+        <div class="tel"><a href="tel:+380637125209">+380 63 712 52 09</a></div>
+        <div class="wt-title">{% ftlmsg "grafik" %}</div>
+        <div class="wt">{% ftlmsg "location-retro-hours" %}</div>
+    </li>
+     <li>
+        <div class="del-img">
+<svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="46" cy="46" r="42" fill="#FF7E93" stroke="white" stroke-width="8"/>
+<path d="M50.5125 68.3812C48.142 71.9842 42.858 71.9842 40.4875 68.3812L30.3995 53.0478C27.7747 49.0581 30.6363 43.75 35.4119 43.75H55.5881C60.3637 43.75 63.2253 49.0581 60.6005 53.0478L50.5125 68.3812Z" fill="white"/>
+<circle cx="45.5" cy="40.5" r="19.5" transform="rotate(180 45.5 40.5)" fill="white"/>
+<circle cx="45.5" cy="39.5" r="7.5" fill="#FF7E93"/>
+</svg>
+        </div>
+        <div class="del-title"><a href="https://maps.app.goo.gl/pQqK4ax3c7L1xaHd6">{% ftlmsg "location-rayon-name" %}</a></div>
+        <div class="del-ad-title">{% ftlmsg "address" %} <div class="adress">{% ftlmsg "location-rayon-addr" %}</div></div>
+
+        <div class="tel-item">{% ftlmsg "location-phone" %}</div>
+        <div class="tel"><a href="tel:+380638597538">+380 63 859 75 38</a></div>
+        <div class="wt-title">{% ftlmsg "grafik" %}</div>
+        <div class="wt">{% ftlmsg "location-rayon-hours" %}</div>
+    </li>
+</ul>
+    <!-- <h1 class="delivery-title" style="padding-bottom: 24px;  text-align: center; font-weight: 800;">{% ftlmsg "delivery-kyiv-title" %}</h1>
 
     <h3  style="padding-bottom: 16px;">{% ftlmsg "how-to-order-title" %}</h3>
     <ul style="border-bottom: 1px solid #FFD4DA; padding-bottom: 16px;">
@@ -58,10 +155,11 @@
     <ul>
         <li>{% ftlmsg "payment-method-online" %}</li>
         <li>{% ftlmsg "payment-method-offline" %}</li>
-    </ul>
+    </ul> -->
 
 </div>
       </section>
+       <script src="{% static './js/delivery.js' %} "></script>
 {% endblock content %}
 
 

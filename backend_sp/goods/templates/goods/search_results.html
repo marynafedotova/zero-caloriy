@@ -85,7 +85,7 @@
             <div class="product-info">
               <h3 class="product-title" style="padding-top: 0px;">{{ result.name }}</h3>
               <p class="product-weight">{{result.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-              <div class="index-product-nutrition">КБЖВ: {{result.additional_info}}</div> 
+              <div class="index-product-nutrition">{% ftlmsg "additional_info_product" %} {{result.additional_info}}</div> 
             
 
               <div class="product-cart">
@@ -97,11 +97,14 @@
                  <a class="add-to-cart-btn-m" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}">
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
-                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}">
-                <img src="{% static './img/+.svg' %}" alt="add to cart">
+              <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ result.slug }}', this)" data-name="{{ result.name }}">
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">{% ftlmsg "catalog_add_cart" %}
               </a>
                 <div class="product-to-cart" hidden>
-                🗸
+                                <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="2" height="9.51978" rx="1" transform="matrix(-0.804551 0.593884 0.593884 0.804551 1.60913 5)" fill="white"/>
+                <rect x="14.686" width="2" height="16.3096" rx="1" transform="rotate(36.4331 14.686 0)" fill="white"/>
+                </svg>
               </div>
               </div>
             </div>

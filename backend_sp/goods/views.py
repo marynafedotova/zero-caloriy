@@ -1,7 +1,8 @@
 import os
 import requests
 import re
-
+import logging
+from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
 from django.db import transaction
 from django.http import JsonResponse
@@ -9,30 +10,48 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from django.utils.translation import get_language
 
-from goods.models import Product, Group, GroupModifier, GroupModifierChild
-from carts.utils import get_user_carts
+from goods.models import Product, Group, GroupModifier, GroupModifierChild, Restaurant
+from carts.utils import get_user_carts, calculate_delivery_cost
 from orders.models import Order, OrderItem
 from goods.services.syrve_client import SyrveClient
-from orders.services import build_syrve_payload
+from orders.services.services import build_syrve_payload, finish_order_process, create_monobank_invoice
 from users.views import get_or_create_customer_with_address
+from django.core.paginator import Paginator
+from django.template.loader import render_to_string
 
-
-
+from django.core.paginator import Paginator
 
 def catalog(request):
-
     selected_categories = request.GET.getlist('category')
-    
-    products = Product.objects.filter(is_included_in_menu=True)
+
+    products = Product.objects.filter(is_visible=True)
     groups = Group.objects.filter(is_included_in_menu=True, parent__isnull=True).order_by('order')
 
     if selected_categories:
         products = products.filter(categories__slug__in=selected_categories).distinct()
 
+    products = products.order_by('-id') 
+
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        paginator = Paginator(products, 4) 
+        page_number = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_number)
+
+        html = render_to_string(
+            "goods/product_items.html",
+            {"products": page_obj},
+            request=request
+        )
+
+        return JsonResponse({
+            "html": html,
+            "has_next": page_obj.has_next()
+        })
+
     context = {
-        'products': products,
-        'groups': groups,
-        'selected_categories': selected_categories, 
+        "products": products,
+        "groups": groups,
+        "selected_categories": selected_categories,
     }
     return render(request, "goods/catalog.html", context)
 
@@ -64,7 +83,7 @@ def product(request, product_slug, group_slug=None):
         product_variants = [product]
 
     
-    random_products = Product.objects.exclude(id=product.id).order_by('?')[:5]
+    random_products = Product.objects.filter(is_visible=True).exclude(id=product.id).order_by('?')[:5]
 
     context = {
         "product": product,
@@ -73,54 +92,6 @@ def product(request, product_slug, group_slug=None):
         "random_products": random_products,
     }
     return render(request, "goods/product.html", context)
-
-
-# def product(request, product_slug, group_slug=None):
-
-#     product = get_object_or_404(Product, slug=product_slug)
-
-
-#     name_parts = product.name_uk.split(' ')
-    
-
-#     if len(name_parts) > 1:
-#         base_name = " ".join(name_parts[:-1])
-#     else:
-#         base_name = name_parts[0]
-
-
-#     product_variants = Product.objects.filter(
-#         name_uk__istartswith=base_name,
-#         size__isnull=False 
-#     ).select_related('size').order_by('weight')
-
-
-#     if not product_variants.exists():
-#         product_variants = [product]
-
-
-#     group_modifiers = GroupModifier.objects.filter(product=product).prefetch_related(
-#         'groupmodifierchild_set__modifier'
-#     )
-
-#     modifiers_data = []
-#     for gm in group_modifiers:
-#         modifiers_data.append({
-#             "group_modifier": gm,
-#             "child_modifiers": [child.modifier for child in gm.groupmodifierchild_set.all()],
-#         })
-
-
-#     random_products = Product.objects.exclude(id=product.id).order_by('?')[:5]
-
-#     context = {
-#         "product": product,
-#         "child_modifiers": modifiers_data,
-#         "variants": product_variants,
-#         "random_products": random_products,
-#     }
-    
-#     return render(request, "goods/product.html", context)
 
 
 def cart(request):
@@ -170,7 +141,7 @@ def product_search(request):
             about_product_uk_lower=Lower('about_product_uk'),
             about_product_en_lower=Lower('about_product_en'),
             about_product_ru_lower=Lower('about_product_ru'),
-        ).filter(search_filter).distinct()
+        ).filter(search_filter, is_visible=True).distinct()
     else:
         products = Product.objects.none()
 
@@ -182,206 +153,168 @@ def product_search(request):
     return render(request, 'goods/search_results.html', context)
 
 
+def check_cart_for_stop_list(carts, terminal_id):
+    """
+    Повертає список назв товарів, які зараз у стоп-листі для вказаного терміналу.
+    Якщо список порожній — все добре.
+    """
+    if not terminal_id or not carts.exists():
+        return []
+
+    cache_key = f"stop_list_{terminal_id}"
+    stop_product_ids = cache.get(cache_key)
+
+    if stop_product_ids is None:
+        stop_product_ids = set()
+        try:
+            client = SyrveClient()
+            raw_data = client.get_stop_lists()
+            stop_lists = raw_data.get("terminalGroupStopLists", [])
+            for org in stop_lists:
+                for tg in org.get("items", []):
+                    if str(tg.get("terminalGroupId", "")).lower() == str(terminal_id).lower():
+                        for item in tg.get("items", []):
+                            p_id = item.get("productId")
+                            if p_id:
+                                stop_product_ids.add(str(p_id).lower())
+            cache.set(cache_key, stop_product_ids, 120)
+        except Exception as e:
+            print(f"Stop list fetch error: {e}")
+            return []
+
+    forbidden_items = [
+        item.product.name 
+        for item in carts 
+        if str(item.product.id).lower() in stop_product_ids
+    ]
+    
+    return forbidden_items
+
+logger = logging.getLogger(__name__)
 
 @transaction.atomic
 def create_order_telegram(request):
-    if request.method == 'POST':
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': '{% ftlmsg "іnvalid_method" %}'})
         # --- 1. ОДЕРЖАННЯ ДАНИХ ---
-        order_type = request.session.get('order_type') # 'PICKUP' або 'DELIVERY'
-        order_type_id = request.session.get('order_type_id')
-        terminal_id = request.session.get('terminal_id')
-     
-        name = request.POST.get('name', '').strip()
-        phone = request.POST.get('phone', '').strip()
-        comment = request.POST.get('comment', '').strip()
-        delivery_time = request.POST.get('delivery_time', '').strip()
+    order_type = request.session.get('order_type')         
+    order_type_id = request.session.get('order_type_id')
+    terminal_id = request.session.get('terminal_id')
+    payment_type = request.POST.get('payment_type')   
+    name = request.POST.get('name', '').strip()
+    phone = request.POST.get('phone', '').strip()
+    comment = request.POST.get('comment', '').strip()
+    delivery_time = request.POST.get('delivery_time', '').strip()
 
-        carts = get_user_carts(request)
-        if not carts.exists():
-            return JsonResponse({'status': 'error', 'message': 'Кошик порожній'})
+    carts = get_user_carts(request)
 
-        # --- 2. СТВОРЕННЯ КОРИСТУВАЧА ТА АДРЕСИ ---
-        address_fields = {
-            'street': request.POST.get('street', ''),
-            'house_number': request.POST.get('house_number', ''),
-            'apartment_number': request.POST.get('apartment_number', ''),
-            'entrance': request.POST.get('entrance', ''),
-            'floor': request.POST.get('floor', ''),
-        }
+    if not carts.exists():
+        return JsonResponse({'status': 'error', 'message': '{% ftlmsg "cart_empty" %}'})
+
+    total_price = carts.total_prace()
+
+    delivery_price = calculate_delivery_cost(total_price)
+    if order_type == 'DELIVERY' and delivery_price is None:
+        return JsonResponse({
+            'status': 'error', 
+            'message': '{% ftlmsg "min_sum_dlvr" %}'
+        }) 
         
-        user_obj, address_obj = get_or_create_customer_with_address(
-            name, phone, order_type, address_fields
+    MAIN_DELIVERY_TERMINAL = os.getenv("TERMINAL_SKY_MALL")
+    if order_type == 'DELIVERY' and total_price >= 2000:
+        terminal_id = MAIN_DELIVERY_TERMINAL
+
+    restaurant_obj_id = Restaurant.objects.filter(id=terminal_id).first()
+
+    stop_violations = check_cart_for_stop_list(carts, restaurant_obj_id)
+    if stop_violations:
+        items_str = ", ".join(stop_violations)
+        return JsonResponse({
+            'status': 'error', 
+            'message': f'На жаль, ці товари щойно закінчилися: {items_str}. Будь ласка, видаліть їх з кошика.'
+        })
+
+    # --- 2. СТВОРЕННЯ КОРИСТУВАЧА ТА АДРЕСИ ---
+    address_fields = {
+        'street': request.POST.get('street', ''),
+        'house_number': request.POST.get('house_number', ''),
+        'apartment_number': request.POST.get('apartment_number', ''),
+        'entrance': request.POST.get('entrance', ''),
+        'floor': request.POST.get('floor', ''),
+    }
+        
+    user_obj, address_obj = get_or_create_customer_with_address(
+        name, phone, order_type, address_fields
+    )
+
+
+    
+
+    # --- 3. СТВОРЕННЯ ЗАМОВЛЕННЯ ---
+    final_total = total_price + (200 if (order_type == 'DELIVERY' and delivery_price == 200) else 0)
+    
+
+    order = Order.objects.create(
+        source='WEB',
+        user=user_obj,
+        order_type_id=order_type_id,
+        terminal_group_id=restaurant_obj_id,
+        address=address_obj,
+        total_amount=final_total,
+        comment=f"{comment} | Час: {delivery_time}".strip(),
+        status='PENDING' if payment_type == 'paid' else 'COD', 
+        
+    )
+
+    # Створюємо товари
+    for item in carts:
+        OrderItem.objects.create(
+            order=order,
+            product=item.product,
+            quantity=item.quantity,
+            price=item.product.price 
         )
 
-        # --- 3. СТВОРЕННЯ ЗАМОВЛЕННЯ ---
-        order = Order.objects.create(
-            user=user_obj,
-            order_type_id=order_type_id,
-            terminal_group_id=terminal_id,
-            address=address_obj,
-            total_amount=carts.total_prace(),
-            comment=f"{comment} | Час: {delivery_time}".strip(),
-            status='NEW'
+    if order_type == 'DELIVERY' and delivery_price == 200:
+        delivery_product = Product.objects.get(id="3d496ec8-0993-4eeb-acf0-3216148d416f")
+        OrderItem.objects.create(
+            order=order,
+            product=delivery_product,
+            quantity=1,
+            price=delivery_product.price
         )
 
-        # Створюємо товари
-        for item in carts:
-            OrderItem.objects.create(
-                order=order,
-                product=item.product,
-                quantity=item.quantity,
-                price=item.product.price # або item.product_prace
-            )
+        # db_items = order.items.all()
+        # order_number = f"WEB-{order.id}"
 
-        # --- 4. ВІДПРАВКА В SYRVE ---
-        syrve_info = "Не відправлено"
-        client = SyrveClient()
-        try:
-            payload = build_syrve_payload(order, carts)
-            syrve_res, status_code = client.create_order(payload)
-            if status_code in [200, 201]:
-                order.syrve_id = syrve_res.get('correlationId')
-                order.status = 'SENT'
-                order.save()
-                syrve_info = "✅ ПРИЙНЯТО SYRVE"
-            else:
-                syrve_info = f"❌ ПОМИЛКА SYRVE: {syrve_res.get('errorDescription', 'Err')}"
-        except Exception as e:
-            syrve_info = f"⚠️ ПОМИЛКА API: {str(e)}"
+    print(payment_type)
+    # --- ЛОГІКА ОПЛАТИ ---
+    if payment_type == 'paid':
+        mono_res = create_monobank_invoice(order)
+        if mono_res.status_code == 200:
+            data = mono_res.json()
+            order.monobank_invoice_id = data['invoiceId']
+            order.save()
 
-        # --- 5. ФОРМУВАННЯ ПОВІДОМЛЕННЯ ДЛЯ TELEGRAM ---
-        items_text = "".join([f"• {item.product.name} — <b>{item.quantity} шт.</b>\n" for item in carts])
-        common_footer = (
-            f"📦 <b>Товари:</b>\n{items_text}\n"
-            f"💰 <b>РАЗОМ: {order.total_amount} грн</b>\n"
-            f"💬 <b>Комент:</b> {comment}"
-        )
-
-        if order_type == 'PICKUP':
-            location_name = "ТРЦ SkyMall" if str(terminal_id) == os.getenv("TERMINAL_SKY_MALL") else "ТРЦ Retroville"
-            message = (
-                f"🔔 <b>НОВЕ ЗАМОВЛЕННЯ — САМОВИВІЗ ({syrve_info})</b>\n\n"
-                f"👤 <b>Клієнт:</b> {name}\n"
-                f"📞 <b>Телефон:</b> {phone}\n"
-                f"🏪 <b>Точка видачі:</b> {location_name}\n"
-                f"🕒 <b>Забере о:</b> {delivery_time}\n\n"
-                f"{common_footer}"
-            )
-        else:
-            # Тут беремо дані з address_fields, бо в order.street цих полів немає
-            message = (
-                f"🔔 <b>НОВЕ ЗАМОВЛЕННЯ — ДОСТАВКА ({syrve_info})</b>\n\n"
-                f"👤 <b>Клієнт:</b> {name}\n"
-                f"📞 <b>Телефон:</b> {phone}\n"
-                f"📍 <b>Адреса:</b> вул. {address_fields['street']}, буд. {address_fields['house_number']}\n"
-                f"🏢 <b>Деталі:</b> кв. {address_fields['apartment_number']}, під'їзд {address_fields['entrance']}, поверх {address_fields['floor']}\n"
-                f"🕒 <b>Бажаний час:</b> {delivery_time}\n\n"
-                f"{common_footer}"
-            )
-
-        # --- 6. ВІДПРАВКА В TELEGRAM ТА ОЧИЩЕННЯ ---
-        topics = {
-            os.getenv("TERMINAL_SKY_MALL"): 2,
-            os.getenv("TERMINAL_RETROVILLE"): 4,
-        }
-        target_topic = topics.get(str(terminal_id), 2)
-
-        try:
-            tg_res = requests.post(f"https://api.telegram.org/bot{os.getenv('TOKEN')}/sendMessage", data={
-                "chat_id": os.getenv('CHAT_ID'),
-                "text": message,
-                "parse_mode": "HTML",
-                "message_thread_id": target_topic
+            return JsonResponse({
+                'status': 'pay', 
+                'pay_url': data['pageUrl']
             })
-            
-            if tg_res.status_code == 200:
-                carts.delete() 
-                request.session.pop('order_type', None) 
-                request.session.pop('order_type_id', None)
-                request.session.pop('terminal_id', None)
-                return JsonResponse({'status': 'success'})
-        except:
-            pass 
-
-    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+        else:
+            logger.error(f"Mono error: {mono_res.text}")
+            return JsonResponse({'status': 'error', 'message': '{% ftlmsg "error_plat_sys" %}'})
 
 
+    else:
+        print("я увійшов в умови оплата при отриманні")
 
-# def create_order_telegram(request):
-#     if request.method == 'POST':
-  
-#         name = request.POST.get('name', '').strip()
-#         surname = request.POST.get('surname', '').strip()
-#         phone = request.POST.get('phone', '').strip()
-#         email = request.POST.get('email', '').strip()
-#         location_key = request.POST.get('location', '').strip()
-        
+        order.comment = f"⚠️ ОПЛАТА ПРИ ОТРИМАННІ | {order.comment}"
+        print("я уту")
+        order.save()
 
-#         current_lang = get_language().upper()
+        print("DEBUG: Calling finish_order_process for COD order")
 
+        finish_order_process(order)
+        return JsonResponse({'status': 'success', 'order_number': f"{order.source}-{order.id}"})
 
-#         carts = get_user_carts(request)
-#         if not carts.exists():
-#             return JsonResponse({'status': 'error', 'message': 'Кошик порожній'})
-
-
-#         topics = {
-#             "skymall": 2,      
-#             "retroville": 4,   
-#         }
-
-#         location_names = {
-#             "skymall": "ТРЦ SkyMall",
-#             "retroville": "ТРЦ Retroville"
-#         }
-
-#         target_topic = topics.get(location_key)
-#         display_location = location_names.get(location_key, "Не вказано")
-
-
-#         items_text = ""
-#         total_price = 0
-#         for item in carts:
-#             sum_item = item.product.price * item.quantity
-
-#             items_text += f"• {item.product.name} — <b>{item.quantity} шт.</b> ({sum_item} грн)\n"
-#             total_price += sum_item
-
-#         message = (
-#             f"🔔 <b>НОВЕ ЗАМОВЛЕННЯ З САЙТУ({current_lang})</b>\n\n"
-#             f"👤 <b>Клієнт:</b> {name} {surname}\n"
-#             f"📞 <b>Телефон:</b> {phone}\n"
-#             f"📧 <b>Email:</b> {email}\n"
-#             f"📦 <b>Товари:</b>\n{items_text}\n"    
-#             f"💰 <b>РАЗОМ: {total_price} грн</b>"
-#         )
-
-
-#         TOKEN = os.getenv('TOKEN')
-#         CHAT_ID = os.getenv('CHAT_ID')
-
-#         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-#         payload = {
-#             "chat_id": CHAT_ID,
-#             "text": message,
-#             "parse_mode": "HTML",
-#             "message_thread_id": target_topic
-#         }
-
-#         try:
-#             response = requests.post(url, data=payload)
-#             if response.status_code == 200:
  
-#                 carts.delete()
-#                 return JsonResponse({'status': 'success'})
-#             else:
-#                 return JsonResponse({
-#                     'status': 'error', 
-#                     'message': f'Telegram API error: {response.status_code}'
-#                 })
-#         except Exception as e:
-#             return JsonResponse({'status': 'error', 'message': str(e)})
-
-#     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
-
-

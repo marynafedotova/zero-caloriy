@@ -1,0 +1,12 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block object-tools-items %}
+    <li>
+
+        <a href="sync-syrve/" class="addlink" style="background-color: #264b5d; color: white;">
+            🔄 Оновити меню з Syrve
+        </a>
+    </li>
+    {{ block.super }}
+{% endblock %}

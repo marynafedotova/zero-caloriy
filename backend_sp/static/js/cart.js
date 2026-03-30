@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="cart-info">
             <div class="cart-top-info">
                 <h3 class="cart-title">${product['Назва']}</h3>
-                <button class="remove-from-cart" data-id="${product.ID}"><img src="../img/delete.svg" alt=""></button>
+                <button class="remove-from-cart" data-id="${product.ID}"><img src="../img/delete.svg" alt="delete"></button>
 
             </div>
                 <p class="cart-weight">${product["Вага"] || ""}</p>
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                         ${product['Ціна'] * cartItem.qty} грн
                     </div>
                   <div class="cart-controls">
-                    <button class="qty-minus" data-id="${product.ID}"><img src="../img/minus.svg" alt=""></button>
+                    <button class="qty-minus" data-id="${product.ID}"><img src="../img/minus.svg" alt="minus"></button>
                     <span class="qty-value">${cartItem.qty}</span>
-                    <button class="qty-plus" data-id="${product.ID}"><img src="../img/plus.svg" alt=""></button>
+                    <button class="qty-plus" data-id="${product.ID}"><img src="../img/plus.svg" alt="plus"></button>
                 </div>
                 </div>
             </div>

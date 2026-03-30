@@ -81,47 +81,52 @@
   <section  class="hero">
 <div class="slider-hero">
     <div class="slides">
-        <img src="{% static 'img/hero-index.svg' %}" class="slide active">
-        <img src="{% static 'img/hero-index.svg' %}" class="slide">
-        <img src="{% static 'img/hero-index.svg' %}" class="slide">
-        <img src="{% static 'img/hero-index.svg' %}" class="slide">
+      <div class="slide active">
+        <a href="{% url 'goods:catalog' %}" id="slide-btn">{% ftlmsg "views_all_prod" %}</a>
+ <img src="{% static 'img/hero-index.svg' %}" alt="Головний банер 1"> 
+      </div>
+        <!-- <img src="{% static 'img/hero-index.svg' %}" class="slide active" alt="Головний банер 1">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide" alt="Головний банер 2">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide" alt="Головний банер 3">
+        <img src="{% static 'img/hero-index.svg' %}" class="slide" alt="Головний банер 4"> -->
     </div>
 
-    <div class="dots">
+    <!-- <div class="dots">
         <span class="dot active" data-slide="0"></span>
         <span class="dot" data-slide="1"></span>
         <span class="dot" data-slide="2"></span>
         <span class="dot" data-slide="3"></span>
-    </div>
+    </div> -->
 </div>
-
   </section>
   <section id="hero-mb">
- <div class="slider-hero-m">
+<div class="slider-hero-m">
     <div class="slides">
-        <img src="{% static 'img/hero-m.png' %}" class="slide active">
-        <img src="{% static 'img/hero-m.png' %}" class="slide">
-        <img src="{% static 'img/hero-m.png' %}" class="slide">
-        <img src="{% static 'img/hero-m.png' %}" class="slide">
+              <a href="{% url 'goods:catalog' %}" id="slide-btn">{% ftlmsg "views_all_prod" %}</a>
+        <img src="{% static 'img/hero-m.png' %}" class="slide active" alt="Головний банер мобільний 1">
+        <!-- <img src="{% static 'img/hero-m.png' %}" class="slide" alt="Головний банер мобільний 2">
+        <img src="{% static 'img/hero-m.png' %}" class="slide" alt="Головний банер мобільний 3">
+        <img src="{% static 'img/hero-m.png' %}" class="slide" alt="Головний банер мобільний 4"> -->
     </div>
 
-    <div class="dots">
+    <!-- <div class="dots">
         <span class="dot active" data-slide="0"></span>
         <span class="dot" data-slide="1"></span>
         <span class="dot" data-slide="2"></span>
         <span class="dot" data-slide="3"></span>
-    </div>
+    </div> -->
 </div>
+
 
   </section>
   <section class="index-filter">
 <div class="container">
   <ul class="index-cat-filter">
-    <li><a href="{% url 'goods:catalog' %}?category=no-added-sugar">Без цукру</a></li>
-    <li><a href="{% url 'goods:catalog' %}?category=gluten-free">Без глютену</a></li>
-    <li><a href="{% url 'goods:catalog' %}?category=lactose-free">Без лактози</a></li>
-    <li><a href="{% url 'goods:catalog' %}?category=vegan">Веганські</a></li>
-    <li><a href="{% url 'goods:catalog' %}?category=protein">Протеїнові</a></li>
+    <li class="w212"><a href="{% url 'goods:catalog' %}?category=no-added-sugar" class="pr37">{% ftlmsg "index_cat_no_sugar" %}</a></li>
+    <li class="w245"><a href="{% url 'goods:catalog' %}?category=lactose-free" class="pr37">{% ftlmsg "index_cat_no_lactose" %}</a></li>
+    <li class="w246"><a href="{% url 'goods:catalog' %}?category=gluten-free" class="pr37">{% ftlmsg "index_cat_no_gluten" %}</a></li>
+    <li class="w213"><a href="{% url 'goods:catalog' %}?category=vegan" class="pr37">{% ftlmsg "index_cat_vegan" %}</a></li>
+    <li class="w232"><a href="{% url 'goods:catalog' %}?category=protein">{% ftlmsg "index_cat_protein" %}</a></li>
   </ul>
 </div>
   </section>
@@ -129,7 +134,8 @@
     <div class="container">
       <div class="new-header">
       <h2 class="title-section">{% ftlmsg "news_index" %}</h2> 
-      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %} <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %} 
+        <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 7px;">
 <rect y="3.33014" width="34" height="2" fill="black"/>
 <path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
 </svg>
@@ -140,7 +146,7 @@
       <ul class="news-product-item" id="news-product">
         {% for new in new_products %}
         <li class="product-card" data-slug="{{ new.slug }}">
-          <a href="{% url 'goods:product' product_slug=new.slug %}" class="product-link" style="border-radius: 16px; ">
+          <a href="{% url 'goods:product' product_slug=new.slug %}" class="product-link">
             <div class="product-img">
               {% if new.image_url %}
               <img src="{{ new.image_url }}" alt="{{ new.name }}">
@@ -164,10 +170,13 @@
                 <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
               </a>
               <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ new.slug }}', this)" data-name="{{ new.name }}">
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
+                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">{% ftlmsg "index_add_cart" %}
               </a>
                 <div class="product-to-cart" hidden>
-                🗸
+                 <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="2" height="9.51978" rx="1" transform="matrix(-0.804551 0.593884 0.593884 0.804551 1.60913 5)" fill="white"/>
+                <rect x="14.686" width="2" height="16.3096" rx="1" transform="rotate(36.4331 14.686 0)" fill="white"/>
+                </svg>
               </div>
             </div>
         </li>
@@ -183,58 +192,82 @@
       <div class="favlist-hero">
       <h3 class="title-section">{% ftlmsg "likes_base" %}</h3>
         <a href="{% url 'goods:catalog' %}" id="show-all-btn"> {% ftlmsg "all_goods_base" %}
-          <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="39" height="9" viewBox="0 0 39 9" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 7px;">
           <rect y="3.33014" width="34" height="2" fill="black"/>
           <path d="M39 4.33014L31.5 8.66027V1.19209e-05L39 4.33014Z" fill="black"/>
           </svg>
         </a>
       </div>
-      <ul class="favlist-list" id="favlist-products">
-        {% for random in random_products %}
-        <li class="product-card" data-slug="{{ random.slug }}">
-          <a href=0 class="product-link">
-            <div class="product-img">
-              {% if random.image_url %}
-              <img src="{{ random.image_url }}" alt="{{ random.name }}">
-              {% else %}
-              <img src="{% static './img/images-not-found.jpg' %}" alt="{{ random.name }}">
-              {% endif %}
-            </div>
-            <div class="product-info">
-              <h3 class="product-title">{{ random.name }}</h3>
-              <p class="product-weight">{{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}</p>
-             <div class="index-product-nutrition">КБЖВ: {{random.additional_info}}</div> 
-            
-            </a>
-              <div class="product-cart">
-                <div class="product-price">
-                  {{ random.price }}
-                  <span class="product-price-uah">{% ftlmsg "currency" %}</span>
-                </div>
-                <a class="add-to-cart-btn" href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}">
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">Додати в кошик
-              </a>
-             <a class="add-to-cart-btn-m"  href="javascript:void(0);" onclick="addToCart('{{ random.slug }}', this)" data-name="{{ random.name }}" >
-                <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
-              </a> 
-              <div class="product-to-cart" hidden>
-                🗸
-              </div>
-              </div>
-            </div>
-          
-          {% endfor %}
-        </li>
-      </ul>
+<ul class="favlist-list" id="favlist-products">
+{% for random in random_products %}
+
+<li class="product-card" data-slug="{{ random.slug }}">
+
+  <a href="{% url 'goods:product' product_slug=random.slug %}" class="product-link">
+
+    <div class="product-img">
+      {% if random.image_url %}
+        <img src="{{ random.image_url }}" alt="{{ random.name }}">
+      {% else %}
+        <img src="{% static './img/images-not-found.jpg' %}" alt="{{ random.name }}">
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <h3 class="product-title">{{ random.name }}</h3>
+
+      <p class="product-weight">
+        {{random.weight|mul:1000|floatformat:0}}{% ftlmsg "measure_unit" %}
+      </p>
+
+      <div class="index-product-nutrition">
+        {% ftlmsg "kbv" %} {{random.additional_info}}
+      </div>
+    </div>
+
+  </a>
+
+  <div class="df">
+
+    <div class="product-price">
+      {{ random.price }}
+      <span class="product-price-uah">{% ftlmsg "currency" %}</span>
+    </div>
+
+    <a class="add-to-cart-btn-m"
+       onclick="addToCart('{{ random.slug }}', this)"
+       data-name="{{ random.name }}">
+        <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+    </a>
+
+    <a class="add-to-cart-btn"
+       href="javascript:void(0);"
+       onclick="addToCart('{{ random.slug }}', this)"
+       data-name="{{ random.name }}">
+        <img src="{% static './img/add-to-cart.svg' %}" alt="add to cart">
+        {% ftlmsg "index_add_cart" %}
+    </a>
+
+    <div class="product-to-cart" hidden>
+      <svg width="17" height="15" viewBox="0 0 17 15" fill="none">
+        <rect width="2" height="9.51978" rx="1"
+              transform="matrix(-0.804551 0.593884 0.593884 0.804551 1.60913 5)"
+              fill="white"/>
+        <rect x="14.686" width="2" height="16.3096" rx="1"
+              transform="rotate(36.4331 14.686 0)"
+              fill="white"/>
+      </svg>
+    </div>
+
+  </div>
+
+</li>
+
+{% endfor %}
+</ul>
         <a href="{% url 'goods:catalog' %}" id="show-all-btn-m"> {% ftlmsg "all_goods_base" %} 
         </a>
     </div>
     </section>
-      <script>
-    const oSrc = "{% static 'img/о.png' %}";
-    
-  </script>
-
-  
-
+    <script src="{% static './js/index.js' %} "></script>
   {% endblock content %}

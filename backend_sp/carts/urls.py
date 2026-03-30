@@ -12,3 +12,4 @@ urlpatterns = [
     path('cart/set-order-type/', set_order_type, name='set_order_type'),
     path('count/', cart_count, name='cart_count'),
 ]
+

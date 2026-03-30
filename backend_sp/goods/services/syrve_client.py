@@ -9,9 +9,9 @@ from dotenv import load_dotenv, find_dotenv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(BASE_DIR)
 
-import django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend_sp.settings')
-django.setup()
+# import django
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend_sp.settings')
+# django.setup()
 
 
 from goods.models import Product, ProductCategory, Group, GroupModifier, GroupModifierChild, ProductSize
@@ -178,7 +178,7 @@ class SyrveClient:
                     "image_url": p["imageLinks"][0] if p.get("imageLinks") else None,
                     "price": current_price,
                     "size_id": size_id,
-                    "is_included_in_menu": p.get("isIncludedInMenu", True) # Або логіка з sizePrices
+                    #"is_included_in_menu": p.get("isIncludedInMenu", True) # Або логіка з sizePrices
                 }
             )   
 

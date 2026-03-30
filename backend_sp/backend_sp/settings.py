@@ -22,6 +22,14 @@ STATICFILES_DIRS = [
 ]
 
 
+# URL для звернення до файлів через браузер
+MEDIA_URL = '/media/'
+
+# Шлях до папки в корні вашого проєкту
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -50,6 +58,8 @@ INSTALLED_APPS = [
     'django_ftl.apps.DjangoFtlConfig',
     'mathfilters',
     'core',
+    'ckeditor',
+    'ckeditor_uploader',
     #my app
 
     'goods',
@@ -57,6 +67,7 @@ INSTALLED_APPS = [
     'carts',
     'users',
     'orders',
+    'blog',
     
 ]
 
@@ -89,34 +100,42 @@ TEMPLATES = [
                 'core.context_processors.seo.seo_tags',
                 'goods.context_processors.all_restaurants_processor',
                 'goods.context_processors.categories_processor',
+                'carts.context_processors.cart_info',
             ],
         },
     },
 ]
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+
 WSGI_APPLICATION = 'backend_sp.wsgi.application'
+DELIVERY_TERMINAL_ID = "427d6dd2-1d65-275f-014c-ec534e53008e"
 
 
 #Database
 #https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('DB_USER'),
-#         'PASSWORD': os.getenv('DB_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST', 'db'),  
-#         'PORT': os.getenv('DB_PORT', '5432'),
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST', 'db'),  
+        'PORT': os.getenv('DB_PORT', '5432'),
+    }
+}
 
 
 # Password validation
@@ -151,7 +170,7 @@ LANGUAGES = [
 
 LOCALE_PATHS = []
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kyiv'
 
 USE_I18N = True
 
@@ -169,3 +188,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

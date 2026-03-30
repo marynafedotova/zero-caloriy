@@ -3,6 +3,9 @@ import uuid
 from django.utils.text import slugify
 from django.utils.translation import get_language
 from django.urls import reverse
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
 
 
 
@@ -60,6 +63,10 @@ class Restaurant(TranslatableModel):
     @property
     def address(self):
         return self.get_i18n_field('address')
+        
+
+    def __str__(self):
+        return self.get_i18n_field('name')
     
 
     
@@ -130,12 +137,15 @@ class ProductSize(models.Model):
 class Product(TranslatableModel):
     DISH = 'Dish'
     MODIFIER = 'Modifier'
+    SERVICE = 'Service'
     TYPE_CHOICES = [
         (DISH, 'Dish'),
-        (MODIFIER, 'Modifier')
+        (MODIFIER, 'Modifier'),
+        (SERVICE, 'Service')
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    is_visible = models.BooleanField(default=True, verbose_name="Відображати на сайті")
     code = models.CharField(max_length=50, blank=True)
     name_uk = models.CharField(max_length=255)
     name_ru = models.CharField(max_length=255)
@@ -164,8 +174,12 @@ class Product(TranslatableModel):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     size = models.ForeignKey(ProductSize, on_delete=models.SET_NULL, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, db_index=True, null=True, blank=True, verbose_name="Дата створення")
-    updated = models.DateTimeField(auto_now=True, db_index=True, null=True, blank=True)
-    is_included_in_menu = models.BooleanField(default=True)
+    updated = models.DateTimeField(auto_now=True, db_index=True, null=True, blank=True, verbose_name="Дата оновлення")
+    #is_included_in_menu = models.BooleanField(default=True)
+    is_manual_params = models.BooleanField(
+        default=False, 
+        verbose_name="Редагувати вагу/розмір вручну (блокує оновлення з Syrve)"
+    )
 
 
     class Meta:
@@ -232,6 +246,28 @@ class GroupModifierChild(models.Model):
 
     def __str__(self):
         return f"{self.group_modifier} -> {self.modifier.name}"
+
+
+
+@receiver(pre_save, sender=Product)
+def protect_manual_product_fields(sender, instance, **kwargs):
+    # Якщо об'єкт уже існує в базі (це оновлення, а не створення)
+    if instance.pk:
+        try:
+            # Отримуємо старі дані з бази
+            old_instance = Product.objects.get(pk=instance.pk)
+            
+            # ЯКЩО увімкнено "Редагувати вручну"
+            if old_instance.is_manual_params:
+                # Повертаємо старі значення ваги та розміру, ігноруючи нові від Syrve
+                instance.weight = old_instance.weight
+                instance.size = old_instance.size
+                
+                # Можна також захистити назву або опис, якщо треба:
+                # instance.name_uk = old_instance.name_uk
+                
+        except Product.DoesNotExist:
+            pass
     
 
 

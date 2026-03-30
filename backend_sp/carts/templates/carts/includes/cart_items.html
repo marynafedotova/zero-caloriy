@@ -1,0 +1,118 @@
+{% load static %}
+{% load mathfilters %}
+{% load ftl %}
+{% ftlconf bundle="goods.ftl_bundles.goods_main" %}
+<div class="cart-block-item" >
+<div class="cart-item-list">
+{% for cart in carts %}
+
+<div class="cart-item" id="cart-item-{{ cart.id }}">
+    <div class="cart-img">
+        {% if cart.product.image_url %}
+            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
+        {% else %}
+            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
+        {% endif %}
+    </div>
+    <div class="cart-info"> 
+        <div class="cart-top-info">
+            <h3 class="cart-title">{{ cart.product.name }}</h3>
+            
+            
+<a href="javascript:void(0);" 
+   data-url="{% url 'carts:cart_remove' cart.id %}" 
+   onclick="removeCartItem(this, {{ cart.id }})" 
+   class="remove-from-cart">
+    <img src="{% static 'img/delete.svg' %}" alt="delete">
+</a>
+        </div>
+        <p class="cart-weight">
+            {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
+        </p>
+        <div class="cart-bottom">
+            <div class="cart-price">
+                <span id="item-total-{{ cart.id }}">{{ cart.product_prace }}</span>
+                <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
+            </div>
+            <div class="cart-controls">
+                <button type="button" 
+                    data-url="{% url 'carts:cart_change' cart.id %}" 
+                    onclick="changeCartQty(this, 'minus')">
+                    <img src="{% static './img/minus.svg' %}" alt="minus">
+                </button>
+                <input type="number" value="{{ cart.quantity }}" readonly class="quantity-input" id="qty-{{ cart.id }}">
+                <button type="button" 
+                    data-url="{% url 'carts:cart_change' cart.id %}" 
+                    onclick="changeCartQty(this, 'plus')">
+                    <img src="{% static './img/+.svg' %}" alt="plus">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+</div>
+
+<!-- Блок Ваше замовлення початок-->
+<div>
+        <div class="cart-summary-card {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}status-error{% endif %}">
+            <p class="order-title">{% ftlmsg "order_cart" %}</p>
+            
+            <div class="summary-line">
+                <span class="summary-line-item">{% ftlmsg "cart_inc_dlvr_sum" %}</span>
+                <span class="summary-line-item price-val">{{ cart_total_price }} {% ftlmsg "currency_catalog" %}</span>
+            </div>
+<div id="delivery-info-container">
+    {% if request.session.order_type == 'DELIVERY' %}
+    <div class="cart-summary-card">
+        
+        {% if cart_total_price < 1600 %}
+            <div class="ux-notice aggregator">
+                <p>{% ftlmsg "cart_inc_not_dlvr" %}</p>
+                <p>{% ftlmsg "cart_inc_dlvr_agr" %}</p>
+                <div class="aggregator-links">
+                    <a href="https://glovoapp.com/..." class="btn-glovo"> 
+                    {% include "icons/glovo.svg" %}
+                    </a>
+                    <a href="https://link.loko.delivery/49bc224fbf0d" class="btn-bolt"> 
+                    {% include "icons/loko.svg" %}
+                    </a>
+                                        <a href="https://boltfood.com/..." class="btn-bolt">
+                    {% include "icons/bolt.svg" %}
+                    </a>
+                </div>
+            </div>
+
+        {% elif cart_total_price < 2000 %}
+            <div class="ux-notice upsell">
+                <p>{% ftlmsg "cart_inc_dlvr_min" %} <b>{{ 2000|sub:cart_total_price }} {% ftlmsg "currency_catalog" %}</b> {% ftlmsg "cart_inc_dlvr_min_sum" %}</p>
+                <p>{% ftlmsg "cart_inc_dlvr_chel" %}</p>
+                <a href="{% url 'goods:catalog' %}" class="btn-back">{% ftlmsg "btn_all_prod_catalog" %}</a>
+            </div>
+
+        {% elif cart_total_price < 4000 %}
+            <div class="ux-notice info">
+                {% ftlmsg "cart_inc_dlvr_done" %}
+                <br>{% ftlmsg "cart_inc_dlvr_min_added" %} <b>{{ 4000|sub:cart_total_price }} {% ftlmsg "currency_catalog" %}</b> {% ftlmsg "cart_inc_dlvr_free-html" %}
+            </div>
+        {% endif %}
+
+    </div>
+{% endif %}
+</div>
+
+            <div class="summary-total">
+                <span>{% ftlmsg "total_prace_carts" %}</span>
+                <span class="total-val">{{ full_total_sum }} {% ftlmsg "currency_catalog" %}</span>
+            </div>
+        </div>
+
+        
+
+        </div>
+
+
+<!-- Блок Ваше замовлення кінець-->
+

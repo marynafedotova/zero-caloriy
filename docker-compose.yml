@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:15
+    container_name: zero-db-dev
+    volumes:
+      - dev_postgres_data:/var/lib/postgresql/data
+    env_file: .env
+    # Порт 5433, щоб не конфліктувати з продом (5432)
+    ports:
+      - "0.0.0.0:5433:5432" 
+    
+
+  web-dev:
+    build: .
+    container_name: zero-container-dev
+    ports:
+      - "9001:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DEBUG=1
+    env_file: .env
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: sh -c "python backend_sp/manage.py makemigrations && python backend_sp/manage.py migrate && python backend_sp/manage.py runserver 0.0.0.0:8000"
+
+  bot-dev:
+    build: .
+    container_name: zero-bot-dev
+    env_file: .env
+    depends_on:
+      - db
+    command: python telegram_bot/main.py
+
+volumes:
+  dev_postgres_data:

@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 function markCartItems(cartItems) {
     if (!Array.isArray(cartItems)) return;
 
@@ -71,36 +70,145 @@ function markCartItems(cartItems) {
         });
     });
 }
+// /* ---------- Автопроверка товаров в корзине при загрузке страницы ---------- */
+// function markCartItemsOnPage() {
+//     if (!Array.isArray(window.cartItemsOnLoad)) return;
+
+//     window.cartItemsOnLoad.forEach(slug => {
+//         const cards = document.querySelectorAll(`.product-card[data-slug="${slug}"]`);
+//         cards.forEach(card => {
+//             // Скрываем кнопки "Добавить в корзину"
+//             card.querySelectorAll('.add-to-cart-btn, .add-to-cart-btn-m')
+//                 .forEach(btn => {
+//                     btn.style.display = 'none';
+//                     btn.onclick = null;
+//                 });
+
+//             // Показываем галочку
+//             const check = card.querySelector('.product-to-cart');
+//             if (check) {
+//                 check.hidden = false;
+//                 check.style.display = 'flex';
+//             }
+
+//             // Класс "в корзине"
+//             card.classList.add('in-cart');
+//         });
+//     });
+// }
+
+// /* Автоматический вызов при загрузке страницы */
+// document.addEventListener('DOMContentLoaded', markCartItemsOnPage);
+
+
 
 // ====== При загрузке страницы получаем товары из корзины и помечаем ======
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('/carts/count/')  // <-- лучше сделать относительный URL без "/ru/", чтобы работало на любых языках
-        .then(res => res.json())
-        .then(data => {
-            if (data.items && data.items.length) {
-                markCartItems(data.items);
+// document.addEventListener('DOMContentLoaded', function () {
+//     fetch('/carts/count/')  
+//         .then(res => res.json())
+//         .then(data => {
+//             if (data.items && data.items.length) {
+//                 markCartItems(data.items);
+//             }
+//         })
+//         .catch(err => console.error('Ошибка при получении товаров корзины:', err));
+// });
+
+
+
+fetch('/carts/count/')
+    .then(res => {
+        // console.log('Status:', res.status);
+        return res.json();
+    })
+    .then(data => {
+        // console.log('Cart count response:', data);
+
+        // ✅ ВОТ ЭТА ВСТАВКА
+        if (data.items && typeof applyCartItems === 'function') {
+            // console.log('[Cart] Applying items from AJAX:', data.items);
+            applyCartItems(data.items);
+        }
+
+        const counter = document.querySelector('.cart-counter');
+        if (counter) {
+            // console.log('Updating counter with:', data.count);
+            counter.textContent = data.count;
+        }
+    })
+    .catch(err => console.error('Ошибка:', err));
+
+// обмеження тексту в карточках товару
+function limitTextAdaptive() {
+    // console.log('=== limitTextAdaptive RUN ===');
+
+    const elements = document.querySelectorAll('.index-product-nutrition');
+    const maxLength = 30;
+
+    // console.log('Elements found:', elements.length);
+    // console.log('Max length:', maxLength);
+
+    elements.forEach((el, index) => {
+        // console.log(`--- Element #${index + 1} ---`);
+
+        let fullText = el.getAttribute('data-full-text');
+
+        // якщо ще не обробляли — беремо сирий текст і нормалізуємо
+        if (!fullText) {
+            fullText = el.textContent;
+
+            // console.log('Raw text:', fullText);
+
+            // нормалізація: перенос → масив → trim → прибрати пусті / None → join через ', '
+            fullText = fullText
+                .split('\n')
+                .map(item => item.trim())
+                .filter(item => item && item !== 'None')
+                .join(', ')
+                .trim();
+
+            // прибрати кому на початку, якщо є
+            fullText = fullText.replace(/^,\s*/, '');
+
+            // прибрати кому в кінці
+            fullText = fullText.replace(/,\s*$/, '');
+
+            el.setAttribute('data-full-text', fullText);
+
+            // console.log('Normalized text:', fullText);
+        }
+
+        // console.log('Length:', fullText.length);
+
+        if (fullText.length > maxLength) {
+            let truncated = fullText.substring(0, maxLength);
+
+            // не рвемо слово
+            const lastSpace = truncated.lastIndexOf(' ');
+            if (lastSpace > 0) {
+                truncated = truncated.substring(0, lastSpace);
             }
-        })
-        .catch(err => console.error('Ошибка при получении товаров корзины:', err));
-});
+
+            el.textContent = truncated + '...';
+
+            // console.log('Truncated:', el.textContent);
+        } else {
+            el.textContent = fullText;
+            // console.log('No truncation needed');
+        }
+    });
+
+    // console.log('=== END ===');
+}
+// запуск
+limitTextAdaptive();
+
+// resize
+window.addEventListener('resize', limitTextAdaptive);
 
 
-document.querySelectorAll('.index-product-nutrition').forEach(element => {
-    const original = element.textContent
-        .replace(/\n/g, ' ')          
-        .replace(/\s+/g, ' ')         
-        .trim();                    
-    
-    // console.log('Очищенный текст:', original);
-    // console.log('Длина:', original.length);
-    
-    if (original.length > 33) {
-        element.textContent = original.substring(0, 45) + '...';
-        // console.log('Обрезано до:', element.textContent);
-    } else {
-        element.textContent = original;
-    }
-});
+
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -134,7 +242,7 @@ function showAddedMessage() {
     modalOverlay.classList.remove('active');
   }, 1500); // 1.5 секунды — оптимально
 }
-
+// пошук
 document.addEventListener('DOMContentLoaded', () => {
   const searchContainer = document.querySelector('.search');
   const searchForm = searchContainer.querySelector('form');
@@ -266,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
+// мови
 document.addEventListener('DOMContentLoaded', () => {
   const picker = document.querySelector('.language-picker');
   const toggle = picker.querySelector('.icon-language');

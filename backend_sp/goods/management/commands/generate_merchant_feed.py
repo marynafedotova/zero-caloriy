@@ -20,7 +20,7 @@ class Command(BaseCommand):
         SubElement(channel, 'link').text = "https://zerokaloriy.com/"
         SubElement(channel, 'description').text = "Фід товарів для Google Merchant Center"
 
-        products = Product.objects.filter(is_included_in_menu=True)
+        products = Product.objects.filter(is_visible=True)
 
         for product in products:
             item = SubElement(channel, 'item')

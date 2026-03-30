@@ -18,12 +18,11 @@
     <div class="container top100 cart-container">
       <ul class="nav-product">
         <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
-        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "btn_all_prod_us" %}</a></li>
+            src="{% static './img/Frame.svg' %}" alt="na"></li>
+        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "you_cart_cart" %}</a></li>
       </ul>
       <h1>{% ftlmsg "you_cart_cart" %}</h1>
-      <div class="cart-block" id="cart-items-container">
-        <div class="cart-lb">
+      <div class="cart-block"  id="cart-root" data-order-type="{{ request.session.order_type|default:'' }}">
           <div id="cart-list">
             {% if carts %}
             {% include "carts/includes/included_cart.html" %}
@@ -32,93 +31,24 @@
             {% endif %}
           </div>
 
-        </div>
   </section>
 </main>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', function () {
+
     const phoneInput = document.querySelector('input[name="phone"]');
-    if (!phoneInput) return;
-
-    phoneInput.addEventListener('input', (e) => {
-        let digits = e.target.value.replace(/\D/g, '');
-
-        if (!digits.startsWith('380')) {
-            digits = '380' + digits.replace(/^38|^3/, '');
-        }
-
-        digits = digits.substring(0, 12);
-
-        e.target.value = '+' + digits;
-    });
-});
-
-
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const form = this;
-    const url = form.getAttribute('data-url'); 
-    const csrfToken = form.getAttribute('data-csrf'); 
-    const btn = document.getElementById('cart-btn');
-
-    // Перевірка чи URL не пустий
-    if (!url) {
-        console.error("URL не знайдено в атрибуті data-url");
-        return;
-    }
-
-    btn.disabled = true;
-    btn.innerText = "Відправляємо...";
-
-    const formData = new FormData(form);
-    
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': csrfToken // Тепер дані беруться з атрибуту форми
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Дякуємо!',
-                text: 'Замовлення надіслано.',
-                timer: 2500,
-                showConfirmButton: false
-            });
-           setTimeout(() => {
-                window.location.href = '/';
-            }, 2500);
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Помилка',
-                text: data.message || 'Сталася помилка при відправці'
-            });
-
-            btn.disabled = false;
-            btn.innerText = "Спробувати ще раз";
-        }    })
-    .catch(error => {
-        console.error('Error:', error);
-         Swal.fire({
-            icon: 'error',
-            title: 'Помилка',
-            text: 'Сталася помилка при відправці'
+    if (phoneInput) {
+        phoneInput.addEventListener('input', (e) => {
+            let digits = e.target.value.replace(/\D/g, '');
+            if (!digits.startsWith('380')) digits = '380' + digits.replace(/^38|^3/, '');
+            digits = digits.substring(0, 12);
+            e.target.value = '+' + digits;
         });
-        btn.disabled = false;
-        btn.innerText = "Повторити";
-    });
+    }
 });
 </script>
-
 {% endblock content %}
 

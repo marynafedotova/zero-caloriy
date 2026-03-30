@@ -35,9 +35,9 @@ def generate_smart_slug(name_en, weight):
 
 
 def force_update_all_slugs():
-    all_products = Product.objects.all()
+    all_products = Product.objects.filter(is_visible=True)
     count = all_products.count()
-    print(f"🚀 Починаємо примусове оновлення для {count} товарів...")
+ 
 
     updated_count = 0
     for product in all_products:

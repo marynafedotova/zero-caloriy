@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% load ftl %}
+{% block title_meta %}
+{% ftlconf bundle="main.ftl_bundles.main_bundle" %}
+  <title>{% ftlmsg "title_policy" %}</title>
+<meta name="description" content="{% ftlmsg "" %}">
+{% endblock title_meta %}
+{% block content %}
+   Немає оплати
+{% endblock content %}
+    

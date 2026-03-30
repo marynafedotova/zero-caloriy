@@ -1,4 +1,4 @@
-#base.html
+# base.html
 site_title_index = Zero Caloriy — low calorie desserts
 site_descrp_index = Zero Caloriy — modern low-calorie desserts. Classic recipes adapted to a modern approach to nutrition. Based in Kyiv.
 all_goods_base = All products
@@ -19,54 +19,72 @@ add_cart_base = Product added to cart
 conti_shop_base = Continue shopping
 gotocart_base = Go to cart
 search_plch_base = Tiramisu, honey cake, panna cotta ...
+base_chc_dlvr = Choose delivery method
+base_dlvr = Delivery
+base_sam_nozyamu = Pickup
+base_chc_lpcation = Choose pickup point:
+base_nema = Temporarily unavailable
+base_yasna = Got it
+base_chc_addr = Select an address
+base_submit = Confirm and add
+base_dl = Cancel
+blog_base = Blog
+select_delivery_method = Select a delivery method
 
 
-#index.html
+
+index_cat_no_sugar = No added sugar
+index_cat_no_gluten = Gluten free
+index_cat_no_lactose = Lactose-free
+index_cat_vegan = Vegan
+index_cat_protein = Protein
+index_add_cart = Add to cart
+
+# index.html
 h1_index = Low-Calorie Desserts
 news_index = NEW ARRIVALS
 currency = UAH
 measure_unit = g
 kbv = CPFC:
+views_all_prod = View all products
 
 
-#delivery
-delivery_title = Delivery & Payment
-description_delivery = Delivery in Kyiv
 
-delivery-title = 🍰 Payment and Delivery of "Zero Calories" Desserts
+# delivery
+delivery = Delivery
+delivery_title = Delivery in Kyiv
+description_delivery = Delivery within Kyiv
 
-how-to-order-title = 🛒 How to Place an Order?
-how-to-order-web = On the website: via the cart (available 24/7).
-how-to-order-insta = On Instagram: via Direct.
-how-to-order-phone = By phone: contact the managers of our locations directly.
+how-to-order-title = How to order delivery?
+how-to-order-web = On the website: via cart
+how-to-order-insta = On Instagram: via Direct
+how-to-order-phone = By phone: contact the managers of our locations directly
 
-locations-title = 📍 Locations & Contacts (Pickup)
-locations-subtitle = You can order delivery or pick up the sweets yourself at the following addresses:
+variantu = We offer several fast delivery options so you can enjoy desserts today:
+loko = - we are already available in this service. Just search for "Zero" in the app
+bolt_glovo = - fast city delivery in a "here and now" format
+
+locations-title = Locations and contacts (Pickup)
+locations-subtitle = You can order delivery or pick up sweets yourself at the following addresses:
+
+address = Address:
+grafik = Working hours:
+location-phone = Phone/Telegram:
 
 location-skymall-name = SkyMall Shopping Center
-location-skymall-addr = Address: Kyiv, Roman Shukhevych Ave, 2t
-location-skymall-phone = Phone / Viber: +38 000 000 00 00
-location-skymall-hours = Working hours: Mon–Sun: 10:00–21:00
+location-skymall-addr = Kyiv, Roman Shukhevych Avenue 2t
+location-skymall-hours = Mon–Sun 10:00 – 21:00
 
 location-retro-name = Retroville Shopping Center
-location-retro-addr = Address: Kyiv, European Union Ave, 47
-location-retro-phone = Phone / Telegram: +38 000 000 00 00
-location-retro-hours = Working hours: Mon–Sun: 10:00–21:00
+location-retro-addr = Kyiv, European Union Avenue 47
+location-retro-hours = Mon–Sun 10:00 – 21:00
 
-delivery-kyiv-title = 🚚 Kyiv Delivery
-delivery-kyiv-subtitle = We offer several fast delivery options so you can enjoy desserts today:
-
-delivery-method-loko = 🩷 LOKO! — we are already on this service. Just search for “Zero” in the app.
-delivery-method-apps = 🏍 Bolt Food / Glovo — fast city delivery “here and now”.
-delivery-method-taxi = 🚖 Taxi — for orders over 1000 UAH, we send by taxi and split the fare 50/50.
-
-payment-methods-title = 💳 Payment Methods
-payment-method-online = To a bank account: convenient for online orders.
-payment-method-offline = Cash or card: when picking up from our points in shopping centers.
+location-rayon-name = Rayon Shopping Center
+location-rayon-addr = Kyiv, Mykola Lavrukhin Street 4
+location-rayon-hours = Mon–Sun 10:00 – 22:00
 
 
-
-#about us
+# about us
 aboutus_title = About Us
 description_about = Discover the story of Zero Caloriy, our approach to healthy eating, and how we create delicious low-calorie sugar-free desserts. We operate in Kyiv.
 mission_aboutus = Our mission is to give you your favorite desserts with fewer calories — sugar-free, but full of the flavors you love.
@@ -83,7 +101,7 @@ btn_all_prod_us = All Products
 bla_bla_about = And they invited various smart people with great character, who could do everything well and fast, and together they created a company. They called it “Zero Caloriy”. And these wonderful people started making all kinds of things...
 
 
-#public_offer.html
+# public_offer.html
 offer_title = Public Offer — Terms of Sale of Zero Caloriy
 description_offer = Public offer of Zero Caloriy. Terms of ordering, payment, delivery, and product returns in Kyiv.
 public_offer_offer = Public Offer Agreement
@@ -94,14 +112,14 @@ p_one_offer = Under this Agreement, one party — the Seller, on the one hand, a
     addressed to an unlimited number of persons, which constitutes the official public offer of the Seller to
     conclude a sale and purchase agreement for goods, the images of which are posted in the relevant section.
 
-p_two_offer = Sellers intending to sell goods via the website https://zerocaloriy.com and buyers purchasing goods,
-    the images of which are posted on the relevant pages of https://zerocaloriy.com, hereby accept the terms of
+p_two_offer = Sellers intending to sell goods via the website https://zerokaloriy.com and buyers purchasing goods,
+    the images of which are posted on the relevant pages of https://zerokaloriy.com, hereby accept the terms of
     this Agreement as follows:
 
 all_offer = GENERAL PROVISIONS
 
 p_one_one_offer = 1.1. Contractual relations between the Seller and the Buyer are formalized in the form of a public
-    offer agreement. Clicking the “Order” button in the relevant section of the website https://zerocaloriy.com
+    offer agreement. Clicking the “Order” button in the relevant section of the website https://zerokaloriy.com
     means that the Buyer, regardless of status (individual, legal entity, or sole proprietor), in accordance
     with applicable international and Ukrainian law, has accepted and agreed to perform the terms of this public
     offer agreement set forth below.
@@ -120,28 +138,28 @@ p_one_four_offer = 1.4. To regulate contractual legal relations under this Agree
 
 times_offer = TERMS AND DEFINITIONS
 
-p_two_one_offer = A public agreement, the template of which is published on the website https://zerocaloriy.com and
+p_two_one_offer = A public agreement, the template of which is published on the website https://zerokaloriy.com and
     the application of which is mandatory for all sellers, containing the Seller’s offer to purchase goods, the
-    images of which are posted on the website https://zerocaloriy.com, addressed to an undefined number of persons,
+    images of which are posted on the website https://zerokaloriy.com, addressed to an undefined number of persons,
     including buyers.
 p_two_two_offer-html = 2.2. <strong>"Acceptance"</strong> — the Buyer’s acceptance of the Seller’s offer to purchase
-    goods, the images of which are posted on the website https://zerocaloriy.com, by adding them to the virtual
+    goods, the images of which are posted on the website https://zerokaloriy.com, by adding them to the virtual
     shopping cart and paying for the Order.
 
 p_two_tri_offer-html = 2.3. <strong>"Goods"</strong> — the subject of trade (product, model, accessories, components,
     related items, and any other items of trade) for which the Seller’s offer to purchase is published on the
-    website https://zerocaloriy.com.
+    website https://zerokaloriy.com.
 
 p_two_four_offer-html = 2.4. <strong>"Buyer"</strong> — any legally capable individual, legal entity, or sole
     proprietor, in accordance with applicable international and Ukrainian law, who has visited the website
-    https://zerocaloriy.com and intends to purchase a particular Product.
+    https://zerokaloriy.com and intends to purchase a particular Product.
 
 p_two_five_offer-html = 2.5. <strong>"Seller"</strong> — any legally capable individual, legal entity, or sole
     proprietor, in accordance with applicable international and Ukrainian law, who is the owner or distributor of
-    goods and intends to sell them via the website https://zerocaloriy.com.
+    goods and intends to sell them via the website https://zerokaloriy.com.
 
 p_two_six_offer-html = 2.6. <strong>"Order"</strong> — a properly completed and submitted purchase request placed by
-    the Buyer on the website https://zerocaloriy.com and addressed to the Seller.
+    the Buyer on the website https://zerokaloriy.com and addressed to the Seller.
 
 p_two_seven_offer-html = 2.7. <strong>"Legislation"</strong> — norms established by Ukrainian or international law
     for regulating contractual legal relations under this Agreement.
@@ -153,7 +171,7 @@ h2_subject_agreement = SUBJECT OF THE AGREEMENT
 
 p_three_one = 3.1. The Seller undertakes, under the terms and in the manner specified in this Agreement, to sell
     the Goods based on an Order placed by the Buyer on the relevant page of the website
-    https://zerocaloriy.com, and the Buyer undertakes, under the terms and in the manner specified in this
+    https://zerokaloriy.com, and the Buyer undertakes, under the terms and in the manner specified in this
     Agreement, to purchase the Goods and pay for them.
 
 p_three_two = 3.2. The Seller warrants that the Goods are not pledged, are not the subject of any dispute, are not
@@ -172,7 +190,7 @@ p_four_one = 4.1. The Seller has the right to:
 li_four_one = perform the terms of this Agreement;
 li_four_two = fulfill the Buyer’s orders upon receipt of payment from the Buyer;
 li_four_three = transfer the Goods to the Buyer in accordance with the selected sample on the relevant page of
-    the website https://zerocaloriy.com, the placed Order, and the terms of this Agreement;
+    the website https://zerokaloriy.com, the placed Order, and the terms of this Agreement;
 li_four_four = verify the qualitative and quantitative characteristics of the Goods during packaging at the
     Seller’s warehouse;
 li_four_five = unilaterally suspend the provision of services under this Agreement in the event of the Buyer’s
@@ -183,7 +201,7 @@ li_four_six = unilaterally refuse to provide services and sell the Goods to the 
 h2_rights_obligations = RIGHTS AND OBLIGATIONS OF THE BUYER
 p_five_one = 5.1. The Buyer shall:
 li_five_one = pay for and receive the Order in a timely manner in accordance with the terms of this Agreement;
-li_five_two = review the information about the Goods published on the website https://zerocaloriy.com;
+li_five_two = review the information about the Goods published on the website https://zerokaloriy.com;
 li_five_three = upon receipt of the Goods from the person delivering them, verify the integrity and completeness
     of the Goods by inspecting the contents of the packaging. In case of damage or incomplete delivery, record
     such deficiencies in a report to be signed by the Buyer and the person delivering the Goods.
@@ -191,9 +209,9 @@ li_five_three = upon receipt of the Goods from the person delivering them, verif
 h2_order_process_offer = ORDER PLACEMENT PROCEDURE
 
 p_six_one = 6.1. The Buyer independently places an Order on the relevant page of the website
-    https://zerocaloriy.com by adding Goods to the virtual shopping cart by clicking the “Add to Cart” button, or
+    https://zerokaloriy.com by adding Goods to the virtual shopping cart by clicking the “Add to Cart” button, or
     by placing an Order via email or by phone number указан in the “Contacts” section of the website
-    https://zerocaloriy.com.
+    https://zerokaloriy.com.
 
 p_six_two = 6.2. The Order processing period is up to 2 business days from the moment the Order is placed. If the
     Order is placed on a weekend or public holiday, the processing period begins on the first business day
@@ -202,7 +220,7 @@ p_six_two = 6.2. The Order processing period is up to 2 business days from the m
 h2_price_offer = CONTRACT PRICE AND PAYMENT PROCEDURE
 
 p_seven_one = 7.1. The price of each individual Product is determined by the Seller and indicated on the relevant
-    page of the website https://zerocaloriy.com. The total contract price is calculated by summing the prices of
+    page of the website https://zerokaloriy.com. The total contract price is calculated by summing the prices of
     all selected Products placed in the virtual shopping cart and the delivery cost, which is determined
     depending on the delivery method in accordance with the terms of Section 8 of this Agreement.
 
@@ -217,12 +235,12 @@ li_seven_three_two = cash on delivery upon receipt of the Order at a delivery se
 li_seven_three_three = by credit/debit card of the following type:
 
 p_detail_payments = Detailed payment terms are available on the page
-    https://zerocaloriy.com/payment-and-delivery
+    https://zerokaloriy.com/payment-and-delivery
 
 h2_delivery_terms = TERMS OF PRODUCT DELIVERY
 
 p_eight_one = 8.1. The Buyer receives the Product via a delivery service. The payment and delivery procedure is
-   specified on the relevant page of the website https://zerocaloriy.com.
+   specified on the relevant page of the website https://zerokaloriy.com.
 
 p_eight_two = 8.2. When delivering Products to other cities of Ukraine or to the territory of another country,
    performed by other delivery services (hereinafter — carrier companies), the Buyer fully and unconditionally
@@ -238,13 +256,13 @@ p_eight_four = 8.4. In the event that the Buyer is absent at the delivery addres
    to receive the Product without valid reason during delivery by the carrier company’s courier, the Product
    shall be returned to the dispatch center. The cost of the carrier company’s services shall be deducted from
    the amount paid by the Buyer for the Product. The remaining amount shall be refunded to the Buyer based on a
-   written request sent to the email address: zerocaloriy7@gmail.com, indicating the bank account to which the
+   written request sent to the email address: zerokaloriy7@gmail.com, indicating the bank account to which the
    funds should be refunded.
 
 p_eight_five = All issues arising during payment and receipt of the Product may be clarified by the Buyer using
    the contact details provided in the “Contacts” section.
 h2_terms_return = TERMS OF PRODUCT RETURN
-p_nine_one = 9.1. Warranty and return conditions are specified on the page https://zerocaloriy.com/warranty-and-return
+p_nine_one = 9.1. Warranty and return conditions are specified on the page https://zerokaloriy.com/warranty-and-return
 
 h2_response_parties = LIABILITY OF THE PARTIES AND DISPUTE RESOLUTION
 p_ten_one = 10.1. The Parties shall be liable for failure or improper performance of this Agreement in accordance with this Agreement and applicable international and Ukrainian law.
@@ -268,12 +286,12 @@ p_another_four = The Buyer consents to the processing, storage, and protection o
 p_another_five = If the Buyer does not wish to receive newsletters, they may notify the Seller.
 p_another_six = The Seller is not responsible for the accuracy of information provided by the Buyer.
 
-#privacy_policy.html
+# privacy_policy.html
 title_policy = Privacy Policy — Zero Caloriy
 description_policy = Information about the collection, use, and protection of personal data of Zero Caloriy users in Kyiv.
 hi_privacy_policy = Privacy Policy
 
-p_one_policy-html = This Privacy Policy applies to the website with the domain name <strong>zerocaloriy</strong> and its subdomains. It contains information about what data the website administrator or third parties may receive when a user (you) visits the website.
+p_one_policy-html = This Privacy Policy applies to the website with the domain name <strong>zerokaloriy</strong> and its subdomains. It contains information about what data the website administrator or third parties may receive when a user (you) visits the website.
 
 h3_private_info = Personal information collected during website visits
 p_private_one = Personal information is voluntarily provided by the user when visiting the website, such as first name, last name, phone number, email address, delivery address for goods and services, company details represented by the user, job position, social media accounts, and other fields completed in forms.
@@ -314,3 +332,18 @@ p_change_privacy_one = We may update this Privacy Policy at any time at our sole
 
 h3_public_offers = Public offers
 p_public_offers_one = Please note that the Website is for informational purposes only, and in any case, informational materials and prices published on the Website do not constitute a public offer under applicable law.
+
+# blog
+title_blog = Zero Calories Blog — healthy eating without extra calories
+dscr_blog = Read the Zero Calories blog about healthy eating, balanced menus, fitness, recipes, and life hacks for an active lifestyle without extra calories.
+h_one_blog = Learn more about our behind-the-scenes
+reade_btn_blog = Read
+
+# success.html
+success_title = Thank you for your order | Zero Calories
+success_description = Thank you for your purchase at Zero Calories. Your order has been received and is being processed. Please wait for confirmation shortly.
+chekout = Checkout
+number_orders = Your order number:
+you_product = Your products:
+sht = pcs
+sucs_total_amound = Total amount:

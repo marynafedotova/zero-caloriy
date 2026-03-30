@@ -12,25 +12,25 @@
 <main>
 
     <section class="top100">
-        <div class="container top100">
+        <div class="container top100 aboutus" >
                 <ul class="nav-product">
         <li><a href="{% url 'main:index' %}">{% ftlmsg "btn_index_us" %}</a><img
-            src="{% static './img/Frame.svg' %}" alt=""></li>
-        <li><a href="{% url 'goods:catalog' %}" class="menu-link">{% ftlmsg "btn_all_prod_us" %}</a></li>
+            src="{% static './img/Frame.svg' %}" alt="link"></li>
+        <li><a href="{% url 'goods:catalog' %}" class="menu-link">Про нас</a></li>
       </ul>
 
             <!-- ABOUT INTRO -->
-            <section class="about-intro">
+            <div class="about-intro">
                 <div class="container">
                     <h1>{% ftlmsg "aboutus_title" %}</h1>
                     <p class="about-intro__mission">
                         {% ftlmsg "mission_aboutus" %}
                     </p>
                 </div>
-            </section>
+            </div>
 
             <!-- STORY BLOCK -->
-            <section class="about-story">
+            <div class="about-story">
                 <div class="about-story__grid">
 <div class="about-img-hero">
     <img src="{% static './img/about-us-hero-section.png' %}" alt="about us">
@@ -51,12 +51,12 @@
 
                     <!-- TEXT -->
                     <div class="about-story__text">
-                        <span>{% ftlmsg "live_man_about" %}</span>
+                        <div class="mb16">{% ftlmsg "live_man_about" %}</div>
                         <br>
-                        <div>
+                        <div class="pr45">
                             {% ftlmsg "svyat_andrii_about" %}
                         </div>
-                        <div>{% ftlmsg "pyziko_about" %}
+                        <div class="pr33">{% ftlmsg "pyziko_about" %}
                         </div>
                         <br>
                         <div>{% ftlmsg "bla_bla_about" %} </div>
@@ -64,16 +64,16 @@
                         </div>
 
                     </div>
-            </section>
+            </div>
 
             <!-- GALLERY -->
-            <section class="about-gallery">
+            <div class="about-gallery">
 
-                <div class="about-gallery-text">
+                <div class="about-gallery-text ">
                     <div>{% ftlmsg "oh_ishe_text_about" %} </div>
                     <div>{% ftlmsg "aaa_she_text_about" %}</div>
                     <br>
-                    <div>{% ftlmsg 'ooo_boze_text_about' %}</div>
+                    <div class="pt16">{% ftlmsg 'ooo_boze_text_about' %}</div>
                     <div>{% ftlmsg "nareshnio_end_text_about" %} </div>
                 </div>
                 <div class="about-img-main">
@@ -93,11 +93,13 @@
                 </div>
                                                         <div class="about-gallery__grid-pic5"><img src="{% static './img/duble_star.png' %}" alt="about us">
                     </div> -->
-            </section>
+            </div>
                             <div class="about-img-main-m">
                     <img src="{% static './img/about-us-main-m.png' %}" alt="about us">
                 </div>
 
         </div>
     </div>
+    </section>
+    </main>
     {% endblock content %}

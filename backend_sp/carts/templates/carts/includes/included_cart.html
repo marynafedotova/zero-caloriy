@@ -3,175 +3,265 @@
 {% load mathfilters %}
 {% load ftl %}
 {% ftlconf bundle="goods.ftl_bundles.goods_main" %}
-
-{% for cart in carts %}
-<div class="cart-item">
-    <div class="cart-img">
-        {% if cart.product.image_url %}
-            <img src="{{ cart.product.image_url }}" alt="{{ cart.product.name }}">
-        {% else %}
-            <img src="{% static 'img/images-not-found.jpg' %}" alt="{{ cart.product.name }}">
-        {% endif %}
-    </div>
-    <div class="cart-info"> 
-        <div class="cart-top-info">
-            <h3 class="cart-title">{{ cart.product.name }}</h3>
-            <a href="{% url 'carts:cart_remove' cart.id %}" class="remove-from-cart">
-                <img src="{% static 'img/delete.svg' %}" alt="delete">
-            </a>
-        </div>
-        <p class="cart-weight">
-            {{ cart.product.weight|mul:1000|floatformat:0 }}{% ftlmsg "measure_unit" %}
-        </p>
-        <div class="cart-bottom">
-            <div class="cart-price">
-                {{ cart.product_prace }} <div class="cart-currency">{% ftlmsg "currency_catalog" %}</div> 
-            </div>
-            <div class="cart-controls">
-                <form action="{% url 'carts:cart_change' cart.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" name="action" value="minus"><img src="{% static './img/minus.svg' %}" alt="minus"></button>
-                    <input type="number" value="{{ cart.quantity }}" readonly class="quantity-input">
-                    <button type="submit" name="action" value="plus"><img src="{% static './img/+.svg' %}" alt="plus"></button>
-                </form>
-            </div>
-        </div>
-    </div>
+<div class="cart-item-list" id="cart-items-list">
+    {% include "carts/includes/cart_items.html" %}
 </div>
-{% endfor %}
 
-<hr class="cart-divider">
 
-<div class="contacts-block">
+<div class="contacts-block" id="contacts-block">
     <div class="order-type-header">
         <h3>
-            {% if request.session.order_type == 'PICKUP' %} 🛍️ Самовивіз {% else %} 🚚 Доставка {% endif %}
+        {% if request.session.order_type == 'PICKUP' %} {% ftlmsg "cart_inc_pic" %} {% else %} {% ftlmsg "cart_inc_dlv" %} {% endif %}
         </h3>
+        <div class="location-details">
+                {% if request.session.order_type == 'PICKUP' %}
+                    {# Знаходимо назву вибраного ресторану для відображення #}
+                    {% for restaurant in all_restaurants %}
+                        {% if restaurant.id|stringformat:"s" == request.session.terminal_id|stringformat:"s" %}
+                            {{ restaurant.name }}{{ restaurant.address }}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
         <button type="button" class="change-type-btn" onclick="$('#delivery-modal').fadeIn()">
-            Змінити спосіб
+            {% ftlmsg "cart_inc_cheng" %}
         </button>
     </div>
 
     <form id="orderForm" method="POST" data-url="{% url 'goods:create-order' %}" data-csrf="{{ csrf_token }}">
         {% csrf_token %}
-        
+        <input type="hidden" name="payment_type" id="payment_type_field" value="paid">
+        <div>
         <input type="text" name="name" placeholder="Ваше ім'я" required class="cart-input">
         <input type="tel" name="phone" placeholder="+380" inputmode="numeric" required class="cart-input">
-
+            </div>
         {% if request.session.order_type == 'PICKUP' %}
             <div class="field-group">
-                <label>ЛОКАЦІЯ</label>
-                <select name="location" required class="cart-input">
-                    {% for restaurant in all_restaurants %}
-                        <option value="{{ restaurant.id }}" {% if restaurant.id|stringformat:"s" == request.session.terminal_id|stringformat:"s" %}selected{% endif %}>
-                            {{ restaurant.name }} ({{ restaurant.address }})
-                        </option>
-                    {% endfor %}
-                </select>
+                <p>{% ftlmsg "cart_inc_time" %}</p>
             </div>
-            <div class="field-group">
-                <label>О котрій заберете?</label>
-                <input type="time" name="delivery_time" required class="cart-input">
-            </div>
+            <button type="button" class="main-cart-submit mb24" onclick="submitOrder('cash_on_delivery')"> 
+            {% ftlmsg "cart_inc_submit_pikcup" %}
+        </button>
+        <button type="button" class="main-cart-submit" onclick="submitOrder('paid')"> 
+            {% ftlmsg "cart_inc_submit" %}
+        </button>
         {% else %}
             <div class="delivery-address-block">
-                <label class="field-label">📍 Адреса доставки</label>
-                <input type="text" name="street" placeholder="Вулиця" required class="cart-input">
+                <label class="field-label">{% ftlmsg "cart_inc_dlv_adres" %}</label>
+                <input type="text" name="street" placeholder="{% ftlmsg "cart_inc_dlv_street" %}" required class="cart-input">
                 <div class="input-row">
-                    <input type="text" name="house_number" placeholder="Буд." required class="cart-input">
-                    <input type="text" name="apartment_number" placeholder="Кв./Офіс" class="cart-input">
+                    <input type="text" name="house_number" placeholder="{% ftlmsg "cart_inc_dlv_home" %}" required class="cart-input">
+                    <input type="text" name="apartment_number" placeholder="{% ftlmsg "cart_inc_dlv_kv" %}" class="cart-input">
                 </div>
                 <div class="input-row">
-                    <input type="text" name="entrance" placeholder="Під'їзд" class="cart-input">
-                    <input type="text" name="floor" placeholder="Поверх" class="cart-input">
+                    <input type="text" name="entrance" placeholder="{% ftlmsg "cart_inc_dlv_pd" %}" class="cart-input">
+                    <input type="text" name="floor" placeholder="{% ftlmsg "cart_inc_dlv_fl" %}" class="cart-input">
                 </div>
                 <div class="field-group">
-                    <label class="field-label">🕒 Бажаний час доставки</label>
-                    <input type="time" name="delivery_time" required class="cart-input">
+                    <label class="field-label">{% ftlmsg "cart_inc_dlv_like_tm" %}</label>
+                    <input type="time" name="delivery_time" required class="cart-input" placeholder="00:00">
                 </div>
-                <textarea name="comment" placeholder="Коментар для кур'єра" class="cart-input comment-area"></textarea>
-            </div>
-        {% endif %}
-
-        <div class="cart-summary-card {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}status-error{% endif %}">
-            <p class="order-title">{% ftlmsg "order_cart" %}</p>
-            
-            <div class="summary-line">
-                <span>Товари:</span>
-                <span class="price-val">{{ cart_total_price }} {% ftlmsg "currency_catalog" %}</span>
+                <textarea name="comment" placeholder="{% ftlmsg "cart_inc_dlvr_comment" %}" class="cart-input comment-area"></textarea>
             </div>
 
-            {% if request.session.order_type == 'DELIVERY' %}
-    <div class="cart-summary-card">
-        
-        {% if cart_total_price < 1600 %}
-            <div class="ux-notice aggregator">
-                <p>📍 Ваше замовлення менше 2000 грн.</p>
-                <p>Ми з радістю привеземо його вам через сервіси доставки:</p>
-                <div class="aggregator-links">
-                    <a href="https://glovoapp.com/..." class="btn-glovo">Glovo</a>
-                    <a href="https://boltfood.com/..." class="btn-bolt">Bolt Food</a>
-                    <a href="https://link.loko.delivery/49bc224fbf0d" class="btn-bolt">Loko</a>
-                </div>
-            </div>
-
-        {% elif cart_total_price < 2000 %}
-            <div class="ux-notice upsell">
-                <p>🌟 Вам залишилося всього <b>{{ 2000|sub:cart_total_price }} грн</b> до мінімального замовлення!</p>
-                <p>Додайте десерт або напій, щоб оформити доставку кур'єром.</p>
-                <a href="{% url 'goods:catalog' %}" class="btn-back">Перейти до меню</a>
-            </div>
-
-        {% elif cart_total_price < 4000 %}
-            <div class="ux-notice info">
-                ✅ Мінімальну суму набрано! Доставка: 200 грн.
-                <br>Додайте ще на <b>{{ 4000|sub:cart_total_price }} грн</b> і ми пришлемо таксі <b>безкоштовно</b>!
-            </div>
-        {% endif %}
-
-    </div>
-{% endif %}
-
-            <div class="summary-total">
-                <span>{% ftlmsg "total_prace_carts" %}</span>
-                <span class="total-val">{{ full_total_sum }} {% ftlmsg "currency_catalog" %}</span>
-            </div>
-        </div>
-
-        <button type="submit" id="cart-btn" class="main-cart-submit" 
+                    <button type="button" class="main-cart-submit" id="checkout-paid-btn" onclick="submitOrder('paid')"
             {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}disabled{% endif %}>
             {% if request.session.order_type == 'DELIVERY' and cart_total_price < 2000 %}
-                Мінімальна сума замовлення 2000
+                {% ftlmsg "minimal_sum" %}
             {% else %}
-                Перейти до оплати
+                {% ftlmsg "cart_inc_submit" %}
             {% endif %}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14.2959 4.45407L21.0459 11.2041L14.2959 19.5478" stroke="white" stroke-width="2"/></svg>
+            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.12278 0.193686L5.49778 4.56869C5.55896 4.62965 5.6075 4.7021 5.64062 4.78187C5.67375 4.86164 5.6908 4.94716 5.6908 5.03353C5.6908 5.1199 5.67375 5.20542 5.64062 5.28519C5.6075 5.36496 5.55896 5.43741 5.49778 5.49837L1.12278 9.87337C0.999495 9.99666 0.832285 10.0659 0.657935 10.0659C0.483585 10.0659 0.316376 9.99666 0.193091 9.87337C0.0698072 9.75009 0.000546999 9.58288 0.000547 9.40853C0.000547 9.23418 0.0698072 9.06697 0.193091 8.94369L4.10379 5.03298L0.192545 1.12228C0.0692608 0.998996 1.10116e-07 0.831787 1.12195e-07 0.657436C1.14274e-07 0.483087 0.0692608 0.315877 0.192545 0.192593C0.315829 0.0693083 0.483038 4.67358e-05 0.657389 4.67379e-05C0.831739 4.674e-05 0.998948 0.0693083 1.12223 0.192593L1.12278 0.193686Z" fill="white"/>
+</svg>
+
         </button>
+        {% endif %}
+    
+
+
     </form>
 </div>
+<script>
 
-<style>
-    .cart-divider { margin: 30px 0; border: 0; border-top: 1px solid #eee; }
-    .order-type-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .change-type-btn { color: #ff4d8d; background: none; border: 1px solid #ff4d8d; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+    function submitOrder(paymentType) {
+        const form = document.getElementById('orderForm');
     
-    .cart-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; display: block; }
-    .input-row { display: flex; gap: 10px; }
-    .input-row .cart-input { flex: 1; }
-    .comment-area { height: 80px; resize: none; }
+        // 1. Перевіряємо валідацію форми (чи заповнені ім'я, телефон тощо)
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+    
+        // 2. Встановлюємо значення типу оплати в приховане поле
+        document.getElementById('payment_type_field').value = paymentType;
+    
+        // 3. Збираємо дані форми
+        const formData = new FormData(form);
+        const url = form.getAttribute('data-url');
+        const csrfToken = form.getAttribute('data-csrf');
+    
+        // Деактивуємо кнопку, щоб уникнути повторних кліків
+        const submitBtn = event.currentTarget;
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Обробка...";
+    
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'pay') {
+                // ПЕРЕХІД НА MONOBANK
+                window.location.href = data.pay_url;
+            } else if (data.status === 'success') {
+                // ПЕРЕХІД НА СТОРІНКУ УСПІХУ (для готівки)
+                window.location.href = "/order/success/" + data.order_number;
+            } else {
+                alert("Помилка: " + data.message);
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Спробувати ще раз";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Сталася технічна помилка");
+            submitBtn.disabled = false;
+        });
+    }
 
-    /* Стилізація картки підсумку */
-    .cart-summary-card { margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 12px; border: 1px solid #eee; }
-    .cart-summary-card.status-error { border: 1px solid #ff4d8d; background: #fff5f8; }
-    
-    .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; }
-    .delivery-line { color: #ff4d8d; }
-    .summary-total { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd; font-weight: bold; font-size: 18px; }
-    
-    .ux-notice { font-size: 13px; margin: 10px 0; padding: 8px; border-radius: 6px; }
-    .ux-notice.error { color: #d32f2f; background: #ffebee; }
-    .ux-notice.info { color: #2e7d32; background: #e8f5e9; }
+function changeCartQty(el, action) {
+    const url = el.getAttribute('data-url');
+    const csrfToken = "{{ csrf_token }}";
 
-    .main-cart-submit { width: 100%; background: #ff4d8d; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 15px; transition: 0.3s; }
-    .main-cart-submit:disabled { background: #ccc; cursor: not-allowed; }
-</style>
+    const formData = new FormData();
+    formData.append('action', action);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+    if (data.status === 'success') {
+
+        const qtyInput = document.getElementById(`qty-${data.cart_id}`);
+        if (qtyInput) {
+            qtyInput.value = data.quantity;
+        }
+
+        updateCartTotals(data);
+    }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function removeCartItem(el, cartId) {
+    // if (!confirm('Видалити цей товар?')) return;
+
+    const url = el.getAttribute('data-url');
+    const csrfToken = "{{ csrf_token }}";
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // У вашому Django view cart_remove повертає status: 'success'
+        if (data.status === 'success' || data.status === 'deleted') {
+            const item = document.getElementById(`cart-item-${cartId}`);
+            if (item) item.remove();
+            updateCartTotals(data);
+        }
+    });
+}
+
+function updateCheckoutButton(data) {
+    const payBtn = document.getElementById('checkout-paid-btn');
+    if (!payBtn) return;
+
+    const root = document.getElementById('cart-root');
+    const orderType = root?.dataset?.orderType || '';
+
+    const total = Number(data.cart_total_price ?? 0);
+    const minDelivery = 2000;
+    const mustBlock = (orderType === 'DELIVERY' && total < minDelivery);
+
+    payBtn.disabled = mustBlock;
+    payBtn.classList.toggle('is-disabled', mustBlock);
+
+    // окремий span для тексту кнопки
+    const txt = payBtn.querySelector('.btn-text');
+    if (txt) {
+        txt.textContent = mustBlock ? '{% ftlmsg "minimal_sum" %}' : '{% ftlmsg "cart_inc_submit" %}';
+    } else {
+        payBtn.textContent = mustBlock ? '{% ftlmsg "minimal_sum" %}' : '{% ftlmsg "cart_inc_submit" %}';
+    }
+}
+
+function updateCartTotals(data) {
+    // 1) Оновлюємо HTML кошика (товари + кнопки), якщо бек повернув новий фрагмент
+    if (data.cart_html) {
+        const cartList = document.getElementById('cart-items-list');
+        if (cartList) {
+            cartList.innerHTML = data.cart_html;
+        }
+    }
+
+    // 2) Нормалізуємо count і оновлюємо лічильник кошика в шапці
+    const count = Number(data.cart_count || 0);
+
+    if (typeof window.updateGlobalCartCounter === 'function') {
+        window.updateGlobalCartCounter(count);
+    } else {
+        const badge = document.getElementById('cart-counter');
+        if (badge) {
+            badge.innerText = count;
+            badge.style.display = count > 0 ? 'flex' : 'none';
+        }
+    }
+
+    // 3) Оновлюємо суму товарів (без доставки)
+    if (data.cart_total_price !== undefined) {
+        document.querySelectorAll('.price-val').forEach(el => {
+            el.innerText = data.cart_total_price + " грн";
+        });
+    }
+
+    // 4) Оновлюємо загальну підсумкову суму (з доставкою)
+    if (data.full_total_sum !== undefined) {
+        document.querySelectorAll('.total-val').forEach(el => {
+            el.innerText = data.full_total_sum + " грн";
+        });
+    }
+
+    // 5) Оновлюємо суму конкретного рядка товару
+    if (data.item_total !== undefined && data.cart_id !== undefined) {
+        const itemTotalEl = document.getElementById(`item-total-${data.cart_id}`);
+        if (itemTotalEl) {
+            itemTotalEl.innerText = data.item_total;
+        }
+    }
+
+    // 6) Ховаємо/показуємо блок контактів, якщо кошик порожній
+    const contacts = document.getElementById('contacts-block');
+    if (contacts) {
+        contacts.style.display = count > 0 ? '' : 'none';
+    }
+
+    updateCheckoutButton(data);
+}
+
+</script>

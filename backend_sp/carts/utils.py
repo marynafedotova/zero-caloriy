@@ -19,3 +19,4 @@ def calculate_delivery_cost(total_price):
         return 200
     else:
         return 0
+
